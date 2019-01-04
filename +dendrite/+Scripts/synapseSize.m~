@@ -1,0 +1,37 @@
+names=["S1","V2","PPC","ACC","Aggregate"];
+%Number of trees per apical type and synapse type =2*number of synapses
+numberOfSyn=[10,10,10,11];
+apicalTag={'layer2','deep'};
+synTag={'Shaft','Spine'};
+synapseSizes=cell(2,2,52);
+for synType=1:2
+    for apicaltype=1:2
+        for dataset=1:4
+            skel=apicalTuft([names{dataset},'_synSize']);
+            curTreeIdx=skel.getTreeWithName...
+                ([synTag{synType},'_',apicalTag{apicaltype}],'first');
+            nrOfTrees=numberOfSyn(dataset)*2;
+            assert(size(curTreeIdx,1)==nrOfTrees)
+            nodeNrPerTree=cellfun(@(x)size(x,1),skel.nodes(curTreeIdx));
+
+            assert(all(nodeNrPerTree==2),'some trees do not have size 2')
+            curRawPathLength=skel.pathLength(curTreeIdx,skel.scale./1000);
+            sortedPathLength=sortrows([skel.names(curTreeIdx),num2cell(curRawPathLength)]);
+            curSortedPathLength=cell2mat(sortedPathLength(:,2));
+            curPathLength=reshape(curSortedPathLength,2,numberOfSyn(dataset));
+            curPathLength=curPathLength./2;
+            synapseSizes{synType,apicaltype,dataset}=(prod(curPathLength,1).*pi)';
+        end
+        synapseSizes{synType,apicaltype,5}=cat(1,synapseSizes{synType,apicaltype,1:4});
+    end
+    [p,h,stats]=ranksum(synapseSizes{synType,1,5},synapseSizes{synType,2,5});
+    fprintf(' Wilcoxon ranksum for %s size- h=%d, p=%d\n',synTag{synType},h,p);
+end
+%% ranksum testing
+for synType=1:2
+    for dataset=1:5
+    [p,h,stats]=ranksum(synapseSizes{1,dataset,synType},synapseSizes{2,dataset,synType});
+    fprintf(' Wilcoxon ranksum for %s, dataest %s size- h=%d, p=%d\n',...
+        synTag{synType},names(dataset),h,p);
+    end
+end

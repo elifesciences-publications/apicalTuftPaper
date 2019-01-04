@@ -1,0 +1,12 @@
+allUniqueComments
+"Dead end"
+"exit"
+"seed"
+"sh"
+"sh (smooth)"
+"sh unsure"
+"soma (inhibitory)"
+"sp"
+"sp (neck)"
+"sp (unsure)"
+"unsure"

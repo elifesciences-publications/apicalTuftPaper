@@ -1,0 +1,2 @@
+Wilcoxon ranksum for Spine size- h=0.000000, p=0.121439
+Wilcoxon ranksum for Shaft size- h=1.000000, p=0.024222

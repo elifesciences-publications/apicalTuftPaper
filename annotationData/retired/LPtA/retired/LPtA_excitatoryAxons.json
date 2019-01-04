@@ -1,0 +1,16 @@
+{
+  "outputDir": "/home/alik/code/alik/L1paper/NMLs/Axons/LPtA/",
+  "apicalType": ["L2 spine seeded","L5 spine seeded"],
+  "syn": ["sp","sh","sp (dual)","sp (neck)","soma"],
+  "synExclusion": "unsure",
+  "synGroups2remove":[[1,3,4]],
+  "synLabel":["sp","sh","spdual","spneck","soma"],
+  "synCenterTPA":false,
+  "seed":"seed",
+}
+
+
+
+
+
+

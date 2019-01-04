@@ -1,0 +1,32 @@
+comments:
+'L2afterBIF','L2BIF','L2apical'
+
+'DEEPafterBIF','DEEPBIF','DEEPapical'
+
+'soma',
+
+'AIS',
+
+'sp'
+
+'sh'
+
+seed tag:
+SEED
+
+unsure tag:
+unsure
+
+multiple hit tag:
+xy
+
+real endings of tracing tag:
+end:  real tree endings in dataset
+dead end: when I cannot continue tracing: example: bad alignment
+exit: exited the dataset
+
+comment:
+all traced by jan
+
+todo:
+sy spine double checking

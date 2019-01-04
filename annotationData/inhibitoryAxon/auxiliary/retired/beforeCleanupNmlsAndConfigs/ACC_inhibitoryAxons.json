@@ -1,0 +1,14 @@
+{
+  "outputDir": "/home/alik/code/alik/L1paper/NMLs/inhibitoryAxons/",
+  "apicalType": [ "L2ApBIFSeed","DeepApBIFSeed"],
+  "syn": ["So L2 Apical","So Deep Apical","So Soma","So Shaft","So Spine head double apcl l2","So Spine neck apcl l2","So Spine single apcl l2","So Spine head double apcl dp","So Spine neck apcl dp","So Spine single apcl dp","So Spine head double shft","So Spine head double no src","So Spine neck shft","So Spine neck no src","So Spine single shft","So Spine single no src","So AIS","So glia"],
+  "synExclusion": "unsure",
+  "synLabel":["So L2 Apical","So Deep Apical","So Soma","So Shaft","So Spine head double apcl l2","So Spine neck apcl l2","So Spine single apcl l2","So Spine head double apcl dp","So Spine neck apcl dp","So Spine single apcl dp","So Spine head double shft","So Spine head double no src","So Spine neck shft","So Spine neck no src","So Spine single shft","So Spine single no src","So AIS","So glia"],
+  "synCenterTPA":false,
+  "seed":"Seed",
+  "tracingStop":["end","exit","Dead end"],
+  "multipleHit":"xy",
+}
+
+
+

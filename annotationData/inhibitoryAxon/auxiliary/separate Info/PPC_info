@@ -1,0 +1,38 @@
+comments:
+'sy apical l2'
+'sy bifur l2'
+
+'sy bifur deep'
+'sy apical deep',
+
+'sy soma',
+
+'sy ais',
+
+'sy spine'
+'sy spine neck'
+'sy spine double'
+
+'sy shaft non'
+'sy shaft'
+'sy proximal'
+'sy branch'
+
+unsure tag:
+unsure
+
+multiple hit tag: xy
+
+seed tag:
+seed
+
+real endings of tracing tag:
+end:  real tree endings in dataset
+dead end: when I cannot continue tracing: example: bad alignment
+exit
+
+comment:
+jan: The tag in the tree name exists
+
+todo:
+sy spine double checking

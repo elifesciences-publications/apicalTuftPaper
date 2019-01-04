@@ -1,0 +1,931 @@
+<things>
+  <meta name="writer" content="NmlWriter.scala" />
+  <meta name="writerGitCommit" content="93e7de57bc154d956e9df1456b4e320be1dec260" />
+  <meta name="timestamp" content="1526472530480" />
+  <meta name="annotationId" content="5afbf318280000ee28da2847" />
+  <meta name="username" content="Ali Karimi" />
+  <parameters>
+    <experiment name="JO_ACC_Z_straightenedPosthoc" description="" />
+    <scale x="12.0" y="12.0" z="30.0" />
+    <offset x="0" y="0" z="0" />
+    <time ms="1526461208474" />
+    <editPosition x="2085" y="1275" z="563" />
+    <editRotation xRot="0.0" yRot="0.0" zRot="0.0" />
+    <zoomLevel zoom="2.419999999999922" />
+    <activeNode id="200" />
+  </parameters>
+  <thing id="201" color.r="0.8274509906768799" color.g="0.48235294222831726" color.b="0.7921568751335144" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_201">
+    <nodes>
+      <node id="200" radius="120.0" x="2085" y="1275" z="563" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466958358" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="200" color.r="0.3803921639919281" color.g="0.1725490242242813" color.b="0.27450981736183167" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_200">
+    <nodes>
+      <node id="199" radius="120.0" x="1958" y="1137" z="2990" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466877098" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="199" color.r="0.6901960968971252" color.g="0.5843137502670288" color.b="0.07058823853731155" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_199">
+    <nodes>
+      <node id="198" radius="120.0" x="2373" y="1152" z="2585" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526466858878" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="198" color.r="0.7568627595901489" color.g="0.8627451062202454" color.b="0.8274509906768799" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_198">
+    <nodes>
+      <node id="197" radius="120.0" x="2224" y="1128" z="2638" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466838626" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="197" color.r="0.48235294222831726" color.g="0.7568627595901489" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_197">
+    <nodes>
+      <node id="196" radius="120.0" x="4016" y="1101" z="45" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466814362" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="196" color.r="0.4470588266849518" color.g="0.27450981736183167" color.b="0.1725490242242813" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_196">
+    <nodes>
+      <node id="195" radius="120.0" x="5089" y="1189" z="1881" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466724380" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="195" color.r="0.7921568751335144" color.g="0.4470588266849518" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_195">
+    <nodes>
+      <node id="194" radius="120.0" x="5311" y="1167" z="1861" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466714054" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="194" color.r="1.0" color.g="0.3803921639919281" color.b="0.24313725531101227" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_194">
+    <nodes>
+      <node id="193" radius="120.0" x="5253" y="1171" z="1965" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466706896" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="193" color.r="0.07058823853731155" color.g="0.4470588266849518" color.b="0.7568627595901489" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_193">
+    <nodes>
+      <node id="192" radius="120.0" x="5583" y="1185" z="1989" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466697320" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="192" color.r="0.48235294222831726" color.g="0.003921568859368563" color.b="0.6549019813537598" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_192">
+    <nodes>
+      <node id="191" radius="120.0" x="5829" y="1221" z="2017" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466690032" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="191" color.r="0.7921568751335144" color.g="0.6901960968971252" color.b="0.48235294222831726" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_191">
+    <nodes>
+      <node id="190" radius="120.0" x="7707" y="1119" z="3053" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466659366" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="190" color.r="0.7568627595901489" color.g="0.3450980484485626" color.b="0.4156862795352936" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_190">
+    <nodes>
+      <node id="189" radius="120.0" x="5038" y="1169" z="2365" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466628246" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="189" color.r="0.6196078658103943" color.g="0.07058823853731155" color.b="0.8980392217636108" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_189">
+    <nodes>
+      <node id="188" radius="120.0" x="6317" y="1214" z="2222" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526466593022" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="188" color.r="0.8627451062202454" color.g="1.0" color.b="0.3450980484485626" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_188">
+    <nodes>
+      <node id="187" radius="120.0" x="6062" y="1250" z="2179" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466572922" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="187" color.r="0.6901960968971252" color.g="1.0" color.b="0.9647058844566345" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_187">
+    <nodes>
+      <node id="186" radius="120.0" x="5776" y="1242" z="2095" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466564332" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="186" color.r="0.8627451062202454" color.g="0.27450981736183167" color.b="0.7921568751335144" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_186">
+    <nodes>
+      <node id="185" radius="120.0" x="6365" y="1177" z="1319" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466544014" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="185" color.r="0.24313725531101227" color.g="0.27450981736183167" color.b="0.13725490868091583" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_185">
+    <nodes>
+      <node id="184" radius="120.0" x="7270" y="1169" z="1213" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466535498" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="184" color.r="0.7568627595901489" color.g="0.8274509906768799" color.b="0.9647058844566345" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_184">
+    <nodes>
+      <node id="183" radius="120.0" x="7221" y="1214" z="651" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466521248" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="183" color.r="0.5529412031173706" color.g="0.4156862795352936" color.b="0.8274509906768799" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_183">
+    <nodes>
+      <node id="182" radius="120.0" x="7966" y="1173" z="691" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466512032" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="182" color.r="0.3803921639919281" color.g="0.6901960968971252" color.b="0.5176470875740051" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_182">
+    <nodes>
+      <node id="181" radius="120.0" x="6230" y="1122" z="315" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466490404" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="181" color.r="0.30980393290519714" color.g="0.3450980484485626" color.b="0.929411768913269" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_181">
+    <nodes>
+      <node id="180" radius="120.0" x="6023" y="1122" z="259" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466477566" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="180" color.r="0.30980393290519714" color.g="0.03529411926865578" color.b="0.6196078658103943" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_180">
+    <nodes>
+      <node id="179" radius="120.0" x="4245" y="1172" z="413" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466457790" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="179" color.r="0.4470588266849518" color.g="1.0" color.b="0.8274509906768799" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_179">
+    <nodes>
+      <node id="178" radius="120.0" x="2388" y="1205" z="625" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526466449980" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="178" color.r="0.5176470875740051" color.g="0.8274509906768799" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_178">
+    <nodes>
+      <node id="177" radius="120.0" x="4117" y="1208" z="653" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466433572" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="177" color.r="0.8274509906768799" color.g="0.6901960968971252" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_177">
+    <nodes>
+      <node id="176" radius="120.0" x="5503" y="1207" z="669" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466424584" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="176" color.r="0.929411768913269" color.g="0.7254902124404907" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_176">
+    <nodes>
+      <node id="175" radius="120.0" x="4618" y="1252" z="893" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466410098" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="175" color.r="1.0" color.g="0.3450980484485626" color.b="0.5529412031173706" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_175">
+    <nodes>
+      <node id="174" radius="120.0" x="3155" y="1221" z="909" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466399748" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="174" color.r="0.5176470875740051" color.g="0.5529412031173706" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_174">
+    <nodes>
+      <node id="173" radius="120.0" x="3399" y="1227" z="1163" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526466389928" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="173" color.r="1.0" color.g="0.7921568751335144" color.b="0.7254902124404907" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_173">
+    <nodes>
+      <node id="172" radius="120.0" x="4787" y="1165" z="1837" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466380328" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="172" color.r="0.8980392217636108" color.g="0.8627451062202454" color.b="0.1725490242242813" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_172">
+    <nodes>
+      <node id="171" radius="120.0" x="6363" y="1196" z="1181" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466370216" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="171" color.r="0.3450980484485626" color.g="0.13725490868091583" color.b="0.4156862795352936" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_171">
+    <nodes>
+      <node id="170" radius="120.0" x="6721" y="1165" z="1453" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466361848" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="170" color.r="0.7254902124404907" color.g="0.8627451062202454" color.b="0.6549019813537598" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_170">
+    <nodes>
+      <node id="169" radius="120.0" x="7214" y="1216" z="1299" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526466352132" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="169" color.r="0.5529412031173706" color.g="0.1725490242242813" color.b="0.7568627595901489" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_169">
+    <nodes>
+      <node id="168" radius="120.0" x="5546" y="1183" z="1661" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466344482" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="168" color.r="0.8274509906768799" color.g="0.13725490868091583" color.b="0.5843137502670288" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_168">
+    <nodes>
+      <node id="167" radius="120.0" x="5146" y="1215" z="1538" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466325846" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="167" color.r="0.8274509906768799" color.g="0.3803921639919281" color.b="0.1725490242242813" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_167">
+    <nodes>
+      <node id="166" radius="120.0" x="5389" y="1148" z="1549" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526466303116" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="166" color.r="0.0" color.g="0.3803921639919281" color.b="0.7921568751335144" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_166">
+    <nodes>
+      <node id="165" radius="120.0" x="5990" y="1132" z="1482" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526466290788" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="165" color.r="0.0" color.g="0.3450980484485626" color.b="0.5176470875740051" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_165">
+    <nodes>
+      <node id="164" radius="120.0" x="6101" y="1144" z="1387" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526466279898" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="164" color.r="1.0" color.g="0.10196078568696976" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_164">
+    <nodes>
+      <node id="163" radius="120.0" x="7371" y="1194" z="2374" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526466240698" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="163" color.r="0.3803921639919281" color.g="0.6901960968971252" color.b="0.30980393290519714" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_163">
+    <nodes>
+      <node id="162" radius="120.0" x="2760" y="1116" z="2951" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526466180414" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="162" color.r="0.30980393290519714" color.g="0.24313725531101227" color.b="0.03529411926865578" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_162">
+    <nodes>
+      <node id="161" radius="120.0" x="2622" y="1170" z="3187" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526466113518" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="161" color.r="0.0" color.g="0.5176470875740051" color.b="0.3803921639919281" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_161">
+    <nodes>
+      <node id="160" radius="120.0" x="2773" y="1127" z="3053" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526466107934" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="160" color.r="0.0" color.g="0.3803921639919281" color.b="0.3803921639919281" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_160">
+    <nodes>
+      <node id="159" radius="120.0" x="4943" y="1186" z="1702" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465894358" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="159" color.r="0.7921568751335144" color.g="0.07058823853731155" color.b="0.3803921639919281" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_159">
+    <nodes>
+      <node id="158" radius="120.0" x="5063" y="1171" z="1730" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465884640" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="158" color.r="0.27450981736183167" color.g="0.4156862795352936" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_158">
+    <nodes>
+      <node id="157" radius="120.0" x="5125" y="1130" z="1791" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465874618" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="157" color.r="0.6196078658103943" color.g="0.003921568859368563" color.b="0.5843137502670288" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_157">
+    <nodes>
+      <node id="156" radius="120.0" x="2661" y="1124" z="1268" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526465712732" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="156" color.r="0.13725490868091583" color.g="0.0" color.b="0.13725490868091583" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_156">
+    <nodes>
+      <node id="155" radius="120.0" x="2670" y="1221" z="857" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465674236" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="155" color.r="0.5176470875740051" color.g="0.5843137502670288" color.b="0.8627451062202454" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_155">
+    <nodes>
+      <node id="154" radius="120.0" x="5189" y="1197" z="1633" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465643184" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="154" color.r="0.7921568751335144" color.g="0.13725490868091583" color.b="0.24313725531101227" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_154">
+    <nodes>
+      <node id="153" radius="120.0" x="5796" y="1169" z="1375" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465630248" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="153" color.r="1.0" color.g="0.3803921639919281" color.b="0.6901960968971252" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_153">
+    <nodes>
+      <node id="152" radius="120.0" x="6204" y="1153" z="1335" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465611414" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="152" color.r="0.7254902124404907" color.g="0.48235294222831726" color.b="0.6901960968971252" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_152">
+    <nodes>
+      <node id="151" radius="120.0" x="5556" y="1117" z="1437" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465557902" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="151" color.r="0.0" color.g="0.8274509906768799" color.b="0.24313725531101227" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_151">
+    <nodes>
+      <node id="150" radius="120.0" x="5562" y="1128" z="1797" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465549502" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="150" color.r="0.7921568751335144" color.g="0.6196078658103943" color.b="0.30980393290519714" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_150">
+    <nodes>
+      <node id="149" radius="120.0" x="6822" y="1109" z="1385" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465434822" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="149" color.r="0.5529412031173706" color.g="0.9647058844566345" color.b="0.4470588266849518" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_149">
+    <nodes>
+      <node id="148" radius="120.0" x="6997" y="1128" z="1385" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="8" interpolation="true" time="1526465419582" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="148" color.r="0.8274509906768799" color.g="0.4470588266849518" color.b="0.3803921639919281" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_148">
+    <nodes>
+      <node id="147" radius="120.0" x="6259" y="1204" z="1035" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465344772" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="147" color.r="0.6901960968971252" color.g="0.6196078658103943" color.b="0.5176470875740051" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_147">
+    <nodes>
+      <node id="146" radius="120.0" x="7536" y="1194" z="1160" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526465300176" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="145" color.r="0.5843137502670288" color.g="0.24313725531101227" color.b="0.6196078658103943" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_145">
+    <nodes>
+      <node id="144" radius="120.0" x="4279" y="1142" z="368" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526465108710" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="144" color.r="0.3803921639919281" color.g="0.4470588266849518" color.b="0.24313725531101227" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_144">
+    <nodes>
+      <node id="143" radius="120.0" x="4191" y="1184" z="389" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526465083182" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="143" color.r="0.9647058844566345" color.g="0.5176470875740051" color.b="0.6901960968971252" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_143">
+    <nodes>
+      <node id="142" radius="120.0" x="4148" y="1189" z="421" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="8" interpolation="true" time="1526465068618" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="142" color.r="1.0" color.g="0.8980392217636108" color.b="0.6196078658103943" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_142">
+    <nodes>
+      <node id="141" radius="120.0" x="4304" y="1142" z="403" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526465039812" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="141" color.r="0.2078431397676468" color.g="0.8980392217636108" color.b="0.5529412031173706" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_141">
+    <nodes>
+      <node id="140" radius="120.0" x="4422" y="1174" z="646" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465019258" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="140" color.r="0.27450981736183167" color.g="0.6901960968971252" color.b="0.9647058844566345" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_140">
+    <nodes>
+      <node id="139" radius="120.0" x="4387" y="1178" z="494" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526465005748" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="139" color.r="0.1725490242242813" color.g="0.13725490868091583" color.b="0.2078431397676468" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_139">
+    <nodes>
+      <node id="138" radius="120.0" x="4620" y="1145" z="481" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526464987150" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="138" color.r="0.4470588266849518" color.g="0.24313725531101227" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_138">
+    <nodes>
+      <node id="137" radius="120.0" x="5119" y="1123" z="561" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526464971388" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="137" color.r="0.4156862795352936" color.g="0.07058823853731155" color.b="0.13725490868091583" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_137">
+    <nodes>
+      <node id="136" radius="120.0" x="5308" y="1148" z="503" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526464953046" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="136" color.r="0.1725490242242813" color.g="0.5176470875740051" color.b="0.13725490868091583" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_136">
+    <nodes>
+      <node id="135" radius="120.0" x="5216" y="1141" z="498" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526464946026" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="135" color.r="0.5176470875740051" color.g="0.2078431397676468" color.b="0.03529411926865578" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_135">
+    <nodes>
+      <node id="134" radius="120.0" x="5323" y="1157" z="590" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="2" bitDepth="8" interpolation="true" time="1526464816734" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="134" color.r="0.6901960968971252" color.g="0.48235294222831726" color.b="0.07058823853731155" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_134">
+    <nodes>
+      <node id="133" radius="120.0" x="5534" y="1138" z="511" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="1" bitDepth="8" interpolation="true" time="1526464766614" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="133" color.r="0.8274509906768799" color.g="0.7921568751335144" color.b="0.8274509906768799" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_133">
+    <nodes>
+      <node id="132" radius="120.0" x="5794" y="1148" z="486" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="1" bitDepth="8" interpolation="true" time="1526464746898" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="132" color.r="0.3450980484485626" color.g="1.0" color.b="0.30980393290519714" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_132">
+    <nodes>
+      <node id="131" radius="120.0" x="7810" y="1188" z="572" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="1" bitDepth="8" interpolation="true" time="1526464685548" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="131" color.r="0.1725490242242813" color.g="0.07058823853731155" color.b="0.03529411926865578" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_131">
+    <nodes>
+      <node id="130" radius="120.0" x="7718" y="1158" z="624" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="8" interpolation="true" time="1526464656820" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="130" color.r="1.0" color.g="0.6901960968971252" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_130">
+    <nodes>
+      <node id="129" radius="120.0" x="7654" y="1178" z="703" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="8" interpolation="true" time="1526464636626" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="129" color.r="0.3803921639919281" color.g="0.6196078658103943" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_129">
+    <nodes>
+      <node id="128" radius="120.0" x="7570" y="1142" z="481" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="8" interpolation="true" time="1526464622700" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="128" color.r="0.7254902124404907" color.g="0.48235294222831726" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_128">
+    <nodes>
+      <node id="127" radius="120.0" x="7300" y="1119" z="146" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="8" interpolation="true" time="1526464605614" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="127" color.r="0.48235294222831726" color.g="0.27450981736183167" color.b="0.4470588266849518" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_127">
+    <nodes>
+      <node id="126" radius="120.0" x="2638" y="1151" z="3142" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464478786" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="126" color.r="1.0" color.g="0.6901960968971252" color.b="0.7921568751335144" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_126">
+    <nodes>
+      <node id="125" radius="120.0" x="2799" y="1118" z="3126" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464476118" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="125" color.r="0.8980392217636108" color.g="1.0" color.b="0.8627451062202454" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_125">
+    <nodes>
+      <node id="124" radius="120.0" x="2374" y="1110" z="3046" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464466396" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="123" color.r="0.9647058844566345" color.g="0.6549019813537598" color.b="0.5529412031173706" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_123">
+    <nodes>
+      <node id="122" radius="120.0" x="2519" y="1075" z="2926" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464456836" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="122" color.r="0.3803921639919281" color.g="0.3450980484485626" color.b="0.5843137502670288" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_122">
+    <nodes>
+      <node id="121" radius="120.0" x="3756" y="1112" z="2854" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464449304" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="121" color.r="0.24313725531101227" color.g="0.27450981736183167" color.b="0.24313725531101227" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_121">
+    <nodes>
+      <node id="120" radius="120.0" x="2181" y="1103" z="2854" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464444488" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="119" color.r="0.8274509906768799" color.g="1.0" color.b="0.5529412031173706" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_119">
+    <nodes>
+      <node id="118" radius="120.0" x="2177" y="1097" z="2766" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464427798" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="118" color.r="0.7568627595901489" color.g="0.30980393290519714" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_118">
+    <nodes>
+      <node id="117" radius="120.0" x="2250" y="1095" z="2766" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464424996" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="117" color.r="0.6901960968971252" color.g="0.30980393290519714" color.b="0.5843137502670288" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_117">
+    <nodes>
+      <node id="116" radius="120.0" x="2400" y="1101" z="2766" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526464423426" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="115" color.r="0.0" color.g="0.13725490868091583" color.b="0.5176470875740051" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_115">
+    <nodes>
+      <node id="114" radius="120.0" x="2411" y="1185" z="2022" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526463757256" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="114" color.r="0.27450981736183167" color.g="0.4156862795352936" color.b="0.48235294222831726" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_114">
+    <nodes>
+      <node id="113" radius="120.0" x="2817" y="1105" z="1646" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="8" interpolation="true" time="1526463733592" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="113" color.r="0.5176470875740051" color.g="1.0" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_113">
+    <nodes>
+      <node id="112" radius="120.0" x="2602" y="1091" z="1537" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526463723014" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="112" color.r="0.07058823853731155" color.g="0.2078431397676468" color.b="0.3803921639919281" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_112">
+    <nodes>
+      <node id="111" radius="120.0" x="1987" y="1101" z="473" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462588458" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="111" color.r="0.5529412031173706" color.g="0.7921568751335144" color.b="0.7254902124404907" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_111">
+    <nodes>
+      <node id="110" radius="120.0" x="2017" y="1110" z="417" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462582490" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="110" color.r="0.4470588266849518" color.g="0.27450981736183167" color.b="0.7568627595901489" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_110">
+    <nodes>
+      <node id="109" radius="120.0" x="1833" y="1117" z="113" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462566392" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="108" color.r="0.3803921639919281" color.g="0.6549019813537598" color.b="0.7921568751335144" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_108">
+    <nodes>
+      <node id="107" radius="120.0" x="4332" y="1089" z="145" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462540076" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="107" color.r="1.0" color.g="0.9647058844566345" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_107">
+    <nodes>
+      <node id="106" radius="120.0" x="4469" y="1091" z="177" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462537114" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="106" color.r="0.0" color.g="0.4470588266849518" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_106">
+    <nodes>
+      <node id="105" radius="120.0" x="4038" y="1082" z="193" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462531632" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="105" color.r="0.7254902124404907" color.g="0.27450981736183167" color.b="0.2078431397676468" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_105">
+    <nodes>
+      <node id="104" radius="120.0" x="4072" y="1111" z="517" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462519282" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="104" color.r="0.6901960968971252" color.g="0.8274509906768799" color.b="0.03529411926865578" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_104">
+    <nodes>
+      <node id="103" radius="120.0" x="4192" y="1110" z="493" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462517410" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="103" color.r="0.5843137502670288" color.g="0.9803921580314636" color.b="0.30980393290519714" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_103">
+    <nodes>
+      <node id="102" radius="120.0" x="4751" y="1189" z="840" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462477772" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="102" color.r="0.0" color.g="0.1725490242242813" color.b="0.13725490868091583" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_102">
+    <nodes>
+      <node id="101" radius="120.0" x="3857" y="1183" z="1138" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462466880" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="101" color.r="0.10196078568696976" color.g="0.7254902124404907" color.b="0.7921568751335144" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_101">
+    <nodes>
+      <node id="100" radius="120.0" x="4444" y="1177" z="1138" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462465522" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="100" color.r="0.6196078658103943" color.g="0.4470588266849518" color.b="0.4156862795352936" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_100">
+    <nodes>
+      <node id="99" radius="120.0" x="4227" y="1187" z="2273" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462420028" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="99" color.r="0.6549019813537598" color.g="0.0" color.b="0.4156862795352936" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_099">
+    <nodes>
+      <node id="98" radius="120.0" x="5022" y="1196" z="2225" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462413180" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="98" color.r="0.07058823853731155" color.g="0.13725490868091583" color.b="0.7254902124404907" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_098">
+    <nodes>
+      <node id="97" radius="120.0" x="4523" y="1166" z="2305" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462406234" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="97" color.r="1.0" color.g="0.8627451062202454" color.b="0.4470588266849518" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_097">
+    <nodes>
+      <node id="96" radius="120.0" x="4698" y="1154" z="2585" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462390584" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="96" color.r="0.7254902124404907" color.g="0.0" color.b="0.7921568751335144" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_096">
+    <nodes>
+      <node id="95" radius="120.0" x="4989" y="1149" z="2585" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462389152" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="95" color.r="0.30980393290519714" color.g="0.5843137502670288" color.b="0.5176470875740051" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_095">
+    <nodes>
+      <node id="94" radius="120.0" x="4035" y="1073" z="3009" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462366914" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="94" color.r="0.0" color.g="1.0" color.b="0.929411768913269" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_094">
+    <nodes>
+      <node id="93" radius="120.0" x="4355" y="1089" z="2937" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462353322" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="93" color.r="0.3803921639919281" color.g="0.4470588266849518" color.b="0.7921568751335144" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_093">
+    <nodes>
+      <node id="92" radius="120.0" x="3817" y="1105" z="2785" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462346216" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="92" color.r="0.48235294222831726" color.g="0.30980393290519714" color.b="0.07058823853731155" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_092">
+    <nodes>
+      <node id="91" radius="120.0" x="4676" y="1143" z="2641" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462339646" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="91" color.r="0.929411768913269" color.g="0.5529412031173706" color.b="0.27450981736183167" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_091">
+    <nodes>
+      <node id="90" radius="120.0" x="4754" y="1159" z="2629" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462336254" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="90" color.r="0.8980392217636108" color.g="0.3450980484485626" color.b="0.4156862795352936" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_090">
+    <nodes>
+      <node id="89" radius="120.0" x="5190" y="1088" z="2753" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462325938" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="89" color.r="0.27450981736183167" color.g="0.7921568751335144" color.b="0.3450980484485626" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_089">
+    <nodes>
+      <node id="88" radius="120.0" x="4743" y="1087" z="2733" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462302362" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="88" color.r="0.6901960968971252" color.g="1.0" color.b="0.30980393290519714" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_088">
+    <nodes>
+      <node id="87" radius="120.0" x="5001" y="1089" z="2757" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462300560" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="87" color.r="0.27450981736183167" color.g="0.5176470875740051" color.b="0.27450981736183167" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_087">
+    <nodes>
+      <node id="86" radius="120.0" x="4258" y="1095" z="2821" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462290786" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="86" color.r="0.3450980484485626" color.g="0.24313725531101227" color.b="0.5843137502670288" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_086">
+    <nodes>
+      <node id="85" radius="120.0" x="4874" y="1097" z="2821" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462289474" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="85" color.r="0.7254902124404907" color.g="0.929411768913269" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_085">
+    <nodes>
+      <node id="84" radius="120.0" x="4115" y="1084" z="2973" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462272146" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="84" color.r="0.0" color.g="0.07058823853731155" color.b="0.8274509906768799" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_084">
+    <nodes>
+      <node id="83" radius="120.0" x="4944" y="1070" z="3005" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462268314" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="83" color.r="0.5843137502670288" color.g="0.7921568751335144" color.b="0.48235294222831726" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_083">
+    <nodes>
+      <node id="82" radius="120.0" x="4783" y="1162" z="3205" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462260536" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="82" color.r="0.03529411926865578" color.g="0.2078431397676468" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_082">
+    <nodes>
+      <node id="81" radius="120.0" x="5674" y="1144" z="1925" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462248790" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="76" color.r="0.4156862795352936" color.g="0.0" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_076">
+    <nodes>
+      <node id="75" radius="120.0" x="7668" y="1173" z="2017" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462170234" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="75" color.r="0.6901960968971252" color.g="0.0" color.b="0.5843137502670288" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_075">
+    <nodes>
+      <node id="74" radius="120.0" x="6581" y="1204" z="2177" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462160016" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="74" color.r="0.929411768913269" color.g="0.0" color.b="0.5176470875740051" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_074">
+    <nodes>
+      <node id="73" radius="120.0" x="7769" y="1101" z="3161" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462137466" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="73" color.r="0.3803921639919281" color.g="0.24313725531101227" color.b="0.24313725531101227" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_073">
+    <nodes>
+      <node id="72" radius="120.0" x="7832" y="1092" z="3105" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462129408" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="72" color.r="0.0" color.g="0.0" color.b="0.03529411926865578" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_072">
+    <nodes>
+      <node id="71" radius="120.0" x="7720" y="1093" z="3085" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526462126386" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="70" color.r="0.8627451062202454" color.g="0.8274509906768799" color.b="0.6901960968971252" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_070">
+    <nodes>
+      <node id="69" radius="120.0" x="5216" y="1109" z="2845" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526462037782" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="69" color.r="0.27450981736183167" color.g="0.30980393290519714" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_069">
+    <nodes>
+      <node id="68" radius="120.0" x="7882" y="1127" z="2439" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526461988336" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="68" color.r="0.5529412031173706" color.g="0.03529411926865578" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_068">
+    <nodes>
+      <node id="67" radius="120.0" x="7202" y="1136" z="2404" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526461965510" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="67" color.r="0.7254902124404907" color.g="0.5176470875740051" color.b="0.3450980484485626" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_067">
+    <nodes>
+      <node id="66" radius="120.0" x="7310" y="1132" z="2408" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526461963142" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="66" color.r="0.27450981736183167" color.g="0.1725490242242813" color.b="0.3450980484485626" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_066">
+    <nodes>
+      <node id="65" radius="120.0" x="7258" y="1131" z="2420" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="2" bitDepth="8" interpolation="true" time="1526461960896" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="65" color.r="0.6901960968971252" color.g="0.4156862795352936" color.b="0.5176470875740051" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_065">
+    <nodes>
+      <node id="64" radius="120.0" x="7005" y="1137" z="2449" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="8" interpolation="true" time="1526461903416" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="63" color.r="0.7568627595901489" color.g="0.7254902124404907" color.b="0.3803921639919281" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_063">
+    <nodes>
+      <node id="62" radius="120.0" x="6072" y="1149" z="2356" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461869648" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="62" color.r="0.5843137502670288" color.g="0.3803921639919281" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_062">
+    <nodes>
+      <node id="61" radius="120.0" x="7599" y="1159" z="2356" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461867254" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="61" color.r="1.0" color.g="0.30980393290519714" color.b="0.9647058844566345" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_061">
+    <nodes>
+      <node id="60" radius="120.0" x="6934" y="1157" z="2309" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461861132" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="60" color.r="0.6196078658103943" color.g="1.0" color.b="0.6196078658103943" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_060">
+    <nodes>
+      <node id="59" radius="120.0" x="7242" y="1163" z="2309" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461859928" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="59" color.r="0.929411768913269" color.g="0.8274509906768799" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_059">
+    <nodes>
+      <node id="58" radius="120.0" x="7070" y="1181" z="2270" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461853030" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="58" color.r="0.8980392217636108" color.g="0.3803921639919281" color.b="0.7568627595901489" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_058">
+    <nodes>
+      <node id="57" radius="120.0" x="7142" y="1183" z="2270" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461851408" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="54" color.r="0.4470588266849518" color.g="0.5843137502670288" color.b="0.2078431397676468" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_054">
+    <nodes>
+      <node id="53" radius="120.0" x="6149" y="1157" z="2099" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461821224" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="53" color.r="0.3450980484485626" color.g="0.8274509906768799" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_053">
+    <nodes>
+      <node id="52" radius="120.0" x="6722" y="1093" z="1739" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461809544" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="52" color.r="0.10196078568696976" color.g="0.27450981736183167" color.b="0.7568627595901489" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_052">
+    <nodes>
+      <node id="51" radius="120.0" x="6109" y="1088" z="1528" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461789038" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="51" color.r="0.30980393290519714" color.g="0.48235294222831726" color.b="0.6901960968971252" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_051">
+    <nodes>
+      <node id="50" radius="120.0" x="6206" y="1108" z="1455" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461778844" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="49" color.r="0.0" color.g="0.7254902124404907" color.b="0.6549019813537598" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_049">
+    <nodes>
+      <node id="48" radius="120.0" x="7483" y="1111" z="1328" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461755552" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="47" color.r="0.0" color.g="0.7921568751335144" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_047">
+    <nodes>
+      <node id="46" radius="120.0" x="7491" y="1115" z="1221" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461737344" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="41" color.r="0.6196078658103943" color.g="0.19607843458652496" color.b="0.7254902124404907" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_041">
+    <nodes>
+      <node id="40" radius="120.0" x="6344" y="1093" z="107" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461626006" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="40" color.r="0.03529411926865578" color.g="0.5843137502670288" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_040">
+    <nodes>
+      <node id="39" radius="120.0" x="6558" y="1091" z="155" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461621920" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="35" color.r="0.1725490242242813" color.g="0.3803921639919281" color.b="0.27450981736183167" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_035">
+    <nodes>
+      <node id="34" radius="120.0" x="4670" y="1084" z="299" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1526461579120" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="34" color.r="0.4156862795352936" color.g="0.0" color.b="0.7568627595901489" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_034">
+    <nodes>
+      <node id="33" radius="120.0" x="4188" y="1092" z="323" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="1" bitDepth="8" interpolation="true" time="1526461572854" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="26" color.r="0.7254902124404907" color.g="0.30980393290519714" color.b="0.8274509906768799" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_026">
+    <nodes>
+      <node id="25" radius="120.0" x="7522" y="1142" z="557" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461497458" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="25" color.r="0.8274509906768799" color.g="1.0" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_025">
+    <nodes>
+      <node id="24" radius="120.0" x="7541" y="1161" z="653" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461486850" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="22" color.r="0.6196078658103943" color.g="0.0" color.b="0.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_022">
+    <nodes>
+      <node id="21" radius="120.0" x="5186" y="1169" z="781" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461473088" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="21" color.r="0.4470588266849518" color.g="0.7843137383460999" color.b="0.48235294222831726" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_021">
+    <nodes>
+      <node id="20" radius="120.0" x="4231" y="1164" z="765" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461468116" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="12" color.r="0.239215686917305" color.g="0.7803921699523926" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_012">
+    <nodes>
+      <node id="11" radius="120.0" x="4585" y="1140" z="1645" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461367330" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="11" color.r="0.45098039507865906" color.g="0.239215686917305" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_011">
+    <nodes>
+      <node id="10" radius="120.0" x="4981" y="1134" z="1565" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461363856" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="7" color.r="0.9647058844566345" color.g="0.07058823853731155" color.b="0.3803921639919281" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_007">
+    <nodes>
+      <node id="6" radius="120.0" x="6397" y="1089" z="1501" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461352360" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="5" color.r="1.0" color.g="0.8392156958580017" color.b="0.239215686917305" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_005">
+    <nodes>
+      <node id="4" radius="120.0" x="4998" y="1139" z="1357" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461343780" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="3" color.r="0.8509804010391235" color.g="0.5215686559677124" color.b="0.07058823853731155" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_003">
+    <nodes>
+      <node id="2" radius="120.0" x="6534" y="1140" z="1389" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461339934" />
+    </nodes>
+    <edges />
+  </thing>
+  <thing id="2" color.r="0.0" color.g="0.0" color.b="1.0" color.a="1.0" name="explorative_2018-05-16_Ali_Karimi_002">
+    <nodes>
+      <node id="1" radius="120.0" x="6663" y="1159" z="1053" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="4" bitDepth="8" interpolation="true" time="1526461331322" />
+    </nodes>
+    <edges />
+  </thing>
+  <branchpoints />
+  <comments />
+</things>

@@ -1,0 +1,34 @@
+Apical Type: "L2ApBIFSeed","DeepApBIFSeed"
+
+comments:
+'So L2 Apical','So L2 Apical BIF','So L2 Apical IS','So L2 Apical Trunk','So L2 Apical after BIF'
+
+'So Deep Apical BIF','So Deep Apical Trunk','So Deep Apical after BIF'
+
+'So Soma',
+
+'So AIS',
+
+'So Spine'
+
+'So Shaft'
+
+seed tag:
+Seed
+
+unsure tag:
+unsure
+
+multiple hit tag:
+xy
+
+real endings of tracing tag:
+end:  real tree endings in dataset
+Dead end: when I cannot continue tracing: example: bad alignment
+exit: exited the dataset
+
+comment:
+all traced by jan
+
+todo:
+sy spine double checking

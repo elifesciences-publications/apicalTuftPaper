@@ -1,0 +1,11 @@
+Var1
+"Dead end"
+"dead end"
+"end"
+"exit"
+"seed"
+"sh"
+"sh (smooth)"
+"sp"
+"sp (back)"
+"unsure"

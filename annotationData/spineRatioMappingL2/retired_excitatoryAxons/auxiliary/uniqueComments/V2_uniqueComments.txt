@@ -1,0 +1,9 @@
+allUniqueComments
+"Dead end"
+"end"
+"exit"
+"seed"
+"sh"
+"sh (smooth)"
+"sp"
+"unsure"

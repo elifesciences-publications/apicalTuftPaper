@@ -1,0 +1,13 @@
+%% Run Figure 2 first
+
+l2Categories=[repmat({'S1'},20,1);repmat({'V2'},20,1);...
+    repmat({'PPC'},21,1);repmat({'ACC'},30,1)];
+dlCategories=[repmat({'S1'},20,1);repmat({'V2'},20,1);...
+    repmat({'PPC'},20,1);repmat({'ACC'},32,1)];
+p=zeros(8,2);
+for targetType=2:width(synRatio{5,1})
+p(targetType,1)=anova1...
+    (synRatio{5,1}{:,targetType},l2Categories);
+p(targetType,2)=anova1...
+    (synRatio{5,2}{:,targetType},dlCategories);
+end
