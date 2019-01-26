@@ -5,7 +5,7 @@ function [] = assessCurrent()
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 curDirectoryParts=strsplit(pwd,filesep);
-assert(strcmp(curDirectoryParts{end},'L1paper'),...
+assert(strcmp(curDirectoryParts{end},'apicaltuftpaper'),...
     'MATLAB working directorys should be set to the L1paper repository');
 end
 
