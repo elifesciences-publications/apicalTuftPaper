@@ -1,5 +1,5 @@
 function [skel] = relSomaDistance(skel,treeIndices,toString,additionalDist)
-% relSomaDistance This function updates the connectedComp.synDistance2Soma
+% relSomaDistance updates the distSoma.synDistance2Soma
 % property of the object with the distance between the soma location
 % node (toString) and the synapse ID on the backbone from the 
 % connectedComp.synIdx

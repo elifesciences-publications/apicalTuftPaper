@@ -12,8 +12,8 @@ else
     error('problem with the crossing')
 end
 if ismember(limit2Choose,nodesOfAnEdge(:,dim))
-    % warning(['interpolation gives the same result as ',...
-    %    'one of the data points'])
+     warning(['interpolation gives the same result as ',...
+        'one of the data points'])
     interpolatedNodeValid=false;
 end
 end

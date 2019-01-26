@@ -1,10 +1,13 @@
-function [objNew] = splitCC(obj,treeIndices)
+function [objNew] = splitCC(obj,treeIndices, doVanillaSplit)
 %SPLITCC This function splits connected components of trees into separate
 %trees. Used after chopping the dataset into slices for example
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:obj.numTrees;
+end
+if ~exist('doVanillaSplit','var') || isempty(doVanillaSplit)
+    doVanillaSplit = false;
 end
 % Note: completely empty trees create errors in skeleton.splitCC
 % Make sure all grouping variables are empty in these annotations
@@ -28,7 +31,17 @@ objNew=apicalTuft.skeletonConverter(objNew,obj);
 % number for each CC
 objNew.connectedComp.treeIdx=origTreeIdx;
 objNew.connectedComp.nodeID=origNodeIDs;
-
+% Flags for knowing that this object comes from a splitting procedure and
+% is not empty
+objNew.connectedComp.splitDone=true;
+objNew.connectedComp.emptyTracing=false;
+objNew=objNew.updateGrouping;
+% Only do a vanilla version of splitting no synapses invovlved if requested
+% Use case distal vs bifurcation analysis on Jan 2019
+if doVanillaSplit
+    objNew.connectedComp.splitDone=false;
+    return
+end
 objNew.connectedComp.synIDPost=objNew.createEmptyTable([],...
 objNew.connectedComp.synIDPre.Properties.VariableNames);
 findSynInCC=@(allSynIDs, ccIDs) ...
@@ -42,5 +55,4 @@ objNew.connectedComp.synIDPost{:,2:end}=...
 % is not empty
 objNew.connectedComp.splitDone=true;
 objNew.connectedComp.emptyTracing=false;
-objNew=objNew.updateGrouping;
 end

@@ -37,7 +37,8 @@ mleAlpha.layer2=polya_fit(count.layer2);
 mleMean=structfun(@(x)x./sum(x),mleAlpha,'UniformOutput',false);
 assert(all(structfun(@sum,mleMean)-1<1E-8));
 probabilityMatrixForApicals=[mleMean.layer2(1:2);mleMean.deep(1:2)];
-
+% Probability fraction for each apical dendrite target
+disp((probabilityMatrixForApicals./sum(probabilityMatrixForApicals,2))*100)
 % Plot probability matrix
 t(probabilityMatrixForApicals,...
 fullfile(outputDir,'polyaFit.svg'))

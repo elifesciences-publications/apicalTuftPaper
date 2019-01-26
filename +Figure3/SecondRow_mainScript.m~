@@ -79,23 +79,6 @@ densityRatio.sem=dendrite.wholeApical.extractInformation(g,...
     @(x)util.stat.sem(x,[],1),...
     {'Shaft_Count_Density','Spine_Count_Density','Shaft_Ratio'});
 
-% Gather PPC2 results for scatter plots
-bifurCoords=apicalTuft.applyMethod2ObjectArray...
-    ({converted.l235.PPC2},'getBifurcationCoord');
-synRatio=apicalTuft.applyMethod2ObjectArray...
-    ({converted.l235.PPC2},'getSynRatio');
-density=apicalTuft.applyMethod2ObjectArray...
-    ({converted.l235.PPC2},'getSynDensityPerType');
-for tr=1:10
-    bifurCoord.l3(tr)=bifurCoords{2,1}{1}(tr,2)./1000;
-    bifurCoord.l5(tr)=bifurCoords{3,1}{1}(tr,2)./1000;
-    sp.l3(:,tr)=[bifurCoord.l3(tr);density{2,1}{1}.Spine(tr)];
-    sp.l5(:,tr)=[bifurCoord.l5(tr);density{3,1}{1}.Spine(tr)];
-    sh.l3(:,tr)=[bifurCoord.l3(tr);density{2,1}{1}.Shaft(tr)];
-    sh.l5(:,tr)=[bifurCoord.l5(tr);density{3,1}{1}.Shaft(tr)];
-    rat.l3(:,tr)=[bifurCoord.l3(tr);synRatio{2,1}{1}.Shaft(tr)];
-    rat.l5(:,tr)=[bifurCoord.l5(tr);synRatio{3,1}{1}.Shaft(tr)];
-end
 % for controls
 numberAndPathLength=dendrite.wholeApical.extractInformation(g,@sum,...
     {'combinedThresh','pathLengthInMicron'});
@@ -122,13 +105,10 @@ onlyL1_densityRatio.sem=dendrite.wholeApical.extractInformation(onlyL1LPtA,...
     {'Shaft_Count_Density','Spine_Count_Density','Shaft_Ratio'});
 % Plotting the mean +-SEM for excitatory, inhibitory and inh. ratio
 binRange=20;
-binLims=0:binRange:320;
 binCenters=10:20:310;
-stairLocations=binCenters-(binRange/2);
 xlimit=120;
 % Groups: 1: L2, 2: Deep, 3: L3, 4: L5
 cellTypes=[1:3];
-plotScatter=false;
 x_width=6;
 y_width=3;
 fh=figure;ax=gca;
@@ -146,12 +126,7 @@ for t=cellTypes
         util.plot.shade(thisMean,thisSem,colors{t},binCenters,lineStyle{d});
     end
 end
-if plotScatter
-util.plot.scatter(sp.l3,l3color,[],'square');
-util.plot.scatter(sp.l5,l5color,[],'square');
-util.plot.scatter(sh.l3,l3color);
-util.plot.scatter(sh.l5,l5color);
-end
+
 xlim([0 xlimit]);
 yticks(1:3)
 xticklabels([]);
@@ -283,11 +258,11 @@ util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputDir,'pathH.svg','on','on');
 
 %% Text numbers, distal (20-80 um) vs main bifurcation region (140-200um)
-distal=g(2:4,:);
-mainBifurRegion=g(8:10,:);
+distal=g(1:5,:);
+mainBifurRegion=g(6:10,:);
 for i=1:4
-    distal{4,i}={cat(1,distal{:,i}{:})};
-    mainBifurRegion{4,i}={cat(1,mainBifurRegion{:,i}{:})};
+    distal{6,i}={cat(1,distal{:,i}{:})};
+    mainBifurRegion{6,i}={cat(1,mainBifurRegion{:,i}{:})};
 end
 metrics={'Shaft_Count_Density','Spine_Count_Density','Shaft_Ratio'};
 % Gather results
@@ -306,7 +281,7 @@ mainBifurResult.sem=dendrite.wholeApical.extractInformation(mainBifurRegion,...
     metrics);
 mainBifurResult.number=dendrite.wholeApical.extractInformation(mainBifurRegion,@length,...
     metrics);
-fun=@(x) array2table(transpose(reshape(cell2mat(x{4,:}),4,[])),...
+fun=@(x) array2table(transpose(reshape(cell2mat(x{6,:}),4,[])),...
     'VariableNames',g.Properties.VariableNames,'RowNames',metrics);
 % Discard indicdual results and only keep the aggregates
 distalResultCleaned=structfun(fun,...
@@ -323,36 +298,69 @@ disp(mainBifurResultCleaned.sem)
 disp(mainBifurResultCleaned.number)
 %% ranksum testing for the latest version of text
 % L5
-l5MB=mainBifurRegion.deep{4}.Shaft_Ratio...
-    (mainBifurRegion.deep{4}.combinedThresh>0);
-l5DT=distal.l5{4}.Shaft_Ratio(distal.l5{4}.combinedThresh>0);
-util.stat.ranksum(l5MB,l5DT)
+AggregateId=6;
+l5MB=mainBifurRegion.l5{AggregateId}.Shaft_Ratio...
+    (mainBifurRegion.l5{AggregateId}.combinedThresh>0);
+l5DT=distal.l5{AggregateId}. ...
+    Shaft_Ratio(distal.l5{AggregateId}.combinedThresh>0);
+util.stat.ranksum(l5MB,l5DT);
 
 l5MBSpine=mainBifurRegion. ...
-    deep{4}.Spine_Count_Density(mainBifurRegion.deep{4}.combinedThresh>0);
-l5DTSpine=distal.l5{4}.Spine_Count_Density(distal.l5{4}.combinedThresh>0);
+    l5{AggregateId}.Spine_Count_Density(mainBifurRegion. ...
+    l5{AggregateId}.combinedThresh>0);
+l5DTSpine=distal.l5{AggregateId}.Spine_Count_Density(distal. ...
+    l5{AggregateId}.combinedThresh>0);
 util.stat.ranksum(l5MBSpine,l5DTSpine)
 
 l5MBShaft=mainBifurRegion. ...
-    deep{4}.Shaft_Count_Density(mainBifurRegion.deep{4}.combinedThresh>0);
-l5DTShaft=distal.l5{4}.Shaft_Count_Density(distal.l5{4}.combinedThresh>0);
+    l5{AggregateId}.Shaft_Count_Density(mainBifurRegion. ...
+    l5{AggregateId}.combinedThresh>0);
+l5DTShaft=distal.l5{AggregateId}.Shaft_Count_Density(distal. ...
+    l5{AggregateId}.combinedThresh>0);
 util.stat.ranksum(l5MBShaft,l5DTShaft)
 
 % L2
 l2MBSpine=mainBifurRegion. ...
-    l2{4}.Spine_Count_Density(mainBifurRegion.l2{4}.combinedThresh>0);
-l2DTSpine=distal.l2{4}.Spine_Count_Density(distal.l2{4}.combinedThresh>0);
+    l2{AggregateId}.Spine_Count_Density(mainBifurRegion.l2{AggregateId}. ...
+    combinedThresh>0);
+l2DTSpine=distal.l2{AggregateId}.Spine_Count_Density ...
+    (distal.l2{AggregateId}.combinedThresh>0);
 util.stat.ranksum(l2MBSpine,l2DTSpine)
 
 l2MBShaft=mainBifurRegion. ...
-    l2{4}.Shaft_Count_Density(mainBifurRegion.l2{4}.combinedThresh>0);
-l2DTShaft=distal.l2{4}.Shaft_Count_Density(distal.l2{4}.combinedThresh>0);
+    l2{AggregateId}.Shaft_Count_Density(mainBifurRegion. ...
+    l2{AggregateId}.combinedThresh>0);
+l2DTShaft=distal.l2{AggregateId}.Shaft_Count_Density...
+    (distal.l2{AggregateId}.combinedThresh>0);
 util.stat.ranksum(l2MBShaft,l2DTShaft)
 
 l2MBRatio=mainBifurRegion. ...
-    l2{4}.Shaft_Ratio(mainBifurRegion.l2{4}.combinedThresh>0);
-l2DTRatio=distal.l2{4}.Shaft_Ratio(distal.l2{4}.combinedThresh>0);
+    l2{AggregateId}.Shaft_Ratio...
+    (mainBifurRegion.l2{AggregateId}.combinedThresh>0);
+l2DTRatio=distal.l2{AggregateId}.Shaft_Ratio...
+    (distal.l2{AggregateId}.combinedThresh>0);
 util.stat.ranksum(l2MBRatio,l2DTRatio)
+
+% L3
+l3MB=mainBifurRegion.l3{AggregateId}.Shaft_Ratio...
+    (mainBifurRegion.l3{AggregateId}.combinedThresh>0);
+l3DT=distal.l3{AggregateId}.Shaft_Ratio...
+    (distal.l3{AggregateId}.combinedThresh>0);
+util.stat.ranksum(l3MB,l3DT);
+
+l3MBSpine=mainBifurRegion. ...
+    l3{AggregateId}.Spine_Count_Density(mainBifurRegion.l3{AggregateId}. ...
+    combinedThresh>0);
+l3DTSpine=distal.l3{AggregateId}.Spine_Count_Density...
+    (distal.l3{AggregateId}.combinedThresh>0);
+util.stat.ranksum(l3MBSpine,l3DTSpine);
+
+l3MBShaft=mainBifurRegion. ...
+    l3{AggregateId}.Shaft_Count_Density...
+    (mainBifurRegion.l3{AggregateId}.combinedThresh>0);
+l3DTShaft=distal.l3{AggregateId}.Shaft_Count_Density...
+    (distal.l3{AggregateId}.combinedThresh>0);
+util.stat.ranksum(l3MBShaft,l3DTShaft);
 
 %% Boxplot for debugging the L2 results
 % F

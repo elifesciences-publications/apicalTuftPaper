@@ -1,7 +1,9 @@
 function [fh,ax,exp] = plotCorrelation(distance2soma,...
-    Measure)
+    Measure,beta0)
 % PLOTCORRELATION 
-
+if ~exist('beta0','var') || isempty (beta0)
+    beta0=[];
+end
 
 crossSize=72;
 colors=util.plot.getColors;
@@ -21,7 +23,7 @@ ratioArray=cat(1,Measure{:});
 % Fit single exponential with offset
 [exp.oneWithOff]=...
     dendrite.l2vsl3vsl5.exponentialFitWithOffset...
-    (distArray,ratioArray);
+    (distArray,ratioArray,beta0);
 
 end
 

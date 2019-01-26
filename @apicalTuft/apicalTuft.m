@@ -142,8 +142,8 @@ classdef apicalTuft < skeleton
             deleteNonUniqueNodeCoord(obj,treeIndices);
         skel = sortTreesByName( skel );
         [objCropped] = cropoutLowRes...
-            (obj,treeIndices,dimLowresBorder);
-        [objNew] = splitCC(obj,treeIndices);
+    (obj,treeIndices,dimLowresBorder,edgeLowRes)
+        [objNew] =  splitCC(obj,treeIndices, doVanillaSplit)
         [identifier] = getTreeIdentifier(obj,treeIndices);
         [pL] = pathLength(obj,treeIndices);
         [allInfo] = getFullInfoTableCC(obj,treeIndices);
@@ -156,6 +156,7 @@ classdef apicalTuft < skeleton
         [skel] = relSomaBinCountInhRatio(skel,...
             treeIndices,range);
         [skel] = correctionLowresLPtA(skel);
+        [totalPathLengthInMicron] = getTotalBackonePath(obj,treeIndices);
     end
     
     methods (Static)

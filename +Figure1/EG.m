@@ -1,96 +1,74 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
-outputFolder=fullfile(util.dir.getFig1,'E');
+outputFolder=fullfile(util.dir.getFig1,'EG');
 util.mkdir(outputFolder);
-%% Get synapse densities per shaft path length
+%% Get synapse ratios
 apTuft=apicalTuft.getObjects('bifurcation');
-Density=apicalTuft.applyMethod2ObjectArray...
-    (apTuft,'getSynDensityPerType');
-shaftDensity=cellfun(@(x) x.Shaft,Density.Variables,...
-    'UniformOutput',false);
-spineDensity=cellfun(@(x) x.Spine,Density.Variables,...
+ratios=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
+shaftRatio=cellfun(@(x) x.Shaft,ratios.Variables,'UniformOutput',false);
+horizontalLocation=num2cell((1.5:2:20)');
+noiseLevel=1.3;
+func=@(array,position)...
+    util.plot.addHorizontalNoise(array,position,noiseLevel);
+shaftRatiowithNoisyX=cellfun(func,shaftRatio(:),horizontalLocation,...
     'UniformOutput',false);
 %% Write result table to excel sheet
-matFileName=fullfile(outputFolder,'Figure1_synapseDensity.mat');
-save(util.addDateToFileName( matFileName),'Density');
-%% Statistic testing (Wilcoxon ranksum test)
-filename2Save=fullfile(outputFolder,'raksumTestResults.txt');
-util.stat.ranksum.synapseDensity(shaftDensity,spineDensity,...
-    Density.Properties.VariableNames,filename2Save);
+matFileName=fullfile(outputFolder,'Figure1_InhibitoryRatios.mat');
+save(util.addDateToFileName( matFileName),'ratios');
+%% The statistical testing
+% ratio aggregate comparison
+util.stat.ranksum(shaftRatio{1,5},shaftRatio{2,5})
+fileName2Save=fullfile(outputFolder,...
+    util.addDateToFileName('ranksumTestResults'));
+util.stat.ranksum.shaftRatio...
+    (shaftRatio,ratios.Properties.VariableNames,fileName2Save)
 
-%% Plot part: Figure 1E
-% Parameters
-x_width=12;
-y_width=10;
-spineXLocation=num2cell([1:2.5:25]');
-shaftXLocation=num2cell([2:2.5:25]');
+%% Plot part: All Together
+x_width=7.2;
+y_width=6;
 fh=figure;ax=gca;
-% The densities
-densities=[spineDensity(:),shaftDensity(:)];
-densities=densities(:);
-% Horizontal locations
-horizontalLocation=[spineXLocation,shaftXLocation];
-horizontalLocation=horizontalLocation(:);
-% the colors
-colors=repmat([{[1,0,0]},{[0,0,1]}],10,1);
-colors=colors(:);
+util.setColors;
+colors=repmat([{l2color};{dlcolor}],5,1);
 % plotting
-util.plot.boxPlotRawOverlay(densities,horizontalLocation,...
-    'boxWidth',.85,'color',colors);
-% Additional options
-set(ax,'xtick',[],'XLim',[0.2 25.3],...
-   'YTick',[0.04,0.4,4],'YLim',[0.025 4.5],'YScale','log');
+util.plot.boxPlotRawOverlay(shaftRatio(:),horizontalLocation,...
+    'ylim',1,'boxWidth',1.5,'color',colors);
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'synapseDensities.svg','off','on');
-%% Separate Aggregate Data 
-% The densities
-densities_Agg=[spineDensity(:,5),shaftDensity(:,5)];
-densities_Agg=densities_Agg(:);
-spineDensitySep=spineDensity(:,1:4);
-shaftDensitySep=shaftDensity(:,1:4);
-densities_Sep=[spineDensitySep(:),shaftDensitySep(:)];
-densities_Sep=densities_Sep(:);
-% Aggregate plot:
-% Parameters
+    (fh,ax,x_width,y_width,outputFolder,'ShaftFraction.svg');
+%% Plot: Separate aggregate data
+aggRatio=shaftRatio(:,5);
+sepRatio=shaftRatio(:,1:4);
+tickSize=50;
+% First plot Aggregate
 x_width=6.6;
 y_width=5.6;
-spineXLocation=num2cell([1:2.5:5]');
-shaftXLocation=num2cell([2:2.5:5.5]');
 fh=figure;ax=gca;
-% Horizontal locations
-horizontalLocation=[spineXLocation,shaftXLocation];
-horizontalLocation=horizontalLocation(:);
-% the colors
-colors=repmat([{[1,0,0]},{[0,0,1]}],2,1);
-colors=colors(:);
+util.setColors;
+colors=repmat([{l2color};{dlcolor}],4,1);
+horizontalLocation=num2cell((1.5:2:17)');
 % plotting
-util.plot.boxPlotRawOverlay(densities_Agg,horizontalLocation,...
-    'boxWidth',0.7496,'color',colors);
-% Additional options
-set(ax,'xtick',[],'XLim',[0.2 5.3],...
-   'YTick',[0.04,0.4,4],'YTickLabel',[],'YLim',[0.025 4.5],'YScale','log');
+util.plot.boxPlotRawOverlay(sepRatio(:),horizontalLocation,...
+    'xlim',[0,17],'ylim',1,'boxWidth',1.5,'color',colors,'tickSize',tickSize);
+set(ax,'YTickLabel',[],'xtick',[]);
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'synapseDensities_Agg.svg',...
-    'off','on');
-% results separated by dataset:
-% Parameters
+    (fh,ax,x_width,y_width,outputFolder,'ShaftFraction_Seperate.svg');
+% Second: plot separate
 x_width=6.6;
 y_width=5.6;
-spineXLocation=num2cell([1:2.5:20]');
-shaftXLocation=num2cell([2:2.5:20]');
 fh=figure;ax=gca;
-% Horizontal locations
-horizontalLocation=[spineXLocation,shaftXLocation];
-horizontalLocation=horizontalLocation(:);
-% the colors
-colors=repmat([{[1,0,0]},{[0,0,1]}],8,1);
-colors=colors(:);
+util.setColors;
+colors=repmat([{l2color};{dlcolor}],1,1);
+horizontalLocation=num2cell((1.5:2:4)');
 % plotting
-util.plot.boxPlotRawOverlay(densities_Sep,horizontalLocation,...
-    'boxWidth',.85,'color',colors);
-% Additional options
-set(ax,'xtick',[],'XLim',[0.2 20.3],...
-   'YTick',[0.04,0.4,4],'YTickLabel',[],'YLim',[0.025 4.5],'YScale','log');
+util.plot.boxPlotRawOverlay(aggRatio(:),horizontalLocation,...
+    'xlim',[0,5],'ylim',1,'boxWidth',0.735,'color',colors,'tickSize',tickSize);
+set(ax,'YTickLabel',[],'xtick',[]);
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'synapseDensities_Sep.svg',...
-    'off','on');
+    (fh,ax,x_width,y_width,outputFolder,'ShaftFraction_Aggregate.svg');
+%% Main text ratio
+text.ratioMeans=cellfun(@mean,shaftRatio);
+text.ratioSems=cellfun(@util.stat.sem,shaftRatio);
+text.percentMeans=text.ratioMeans.*100;
+text.percentSems=text.ratioSems.*100;
+text.ratioOfRatios=text.ratioMeans(1,:)./text.ratioMeans(2,:);
+
+disp(text)

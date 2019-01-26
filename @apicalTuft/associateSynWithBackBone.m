@@ -18,7 +18,7 @@ synIdx=skel.getSynIdx;
 
 for i=1:length(treeIndices)
     tr=treeIndices(i);
-    % Get the Idx of backbone in the complete tracing
+    % Get the Idx of backbone in the untrimmed annotation
     IdxNodesBackBone2Full=...
         skel.nodeIdxToIdxAnotherSkel(skelTrimmed,tr);
     IdxNodesBackBone2Full=IdxNodesBackBone2Full{1};
@@ -34,8 +34,10 @@ for i=1:length(treeIndices)
         currentShortestDist=curShortestPaths(IdxNodesBackBone2Full,...
             cursynIdx{1,synGroup}{1});
         [minValues,minIndices]= min(currentShortestDist,[],1);
+        % Checks:
+        % 8 um spine neck threshhold
         assert(length(minValues)==length(cursynIdx{1,synGroup}{1}))
-        assert(all(minValues<8000)); % 8 um spine neck threshhold
+        assert(all(minValues<8000)); 
         if length(minIndices)>1
             synIdxBackBoneCell{1,synGroup}=...
                 IdxNodesBackBone2Full(minIndices);
