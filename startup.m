@@ -14,7 +14,7 @@ fid=fopen(fullfile(mainDirectory,'directories','mainDirectory.txt'),'w+');
 
 % Check that the name of main directory ends with the name of repository
 mainDirectoryParts=strsplit(mainDirectory,filesep);
-assert(strcmp(mainDirectoryParts{end},'L1paper'));
+assert(strcmp(mainDirectoryParts{end},'apicaltuftpaper'));
 
 % Add the full repository to matlab search path
 addpath(genpath(mainDirectory))
