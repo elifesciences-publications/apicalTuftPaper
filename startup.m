@@ -1,12 +1,13 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-% Set the colors used for layer 2 (grey) and deep layer group (orange)
+% Set the color variables used frequently for creating the figures
 util.setColors()
 
 % Get the local directory to this repository
 mainDirectory=fileparts(mfilename('fullpath'));
 
 % Create a text file and write the main Directory into it to use for
+% reference later
 util.mkdir(fullfile(mainDirectory,'directories'));
 fid=fopen(fullfile(mainDirectory,'directories','mainDirectory.txt'),'w+');
 [~]=fprintf(fid,'%s',mainDirectory);
