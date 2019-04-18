@@ -71,12 +71,18 @@ under scientific supervision by
 Most analysis done is done on webKnossos [NML](https://docs.webknossos.org/reference/data_formats#nml) neurite skeleton files and makes use of an efficient NML parser developed by 
 * **Alessandro Motta**
 
-Volumetric data used to generate surfaces uses the [Webknossos-wrapper](https://github.com/scalableminds/webknossos-wrap) file format. You can visit their website for a complete list of authors.
-
 The Matlab class used to represent single neurite skeletons and other utility functionalities used for analysis is developed by:
 * **Benedikt Staffler**
 * **Alessandro Motta**
 * **Florian Drawitsch**
 * **Ali Karimi**
 * **Kevin Boergens**
+
+Volumetric data used to generate surfaces uses the [Webknossos-wrapper](https://github.com/scalableminds/webknossos-wrap) file format. You can visit their website for a complete list of authors.
+
+Dirichlet-multinomial model fitting (Fig. 2b) was done using the [fastfit package](https://github.com/tminka/fastfit) developed by:
+
+* **Thomas P. Minka**
+
+
 
