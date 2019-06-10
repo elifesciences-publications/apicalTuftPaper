@@ -29,7 +29,7 @@ ratioFuncHandle=@(tableCount) tableCount./sumOfSynapses(:,2).Variables;
 synapseRatio=varfun(ratioFuncHandle, synCount(:,2:end));
 % Make sure they all sum up to 1
 ratioNum=synapseRatio.Variables;
-sumRatios=uint8(sum(reshape(ratioNum(~isnan(ratioNum)),[],2),2));
+sumRatios=uint8(sum(reshape(ratioNum(~isnan(ratioNum)),size(ratioNum)),2));
 assert (all(sumRatios)==1,...
     'sum of all synapse ratios does not equal one');
 %Transfer treeIdx
