@@ -30,7 +30,7 @@ assert(treeIdx > 0 && nodeIdx > 0);
 % find all edges involving the given node
 name  = skel.names{treeIdx};
 nodes = skel.nodes{treeIdx};
-edges = skel.edges{treeIdx};
+edges = sort(skel.edges{treeIdx},2);
 edgeMask = any(edges == nodeIdx, 2);
 
 % find connected components
