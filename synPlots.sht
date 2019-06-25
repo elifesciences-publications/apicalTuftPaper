@@ -1,5 +1,5 @@
 #!/bin/bash
 
-rsync -aqvzh /home/alik/code/alik/L1paper/+Figure1/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/1/
-rsync -aqvzh /home/alik/code/alik/L1paper/+Figure2/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/2/
-rsync -aqvzh /home/alik/code/alik/L1paper/+Figure3/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/3/
+rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure1/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/1/
+rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure2/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/2/
+rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure3/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/3/
