@@ -26,6 +26,11 @@ end
 [objNew,origTreeIdx, ~,origNodeIDs]=splitCC@skeleton(obj,treeIndices);
 % Convert to apicaltuft object
 objNew.names=obj.names(origTreeIdx);
+endingNodes=objNew.getNodes...
+([],objNew.getNodesWithComment('newEndings'));
+assert(size(endingNodes,1)==objNew.numTrees);
+objNew.names=cellfun(@(y,x) [y,'_',sprintf('%0.3u_%0.3u_%0.3u',x)],objNew.names,...
+    num2cell(endingNodes,2),'UniformOutput',false);
 objNew=apicalTuft.skeletonConverter(objNew,obj);
 % Gather a list of synapse ID (from original annotation) plus the synapse
 % number for each CC
