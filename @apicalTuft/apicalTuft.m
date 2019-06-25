@@ -156,7 +156,9 @@ classdef apicalTuft < skeleton
         [skel] = relSomaBinCountInhRatio(skel,...
             treeIndices,range);
         [skel] = correctionLowresLPtA(skel);
-        [totalPathLengthInMicron] = getTotalBackonePath(obj,treeIndices);
+        [totalPathLengthInMicron] = getTotalBackonePath...
+            (obj,treeIndices);
+        [ apicalDiameter,idx2keep ] = getApicalDiameter(skel,treeIndices);
     end
     
     methods (Static)
