@@ -9,8 +9,7 @@ end
 identifier=cell(length(treeIndices),1);
 for i=1:length(treeIndices)
     tr=treeIndices(i);
-    identifier{i}=[obj.filename,'_',...
-        obj.names{tr},'_',num2str(tr,'%0.3u')];
+    identifier{i}=[obj.names{tr}];
 end
 end
 

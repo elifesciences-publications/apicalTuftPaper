@@ -10,9 +10,9 @@ if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:length(obj.nodes);
 end
 treeIdx=obj.getTreeIdentifier(treeIndices);
-pathLength=pathLength@skeleton(obj,treeIndices,obj.scale/1000);
-pL=table(treeIdx,pathLength,'VariableNames',...
-    {'treeIdx','pathLengthInMicron'});
+pathL=pathLength@skeleton(obj,treeIndices,obj.scale/1000);
+pL=table(treeIdx,pathL,'VariableNames',...
+    {'treeIndex','pathLengthInMicron'});
 
 end
 
