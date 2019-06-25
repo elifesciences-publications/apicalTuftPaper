@@ -8,7 +8,8 @@ end
 if ~exist('xtickMinor','var') || isempty(xtickMinor)
     xtickMinor = 'off';
 end
-if ~exist('removeDashedLinesForBoxplot','var') || isempty(removeDashedLinesForBoxplot)
+if ~exist('removeDashedLinesForBoxplot','var') || ...
+        isempty(removeDashedLinesForBoxplot)
     removeDashedLinesForBoxplot = true;
 end
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
