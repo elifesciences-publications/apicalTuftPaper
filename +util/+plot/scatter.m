@@ -11,12 +11,16 @@ end
 if ~exist('marker','var') || isempty(marker)
     marker='x';
 end
-%flip array if column
+% flip array if column
+if size(array,1)==2 && size(array,2)==2
+    warning('Array flipping might malfunction here')
+end
 if size(array,1)~=2 && size(array,2)==2
     array=array';
 end
 
 scatterHandle=scatter(array(1,:),array(2,:),theSize,color);
 scatterHandle.Marker=marker;
+scatterHandle.MarkerFaceColor='flat';
 end
 

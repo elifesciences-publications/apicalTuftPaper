@@ -30,6 +30,8 @@ optIn.xlim=[min(cell2mat(xLocation))-optIn.boxWidth,...
     max(cell2mat(xLocation))+optIn.boxWidth];
 optIn.color=[1 0 0];
 optIn.tickSize=36;
+optIn.boxplot=true;
+optIn.marker='x';
 optIn=Util.modifyStruct(optIn,varargin{:});
 % repeat if you have a single RGB
 if ~iscell(optIn.color)
@@ -43,12 +45,14 @@ arrayWithNoisyX=cellfun(@(array,position)util.plot.addHorizontalNoise(array,posi
 hold on;
 
 % Overlay scatter plot
-cellfun(@(data,color)util.plot.scatter(data,color,optIn.tickSize),arrayWithNoisyX,...
+cellfun(@(data,color)util.plot.scatter...
+    (data,color,optIn.tickSize,optIn.marker),arrayWithNoisyX,...
     optIn.color(:),'UniformOutput',false);
 % Boxplot
+if optIn.boxplot
 cellfun(@(x,y)boxplot(x,'Positions',y,'Colors','k','Widths',optIn.boxWidth,'Symbol',''),...
     array(:),xLocation)
-
+end
 xlim(optIn.xlim);
 ylim([0,optIn.ylim]);
 xticks(sort(cell2mat(xLocation)));

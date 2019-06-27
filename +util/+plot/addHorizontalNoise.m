@@ -15,6 +15,6 @@ end
 
 noiselessLocation=repmat(horizontalLocation,length(data),1);
 noisyLocation=noiselessLocation+(rand(size(noiselessLocation))-0.5)*noiseLevel;
-dataWithHorizontalNoise=cat(2,noisyLocation,data);
+dataWithHorizontalNoise=cat(2,noisyLocation,data)';
 end
 
