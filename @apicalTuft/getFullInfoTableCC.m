@@ -1,7 +1,7 @@
 function [allInfo] = getFullInfoTableCC(obj,treeIndices,...
 synCountThresh,ccLengthThresh)
 %GETFULLINFOTABLE This function gathers all the information regarding
-% synapse count, density, CC pathlength and ratios used in Fig 3 analysis
+% synapse count, density, CC pathlength and ratios 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:length(obj.nodes);

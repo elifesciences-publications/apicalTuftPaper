@@ -1,4 +1,5 @@
-function [ treeFeatures ] = getTreeFeatures( skel,treeIndices)
+function [ treeFeatures ] = getTreeFeatures( skel,treeIndices,...
+    switchCorrectionFactor)
 % getTreeFeatures Measures the total synapse density of a
 % tree
 % INPUT: 
@@ -16,9 +17,13 @@ function [ treeFeatures ] = getTreeFeatures( skel,treeIndices)
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:skel.numTrees;
 end
-
+if ~exist('switchCorrectionFactor','var') || ...
+        isempty(switchCorrectionFactor)
+    switchCorrectionFactor = zeros(size(skel.synLabel));
+end
 % Calculate total synapse number
-treeFeatures=skel.getTotalSynNumber(treeIndices);
+treeFeatures=skel.getTotalSynNumber(treeIndices,...
+    switchCorrectionFactor);
 
 % Trim the skeleton to shaft for pathlength calculation if.fixedEnding is
 % present in options

@@ -7,9 +7,7 @@ util.setColors;
 outputDir=fullfile(util.dir.getFig1,'AxonReversing');
 util.mkdir(outputDir)
 seedTypes={'spineSeeded','shaftSeeded'};
-layers={'L1','L2'};
-tags={'Spine','SpineSinglePlusApicalSingle'};
-threshold=0.5;
+
 %% single-spine innervation fraction for axons seeded in Seeded from shaft
 % spine structures on the apical dendrites of different pyramidal
 % cell-types. L2,3,5 in L1 region and L2 vs L3/5 in L2 region
@@ -35,6 +33,9 @@ if ~istable(synRatio.L2)
     synRatio.L2=struct2table(synRatio.L2,'RowNames',{'L2','Deep'});
 end
 %% Get the correction fractions
+layers={'L1','L2'};
+tags={'Spine','SpineSinglePlusApicalSingle'};
+threshold=0.5;
 fractionFun={@(x)sum(x<threshold)/length(x),...
     @(x)sum(x>threshold)/length(x)};
 for l=1:2
@@ -57,6 +58,8 @@ for l=1:2
         'RowNames',curLayer.Properties.RowNames);
     curResult=[];
 end
+axonSwitchFraction=structfun(@(x)fliplr(x),axonSwitchFraction,...
+'UniformOutput',false);
 % Save the output for later retrieval
 save(fullfile(util.dir.getAnnotation,'matfiles','axonSwitchFraction'),...
     'axonSwitchFraction')

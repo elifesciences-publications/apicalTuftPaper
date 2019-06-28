@@ -1,5 +1,5 @@
 function [ synapseRatio] =...
-    getSynRatio( skel, treeIndices)
+    getSynRatio( skel, treeIndices,switchCorrectionFactor)
 %getSynRatio returns the ratio of each type of synapse
 %INPUT treeIndices: (Optional:all trees) vector(colum or row)
 %           Contains indices of trees for which the synapse are extracted
@@ -12,18 +12,18 @@ function [ synapseRatio] =...
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:skel.numTrees;
 end
-
-synCount=skel.getSynCount(treeIndices);
+if ~exist('switchCorrectionFactor','var') || ...
+        isempty(switchCorrectionFactor)
+    switchCorrectionFactor = zeros(size(skel.synLabel));
+end
+synCount=skel.getSynCount(treeIndices,switchCorrectionFactor);
 if isempty(synCount)
     synapseRatio=table();
     disp([skel.filename,': empty annotation, no synapses found']);
     return;
 end
-sumOfSynapses=skel.getTotalSynNumber(treeIndices);
+sumOfSynapses=skel.getTotalSynNumber(treeIndices,switchCorrectionFactor);
 
-synapseRatio=array2table( zeros(size(synCount,1),size(synCount,2)-1),...
-    'VariableNames', ...
-    synCount.Properties.VariableNames(2:end));
 %Get the ratios
 ratioFuncHandle=@(tableCount) tableCount./sumOfSynapses(:,2).Variables;
 synapseRatio=varfun(ratioFuncHandle, synCount(:,2:end));

@@ -17,7 +17,7 @@ for i=1:3
     disp(i)
     disp (synRatioCell{i,1}((synRatioCell{i,1}.Spine<.5),:));
     disp(i)
-% Display inhibitory axons which have a spine specificity of >.5
+    % Display inhibitory axons which have a spine specificity of >.5
     disp (synRatioCell{i,2}((synRatioCell{i,2}.Spine>.5),:));
     disp(i)
 end
