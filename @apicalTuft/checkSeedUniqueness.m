@@ -16,8 +16,6 @@ if ~isempty(obj.seed)
     end
     assert (all(cellfun(@length,seedComments)==1),...
         'seed comment is not unique');
-else
-    disp('no seed property (tag) defined for the object');
 end
 end
 
