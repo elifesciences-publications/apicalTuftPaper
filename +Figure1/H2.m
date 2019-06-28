@@ -1,3 +1,4 @@
+% TODO: Fix for L2vsL3vsL5
 % Spine targeting ratio of axons in layer 1 (LPtA dataset)
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 %% set-up
@@ -12,12 +13,14 @@ synRatio=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
 synRatioCell=synRatio.Variables;
 disp('Outliers:')
 % Display excitatory axons which have a spine specificity of <.5
-disp (synRatioCell{1,1}((synRatioCell{1,1}.Spine<.5),:));
-disp (synRatioCell{2,1}((synRatioCell{2,1}.Spine<.5),:));
+for i=1:3
+    disp(i)
+    disp (synRatioCell{i,1}((synRatioCell{i,1}.Spine<.5),:));
+    disp(i)
 % Display inhibitory axons which have a spine specificity of >.5
-disp (synRatioCell{1,2}((synRatioCell{1,2}.Spine>.5),:));
-disp (synRatioCell{2,2}((synRatioCell{2,2}.Spine>.5),:));
-
+    disp (synRatioCell{i,2}((synRatioCell{i,2}.Spine>.5),:));
+    disp(i)
+end
 %% Plot
 fh = figure; ax = gca;
 spineRatio.layer2=[synRatioCell{1,1}.Spine;synRatioCell{1,2}.Spine];

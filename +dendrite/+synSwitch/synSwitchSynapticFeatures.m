@@ -1,0 +1,1 @@
+bifurDense=apicalTuft.getObjects('bifurcation');
