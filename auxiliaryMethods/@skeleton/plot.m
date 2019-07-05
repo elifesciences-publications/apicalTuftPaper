@@ -1,4 +1,5 @@
-function h = plot(skel, treeIndices, colors, umScale, lineWidths,realEndingComments,unityScale,somaSize,somaComment)
+function h = plot(skel, treeIndices, colors, umScale, lineWidths,...
+    realEndingComments,unityScale,somaSize,somaComment,rotationMatrix)
 %PLOT Simple line plot of Skeleton. Nodes are scaled with
 % skel.scale.
 % INPUT treeIndices:(Optional) [Nx1] vector of linear indices
@@ -17,6 +18,8 @@ function h = plot(skel, treeIndices, colors, umScale, lineWidths,realEndingComme
 %       somaSize: (Optional) Scalar with size of soma [in nm]. If not
 %       given or the node has no 'soma' comment, no soma is plotted
 %       somaComment: str of the comment name, Default: 'soma'
+%       rotationMatrix: 3x3 double
+%                       Rotation matrix for the plotting
 % OUTPUT h: structure array with each tree plot as an graphics object array as a fieldname treeId"Nr" (e.g.treeId1)
 % Author: Benedikt Staffler <benedikt.staffler@brain.mpg.de>
 %         Ali Karimi <ali.karimi@brain.mpg.de>
@@ -43,6 +46,9 @@ else
     somaNode(treeIdx(strcmpi(comments,somaComment))) = nodeIdx(strcmpi(comments,somaComment));
 end
 
+if ~exist('rotationMatrix','var') || isempty(rotationMatrix)
+    rotationMatrix = eye(3);
+end
 % If no color is specified, generate appropriate number of colors
 if ~exist('colors','var') || isempty(colors)
     colors = lines(numel(treeIndices));
@@ -99,6 +105,8 @@ for tr = treeIndices
         skel=skel.getBackBone(tr,realEndingComments);
     end
     trNodes = bsxfun(@times,skel.nodes{tr}(:,1:3),scale);
+    % Apply rotation (identity matrix default)
+    trNodes=(rotationMatrix*trNodes')';
     lineWidth = lineWidths(tr);
     h.(['treeId' num2str(tr)])=gobjects(size(skel.edges{tr},1),1);
     for ed = 1:size(skel.edges{tr},1)
