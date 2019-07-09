@@ -14,7 +14,7 @@ prop.syn={'Shaft','spineSingleInnervated',...
 prop.synExclusion='unsureSynapse';
 prop.synGroups={{1,3,4}'}';
 prop.synLabel={'Shaft','Spine'}';
-prop.fixedEnding={'start','end','exit','soma','bifurcation'}';
+prop.fixedEnding={'start','end','exit','soma','bifurcation','dead end'}';
 prop.legacyGrouping=false;
 
 end
