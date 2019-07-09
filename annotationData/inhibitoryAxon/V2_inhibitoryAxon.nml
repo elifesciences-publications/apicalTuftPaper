@@ -1,19 +1,18 @@
 <things>
   <meta name="writer" content="NmlWriter.scala" />
-  <meta name="writerGitCommit" content="217dc45731fbfd3120f0ad91b6972f09bd761c4f" />
-  <meta name="timestamp" content="1540558688782" />
-  <meta name="annotationId" content="5bd30f1f0100002505baa5cd" />
+  <meta name="writerGitCommit" content="6c11bb9fd92565d258e620cd790d94ee3d277434" />
+  <meta name="timestamp" content="1562247114263" />
+  <meta name="annotationId" content="5d165cf3010000478724a710" />
   <meta name="username" content="Ali Karimi" />
   <parameters>
-    <experiment name="V2_102_l23_ak_straightenedPosthoc" description="multiple hit seed targeting inspected" />
+    <experiment name="V2_102_l23_ak_straightenedPosthoc" organization="Connectomics_Department" description="multiple hit seed targeting inspected" />
     <scale x="12.0" y="12.0" z="30.0" />
     <offset x="0" y="0" z="0" />
     <time ms="1507037749318" />
-    <editPosition x="3979" y="4329" z="5063" />
+    <editPosition x="4857" y="5764" z="2039" />
     <editRotation xRot="0.0" yRot="0.0" zRot="0.0" />
-    <zoomLevel zoom="22.06856263241375" />
-    <activeNode id="34281" />
-    <userBoundingBox topLeftX="3705" topLeftY="1369" topLeftZ="3415" width="1832" height="1832" depth="733" />
+    <zoomLevel zoom="1.5303080514586997" />
+    <activeNode id="34066" />
   </parameters>
   <thing id="69" color.r="0.8274509906768799" color.g="0.6549019813537598" color.b="0.6549019813537598" color.a="1.0" name="inhibitoryAxonLayer2ApicalDendriteSeeded01">
     <nodes>
@@ -6532,6 +6531,7 @@
       <node id="33456" radius="120.0" x="2858" y="4421" z="3756" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33475" radius="120.0" x="2991" y="4513" z="4035" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33466" radius="120.0" x="2950" y="4460" z="3879" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
+      <node id="33484" radius="73.66959" x="2540" y="4558" z="3473" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33463" radius="120.0" x="2934" y="4427" z="3829" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33496" radius="120.0" x="2408" y="4650" z="3346" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33461" radius="120.0" x="2849" y="4400" z="3806" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
@@ -6566,7 +6566,6 @@
       <node id="33450" radius="120.0" x="2683" y="4473" z="3701" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33487" radius="120.0" x="2479" y="4581" z="3450" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33447" radius="120.0" x="2711" y="4468" z="3674" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
-      <node id="33484" radius="120.0" x="2540" y="4558" z="3473" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33452" radius="120.0" x="2766" y="4455" z="3717" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33451" radius="120.0" x="2758" y="4460" z="3710" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="33492" radius="120.0" x="2431" y="4651" z="3380" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
@@ -21575,6 +21574,7 @@
       <node id="32805" radius="120.0" x="5769" y="8530" z="1905" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32701" radius="120.0" x="4226" y="5662" z="1467" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32770" radius="120.0" x="5091" y="7614" z="1838" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
+      <node id="35215" radius="120.0" x="1596" y="6061" z="1490" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1562230884940" />
       <node id="32667" radius="120.0" x="4141" y="4625" z="1258" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32648" radius="120.0" x="4006" y="4051" z="1135" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32874" radius="120.0" x="3425" y="1733" z="498" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
@@ -21644,6 +21644,7 @@
       <node id="32928" radius="120.0" x="2721" y="3273" z="873" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32855" radius="120.0" x="3499" y="2304" z="642" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32858" radius="120.0" x="3441" y="2228" z="619" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
+      <node id="35214" radius="120.0" x="1930" y="4810" z="1490" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1562230884089" />
       <node id="32876" radius="120.0" x="3378" y="1630" z="491" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32794" radius="120.0" x="5537" y="8266" z="1919" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32630" radius="120.0" x="3795" y="3577" z="1000" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
@@ -21763,6 +21764,8 @@
       <node id="32977" radius="120.0" x="2252" y="4278" z="1312" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
     </nodes>
     <edges>
+      <edge source="35214" target="35215" />
+      <edge source="33002" target="35214" />
       <edge source="33000" target="34328" />
       <edge source="32785" target="32786" />
       <edge source="32890" target="32891" />
@@ -22499,13 +22502,11 @@
     <branchpoint id="14042" time="1507037749310" />
   </branchpoints>
   <comments>
-    <comment node="5905" content="seed 2" />
     <comment node="5922" content="layer2CellBody" />
     <comment node="5924" content="exit" />
     <comment node="5940" content="shaftOfOtherDendrite" />
     <comment node="5953" content="layer2CellBody" />
     <comment node="5986" content="shaftOfOtherDendrite" />
-    <comment node="5989" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
     <comment node="6002" content="shaftOfOtherDendrite" />
     <comment node="6011" content="layer2CellBody" />
     <comment node="6022" content="exit" />
@@ -22515,7 +22516,8 @@
     <comment node="6048" content="tracer: Ali" />
     <comment node="6053" content="dead end" />
     <comment node="34332" content="end" />
-    <comment node="5735" content="seed 5" />
+    <comment node="5989" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="5905" content="seed 1" />
     <comment node="5748" content="shaftOfOtherDendrite" />
     <comment node="5763" content="layer2CellBody" />
     <comment node="5775" content="layer2CellBody" />
@@ -22528,27 +22530,24 @@
     <comment node="5818" content="shaftOfOtherDendrite" />
     <comment node="5833" content="layer2CellBody" />
     <comment node="5840" content="layer2CellBody" />
-    <comment node="5848" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
-    <comment node="5858" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
-    <comment node="5861" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
-    <comment node="5869" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
     <comment node="5876" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="5878" content="tracer: Ali" />
     <comment node="5883" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="5890" content="shaftOfDeepApicalDendrite" />
     <comment node="5900" content="shaftOfOtherDendrite" />
     <comment node="5902" content="exit" />
     <comment node="34331" content="end" />
+    <comment node="5735" content="seed 1" />
+    <comment node="5890" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="5848" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="5858" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="5861" content="shaftOfL2ApicalDendrite_3" />
+    <comment node="5869" content="shaftOfL2ApicalDendrite_4" />
     <comment node="9507" content="shaftOfOtherDendrite" />
     <comment node="9513" content="shaftOfOtherDendrite" />
     <comment node="9523" content="shaftOfOtherDendrite" />
     <comment node="9537" content="shaftOfOtherDendrite" />
     <comment node="9539" content="exit" />
-    <comment node="9547" content="shaftOfL2ApicalDendrite" />
-    <comment node="9549" content="shaftOfL2ApicalDendrite" />
-    <comment node="9560" content="shaftOfL2ApicalDendrite_bifurcationSameApical" />
     <comment node="9574" content="unsureSynapse" />
-    <comment node="9576" content="seed 3" />
     <comment node="9583" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="9592" content="shaftOfOtherDendrite" />
     <comment node="9595" content="shaftOfOtherDendrite" />
@@ -22557,25 +22556,25 @@
     <comment node="9615" content="tracer: Ali" />
     <comment node="9621" content="layer2CellBody" />
     <comment node="9628" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="9631" content="shaftOfL2ApicalDendrite" />
-    <comment node="9635" content="shaftOfL2ApicalDendrite" />
-    <comment node="9649" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
     <comment node="9650" content="end" />
+    <comment node="9547" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="9549" content="shaftOfL2ApicalDendrite_3" />
+    <comment node="9631" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="9635" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="9649" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="9560" content="shaftOfL2ApicalDendrite_4" />
+    <comment node="9576" content="seed 4" />
     <comment node="13666" content="seed 1" />
     <comment node="13669" content="exit" />
-    <comment node="13679" content="spineOfL2ApicalDendrite_DoubleInnervated" />
     <comment node="13685" content="shaftOfOtherDendrite" />
     <comment node="13689" content="layer2CellBody" />
     <comment node="13696" content="layer2CellBody" />
-    <comment node="13702" content="spineOfL2ApicalDendrite_DoubleInnervated" />
     <comment node="13711" content="shaftOfOtherDendrite" />
     <comment node="13718" content="shaftOfOtherDendrite" />
     <comment node="13721" content="tracer: Ali" />
     <comment node="13724" content="layer2CellBody" />
     <comment node="13731" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="13744" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="13755" content="shaftOfOtherDendrite" />
-    <comment node="13762" content="shaftOfDeepApicalDendrite" />
     <comment node="13775" content="shaftOfOtherDendrite" />
     <comment node="13782" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="13792" content="shaftOfOtherDendrite" />
@@ -22592,17 +22591,19 @@
     <comment node="13898" content="layer2CellBody" />
     <comment node="13900" content="exit" />
     <comment node="13910" content="layer2CellBody" />
-    <comment node="34344" content="shaftOfDeepApicalDendrite" />
-    <comment node="34351" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="34361" content="unsureSynapse" />
-    <comment node="34375" content="shaftOfDeepApicalDendrite" />
     <comment node="34385" content="layer2CellBody" />
     <comment node="34399" content="shaftOfOtherDendrite" />
     <comment node="34404" content="shaftOfOtherDendrite" />
     <comment node="34411" content="shaftOfOtherDendrite" />
     <comment node="34415" content="exit" />
-    <comment node="13913" content="seed 2" />
-    <comment node="13919" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
+    <comment node="13762" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="34344" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="34375" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="13744" content="spineOfDeepApicalDendrite_DoubleInnervated_2" />
+    <comment node="34351" content="spineOfDeepApicalDendrite_DoubleInnervated_2" />
+    <comment node="13679" content="spineOfL2ApicalDendrite_DoubleInnervated_1" />
+    <comment node="13702" content="spineOfL2ApicalDendrite_DoubleInnervated_1" />
     <comment node="13930" content="layer2CellBody" />
     <comment node="13936" content="shaftOfOtherDendrite" />
     <comment node="13938" content="layer2CellBody" />
@@ -22617,10 +22618,10 @@
     <comment node="14030" content="tracer: Ali" />
     <comment node="14034" content="exit" />
     <comment node="14041" content="exit" />
-    <comment node="14044" content="seed 3" />
+    <comment node="13919" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="13913" content="seed 1" />
     <comment node="14046" content="shaftOfOtherDendrite" />
     <comment node="14051" content="shaftOfOtherDendrite" />
-    <comment node="14069" content="shaftOfL2ApicalDendrite" />
     <comment node="14071" content="tracer: Ali" />
     <comment node="14081" content="shaftOfOtherDendrite" />
     <comment node="14086" content="shaftOfOtherDendrite" />
@@ -22628,9 +22629,7 @@
     <comment node="14102" content="shaftOfOtherDendrite" />
     <comment node="14110" content="shaftOfOtherDendrite" />
     <comment node="14122" content="shaftOfOtherDendrite" />
-    <comment node="14125" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
     <comment node="14129" content="shaftOfOtherDendrite" />
-    <comment node="14132" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
     <comment node="14138" content="shaftOfOtherDendrite" />
     <comment node="14155" content="layer2CellBody" />
     <comment node="14166" content="layer2CellBody" />
@@ -22639,7 +22638,10 @@
     <comment node="14206" content="shaftOfOtherDendrite" />
     <comment node="14212" content="exit" />
     <comment node="34416" content="end" />
-    <comment node="14571" content="seed 1 out 1 um" />
+    <comment node="14069" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="14125" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="14132" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="14044" content="seed 1" />
     <comment node="14585" content="layer2CellBody" />
     <comment node="14592" content="shaftOfOtherDendrite" />
     <comment node="14599" content="exit" />
@@ -22649,13 +22651,12 @@
     <comment node="14633" content="shaftOfOtherDendrite" />
     <comment node="14639" content="shaftOfOtherDendrite" />
     <comment node="14647" content="shaftOfOtherDendrite" />
-    <comment node="14652" content="shaftOfDeepApicalDendrite" />
     <comment node="14662" content="shaftOfOtherDendrite" />
     <comment node="14669" content="shaftOfOtherDendrite" />
     <comment node="14674" content="shaftOfOtherDendrite" />
     <comment node="14678" content="exit" />
-    <comment node="14241" content="seed 2" />
-    <comment node="14264" content="shaftOfL2ApicalDendrite" />
+    <comment node="14571" content="seed 1" />
+    <comment node="14652" content="shaftOfDeepApicalDendrite_1" />
     <comment node="14266" content="shaftOfOtherDendrite" />
     <comment node="14290" content="layer2CellBody" />
     <comment node="14291" content="exit" />
@@ -22669,49 +22670,50 @@
     <comment node="14383" content="shaftOfOtherDendrite" />
     <comment node="14391" content="exit" />
     <comment node="14399" content="shaftOfOtherDendrite" />
-    <comment node="14401" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
     <comment node="14410" content="tracer: Ali" />
     <comment node="14426" content="shaftOfOtherDendrite" />
-    <comment node="14438" content="shaftOfL2ApicalDendrite" />
     <comment node="14493" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="14505" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="14514" content="unsureSynapse" />
     <comment node="14532" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="14566" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="14568" content="exit" />
-    <comment node="14215" content="seed 1" />
+    <comment node="14264" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="14438" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="14401" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="14241" content="seed 1" />
     <comment node="14233" content="tracer: Ali" />
-    <comment node="14236" content="spineOfL2ApicalDendrite_DoubleInnervated" />
-    <comment node="27229" content="shaftOfL2ApicalDendrite" />
     <comment node="27235" content="shaftOfOtherDendrite" />
-    <comment node="27239" content="shaftOfL2ApicalDendrite" />
     <comment node="27244" content="shaftOfOtherDendrite" />
     <comment node="27252" content="shaftOfOtherDendrite" />
     <comment node="34314" content="exit" />
     <comment node="34315" content="end" />
-    <comment node="27372" content="seed 5" />
+    <comment node="27229" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="27239" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="14236" content="spineOfL2ApicalDendrite_DoubleInnervated_2" />
+    <comment node="14215" content="seed 2" />
     <comment node="27378" content="tracer: Jan" />
-    <comment node="27382" content="shaftOfL2ApicalDendrite_bifurcationSameApical" />
-    <comment node="27389" content="shaftOfL2ApicalDendrite_bifurcationSameApical" />
-    <comment node="27404" content="shaftOfL2ApicalDendrite_bifurcationSameApical" />
     <comment node="27420" content="shaftOfOtherDendrite" />
-    <comment node="27430" content="shaftOfL2ApicalDendrite" />
     <comment node="27451" content="layer2CellBody" />
     <comment node="27472" content="layer2CellBody" />
     <comment node="27485" content="layer2CellBody" />
-    <comment node="27495" content="shaftOfL2ApicalDendrite" />
-    <comment node="27508" content="shaftOfL2ApicalDendrite" />
     <comment node="27543" content="shaftOfOtherDendrite" />
-    <comment node="34461" content="shaftOfL2ApicalDendrite_bifurcationSameApical" />
     <comment node="34479" content="layer2CellBody" />
     <comment node="34483" content="layer2CellBody" />
     <comment node="34488" content="layer2CellBody" />
     <comment node="34494" content="exit" />
     <comment node="34495" content="end" />
+    <comment node="27382" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="27389" content="shaftOfL2ApicalDendrite_3" />
+    <comment node="27404" content="shaftOfL2ApicalDendrite_4" />
+    <comment node="34461" content="shaftOfL2ApicalDendrite_5" />
+    <comment node="27430" content="shaftOfL2ApicalDendrite_6" />
+    <comment node="27372" content="seed 6" />
+    <comment node="27508" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="27495" content="shaftOfL2ApicalDendrite_1" />
     <comment node="27547" content="seed 1" />
     <comment node="27554" content="exit" />
     <comment node="27577" content="unsureSynapse" />
-    <comment node="27599" content="shaftOfDeepApicalDendrite" />
     <comment node="27609" content="shaftOfOtherDendrite" />
     <comment node="27612" content="shaftOfOtherDendrite" />
     <comment node="27614" content="unsureSynapse" />
@@ -22721,14 +22723,10 @@
     <comment node="27653" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="27659" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="27662" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="27667" content="shaftOfL2ApicalDendrite" />
     <comment node="27669" content="shaftOfOtherDendrite" />
     <comment node="27677" content="shaftOfOtherDendrite" />
-    <comment node="27678" content="shaftOfL2ApicalDendrite" />
     <comment node="27696" content="shaftOfOtherDendrite" />
     <comment node="27698" content="shaftOfOtherDendrite" />
-    <comment node="27714" content="shaftOfDeepApicalDendrite" />
-    <comment node="27725" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="27749" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="27761" content="shaftOfOtherDendrite" />
     <comment node="27768" content="shaftOfOtherDendrite" />
@@ -22737,16 +22735,19 @@
     <comment node="27796" content="unsureSynapse" />
     <comment node="27804" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="27806" content="shaftOfOtherDendrite" />
-    <comment node="27815" content="shaftOfL2ApicalDendrite" />
-    <comment node="27826" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="27835" content="shaftOfOtherDendrite" />
     <comment node="27841" content="unsureSynapse" />
     <comment node="27863" content="layer2CellBody" />
     <comment node="27873" content="unsureSynapse" />
     <comment node="27878" content="unsureSynapse" />
     <comment node="27880" content="end" />
-    <comment node="27969" content="seed 3" />
-    <comment node="27978" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
+    <comment node="27599" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="27714" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="27667" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="27678" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="27815" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="27725" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="27826" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
     <comment node="27992" content="shaftOfOtherDendrite" />
     <comment node="28011" content="axonInitialSegment" />
     <comment node="28019" content="layer2CellBody" />
@@ -22761,7 +22762,6 @@
     <comment node="28081" content="layer2CellBody" />
     <comment node="28101" content="shaftOfOtherDendrite" />
     <comment node="28112" content="spineOfOtherlDendrite_singleInnervated" />
-    <comment node="28128" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
     <comment node="28139" content="layer2CellBody" />
     <comment node="28149" content="layer2CellBody" />
     <comment node="28159" content="shaftOfOtherDendrite" />
@@ -22786,6 +22786,9 @@
     <comment node="28318" content="layer2CellBody" />
     <comment node="34496" content="exit" />
     <comment node="34497" content="exit" />
+    <comment node="27969" content="seed 1" />
+    <comment node="27978" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="28128" content="shaftOfL2ApicalDendrite_1" />
     <comment node="28327" content="seed 1" />
     <comment node="28340" content="unsureSynapse" />
     <comment node="28348" content="spineOfOtherDendrite_DoubleInnervated" />
@@ -22800,20 +22803,16 @@
     <comment node="28400" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="34417" content="end" />
     <comment node="34419" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="28403" content="seed 1" />
-    <comment node="28410" content="spineOfL2ApicalDendrite_neck" />
     <comment node="28419" content="shaftOfOtherDendrite" />
     <comment node="28445" content="layer2CellBody" />
     <comment node="28453" content="layer2CellBody" />
     <comment node="28463" content="shaftOfOtherDendrite" />
     <comment node="28472" content="unsureSynapse" />
-    <comment node="28475" content="shaftOfL2ApicalDendrite" />
     <comment node="28483" content="layer2CellBody" />
     <comment node="28499" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="28505" content="layer2CellBody" />
     <comment node="28511" content="layer2CellBody" />
     <comment node="28519" content="tracer: Jan" />
-    <comment node="28526" content="shaftOfL2ApicalDendrite" />
     <comment node="28532" content="shaftOfOtherDendrite" />
     <comment node="28545" content="shaftOfOtherDendrite" />
     <comment node="28552" content="spineOfOtherDendrite_DoubleInnervated" />
@@ -22837,6 +22836,10 @@
     <comment node="28674" content="dead end" />
     <comment node="28675" content="exit" />
     <comment node="34421" content="end" />
+    <comment node="28475" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="28526" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="28403" content="seed 2" />
+    <comment node="28410" content="spineOfL2ApicalDendrite_neck_2" />
     <comment node="28678" content="seed 1" />
     <comment node="28688" content="shaftOfOtherDendrite" />
     <comment node="28694" content="spineOfOtherDendrite_DoubleInnervated" />
@@ -22853,10 +22856,8 @@
     <comment node="34498" content="end" />
     <comment node="34499" content="exit" />
     <comment node="33167" content="seed 1" />
-    <comment node="33178" content="shaftOfL2ApicalDendrite" />
     <comment node="33217" content="layer2CellBody" />
     <comment node="33222" content="layer2CellBody" />
-    <comment node="33230" content="shaftOfL2ApicalDendrite" />
     <comment node="33238" content="layer2CellBody" />
     <comment node="33243" content="layer2CellBody" />
     <comment node="33255" content="shaftOfOtherDendrite" />
@@ -22877,26 +22878,25 @@
     <comment node="33422" content="shaftOfOtherDendrite" />
     <comment node="33433" content="unsureSynapse" />
     <comment node="33435" content="dead end" />
+    <comment node="33230" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="33178" content="shaftOfL2ApicalDendrite_1" />
     <comment node="33436" content="seed 3" />
-    <comment node="33442" content="shaftOfL2ApicalDendrite_bifurcationSameApical" />
     <comment node="33450" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="33461" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="33464" content="tracer: Jan" />
     <comment node="33479" content="dead end" />
-    <comment node="33484" content="shaftOfL2ApicalDendrite_bifurcationSameApical" />
     <comment node="33486" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="33493" content="spineOfOtherDendrite_neck" />
     <comment node="33494" content="shaftOfOtherDendrite" />
     <comment node="33496" content="dead end" />
-    <comment node="33683" content="seed 3" />
+    <comment node="33442" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="33484" content="shaftOfL2ApicalDendrite_1" />
     <comment node="33688" content="unsureSynapse" />
-    <comment node="33692" content="shaftOfL2ApicalDendrite_bifurcationSameApical" />
     <comment node="33707" content="shaftOfOtherDendrite" />
     <comment node="33713" content="dead end" />
     <comment node="33719" content="spineOfOtherDendrite_neck" />
     <comment node="33727" content="tracer: Jan" />
     <comment node="33732" content="layer2CellBody" />
-    <comment node="33740" content="shaftOfL2ApicalDendrite_bifurcationOtherApical" />
     <comment node="33745" content="layer2CellBody" />
     <comment node="33746" content="unsureSynapse" />
     <comment node="33755" content="layer2CellBody" />
@@ -22904,6 +22904,9 @@
     <comment node="33768" content="layer2CellBody" />
     <comment node="33770" content="unsureSynapse" />
     <comment node="33784" content="exit" />
+    <comment node="33740" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="33692" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="33683" content="seed 2" />
     <comment node="33785" content="seed 1" />
     <comment node="33793" content="layer2CellBody" />
     <comment node="33801" content="layer2CellBody" />
@@ -22926,14 +22929,11 @@
     <comment node="33980" content="shaftOfOtherDendrite" />
     <comment node="33981" content="shaftOfOtherDendrite" />
     <comment node="33994" content="shaftOfOtherDendrite" />
-    <comment node="34006" content="shaftOfDeepApicalDendrite" />
     <comment node="34010" content="shaftOfOtherDendrite" />
     <comment node="34033" content="shaftOfOtherDendrite" />
     <comment node="34038" content="shaftOfOtherDendrite" />
     <comment node="34043" content="shaftOfOtherDendrite" />
-    <comment node="34059" content="shaftOfDeepApicalDendrite" />
     <comment node="34072" content="shaftOfOtherDendrite" />
-    <comment node="34081" content="shaftOfDeepApicalDendrite" />
     <comment node="34083" content="shaftOfOtherDendrite" />
     <comment node="34089" content="unsureSynapse" />
     <comment node="34102" content="shaftOfOtherDendrite" />
@@ -22951,6 +22951,9 @@
     <comment node="34439" content="tracer: Jan" />
     <comment node="34450" content="exit" />
     <comment node="34451" content="exit" />
+    <comment node="34006" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="34059" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="34081" content="shaftOfDeepApicalDendrite_1" />
     <comment node="3960" content="shaftOfOtherDendrite" />
     <comment node="3964" content="exit" />
     <comment node="3975" content="shaftOfOtherDendrite" />
@@ -22960,8 +22963,6 @@
     <comment node="4004" content="shaftOfOtherDendrite" />
     <comment node="4008" content="shaftOfOtherDendrite" />
     <comment node="4016" content="shaftOfOtherDendrite" />
-    <comment node="4024" content="shaftOfDeepApicalDendrite" />
-    <comment node="4034" content="shaftOfDeepApicalDendrite" />
     <comment node="4040" content="shaftOfOtherDendrite" />
     <comment node="4054" content="tracer: Ali" />
     <comment node="4060" content="shaftOfOtherDendrite" />
@@ -22972,25 +22973,27 @@
     <comment node="4093" content="shaftOfOtherDendrite" />
     <comment node="4099" content="shaftOfOtherDendrite" />
     <comment node="4105" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="4109" content="seed 3" />
-    <comment node="4119" content="shaftOfDeepApicalDendrite_bifurcationSameApical" />
-    <comment node="4130" content="shaftOfDeepApicalDendrite_bifurcationSameApical" />
     <comment node="4133" content="shaftOfOtherDendrite" />
     <comment node="4139" content="shaftOfOtherDendrite" />
     <comment node="4145" content="shaftOfOtherDendrite" />
     <comment node="4153" content="exit" />
     <comment node="4160" content="shaftOfOtherDendrite" />
-    <comment node="4166" content="shaftOfDeepApicalDendrite" />
     <comment node="4175" content="unsureSynapse" />
     <comment node="4177" content="shaftOfOtherDendrite" />
     <comment node="4198" content="shaftOfOtherDendrite" />
     <comment node="4203" content="dead end" />
     <comment node="4211" content="shaftOfOtherDendrite" />
     <comment node="4215" content="dead end" />
-    <comment node="27312" content="shaftOfDeepApicalDendrite" />
     <comment node="34200" content="end" />
     <comment node="34201" content="end" />
     <comment node="34501" content="spineOfOtherDendrite_neck" />
+    <comment node="4024" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="4034" content="shaftOfDeepApicalDendrite_3" />
+    <comment node="4166" content="shaftOfDeepApicalDendrite_4" />
+    <comment node="4119" content="shaftOfDeepApicalDendrite_5" />
+    <comment node="4130" content="shaftOfDeepApicalDendrite_6" />
+    <comment node="27312" content="shaftOfDeepApicalDendrite_7" />
+    <comment node="4109" content="seed 7" />
     <comment node="4690" content="seed 1" />
     <comment node="4707" content="tracer: Ali" />
     <comment node="4713" content="shaftOfOtherDendrite" />
@@ -23002,19 +23005,19 @@
     <comment node="4784" content="unsureSynapse" />
     <comment node="4809" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="4840" content="unsureSynapse" />
-    <comment node="4857" content="spineOfDeepApicalDendrite_singleInnervated" />
     <comment node="4870" content="exit" />
     <comment node="4874" content="unsureSynapse" />
     <comment node="4881" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="4882" content="end" />
-    <comment node="4894" content="spineOfDeepApicalDendrite_singleInnervated" />
-    <comment node="4896" content="spineOfDeepApicalDendrite_singleInnervated" />
     <comment node="4897" content="end" />
-    <comment node="4902" content="spineOfDeepApicalDendrite_singleInnervated" />
     <comment node="9104" content="shaftOfOtherDendrite" />
     <comment node="34202" content="end" />
     <comment node="34203" content="end" />
     <comment node="34204" content="end" />
+    <comment node="4857" content="spineOfDeepApicalDendrite_singleInnervated_1" />
+    <comment node="4894" content="spineOfDeepApicalDendrite_singleInnervated_1" />
+    <comment node="4896" content="spineOfDeepApicalDendrite_singleInnervated_2" />
+    <comment node="4902" content="spineOfDeepApicalDendrite_singleInnervated_3" />
     <comment node="9948" content="seed 1" />
     <comment node="9958" content="shaftOfOtherDendrite" />
     <comment node="9963" content="shaftOfOtherDendrite" />
@@ -23043,8 +23046,8 @@
     <comment node="10368" content="exit" />
     <comment node="10373" content="shaftOfOtherDendrite" />
     <comment node="10382" content="shaftOfOtherDendrite" />
-    <comment node="10387" content="shaftOfDeepApicalDendrite" />
     <comment node="34205" content="exit" />
+    <comment node="10387" content="shaftOfDeepApicalDendrite_1" />
     <comment node="10390" content="seed 1" />
     <comment node="10421" content="tracer: Ali" />
     <comment node="10465" content="spineOfOtherDendrite_DoubleInnervated" />
@@ -23052,11 +23055,7 @@
     <comment node="10487" content="exit" />
     <comment node="10494" content="shaftOfOtherDendrite" />
     <comment node="10495" content="exit" />
-    <comment node="11754" content="seed 2" />
-    <comment node="11759" content="shaftOfDeepApicalDendrite_bifurcationSameApical" />
     <comment node="11774" content="spineOfOtherlDendrite_singleInnervated" />
-    <comment node="11778" content="shaftOfDeepApicalDendrite" />
-    <comment node="11783" content="shaftOfDeepApicalDendrite" />
     <comment node="11797" content="shaftOfOtherDendrite" />
     <comment node="11800" content="shaftOfOtherDendrite" />
     <comment node="11806" content="shaftOfOtherDendrite" />
@@ -23085,10 +23084,12 @@
     <comment node="11994" content="shaftOfOtherDendrite" />
     <comment node="11998" content="exit" />
     <comment node="34206" content="end" />
-    <comment node="12001" content="seed 2" />
+    <comment node="11778" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="11783" content="shaftOfDeepApicalDendrite_3" />
+    <comment node="11754" content="seed 4" />
+    <comment node="11759" content="shaftOfDeepApicalDendrite_4" />
     <comment node="12002" content="tracer: Ali" />
     <comment node="12011" content="shaftOfOtherDendrite" />
-    <comment node="12028" content="shaftOfDeepApicalDendrite_bifurcationOtherApical" />
     <comment node="12033" content="shaftOfOtherDendrite" />
     <comment node="12042" content="shaftOfOtherDendrite" />
     <comment node="12050" content="exit" />
@@ -23101,14 +23102,14 @@
     <comment node="12159" content="shaftOfOtherDendrite" />
     <comment node="12169" content="shaftOfOtherDendrite" />
     <comment node="12177" content="dead end" />
+    <comment node="12028" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="12001" content="seed 1" />
     <comment node="12181" content="seed 1" />
     <comment node="12198" content="shaftOfOtherDendrite" />
     <comment node="12203" content="shaftOfOtherDendrite" />
     <comment node="12222" content="shaftOfOtherDendrite" />
     <comment node="12233" content="shaftOfOtherDendrite" />
     <comment node="12239" content="shaftOfOtherDendrite" />
-    <comment node="12246" content="shaftOfOtherDendrite" />
-    <comment node="12253" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="12260" content="shaftOfOtherDendrite" />
     <comment node="12289" content="shaftOfOtherDendrite" />
     <comment node="12298" content="exit" />
@@ -23120,7 +23121,6 @@
     <comment node="12353" content="shaftOfOtherDendrite" />
     <comment node="12364" content="shaftOfOtherDendrite" />
     <comment node="12374" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="12384" content="shaftOfDeepApicalDendrite" />
     <comment node="12389" content="shaftOfOtherDendrite" />
     <comment node="12399" content="shaftOfOtherDendrite" />
     <comment node="12404" content="shaftOfOtherDendrite" />
@@ -23170,7 +23170,6 @@
     <comment node="12749" content="shaftOfOtherDendrite" />
     <comment node="12762" content="shaftOfOtherDendrite" />
     <comment node="12771" content="shaftOfOtherDendrite" />
-    <comment node="12778" content="shaftOfDeepApicalDendrite" />
     <comment node="12787" content="shaftOfOtherDendrite" />
     <comment node="12794" content="shaftOfOtherDendrite" />
     <comment node="12801" content="shaftOfOtherDendrite" />
@@ -23190,7 +23189,6 @@
     <comment node="12910" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="12912" content="shaftOfOtherDendrite" />
     <comment node="12918" content="shaftOfOtherDendrite" />
-    <comment node="12927" content="shaftOfDeepApicalDendrite" />
     <comment node="12930" content="shaftOfOtherDendrite" />
     <comment node="12945" content="exit" />
     <comment node="12950" content="shaftOfOtherDendrite" />
@@ -23213,11 +23211,14 @@
     <comment node="34226" content="end" />
     <comment node="34227" content="end" />
     <comment node="34228" content="end" />
-    <comment node="13118" content="seed 1" />
+    <comment node="12384" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="12927" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="12778" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="12246" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="12253" content="spineOfDeepApicalDendrite_DoubleInnervated_2" />
     <comment node="13131" content="shaftOfOtherDendrite" />
     <comment node="13139" content="shaftOfOtherDendrite" />
     <comment node="13144" content="shaftOfOtherDendrite" />
-    <comment node="13151" content="shaftOfL2ApicalDendrite" />
     <comment node="13155" content="shaftOfOtherDendrite" />
     <comment node="13158" content="shaftOfOtherDendrite" />
     <comment node="13161" content="shaftOfOtherDendrite" />
@@ -23230,8 +23231,6 @@
     <comment node="13218" content="shaftOfOtherDendrite" />
     <comment node="13231" content="tracer: Ali" />
     <comment node="13239" content="shaftOfOtherDendrite" />
-    <comment node="13245" content="spineOfL2ApicalDendrite_DoubleInnervated" />
-    <comment node="13248" content="spineOfL2ApicalDendrite_DoubleInnervated" />
     <comment node="13256" content="shaftOfOtherDendrite" />
     <comment node="13261" content="shaftOfOtherDendrite" />
     <comment node="13267" content="shaftOfOtherDendrite" />
@@ -23279,16 +23278,18 @@
     <comment node="13613" content="shaftOfOtherDendrite" />
     <comment node="13622" content="unsureSynapse" />
     <comment node="13627" content="shaftOfOtherDendrite" />
-    <comment node="13635" content="shaftOfDeepApicalDendrite" />
     <comment node="13637" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="13640" content="exit" />
     <comment node="34237" content="spineOfOtherDendrite_neck" />
     <comment node="34249" content="shaftOfOtherDendrite" />
-    <comment node="34259" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="34266" content="shaftOfOtherDendrite" />
     <comment node="34281" content="exit" />
-    <comment node="12960" content="seed 2" />
-    <comment node="12973" content="shaftOfDeepApicalDendrite_bifurcationSameApical" />
+    <comment node="13635" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="13118" content="seed 2" />
+    <comment node="13151" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="34259" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="13245" content="spineOfL2ApicalDendrite_DoubleInnervated_1" />
+    <comment node="13248" content="spineOfL2ApicalDendrite_DoubleInnervated_2" />
     <comment node="12977" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="12984" content="shaftOfOtherDendrite" />
     <comment node="12993" content="shaftOfOtherDendrite" />
@@ -23305,8 +23306,10 @@
     <comment node="13085" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="13087" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="13093" content="exit" />
-    <comment node="13102" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="13113" content="exit" />
+    <comment node="12973" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="12960" content="seed 3" />
+    <comment node="13102" content="spineOfDeepApicalDendrite_DoubleInnervated_3" />
     <comment node="28784" content="seed 1" />
     <comment node="28789" content="layer2CellBody" />
     <comment node="28792" content="layer2CellBody" />
@@ -23314,12 +23317,12 @@
     <comment node="28806" content="unsureSynapse" />
     <comment node="28817" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="28821" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="28832" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="28851" content="shaftOfOtherDendrite" />
-    <comment node="28853" content="spineOfL2ApicalDendrite_singleInnervated" />
     <comment node="28861" content="layer2CellBody" />
     <comment node="28867" content="exit" />
     <comment node="34283" content="end" />
+    <comment node="28832" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="28853" content="spineOfL2ApicalDendrite_singleInnervated_1" />
     <comment node="28869" content="seed 1" />
     <comment node="28875" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="28886" content="shaftOfOtherDendrite" />
@@ -23359,31 +23362,31 @@
     <comment node="29143" content="unsureSynapse" />
     <comment node="29150" content="shaftOfOtherDendrite" />
     <comment node="29152" content="spineOfOtherDendrite_neck" />
-    <comment node="29159" content="shaftOfL2ApicalDendrite" />
-    <comment node="29162" content="shaftOfL2ApicalDendrite" />
     <comment node="29172" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="29181" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="29194" content="shaftOfOtherDendrite" />
     <comment node="29195" content="exit" />
     <comment node="29200" content="shaftOfOtherDendrite" />
-    <comment node="29206" content="shaftOfL2ApicalDendrite" />
     <comment node="29217" content="shaftOfOtherDendrite" />
     <comment node="29228" content="shaftOfOtherDendrite" />
     <comment node="29233" content="shaftOfOtherDendrite" />
     <comment node="29243" content="spineOfOtherDendrite_neck" />
     <comment node="29252" content="shaftOfOtherDendrite" />
     <comment node="29260" content="shaftOfOtherDendrite" />
-    <comment node="29272" content="shaftOfDeepApicalDendrite" />
     <comment node="29291" content="shaftOfOtherDendrite" />
     <comment node="29305" content="shaftOfOtherDendrite" />
     <comment node="29319" content="shaftOfOtherDendrite" />
     <comment node="29323" content="shaftOfOtherDendrite" />
     <comment node="29329" content="shaftOfOtherDendrite" />
-    <comment node="29330" content="shaftOfL2ApicalDendrite" />
     <comment node="29338" content="shaftOfOtherDendrite" />
     <comment node="29347" content="shaftOfOtherDendrite" />
     <comment node="29357" content="unsureSynapse" />
     <comment node="29363" content="exit" />
+    <comment node="29272" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="29159" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="29162" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="29206" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="29330" content="shaftOfL2ApicalDendrite_1" />
     <comment node="29365" content="seed 1" />
     <comment node="29368" content="shaftOfOtherDendrite" />
     <comment node="29389" content="shaftOfOtherDendrite" />
@@ -23400,17 +23403,12 @@
     <comment node="29489" content="exit" />
     <comment node="29491" content="shaftOfOtherDendrite" />
     <comment node="29494" content="dead end" />
-    <comment node="29504" content="shaftOfDeepApicalDendrite" />
     <comment node="29505" content="unsureSynapse" />
     <comment node="29512" content="tracer: Jan" />
     <comment node="29513" content="unsureSynapse" />
     <comment node="34284" content="end" />
-    <comment node="29514" content="seed 2" />
-    <comment node="29525" content="shaftOfDeepApicalDendrite_bifurcationSameApical" />
-    <comment node="29535" content="shaftOfDeepApicalDendrite" />
-    <comment node="29540" content="shaftOfDeepApicalDendrite" />
+    <comment node="29504" content="shaftOfDeepApicalDendrite_1" />
     <comment node="29548" content="shaftOfOtherDendrite" />
-    <comment node="29550" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="29551" content="shaftOfOtherDendrite" />
     <comment node="29559" content="shaftOfOtherDendrite" />
     <comment node="29580" content="shaftOfOtherDendrite" />
@@ -23428,7 +23426,6 @@
     <comment node="29629" content="unsureSynapse" />
     <comment node="29633" content="unsureSynapse" />
     <comment node="29640" content="shaftOfOtherDendrite" />
-    <comment node="29654" content="shaftOfDeepApicalDendrite" />
     <comment node="29658" content="shaftOfOtherDendrite" />
     <comment node="29662" content="shaftOfOtherDendrite" />
     <comment node="29665" content="spineOfOtherDendrite_DoubleInnervated" />
@@ -23453,12 +23450,10 @@
     <comment node="29777" content="unsureSynapse" />
     <comment node="29785" content="shaftOfOtherDendrite" />
     <comment node="29794" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="29795" content="spineOfDeepApicalDendrite_neck" />
     <comment node="29797" content="end" />
     <comment node="29804" content="shaftOfOtherDendrite" />
     <comment node="29810" content="spineOfOtherDendrite_neck" />
     <comment node="29812" content="shaftOfOtherDendrite" />
-    <comment node="29815" content="shaftOfDeepApicalDendrite" />
     <comment node="29825" content="shaftOfOtherDendrite" />
     <comment node="29832" content="shaftOfOtherDendrite" />
     <comment node="29833" content="exit" />
@@ -23509,13 +23504,10 @@
     <comment node="30016" content="unsureSynapse" />
     <comment node="30023" content="shaftOfOtherDendrite" />
     <comment node="30024" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="30030" content="shaftOfDeepApicalDendrite" />
-    <comment node="30034" content="shaftOfDeepApicalDendrite" />
     <comment node="30035" content="unsureSynapse" />
     <comment node="30042" content="shaftOfOtherDendrite" />
     <comment node="30044" content="shaftOfOtherDendrite" />
     <comment node="30047" content="spineOfOtherDendrite_neck" />
-    <comment node="30055" content="spineOfDeepApicalDendrite_neck" />
     <comment node="30056" content="unsureSynapse" />
     <comment node="30061" content="shaftOfOtherDendrite" />
     <comment node="30064" content="shaftOfOtherDendrite" />
@@ -23547,6 +23539,17 @@
     <comment node="34304" content="end" />
     <comment node="34305" content="end" />
     <comment node="34306" content="exit" />
+    <comment node="29540" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="29525" content="shaftOfDeepApicalDendrite_3" />
+    <comment node="29535" content="shaftOfDeepApicalDendrite_4" />
+    <comment node="29654" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="29815" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="30034" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="30030" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="29514" content="seed 5" />
+    <comment node="29550" content="spineOfDeepApicalDendrite_DoubleInnervated_5" />
+    <comment node="29795" content="spineOfDeepApicalDendrite_neck_1" />
+    <comment node="30055" content="spineOfDeepApicalDendrite_neck_1" />
     <comment node="30156" content="seed 1" />
     <comment node="30162" content="shaftOfOtherDendrite" />
     <comment node="30168" content="spineOfOtherDendrite_neck" />
@@ -23555,7 +23558,6 @@
     <comment node="30188" content="shaftOfOtherDendrite" />
     <comment node="30194" content="unsureSynapse" />
     <comment node="30197" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="30202" content="shaftOfDeepApicalDendrite" />
     <comment node="30203" content="shaftOfOtherDendrite" />
     <comment node="30208" content="shaftOfOtherDendrite" />
     <comment node="30215" content="unsureSynapse" />
@@ -23576,7 +23578,6 @@
     <comment node="30277" content="shaftOfOtherDendrite" />
     <comment node="30280" content="shaftOfOtherDendrite" />
     <comment node="30290" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="30296" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="30304" content="unsureSynapse" />
     <comment node="30316" content="spineOfOtherDendrite_neck" />
     <comment node="30321" content="shaftOfOtherDendrite" />
@@ -23587,7 +23588,6 @@
     <comment node="30373" content="unsureSynapse" />
     <comment node="30378" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="30383" content="shaftOfOtherDendrite" />
-    <comment node="30388" content="spineOfDeepApicalDendrite_neck" />
     <comment node="30392" content="unsureSynapse" />
     <comment node="30395" content="shaftOfOtherDendrite" />
     <comment node="30399" content="spineOfOtherDendrite_DoubleInnervated" />
@@ -23680,7 +23680,6 @@
     <comment node="30985" content="shaftOfOtherDendrite" />
     <comment node="30987" content="unsureSynapse" />
     <comment node="30993" content="shaftOfOtherDendrite" />
-    <comment node="30995" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="31003" content="shaftOfOtherDendrite" />
     <comment node="31006" content="shaftOfOtherDendrite" />
     <comment node="31008" content="unsureSynapse" />
@@ -23704,34 +23703,28 @@
     <comment node="34308" content="end" />
     <comment node="34309" content="end" />
     <comment node="34310" content="end" />
-    <comment node="31123" content="seed 3" />
+    <comment node="30202" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="30296" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="30995" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="30388" content="spineOfDeepApicalDendrite_neck_1" />
     <comment node="31131" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="31140" content="shaftOfOtherDendrite" />
     <comment node="31141" content="shaftOfOtherDendrite" />
-    <comment node="31153" content="shaftOfDeepApicalDendrite_bifurcationSameApical" />
     <comment node="31155" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="31166" content="shaftOfOtherDendrite" />
     <comment node="31170" content="shaftOfOtherDendrite" />
-    <comment node="31173" content="shaftOfDeepApicalDendrite" />
     <comment node="31180" content="shaftOfOtherDendrite" />
-    <comment node="31190" content="spineOfDeepApicalDendrite_neck" />
-    <comment node="31192" content="shaftOfDeepApicalDendrite" />
     <comment node="31202" content="shaftOfOtherDendrite" />
     <comment node="31206" content="shaftOfOtherDendrite" />
     <comment node="31210" content="shaftOfOtherDendrite" />
     <comment node="31212" content="shaftOfOtherDendrite" />
     <comment node="31221" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="31230" content="shaftOfDeepApicalDendrite_bifurcationOtherApical" />
-    <comment node="31235" content="shaftOfDeepApicalDendrite" />
-    <comment node="31244" content="shaftOfDeepApicalDendrite" />
     <comment node="31252" content="shaftOfOtherDendrite" />
     <comment node="31253" content="unsureSynapse" />
-    <comment node="31258" content="spineOfDeepApicalDendrite_neck" />
     <comment node="31264" content="shaftOfOtherDendrite" />
     <comment node="31268" content="dead end" />
     <comment node="31275" content="shaftOfOtherDendrite" />
     <comment node="31278" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="31284" content="shaftOfDeepApicalDendrite" />
     <comment node="31286" content="shaftOfOtherDendrite" />
     <comment node="31291" content="shaftOfOtherDendrite" />
     <comment node="31301" content="spineOfOtherDendrite_DoubleInnervated" />
@@ -23743,8 +23736,6 @@
     <comment node="31341" content="shaftOfOtherDendrite" />
     <comment node="31345" content="shaftOfOtherDendrite" />
     <comment node="31350" content="shaftOfOtherDendrite" />
-    <comment node="31355" content="shaftOfDeepApicalDendrite" />
-    <comment node="31365" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="31370" content="shaftOfOtherDendrite" />
     <comment node="31374" content="shaftOfOtherDendrite" />
     <comment node="31382" content="dead end" />
@@ -23758,7 +23749,6 @@
     <comment node="31412" content="unsureSynapse" />
     <comment node="31417" content="shaftOfOtherDendrite" />
     <comment node="31421" content="shaftOfOtherDendrite" />
-    <comment node="31426" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="31430" content="shaftOfOtherDendrite" />
     <comment node="31437" content="shaftOfOtherDendrite" />
     <comment node="31445" content="shaftOfOtherDendrite" />
@@ -23774,14 +23764,26 @@
     <comment node="31472" content="shaftOfOtherDendrite" />
     <comment node="31482" content="shaftOfOtherDendrite" />
     <comment node="31486" content="spineOfOtherDendrite_DoubleInnervated" />
-    <comment node="31492" content="shaftOfDeepApicalDendrite" />
     <comment node="31501" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="31504" content="spineOfOtherlDendrite_singleInnervated" />
     <comment node="34311" content="end" />
+    <comment node="31153" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="31173" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="31235" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="31230" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="31244" content="shaftOfDeepApicalDendrite_3" />
+    <comment node="31284" content="shaftOfDeepApicalDendrite_4" />
+    <comment node="31192" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="31355" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="31492" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="31365" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="31426" content="spineOfDeepApicalDendrite_DoubleInnervated_3" />
+    <comment node="31123" content="seed 2" />
+    <comment node="31190" content="spineOfDeepApicalDendrite_neck_5" />
+    <comment node="31258" content="spineOfDeepApicalDendrite_neck_6" />
     <comment node="31505" content="seed 2" />
     <comment node="31521" content="spineOfOtherDendrite_neck" />
     <comment node="31522" content="spineOfOtherlDendrite_singleInnervated" />
-    <comment node="31532" content="shaftOfDeepApicalDendrite_bifurcationSameApical" />
     <comment node="31556" content="shaftOfOtherDendrite" />
     <comment node="31560" content="tracer: Jan" />
     <comment node="31594" content="shaftOfOtherDendrite" />
@@ -23790,12 +23792,12 @@
     <comment node="31700" content="shaftOfOtherDendrite" />
     <comment node="34312" content="end" />
     <comment node="34313" content="end" />
+    <comment node="31532" content="shaftOfDeepApicalDendrite_2" />
     <comment node="31702" content="seed 1" />
     <comment node="31719" content="shaftOfOtherDendrite" />
     <comment node="31720" content="unsureSynapse" />
     <comment node="31736" content="shaftOfOtherDendrite" />
     <comment node="31743" content="unsureSynapse" />
-    <comment node="31757" content="shaftOfDeepApicalDendrite" />
     <comment node="31768" content="unsureSynapse" />
     <comment node="31774" content="shaftOfOtherDendrite" />
     <comment node="31789" content="shaftOfOtherDendrite" />
@@ -23808,15 +23810,10 @@
     <comment node="31851" content="shaftOfOtherDendrite" />
     <comment node="31855" content="shaftOfOtherDendrite" />
     <comment node="31859" content="shaftOfOtherDendrite" />
-    <comment node="31864" content="shaftOfDeepApicalDendrite" />
-    <comment node="31871" content="shaftOfDeepApicalDendrite" />
-    <comment node="31896" content="shaftOfDeepApicalDendrite" />
-    <comment node="31903" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="31912" content="unsureSynapse" />
     <comment node="31920" content="axonInitialSegment" />
     <comment node="31922" content="shaftOfOtherDendrite" />
     <comment node="31934" content="shaftOfOtherDendrite" />
-    <comment node="31962" content="shaftOfDeepApicalDendrite" />
     <comment node="31963" content="unsureSynapse" />
     <comment node="31969" content="shaftOfOtherDendrite" />
     <comment node="31974" content="shaftOfOtherDendrite" />
@@ -23837,24 +23834,18 @@
     <comment node="32082" content="unsureSynapse" />
     <comment node="32088" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="32099" content="shaftOfOtherDendrite" />
-    <comment node="32118" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="32133" content="shaftOfOtherDendrite" />
     <comment node="32140" content="shaftOfOtherDendrite" />
     <comment node="32149" content="unsureSynapse" />
-    <comment node="32155" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="32159" content="shaftOfOtherDendrite" />
     <comment node="32166" content="shaftOfOtherDendrite" />
-    <comment node="32172" content="shaftOfDeepApicalDendrite" />
-    <comment node="32180" content="shaftOfDeepApicalDendrite" />
     <comment node="32188" content="shaftOfOtherDendrite" />
-    <comment node="32193" content="shaftOfDeepApicalDendrite" />
     <comment node="32195" content="shaftOfOtherDendrite" />
     <comment node="32201" content="unsureSynapse" />
     <comment node="32207" content="shaftOfOtherDendrite" />
     <comment node="32210" content="shaftOfOtherDendrite" />
     <comment node="32217" content="shaftOfOtherDendrite" />
     <comment node="32228" content="unsureSynapse" />
-    <comment node="32237" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="32249" content="shaftOfOtherDendrite" />
     <comment node="32263" content="unsureSynapse" />
     <comment node="32277" content="shaftOfOtherDendrite" />
@@ -23864,13 +23855,24 @@
     <comment node="32302" content="shaftOfOtherDendrite" />
     <comment node="32306" content="unsureSynapse" />
     <comment node="32321" content="shaftOfOtherDendrite" />
-    <comment node="32329" content="shaftOfDeepApicalDendrite" />
     <comment node="34316" content="end" />
     <comment node="34317" content="end" />
     <comment node="34318" content="end" />
     <comment node="34319" content="exit" />
+    <comment node="31757" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="31864" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="31871" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="31896" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="31962" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="32172" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="32180" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="32193" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="32329" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="31903" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="32118" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="32155" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="32237" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
     <comment node="32330" content="seed 1" />
-    <comment node="32376" content="spineOfDeepApicalDendrite_neck" />
     <comment node="32391" content="tracer: Jan" />
     <comment node="32414" content="shaftOfOtherDendrite" />
     <comment node="32420" content="shaftOfOtherDendrite" />
@@ -23880,18 +23882,18 @@
     <comment node="32463" content="shaftOfOtherDendrite" />
     <comment node="32484" content="dead end" />
     <comment node="32503" content="shaftOfOtherDendrite" />
-    <comment node="32525" content="shaftOfDeepApicalDendrite" />
     <comment node="32572" content="shaftOfOtherDendrite" />
-    <comment node="32578" content="shaftOfOtherDendrite" />
-    <comment node="32612" content="shaftOfDeepApicalDendrite" />
-    <comment node="32614" content="shaftOfDeepApicalDendrite" />
-    <comment node="32615" content="shaftOfDeepApicalDendrite" />
     <comment node="34320" content="exit" />
     <comment node="34323" content="shaftOfOtherDendrite" />
     <comment node="34324" content="end" />
     <comment node="34325" content="end" />
     <comment node="34327" content="exit" />
-    <comment node="32616" content="seed 2" />
+    <comment node="32578" content="shaftOfDeepApicalDendrite_2" />
+    <comment node="32525" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="32612" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="32614" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="32615" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="32376" content="spineOfDeepApicalDendrite_neck_1" />
     <comment node="32624" content="shaftOfOtherDendrite" />
     <comment node="32634" content="layer2CellBody" />
     <comment node="32654" content="shaftOfOtherDendrite" />
@@ -23900,37 +23902,37 @@
     <comment node="32704" content="tracer: Jan" />
     <comment node="32708" content="shaftOfOtherDendrite" />
     <comment node="32717" content="shaftOfOtherDendrite" />
-    <comment node="32725" content="shaftOfDeepApicalDendrite" />
     <comment node="32745" content="shaftOfOtherDendrite" />
     <comment node="32753" content="shaftOfOtherDendrite" />
     <comment node="32766" content="unsureSynapse" />
     <comment node="32782" content="layer2CellBody" />
-    <comment node="32800" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="32817" content="shaftOfOtherDendrite" />
     <comment node="32821" content="exit" />
     <comment node="32826" content="shaftOfOtherDendrite" />
-    <comment node="32849" content="spineOfDeepApicalDendrite_singleInnervated" />
     <comment node="32862" content="layer2CellBody" />
     <comment node="32870" content="layer2CellBody" />
     <comment node="32882" content="shaftOfOtherDendrite" />
     <comment node="32886" content="exit" />
     <comment node="32908" content="spineOfOtherDendrite_DoubleInnervated" />
     <comment node="32925" content="shaftOfOtherDendrite" />
-    <comment node="32930" content="spineOfDeepApicalDendrite_DoubleInnervated" />
-    <comment node="32937" content="spineOfDeepApicalDendrite_DoubleInnervated" />
-    <comment node="32942" content="shaftOfDeepApicalDendrite_bifurcationOtherApical" />
     <comment node="32952" content="shaftOfOtherDendrite" />
     <comment node="32960" content="shaftOfOtherDendrite" />
     <comment node="32989" content="unsureSynapse" />
     <comment node="32990" content="unsureSynapse" />
     <comment node="32992" content="unsureSynapse" />
     <comment node="33001" content="unsureSynapse" />
-    <comment node="33002" content="shaftOfL2ApicalDendrite" />
     <comment node="34328" content="exit" />
+    <comment node="32616" content="seed " />
+    <comment node="32725" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="32942" content="shaftOfDeepApicalDendrite_1" />
+    <comment node="33002" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="32800" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="32930" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
+    <comment node="32937" content="spineOfDeepApicalDendrite_DoubleInnervated_2" />
+    <comment node="32849" content="spineOfDeepApicalDendrite_singleInnervated_1" />
     <comment node="33003" content="seed 1" />
     <comment node="33005" content="shaftOfOtherDendrite" />
     <comment node="33010" content="shaftOfOtherDendrite" />
-    <comment node="33012" content="spineOfDeepApicalDendrite_DoubleInnervated" />
     <comment node="33026" content="shaftOfOtherDendrite" />
     <comment node="33028" content="shaftOfOtherDendrite" />
     <comment node="33035" content="shaftOfOtherDendrite" />
@@ -23957,6 +23959,7 @@
     <comment node="33165" content="shaftOfOtherDendrite" />
     <comment node="34329" content="end" />
     <comment node="34330" content="end" />
+    <comment node="33012" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
   </comments>
   <groups />
 </things>
