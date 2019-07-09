@@ -11,85 +11,36 @@ x_width=10;
 y_width=7;
 apTuft= apicalTuft.getObjects('inhibitoryAxon');
 synRatio=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
-targetingCount=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynCount');
-
-util.compareTableArrays(targetingCount,synRatio);
-
-% Get the inverse of (targeting+1) (seed is removed and we have zeros otherwise)
-% as the weight
-seededAlongWholeApical=false;
-if seededAlongWholeApical
-    weight(1,:)=cellfun(@(x) 1./(x.L2ApicalShaft+1),...
-        targetingCount(1,:),'UniformOutput',false);
-    weight(2,:)=cellfun(@(x) 1./(x.DeepApicalShaft+1),...
-        targetingCount(2,:),'UniformOutput',false);
-else
-    weight=apicalTuft.applyMethod2ObjectArray(apTuft,...
-        'getSeedTargetingNumber');
-end
-% convert to cell array before plotting
 synRatio=synRatio.Variables;
-weight=weight.Variables;
-%% E unweighted
+
+
+%% E 
 fh=figure;ax=gca;
 %Plotting
 hold on
 util.plot.errorbarSpecificity(synRatio(:,5),[],...
     [{l2color},{dlcolor}]);
 % Figure properties
-util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'E_unweighted.svg');
+util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'E.svg');
 
-%% E weighted
-fh=figure;ax=gca;
-%Plotting
-hold on
-util.plot.errorbarSpecificity(synRatio(:,5),weight(:,5),...
-    [{l2color},{dlcolor}]);
-% Figure properties
-util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'E_weighted.svg');
-%% F uweighted
+%% F 
 fh=figure;ax=gca;
 %Plotting
 hold on
 util.plot.errorbarSpecificity(synRatio(1,1:4),[],...
     colorsDE);
 % Figure properties
-util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'F_unweighted.svg');
-
-%% F weighted
+util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'F.svg');
+%% G 
 fh=figure;ax=gca;
-%Plotting
-hold on
-util.plot.errorbarSpecificity(synRatio(1,1:4),weight(1,1:4),...
-    colorsDE);
-% Figure properties
-util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'F_weighted.svg');
-%% G unweighted
-fh=figure;ax=gca;
-%Plotting
+% Plotting
 hold on
 util.plot.errorbarSpecificity(synRatio(2,1:4),[],...
     colorsDE);
 % Figure properties
 util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'G_unweighted.svg');
-%% G weighted
-fh=figure;ax=gca;
-%Plotting
-hold on
-util.plot.errorbarSpecificity(synRatio(2,1:4),weight(2,1:4),...
-    colorsDE);
-% Figure properties
-util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'G_weighted.svg');
 
 %% statistical testing
-
-% switch to a double array if it is a weight table
-if istable(weight{1})
-    weightDouble=cellfun(@(table)table.weight,weight,...
-        'UniformOutput',false);
-end
-
-weightDouble=[weightDouble{1,5};weightDouble{2,5}];
-TestResults=util.stat.bootStrapTest(synRatio{1,5},synRatio{2,5},false,weightDouble);
+TestResults=util.stat.bootStrapTest(synRatio{1,5},synRatio{2,5},false);
 writetable(TestResults,fullfile(outputDir,...
     util.addDateToFileName('E_bootStrapTestResults.txt')));
