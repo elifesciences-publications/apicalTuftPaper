@@ -1,3 +1,5 @@
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+util.clearAll;
 m=matfile(fullfile(util.dir.getAnnotation,'matfiles',...
     'axonSwitchFraction.mat'));
 axonSwitchFraction=m.axonSwitchFraction;

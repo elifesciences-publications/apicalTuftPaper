@@ -33,7 +33,7 @@ if ~exist('trimLastEdgeTPA','var') || isempty(trimLastEdgeTPA)
     trimLastEdgeTPA =false;
 end
 if ~exist('makeDebugPlots','var') || isempty(makeDebugPlots)
-    makeDebugPlots = true;
+    makeDebugPlots = false;
 end
 if ~iscell(obj.synExclusion)
     obj.synExclusion={obj.synExclusion};
