@@ -1,6 +1,6 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
-RotMatrix=dendrite.l2vsl3vsl5.getRotationMatrixPPC2;
+RotMatrix=dendrite.l2vsl3vsl5.getRotationMatrixPPC2('l1');
 % Get the apicalTuft location
 apTuft=apicalTuft('PPC2WeirdV1_l2vsl3vsl5');
 l1piaGrid=skeleton(fullfile...
