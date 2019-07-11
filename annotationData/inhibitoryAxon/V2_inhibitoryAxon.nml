@@ -1,18 +1,18 @@
 <things>
   <meta name="writer" content="NmlWriter.scala" />
-  <meta name="writerGitCommit" content="6c11bb9fd92565d258e620cd790d94ee3d277434" />
-  <meta name="timestamp" content="1562247114263" />
-  <meta name="annotationId" content="5d165cf3010000478724a710" />
+  <meta name="writerGitCommit" content="71a7c1419d11cc9289c3ddf838ae33d54f605626" />
+  <meta name="timestamp" content="1562768417132" />
+  <meta name="annotationId" content="5d25f18e010000951fc530f5" />
   <meta name="username" content="Ali Karimi" />
   <parameters>
     <experiment name="V2_102_l23_ak_straightenedPosthoc" organization="Connectomics_Department" description="multiple hit seed targeting inspected" />
     <scale x="12.0" y="12.0" z="30.0" />
     <offset x="0" y="0" z="0" />
     <time ms="1507037749318" />
-    <editPosition x="4857" y="5764" z="2039" />
+    <editPosition x="2540" y="4558" z="3473" />
     <editRotation xRot="0.0" yRot="0.0" zRot="0.0" />
-    <zoomLevel zoom="1.5303080514586997" />
-    <activeNode id="34066" />
+    <zoomLevel zoom="9.359224853309943" />
+    <activeNode id="33484" />
   </parameters>
   <thing id="69" color.r="0.8274509906768799" color.g="0.6549019813537598" color.b="0.6549019813537598" color.a="1.0" name="inhibitoryAxonLayer2ApicalDendriteSeeded01">
     <nodes>
@@ -1891,7 +1891,6 @@
       <node id="14193" radius="120.0" x="4429" y="1537" z="3729" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14178" radius="120.0" x="854" y="5516" z="3219" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14066" radius="120.0" x="4022" y="2457" z="3643" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="0" bitDepth="0" interpolation="false" time="0" />
-      <node id="14046" radius="120.0" x="4323" y="1822" z="3757" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14110" radius="120.0" x="3092" y="3603" z="3549" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14050" radius="120.0" x="4348" y="1713" z="3727" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14172" radius="120.0" x="934" y="5265" z="3269" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="0" interpolation="false" time="0" />
@@ -2025,6 +2024,7 @@
       <node id="14057" radius="120.0" x="4203" y="1926" z="3675" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14164" radius="120.0" x="1123" y="5079" z="3296" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14071" radius="120.0" x="3898" y="2591" z="3651" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="0" bitDepth="0" interpolation="false" time="0" />
+      <node id="14046" radius="318.39572" x="4323" y="1822" z="3757" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14160" radius="120.0" x="1234" y="4906" z="3338" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14204" radius="120.0" x="4904" y="1252" z="3798" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="14045" radius="120.0" x="4323" y="1790" z="3760" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="1" inMag="0" bitDepth="0" interpolation="false" time="0" />
@@ -21574,7 +21574,6 @@
       <node id="32805" radius="120.0" x="5769" y="8530" z="1905" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32701" radius="120.0" x="4226" y="5662" z="1467" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32770" radius="120.0" x="5091" y="7614" z="1838" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
-      <node id="35215" radius="120.0" x="1596" y="6061" z="1490" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1562230884940" />
       <node id="32667" radius="120.0" x="4141" y="4625" z="1258" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32648" radius="120.0" x="4006" y="4051" z="1135" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32874" radius="120.0" x="3425" y="1733" z="498" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
@@ -21644,7 +21643,6 @@
       <node id="32928" radius="120.0" x="2721" y="3273" z="873" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32855" radius="120.0" x="3499" y="2304" z="642" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32858" radius="120.0" x="3441" y="2228" z="619" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
-      <node id="35214" radius="120.0" x="1930" y="4810" z="1490" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="8" interpolation="true" time="1562230884089" />
       <node id="32876" radius="120.0" x="3378" y="1630" z="491" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32794" radius="120.0" x="5537" y="8266" z="1919" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
       <node id="32630" radius="120.0" x="3795" y="3577" z="1000" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
@@ -21764,8 +21762,6 @@
       <node id="32977" radius="120.0" x="2252" y="4278" z="1312" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="0" bitDepth="0" interpolation="false" time="0" />
     </nodes>
     <edges>
-      <edge source="35214" target="35215" />
-      <edge source="33002" target="35214" />
       <edge source="33000" target="34328" />
       <edge source="32785" target="32786" />
       <edge source="32890" target="32891" />
@@ -22638,10 +22634,10 @@
     <comment node="14206" content="shaftOfOtherDendrite" />
     <comment node="14212" content="exit" />
     <comment node="34416" content="end" />
-    <comment node="14069" content="shaftOfL2ApicalDendrite_2" />
     <comment node="14125" content="shaftOfL2ApicalDendrite_1" />
     <comment node="14132" content="shaftOfL2ApicalDendrite_2" />
     <comment node="14044" content="seed 1" />
+    <comment node="14069" content="shaftOfL2ApicalDendrite_1" />
     <comment node="14585" content="layer2CellBody" />
     <comment node="14592" content="shaftOfOtherDendrite" />
     <comment node="14599" content="exit" />
@@ -22889,8 +22885,8 @@
     <comment node="33493" content="spineOfOtherDendrite_neck" />
     <comment node="33494" content="shaftOfOtherDendrite" />
     <comment node="33496" content="dead end" />
-    <comment node="33442" content="shaftOfL2ApicalDendrite_1" />
-    <comment node="33484" content="shaftOfL2ApicalDendrite_1" />
+    <comment node="33442" content="shaftOfL2ApicalDendrite_2" />
+    <comment node="33484" content="shaftOfL2ApicalDendrite_3" />
     <comment node="33688" content="unsureSynapse" />
     <comment node="33707" content="shaftOfOtherDendrite" />
     <comment node="33713" content="dead end" />
@@ -23922,7 +23918,6 @@
     <comment node="32992" content="unsureSynapse" />
     <comment node="33001" content="unsureSynapse" />
     <comment node="34328" content="exit" />
-    <comment node="32616" content="seed " />
     <comment node="32725" content="shaftOfDeepApicalDendrite_1" />
     <comment node="32942" content="shaftOfDeepApicalDendrite_1" />
     <comment node="33002" content="shaftOfL2ApicalDendrite_1" />
@@ -23930,6 +23925,7 @@
     <comment node="32930" content="spineOfDeepApicalDendrite_DoubleInnervated_1" />
     <comment node="32937" content="spineOfDeepApicalDendrite_DoubleInnervated_2" />
     <comment node="32849" content="spineOfDeepApicalDendrite_singleInnervated_1" />
+    <comment node="32616" content="seed 1" />
     <comment node="33003" content="seed 1" />
     <comment node="33005" content="shaftOfOtherDendrite" />
     <comment node="33010" content="shaftOfOtherDendrite" />

@@ -15,6 +15,9 @@ function boxPlotRawOverlay(array,xlocationRaw,varargin)
 %           ylim: the y limit
 %           tickSize: the size of the scatter tick marks
 % The locations and data should be of the same size and shape
+if ~exist('xlocationRaw','var') || isempty(xlocationRaw)
+    xlocationRaw=1:length(array);
+end
 if ~iscell(xlocationRaw)
     xLocation=num2cell(xlocationRaw);
 else

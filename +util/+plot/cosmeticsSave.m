@@ -18,6 +18,7 @@ if removeDashedLinesForBoxplot
     set(findobj(fh,'LineStyle','--'),'LineStyle','-');
 end
 ax=util.plot.setAxisHandle(ax,[],xtickMinor,ytickMinor);
+util.mkdir(outputFolder);
 saveas(gca,fullfile(outputFolder,...
     util.addDateToFileName(fileName)));
 [~,hostname]=system('hostname');
