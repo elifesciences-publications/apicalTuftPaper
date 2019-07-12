@@ -9,7 +9,7 @@
 util.clearAll;
 skel=apicalTuft.getObjects('inhibitoryAxon');
 % For now only use S1 and V2
-skel=skel(1:2);
+skel=skel([1:2,4]);
 %% First step remove all the seed targeting see how
 % that affects the results
 for d=1:length(skel)
@@ -54,13 +54,15 @@ for d=1:length(skel)
         disp((allOtherSyn+additionalSeedSynapses))
     end
 end
-%% aggregate over datasets:
-allData=results{1}+results{2};
+%% The histogram of the number of times axons target apical dendrites
+% Afggregated over datasets
+% separated by the seed tyepe (L2, Vs. DL)
+allData=results{1}+results{2}+results{3};
 colors={l2color,dlcolor};
 maxSynNumber=6;
 x_width=10;y_width=7;
 outputDir=fullfile(util.dir.getFig2,'TheMultiInnervation');
-for d=1:length(skel)
+for d=1:2
     fh{d}=figure;ax{d}=gca;
     l2Target=allData(1:maxSynNumber,1,d);
     dltarget=allData(1:maxSynNumber,2,d);
@@ -69,15 +71,24 @@ for d=1:length(skel)
         'DisplayStyle','stairs','EdgeColor',l2color);
     histogram('BinEdges',0:maxSynNumber,'BinCounts', dltarget,...
         'DisplayStyle','stairs','EdgeColor',dlcolor);
-    util.plot.cosmeticsSave(fh{d},ax{d},x_width,y_width,outputDir,'histogram.svg');
+    set(ax{d},'XTick',0.5:1:maxSynNumber+0.5,'XTickLabel',1:maxSynNumber)
+    util.plot.cosmeticsSave(fh{d},ax{d},x_width,y_width,...
+        outputDir,'histogram.svg');
     hold off
 end
 %% Plot probability matrices
-% Individual target fraction
-correctionFactor=[1:10]';
-sumData=squeeze(sum(allData.*correctionFactor,1));
-squeeze(sum(allData,1));
-% individual synapse fraction (multiply individual target by the number of hits)
-sumData=sumData./sum(sumData,2);
-util.plot.probabilityMatrix(sumData);
-disp(sumData)
+% two plots:
+% 1. per AD: each target counted as one no matter how many times targeted
+% 2. per synapse: multiply by number of targets
+fname={fullfile(outputDir,'perDendriteTarget.svg'),...
+    fullfile(outputDir,'perSynapse.svg')};
+correctionFactor={ones(10,1),[1:10]'};
+for i=1:length(correctionFactor)
+    sumData=squeeze(sum(allData.*correctionFactor{i},1));
+    squeeze(sum(allData,1));
+    % individual synapse fraction 
+    % (multiply individual target by the number of hits)
+    sumData=sumData./sum(sumData,2);
+    util.plot.probabilityMatrix(sumData,fname{i});
+    disp(sumData)
+end
