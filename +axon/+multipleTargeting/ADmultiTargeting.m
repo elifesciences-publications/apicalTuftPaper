@@ -8,8 +8,7 @@
 % double-innervated spine of deep apical dendrite
 util.clearAll;
 skel=apicalTuft.getObjects('inhibitoryAxon');
-% For now only use S1 and V2
-skel=skel([1:2,4]);
+
 %% First step remove all the seed targeting see how
 % that affects the results
 for d=1:length(skel)
@@ -57,7 +56,7 @@ end
 %% The histogram of the number of times axons target apical dendrites
 % Afggregated over datasets
 % separated by the seed tyepe (L2, Vs. DL)
-allData=results{1}+results{2}+results{3};
+allData=results{1}+results{2}+results{3}+results{4};
 colors={l2color,dlcolor};
 maxSynNumber=6;
 x_width=10;y_width=7;
