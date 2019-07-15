@@ -118,7 +118,10 @@ for tr = treeIndices
     end
     if somaSize && somaNode(tr)
         coord = skel.nodes{tr}(somaNode(tr),1:3).*scale;
-        surf(sX*somaSize+coord(1),sY*somaSize+coord(2),sZ*somaSize+coord(3),'FaceColor',colors(treeIndices==tr,:),'EdgeColor','None')
+        coord = (rotationMatrix*coord')';
+        surf(sX*somaSize+coord(1),sY*somaSize+coord(2),...
+            sZ*somaSize+coord(3),'FaceColor',colors(treeIndices==tr,:),...
+            'EdgeColor','None')
     end
 end
 
