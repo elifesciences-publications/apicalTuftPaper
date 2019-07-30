@@ -16,11 +16,10 @@ for d=1:length(skel)
     ratioMinusSeed=axon.multipleTargeting.getRatioMinusSeed(skel{d});
     util.plot.boxPlotRawOverlay([num2cell(ratioMinusSeed.l2Idx{:,2:3},1),...
         num2cell(ratioMinusSeed.dlIdx{:,2:3},1)])
+    % Next plot correlation between seed targeting and fraction of other
+    % synapses on target
+    axon.multipleTargeting.plotCorrelation(ratioMinusSeed)
 end
-%% Next plot correlation between seed targeting and fraction of other
-% synapses on target
-axon.multipleTargeting.plotCorrelation(ratioMinusSeed)
-
 %% Most important: find the number of targeting per target group
 % results dims: cell: dataset, array: number of syn on target,target
 % apical type (1: L2, 2: dl), seed apical type (1: L2, 2,dl)
@@ -85,7 +84,7 @@ correctionFactor={ones(10,1),[1:10]'};
 for i=1:length(correctionFactor)
     sumData=squeeze(sum(allData.*correctionFactor{i},1));
     squeeze(sum(allData,1));
-    % individual synapse fraction 
+    % individual synapse fraction
     % (multiply individual target by the number of hits)
     sumData=sumData./sum(sumData,2);
     util.plot.probabilityMatrix(sumData,fname{i});
