@@ -159,6 +159,7 @@ classdef apicalTuft < skeleton
         [totalPathLengthInMicron] = getTotalBackonePath...
             (obj,treeIndices);
         [ apicalDiameter,idx2keep ] = getApicalDiameter(skel,treeIndices);
+        [ dist2soma ] = getDistanceBWPoints( skel,treeIndices,pointNames )
     end
     
     methods (Static)
