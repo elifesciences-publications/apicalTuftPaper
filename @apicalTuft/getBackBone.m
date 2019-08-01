@@ -82,12 +82,19 @@ end
 
 if makeDebugPlots
     % Create overlay of before and after trimming for sanity check
-    figure()
-    obj.plot(treeIndices,[0,1,1]);
-    objTrimmed.plot(treeIndices,[1,0,1]);
-    daspect([1,1,1]);
-    title([obj.dataset,...
-        ' Cyan: Original(untrimmed), Magenta: Backbone (trimmed)']);
+    % Do this for each individual tree and pause for key press
+    for i=1:length(treeIndices)
+        tr=treeIndices(i);
+        fh=figure('Name',obj.names{tr},...
+            'units','normalized','outerposition',[0 0 1 1]);
+        obj.plot(tr,[0,1,1]);
+        objTrimmed.plot(tr,[1,0,1]);
+        view([90,0]);
+        daspect([1,1,1]);
+        title([obj.dataset,...
+            ' Cyan: Original(untrimmed), Magenta: Backbone (trimmed)']);
+        uiwait(fh);
+    end
 end
 end
 
