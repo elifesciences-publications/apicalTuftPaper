@@ -21,5 +21,7 @@ comment2Add='newEndings';
 objCropped=obj.restrictToBBoxWithInterpolation(Bbox,treeIndices,...
     comment2Add);
 objCropped.fixedEnding=[objCropped.fixedEnding,{comment2Add}];
+% Split the connected components of the cropped out high res annotations
+objCropped=objCropped.splitCC([],true);
 end
 
