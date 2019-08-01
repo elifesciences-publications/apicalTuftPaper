@@ -8,15 +8,15 @@ function [outputOfMethod] = applyMethod2ObjectArray...
 %       method:
 %           apicalTuft class method. Note that the method should not require
 %           any input
-%       separateL2Deep:
-%           (default: true) logical: separate the result into L2 Deep groups.
+%       separategroups:
+%           (default: true) logical: separate the result into  groups.
 %           controls shape of output
 %       createAggregate:
 %           (default: true) logical: determines whether to create an
 %           aggregate from the results of the method output
 %       annotationType:
 %           (default: 'both')  For new grouping determines whether
-%            to apply the annotations to 'mappings' or 'dist2soma' or
+%            to apply the method to 'mappings' or 'dist2soma' or
 %            'both'.
 %            Ignored in the legacy case.
 %       varargin:
@@ -24,7 +24,7 @@ function [outputOfMethod] = applyMethod2ObjectArray...
 %           be in addition to the "treeIndices" input
 % OUTPUT:
 %        outputOfMethod:
-%        2xN or 1xN cell array of method output type
+%        MxN or 1xN cell array of method output type
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('separategroups','var') || isempty (separategroups)
