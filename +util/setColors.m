@@ -5,6 +5,7 @@ function [  ] = setColors( )
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 assignin('base','l2color',[157/255,157/255,156/255]);
+assignin('base','l2MNcolor',[0,0,0]);
 assignin('base','dlcolor',[243/255,146/255,0/255]);
 assignin('base','l3color',[109,181,70]./255);
 assignin('base','l5color',[158,32,103]./255);
