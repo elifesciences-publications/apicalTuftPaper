@@ -19,8 +19,12 @@ for tr=1:length(treeIndices)
         curComment(cWithOutString));
     % Get the diameter from comments which also have string such as: 
     %   end 0.1
-    dimWithString=cellfun(@(x) regexp(x,'\w* (\d*\.\d*)','tokens'),...
-        curComment(~cWithOutString));
+    dimWithString=cellfun(@(x) regexp(x,'\w* (\d*\.?\d*)','tokens'),...
+        curComment(~cWithOutString),'UniformOutput',false);
+    % Get the nonempty strings
+    idxNonEmpty=cellfun(@(x) ~isempty(x),dimWithString);
+    dimWithString=dimWithString(idxNonEmpty);
+    % Extract the diameters
     dimWithString=cellfun(@(x) str2double(x{1}),dimWithString);
     apicalDiameter{tr}=[dimWithoutString;dimWithString];
 end
