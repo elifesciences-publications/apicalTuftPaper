@@ -1,93 +1,91 @@
-% Get the diameter
-bifurDense=apicalTuft.getObjects('bifurcation');
-bifurDim=apicalTuft.getObjects('bifurcationDiameter');
-l235Dense=apicalTuft.getObjects('l2vsl3vsl5');
-l235Dim=apicalTuft.getObjects('l2vsl3vsl5Diameter');
-% LPtA dataset: crop out the lowres part
-l235Dim{2}=l235Dim{2}.cropoutLowRes([],3,2768);%2767 in WK
-l235Dim{2}=l235Dim{2}.splitCC([],true);
-l235Dense{2}=l235Dense{2}.cropoutLowRes([],3,2768);%2767 in WK
-l235Dense{2}=l235Dense{2}.splitCC([],true);
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+% Get the dense reconstruction and diameter measurements both for small and
+% larger datasets used to annotate the differences between l2, l3 and l5
+% pyramdial neurons
+util.clearAll;
+returnTable=true;
+skel.bifur.dense=apicalTuft.getObjects('bifurcation',[],returnTable);
+skel.bifur.dim=apicalTuft.getObjects('bifurcationDiameter',[],returnTable);
+skel.l235.dense=apicalTuft.getObjects('l2vsl3vsl5',[],returnTable);
+skel.l235.dim=apicalTuft.getObjects('l2vsl3vsl5Diameter',[],returnTable);
+
 %% First step get all the synapse counts from dense annotations
 synCount.bifur=apicalTuft.applyMethod2ObjectArray...
-    (bifurDense,'getSynCount',[], false);
+    (skel.bifur.dense,'getSynCount',[], false);
 synCount.l235=apicalTuft.applyMethod2ObjectArray...
-    (l235Dense,'getSynCount',[], false, ...
+    (skel.l235.dense,'getSynCount',[], false, ...
     'mapping');
 
 %% Second: get the pathlength from diameter measurements
 pL.bifur=apicalTuft.applyMethod2ObjectArray...
-    (bifurDim,'pathLength',[], false);
+    (skel.bifur.dim,'pathLength',[], false);
 pL.l235=apicalTuft.applyMethod2ObjectArray...
-    (l235Dim,'pathLength',[], false, ...
-    'mapping');
-%% Get the diameter annotations
-diam.bifur=apicalTuft.applyMethod2ObjectArray...
-    (bifurDim,'getApicalDiameter',[], false);
-diam.l235=apicalTuft.applyMethod2ObjectArray...
-    (l235Dim,'getApicalDiameter',[], false, ...
+    (skel.l235.dim,'pathLength',[], false, ...
     'mapping');
 
-anotType={'bifur','l235'};
-for i=1:2
-    % Use thisT for the sizes and initializing the result
-    thisT=diam.(anotType{i});
-    results.(anotType{i})=cell2table(cell(size(thisT)),...
-        'VariableNames',thisT.Properties.VariableNames,'RowNames',...
-        thisT.Properties.RowNames);
-    for d=1:width(thisT)
-        for trType=1:height(thisT)
-            % Get the current variables
-            curDiam=diam.(anotType{i}){trType,d}{1};
-            curDiam.apicalDiameter=...
-                cellfun(@mean,curDiam.apicalDiameter);
-            curpL=pL.(anotType{i}){trType,d}{1};
-            curSynCount=synCount.(anotType{i}){trType,d}{1};
-            % Get the table of all the densities for the current
-            % annotations
-            curTable=join(join(curDiam,curpL),curSynCount);
-            % Lateral cylinder area= pi*avg diameter*Height
-            curTable.area=pi*(curTable.apicalDiameter.*...
-                curTable.pathLengthInMicron);
-            curTable.inhDensity=curTable.Shaft./ ...
-                curTable.pathLengthInMicron;
-            curTable.excDensity=curTable.Spine./ ...
-                curTable.pathLengthInMicron;
-            curTable.inhSurfDensity=curTable.Shaft./curTable.area;
-            curTable.excSurfDensity=curTable.Spine./curTable.area;
-            % The combined structure of tables
-            results.(anotType{i}){trType,d}{1}=curTable;
-        end
-    end
-end
+%% Third: Get the dendrite diameters
+dim.bifur=apicalTuft.applyMethod2ObjectArray...
+    (skel.bifur.dim,'getApicalDiameter',[], false);
+dim.l235=apicalTuft.applyMethod2ObjectArray...
+    (skel.l235.dim,'getApicalDiameter',[], false, ...
+    'mapping');
+
+%% Combine all data into a common table
+results=dendrite.apicalDim.surfaceDensity. ...
+    generateDiameterTable(synCount,dim,pL);
+% Combine the annotations from LPtA (L2-5) and PPC2 (L5A) 
+% to create the distal group
+results.l235.LPtA{end}=results.l235.PPC2L5ADistal{end};
+results.l235=removevars(results.l235,'PPC2L5ADistal');
+results.l235.Properties.VariableNames={'mainBifurcation','distalAD'};
 %% Plot the diameter of different cell types
-% Smaller datasets: S1, V2, PPC and ACC
-x_width=8.5;
-y_width=10;
+% Groups:
+% Smaller datasets: S1, V2, PPC and ACC: L2 vs. Deep
+% PPC2 dataset: L2 vs L3 vs L5 vs L5A
+% LPtA dataset: L2 vs L3 vs L5 vs L5A
+x_width=[8.5, 10, 10];
+y_width=[10, 10, 10];
+util.setColors;
+colors={l2color;dlcolor};
 outputFolder=fullfile(util.dir.getFig3,...
     'synapseDensityPerUnitSurface');
-diameters=cellfun(@(x) x.apicalDiameter,results.bifur.Variables,...
-    'UniformOutput',false);
-combineDiameterSmall={cat(1,diameters{1,:}),cat(1,diameters{2,:})};
 util.mkdir(outputFolder)
-util.setColors
 
-colors={l2color;dlcolor};
-% Density plot
+curResultsTables=results.bifur.Variables;
+curColors={l2color,dlcolor};
+curResultStruct=...
+    dendrite.apicalDim.surfaceDensity.outputForPlot(curResultsTables);
+
+% Diameter comparison
 fh=figure;ax=gca;
-util.plot.boxPlotRawOverlay(combineDiameterSmall(:),1:2,'ylim',3.5,...
-    'boxWidth',0.5,...
-    'color',colors(:));
+util.plot.boxPlotRawOverlay(curResultStruct.diameter,1:2,'ylim',3.5,...
+    'boxWidth',0.5,'color',curColors);
 xticklabels([]);
 ylabel([]);
 xlim([0.5,2.5])
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'apicalDiameterSmall.svg','off','on');
+    (fh,ax,x_width(1),y_width(1),outputFolder,...
+    'Small_apicalDiameter.svg','off','on');
 pvalDiameterSmall=...
-    ranksum(combineDiameterSmall{1},combineDiameterSmall{2});
-disp (['pvalue of small diameter ranksum test=',num2str(pvalDiameterSmall)])
-%% PPC2 dataset diameter
-diameters=cellfun(@(x) x.apicalDiameter,results.l235.PPC2,...
+    util.stat.ranksum(combineDiameterSmall{1},combineDiameterSmall{2});
+
+% Excitatory surface vs pathlength synapse densities
+fhEx=figure;axEx=gca;
+util.plot.correlation(curResultStruct.excDensity,curColors);
+util.plot.addLinearFit(curResultStruct.excDensity);
+util.plot.cosmeticsSave...
+    (fhEx,axEx,x_width(2),y_width(2),outputFolder,...
+    'Small_Excitatory_pathandSurfaceDensity.svg','on','on');
+% Same for inhibitory
+fhInh=figure;axInh=gca;
+util.plot.correlation(curResultStruct.inhDensity,curColors);
+util.plot.addLinearFit(curResultStruct.inhDensity);
+util.plot.cosmeticsSave...
+    (fhInh,axInh,x_width(3),y_width(3),outputFolder,...
+    'Small_Inhibitory_pathandSurfaceDensity.svg','on','on');
+
+%% Comparison of L2, L3 and L5 at the main bifurcation: PPC2 dataset
+curDiameters=cellfun(@(x) x.apicalDiameter,results.l235.PPC2,...
     'UniformOutput',false);
 util.mkdir(outputFolder)
 x_width=12;
@@ -95,7 +93,7 @@ y_width=10;
 colors={l2color;l3color;l5color};
 % Density plot
 fh=figure;ax=gca;
-util.plot.boxPlotRawOverlay(diameters(:),1:3,'ylim',3.5,...
+util.plot.boxPlotRawOverlay(curDiameters(:),1:3,'ylim',3.5,...
     'boxWidth',0.5,...
     'color',colors(:));
 xticklabels([]);
@@ -104,12 +102,15 @@ xlim([0.5,3.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'apicalDiameterPPC2.svg','off','on');
 pvalDiameterPPC2=...
-    kruskalwallis([diameters{1},diameters{2},diameters{3}]);
-disp (['pvalue of small diameter kruskallWallis test=',...
+    kruskalwallis([curDiameters{1};curDiameters{2};curDiameters{3}],...
+    [repmat({'L2'},size(curDiameters{1}));...
+    repmat({'L3'},size(curDiameters{2}));...
+    repmat({'L5'},size(curDiameters{3}))]);
+disp (['pvalue in PPC2 dataset, main bifurcation annotations kruskallWallis test=',...
     num2str(pvalDiameterPPC2)])
 
-%% LPtA diameters
-diameters=cellfun(@(x) x.apicalDiameter,results.l235.LPtA,...
+%% Comparison of different cell types distal innervation: LPtA and PPC2 datasets
+curDiameters=cellfun(@(x) x.apicalDiameter,results.l235.LPtA,...
     'UniformOutput',false);
 util.mkdir(outputFolder)
 util.setColors
@@ -117,19 +118,19 @@ util.setColors
 colors={l2color;l3color;l5color};
 % Density plot
 fh=figure;ax=gca;
-util.plot.boxPlotRawOverlay(diameters(:),1:3,'ylim',3.5,...
+util.plot.boxPlotRawOverlay(curDiameters(:),1:3,'ylim',3.5,...
     'boxWidth',0.5,...
     'color',colors(:));
 xticklabels([]);
 ylabel([]);
-xlim([0.5,3.5])
+xlim([0.5 ,3.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'apicalDiameterLPtA.svg','off','on');
 pvalDiameterLPtA=...
-    kruskalwallis([diameters{1};diameters{2};diameters{3}],...
-    [repmat({'L2'},size(diameters{1}));...
-    repmat({'L3'},size(diameters{2}));...
-    repmat({'L5'},size(diameters{3}))]);
+    kruskalwallis([curDiameters{1};curDiameters{2};curDiameters{3}],...
+    [repmat({'L2'},size(curDiameters{1}));...
+    repmat({'L3'},size(curDiameters{2}));...
+    repmat({'L5'},size(curDiameters{3}))]);
 disp (['pvalue of small diameter kruskallWallis test=',...
     num2str(pvalDiameterLPtA)])
 %% Plot the surface area synapse densities
