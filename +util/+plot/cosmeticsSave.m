@@ -18,7 +18,7 @@ if removeDashedLinesForBoxplot
     set(findobj(fh,'LineStyle','--'),'LineStyle','-');
 end
 if isvalid(ax)
-util.plot.setAxisHandle(ax,[],xtickMinor,ytickMinor);
+    util.plot.setAxisHandle(ax,[],xtickMinor,ytickMinor);
 end
 util.mkdir(outputFolder);
 saveas(gca,fullfile(outputFolder,...
