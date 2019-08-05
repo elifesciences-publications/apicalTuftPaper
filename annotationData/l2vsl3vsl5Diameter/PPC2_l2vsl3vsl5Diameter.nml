@@ -1,18 +1,18 @@
 <things>
   <meta name="writer" content="NmlWriter.scala" />
   <meta name="writerGitCommit" content="fab0905a02db0a9cad17304e2c0e40b6fdb85849" />
-  <meta name="timestamp" content="1564668773488" />
-  <meta name="annotationId" content="5d42f32b0100002aaf2cdef9" />
+  <meta name="timestamp" content="1564737799901" />
+  <meta name="annotationId" content="5d440074010000d2d32ce1b4" />
   <meta name="username" content="Ali Karimi" />
   <parameters>
     <experiment name="AK_CorrelativeExperiment06469_P57_st003_st004" organization="Connectomics_Department" description="" />
     <scale x="11.24" y="11.24" z="30.0" />
     <offset x="0" y="0" z="0" />
     <time ms="1537539945716" />
-    <editPosition x="6375" y="10533" z="6370" />
-    <editRotation xRot="266.99997785873467" yRot="0.0" zRot="0.0" />
+    <editPosition x="10815" y="10105" z="6215" />
+    <editRotation xRot="0.0" yRot="0.0" zRot="0.0" />
     <zoomLevel zoom="0.19150547168563925" />
-    <activeNode id="20261" />
+    <activeNode id="18762" />
     <userBoundingBox topLeftX="10802" topLeftY="13747" topLeftZ="3734" width="1780" height="1780" depth="666" />
   </parameters>
   <thing id="199" color.r="0.0" color.g="0.10196080058813095" color.b="0.17254899442195892" color.a="1.0" name="layer5ApicalDendrite_mapping12">
@@ -5555,7 +5555,6 @@
     <comment node="19968" content="1.1" />
     <comment node="19970" content="exit 1.2" />
     <comment node="19935" content="exit 1" />
-    <comment node="16600" content="bbox: 13276,17788,5840,1780,1780,666" />
     <comment node="16662" content="bifurcation" />
     <comment node="16655" content="start 2.4" />
     <comment node="16621" content="2.6" />
@@ -5563,7 +5562,6 @@
     <comment node="16933" content="2" />
     <comment node="16506" content="exit 2" />
     <comment node="16767" content="exit 1.7" />
-    <comment node="15997" content="bbox:10256,15201,5492,1780,1780,666" />
     <comment node="16051" content="bifurcation" />
     <comment node="16148" content="start 1.9" />
     <comment node="16145" content="2" />
@@ -5711,7 +5709,6 @@
     <comment node="10666" content="end 1" />
     <comment node="10763" content="end 1" />
     <comment node="10895" content="bifurcation" />
-    <comment node="11191" content="bbox: 8007,9443,21881780,1780,666" />
     <comment node="11090" content="start 2.6" />
     <comment node="11408" content="2.4" />
     <comment node="11491" content="2.6" />
@@ -5720,7 +5717,6 @@
     <comment node="10967" content="end 1.4" />
     <comment node="10842" content="end 1.8" />
     <comment node="11812" content="bifurcation" />
-    <comment node="11870" content="bbox: 15323,13922,3426,1780,1780,666" />
     <comment node="11925" content="end 1.4" />
     <comment node="12382" content="end 1.7" />
     <comment node="11939" content="start 1.8" />
@@ -5728,14 +5724,12 @@
     <comment node="12134" content="1.5" />
     <comment node="12035" content="1.8" />
     <comment node="12660" content="bifurcation" />
-    <comment node="12880" content="bbox: 12902,14626,4002,1780,1780,666" />
     <comment node="12713" content="end 1.4" />
     <comment node="12940" content="end 1.5" />
     <comment node="12603" content="start 2.2" />
     <comment node="12532" content="1.8" />
     <comment node="12701" content="1.8" />
     <comment node="12575" content="1.2" />
-    <comment node="13224" content="bbox:15303,11227,3476,1780,1780,666" />
     <comment node="13298" content="bifurcation" />
     <comment node="13638" content="start 1.5" />
     <comment node="13616" content="1.6" />
@@ -5744,7 +5738,6 @@
     <comment node="13440" content="end 1.5" />
     <comment node="13491" content="end 1.1" />
     <comment node="13961" content="bifurcation" />
-    <comment node="14115" content="bbox:5230,7100,4975,1780,1780,666" />
     <comment node="13846" content="start 1.3" />
     <comment node="13930" content="1.4" />
     <comment node="13812" content="1" />
@@ -5752,7 +5745,6 @@
     <comment node="14128" content="end 1.7" />
     <comment node="14093" content="end 1.2" />
     <comment node="14373" content="bifurcation" />
-    <comment node="14912" content="bbox:15537,14694,4995,1780,1780,666" />
     <comment node="14619" content="start 1.7" />
     <comment node="14782" content="1.8" />
     <comment node="14990" content="1" />
@@ -5760,7 +5752,6 @@
     <comment node="14451" content="end 1.2" />
     <comment node="14714" content="end 1.2" />
     <comment node="15188" content="bifurcation" />
-    <comment node="15420" content="bbox:13868,11679,4572,1780,1780,666" />
     <comment node="15410" content="start 1.9" />
     <comment node="15184" content="1.8" />
     <comment node="15282" content="1.8" />
@@ -5768,14 +5759,12 @@
     <comment node="15197" content="exit 2.1" />
     <comment node="15280" content="exit 1.3" />
     <comment node="15879" content="bifurcation" />
-    <comment node="15909" content="bbox:6156,15998,5696,1780,1780,666" />
     <comment node="15511" content="start 2.6" />
     <comment node="15726" content="2.7" />
     <comment node="15779" content="1.5" />
     <comment node="15476" content="2.1" />
     <comment node="15544" content="exit 1.9" />
     <comment node="15563" content="exit 1.5" />
-    <comment node="17180" content="bbox: 14522,22929,5666,1780,1780,666" />
     <comment node="17190" content="bifurcation" />
     <comment node="17458" content="start 2.1" />
     <comment node="17230" content="2.2" />
@@ -5783,7 +5772,6 @@
     <comment node="16944" content="1.6" />
     <comment node="17387" content="exit 1.7" />
     <comment node="16992" content="exit 1.9" />
-    <comment node="17672" content="bbox:13137,13373,5804,1780,1780,666" />
     <comment node="17732" content="bifurcation" />
     <comment node="17585" content="start 1.5" />
     <comment node="17566" content="1.5" />
@@ -5792,14 +5780,12 @@
     <comment node="17767" content="exit 0.9" />
     <comment node="17768" content="exit 1.2" />
     <comment node="17982" content="bifurcation" />
-    <comment node="18011" content="bbox: 15648,7128,4022,1780,1780,666" />
     <comment node="17988" content="start 0.9" />
     <comment node="18035" content="0.8" />
     <comment node="17964" content="0.8" />
     <comment node="17981" content="0.8" />
     <comment node="17861" content="exit 0.9" />
     <comment node="17947" content="exit 0.8" />
-    <comment node="18110" content="bbox: 4430,13473,4853,1780,1780,666" />
     <comment node="18396" content="bifurcation" />
     <comment node="18167" content="start 2" />
     <comment node="18144" content="2" />
@@ -5808,7 +5794,6 @@
     <comment node="18225" content="exit 1.4" />
     <comment node="18363" content="exit 1.7" />
     <comment node="18622" content="bifurcation" />
-    <comment node="18681" content="bbox:11158,11597,5514,1780,1780,666" />
     <comment node="18493" content="start 1" />
     <comment node="18527" content="1" />
     <comment node="18583" content="0.9" />
@@ -5816,7 +5801,6 @@
     <comment node="18504" content="exit 0.9" />
     <comment node="18647" content="exit 1" />
     <comment node="18723" content="bifurcation" />
-    <comment node="18762" content="bbox: 9909,8977,5882,1780,1780,666" />
     <comment node="18835" content="start 1.4" />
     <comment node="18788" content="1.2" />
     <comment node="18860" content="0.9" />
