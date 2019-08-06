@@ -23,7 +23,6 @@ if plotLine
     ax=gca;
     lineX=linspace(ax.XLim(1),ax.XLim(2));
     plot(lineX,f(lineX),'Color','k');
-    %daspect([1,1,1]);
 end
 end
 

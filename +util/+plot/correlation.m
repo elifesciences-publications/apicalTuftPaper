@@ -10,7 +10,7 @@ hold on
 for d=1:length(array)
     curX=array{d}(:,1);
     curY=array{d}(:,2);
-    scatter(curX,curY,crossSize,colors{d},'x');
+    scatter(curX,curY,crossSize,colors{d},'.');
 end
 
 end

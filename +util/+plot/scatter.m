@@ -18,7 +18,7 @@ end
 if size(array,1)~=2 && size(array,2)==2
     array=array';
 end
-
+% First row should be X location and the second row the actual values
 scatterHandle=scatter(array(1,:),array(2,:),theSize,color);
 scatterHandle.Marker=marker;
 scatterHandle.MarkerFaceColor='flat';
