@@ -97,29 +97,32 @@ x_width=[8.5, 10, 10];
 y_width=[10, 10, 10];
 curColors={l2color;l3color;l5color;l2MNcolor;l5Acolor};
 % Diameter comparison
+fname='PPC2_mainBifurcation_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
 util.plot.boxPlotRawOverlay(curResultStruct.diameter,1:length(cellTypes2Include),...
     'boxWidth',0.5,'color',curColors);
 xlim([0.5,length(cellTypes2Include)+.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
-    'PPC2_mainBifurcation_apicalDiameter.svg','off','on');
+    [fname,'.svg'],'off','on');
 util.stat.KW(curResultStruct.diameter,curLabels);
 
 % Excitatory surface vs pathlength synapse densities
+fname='PPC2_mainBifur_Excitatory_pathandSurfaceDensity';
 fhEx=figure('Name',fname);axEx=gca;
 util.plot.correlation(curResultStruct.excDensity,curColors);
 util.plot.addLinearFit(curResultStruct.excDensity);
 util.plot.cosmeticsSave...
     (fhEx,axEx,x_width(2),y_width(2),outputFolder,...
-    'PPC2_mainBifur_Excitatory_pathandSurfaceDensity.svg','on','on');
+    [fname,'.svg'],'on','on');
 % Same for inhibitory
+fname='PPC2_mainBifur_Inhibitory_pathandSurfaceDensity';
 fhInh=figure('Name',fname);axInh=gca;
 util.plot.correlation(curResultStruct.inhDensity,curColors);
 util.plot.addLinearFit(curResultStruct.inhDensity);
 util.plot.cosmeticsSave...
     (fhInh,axInh,x_width(3),y_width(3),outputFolder,...
-    'PPC2_mainBifur_Inhibitory_pathandSurfaceDensity.svg','on','on');
+    [fname,'.svg'],'on','on');
 
 %% Comparison of different cell types distal innervation: 
 % LPtA and PPC2 datasets
@@ -137,26 +140,29 @@ y_width=[10, 10, 10];
 curColors={l2color;l3color;l5color;l5Acolor};
 curLabels=results.l235.Properties.RowNames(cellTypes2Include);
 % Diameter comparison
+fname='LPtAPPC2_distalAD_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
 util.plot.boxPlotRawOverlay(curResultStruct.diameter,1:length(cellTypes2Include),...
     'boxWidth',0.5,'color',curColors);
 xlim([0.5,length(cellTypes2Include)+.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
-    'LPtAPPC2_distalAD_apicalDiameter.svg','off','on');
+    [fname,'.svg'],'off','on');
 util.stat.KW(curResultStruct.diameter,curLabels);
 
 % Excitatory surface vs pathlength synapse densities
+fname='LPtAPPC2_distalAD_Excitatory_pathandSurfaceDensity';
 fhEx=figure('Name',fname);axEx=gca;
 util.plot.correlation(curResultStruct.excDensity,curColors);
 util.plot.addLinearFit(curResultStruct.excDensity);
 util.plot.cosmeticsSave...
     (fhEx,axEx,x_width(2),y_width(2),outputFolder,...
-    'LPtAPPC2_distalAD_Excitatory_pathandSurfaceDensity.svg','on','on');
+    [fname,'.svg'],'on','on');
 % Same for inhibitory
+fname='LPtAPPC2_distalAD_Inhibitory_pathandSurfaceDensity';
 fhInh=figure('Name',fname);axInh=gca;
 util.plot.correlation(curResultStruct.inhDensity,curColors);
 util.plot.addLinearFit(curResultStruct.inhDensity);
 util.plot.cosmeticsSave...
     (fhInh,axInh,x_width(3),y_width(3),outputFolder,...
-    'LPtAPPC2_distalAD_Inhibitory_pathandSurfaceDensity.svg','on','on');
+    [fname,'.svg'],'on','on');
