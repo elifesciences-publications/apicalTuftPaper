@@ -27,6 +27,8 @@ for tr=1:length(treeIndices)
     % Extract the diameters
     dimWithString=cellfun(@(x) str2double(x{1}),dimWithString);
     apicalDiameter{tr}=[dimWithoutString;dimWithString];
+    assert(all(~isnan(apicalDiameter{tr})),...
+        'Nans exist in the diameter possibly caused by strings with spaces')
 end
 treeIndex=skel.getTreeIdentifier(treeIndices);
 apicalDiameter=table(treeIndex,apicalDiameter);
