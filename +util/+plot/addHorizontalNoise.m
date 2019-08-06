@@ -2,7 +2,7 @@ function [dataWithHorizontalNoise] = addHorizontalNoise(data,horizontalLocation,
 % addHorizontalNoise This functions add a new column to the array which has a uniform
 % noise level around a horizontal location
 % INPUT:
-%       data: Nx1 array of data
+%       data: Nx1 or 1xN array of data
 %       horizontalLocation: horizontal location
 %       noiseLevel: the noise range
 % OUTPUT:
@@ -12,7 +12,7 @@ function [dataWithHorizontalNoise] = addHorizontalNoise(data,horizontalLocation,
 if nargin<3
     noiseLevel=0.4;
 end
-
+data=data(:);
 noiselessLocation=repmat(horizontalLocation,length(data),1);
 noisyLocation=noiselessLocation+(rand(size(noiselessLocation))-0.5)*noiseLevel;
 dataWithHorizontalNoise=cat(2,noisyLocation,data)';
