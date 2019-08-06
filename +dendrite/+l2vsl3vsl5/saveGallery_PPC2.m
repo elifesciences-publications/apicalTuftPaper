@@ -1,7 +1,7 @@
 function [] = saveGallery_PPC2(apTuft,trIndices,...
     color)
-%SAVEGALLERY Summary of this function goes here
-%   Detailed explanation goes here
+%SAVEGALLERY This function prints the gallery of full dendrite annotations
+%within the PPC2 dataset
 Zdepth.L1=165000;
 Zdepth.Pia=-22500;
 ylims=[-3e5,0.5e5];
@@ -25,7 +25,7 @@ for i=1:length(trIndices)
     drawnow;pause(.5)
     hold off
     util.plot.cosmeticsSave(fh,ax,x_width,y_width,...
-        outputDir,[apTuft.names{tr},'.png']);
+        outputDir,[apTuft.names{tr},'.svg'],[],[],false);
 end
 end
 

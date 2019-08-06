@@ -20,3 +20,6 @@ assert(strcmp(mainDirectoryParts{end},'apicaltuftpaper'));
 % Add the full repository to matlab search path
 addpath(genpath(mainDirectory))
 clear mainDirectoryParts mainDirectory fid;
+
+% Large svgs are not correctly saved with the -opengl renderer
+set(0, 'DefaultFigureRenderer', 'painters');
