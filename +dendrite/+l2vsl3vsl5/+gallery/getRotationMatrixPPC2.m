@@ -11,8 +11,8 @@ switch theSurfSwitch
     otherwise
         error('You need to choose eithr "pia" or "l1" surface')
 end
-% Get the rotation matrix which makes the L1 border parallell to the xz
-% surface (normal vector=[0,0,1], tangential plane)
+% Get the rotation matrix which makes the L1 border parallell to the xy
+% surface (normal vector=[0,1,0], tangential plane)
 [x,y]=meshgrid(1:10,1:10);z=theSurf.fitSurfaceNM(x,y);
 [Nx,Ny,Nz]=surfnorm(x,y,z);
 normalV=[Nx(1),Ny(1),Nz(1)];
