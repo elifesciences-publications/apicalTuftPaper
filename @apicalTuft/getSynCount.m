@@ -21,6 +21,11 @@ if ~exist('switchCorrectionFactor','var') || ...
         isempty(switchCorrectionFactor)
     switchCorrectionFactor = zeros(size(skel.synLabel));
 end
+% Make sure shaft synapses are the first column (matching the results
+% from the switch fraction calculation in: getAxonFractionWithReverseIdentity)
+if any(switchCorrectionFactor~=0)
+    assert(isequal(skel.synLabel,{'Shaft','Spine'}))
+end
 % return empty table if empty annotation
 if skel.connectedComp.emptyTracing
     synapseCount=table();
