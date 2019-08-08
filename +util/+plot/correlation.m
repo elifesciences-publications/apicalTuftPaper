@@ -3,8 +3,7 @@ function [] = correlation(array,colors)
 % INPUT: 
 %       array: cell array with each cell having N x 2 structures. 
 %           first column is the X and second column is the Y values
-% OUTPUT:
-
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 crossSize=36;
 hold on
 for d=1:length(array)
