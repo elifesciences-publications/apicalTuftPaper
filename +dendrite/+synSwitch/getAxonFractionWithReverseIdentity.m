@@ -4,8 +4,8 @@ util.clearAll;
 util.setColors;
 outputDir=fullfile(util.dir.getFig1,'AxonReversing');
 util.mkdir(outputDir)
-seedTypes={'spineSeeded','shaftSeeded'};
-saveMatfile=false;
+seedTypes={'Spine','Shaft'};
+saveMatfile=true;
 %% Get synapse single-spine innervation ratios
 % single-spine innervation fraction for axons seeded from shaft
 % and spine structures on the apical dendrites of different pyramidal
@@ -31,9 +31,9 @@ if ~istable(synRatio.L2)
 end
 % Fix the inhibotry axon
 for i=1:2
-synRatio.L2.shaftSeeded{i}=...
+synRatio.L2.(seedTypes{2}){i}=...
     dendrite.synSwitch.fixShaftSeededL2Table...
-    (synRatio.L2.shaftSeeded{i});
+    (synRatio.L2.(seedTypes{2}){i});
 end
 %% Get the correction fractions
 layers={'L1','L2'};
