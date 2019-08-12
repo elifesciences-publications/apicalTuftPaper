@@ -28,22 +28,25 @@ synRatio.uc=dendrite.l2vsl3vsl5.combineL5AwithLPtATable(synRatio.uc);
 % annotations in L2
 [results]=...
     dendrite.synSwitch.getCorrected.L2Datasets(skel,synRatio,synDensity);
-%% Plotting
-% ratios
+%% Small L2 datasets: Plotting correlation between corrected and not corrected
+% synapse density and ratios
 x_width=12;
 y_width=10;
-fh=figure;ax=gca;
-% The densities
 curResults=results.bifur.Aggregate;
+
+% Inhibitory ratio
+fh=figure;ax=gca;
 util.plot.correlation({curResults{1}.Shaft_Ratio,...
     curResults{2}.Shaft_Ratio},{l2color,dlcolor});
 limits=[0,1];
 set(ax,'XLim',limits,'YLim',limits);
 plot([limits(1),limits(2)],[limits(1),limits(2)],'Color','k');
-daspect([1,1,1])
+daspect([1,1,1]);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'L2Datasets_synRatios.svg',...
     'on','on');
+
+% Inhibitory/Excitatory Density
 fh=figure;ax=gca;
 util.plot.correlation({curResults{1}.Shaft_Density,...
     curResults{2}.Shaft_Density,curResults{1}.Spine_Density,...
