@@ -63,14 +63,23 @@ else
     % Apply the correction factor
     if any(switchCorrectionFactor~=0)
         totalRawSynNumber=sum(synapseCount.Variables,2);
+        % Take out the number of double spines from the single spine group
+        % Note: the excitatory synapse in a double innervated spine is
+        % directly added to the single spine group since it is commented in
+        % the same way. It makes sense to not count this as part of the
+        % switching
+        synapseCount.Spine=synapseCount.Spine-synapseCount.InhSpine;
         switchCount=synapseCount.Variables.*switchCorrectionFactor;
         % the count of switched spine synapses is moved to the shaft group
         % and vice versa
         synapseCount.Variables=synapseCount.Variables-switchCount+...
             switchCount(:,[2,1,3]);
         synapseCount.Shaft=synapseCount.Shaft+synapseCount.InhSpine;
+        % Bring back the double innervated spine to the excitatory group
+        synapseCount.Spine=synapseCount.Spine+synapseCount.InhSpine;
         synapseCount=removevars(synapseCount,'InhSpine');
-        assert(all(sum(synapseCount.Variables,2)-totalRawSynNumber<1e-8),...
+        assert(...
+            all(abs(sum(synapseCount.Variables,2)-totalRawSynNumber)<1e-8),...
         'Sums dont match before and after correction')
     end
     % Transfer treeIdx
