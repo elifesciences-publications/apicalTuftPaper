@@ -22,8 +22,7 @@ if ~exist('switchCorrectionFactor','var') || ...
     switchCorrectionFactor = zeros(size(skel.synLabel));
 end
 % Calculate total synapse number
-treeFeatures=skel.getTotalSynNumber(treeIndices,...
-    switchCorrectionFactor);
+treeFeatures=skel.getTotalSynNumber(treeIndices);
 
 % Trim the skeleton to shaft for pathlength calculation if.fixedEnding is
 % present in options

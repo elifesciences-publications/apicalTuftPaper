@@ -13,7 +13,6 @@ function [synDensityPerType] = getSynDensityPerType( obj,treeIndices,...
 % Note: The apicalTuft object should contain nonempty.fixedEnding 
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:obj.numTrees;
 end
@@ -26,17 +25,13 @@ pathLengthInMicron=obj.getBackBonePathLength(treeIndices);
 
 % Get synapse count
 synapseNr=obj.getSynCount(treeIndices,switchCorrectionFactor);
-synDensityPerType=array2table( zeros(size(synapseNr,1),size(synapseNr,2)-1),'VariableNames', ...
+synDensityPerType=array2table( ...
+    zeros(size(synapseNr,1),size(synapseNr,2)-1),'VariableNames', ...
     synapseNr.Properties.VariableNames(2:end));
 synDensityPerType=cat(2,synapseNr(:,1),synDensityPerType);
 
-%Measure Synapse density per shaft pathlength
+% Measure Synapse density per shaft pathlength
 synDensityPerType(:,2:end)=varfun(@(x) x./pathLengthInMicron.pathLengthInMicron,...
     synapseNr(:,2:end));
-
-% Sanity check: checking that the total synapse density equals sum of the
-% densities per type
-Info=obj.getTreeFeatures(treeIndices,switchCorrectionFactor);
-assert(all((sum(synDensityPerType(:,2:end).Variables,2)-Info.synDensity)<1e-5))
 end
 

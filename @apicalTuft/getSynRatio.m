@@ -22,9 +22,9 @@ if isempty(synCount)
     disp([skel.filename,': empty annotation, no synapses found']);
     return;
 end
-sumOfSynapses=skel.getTotalSynNumber(treeIndices,switchCorrectionFactor);
+sumOfSynapses=skel.getTotalSynNumber(treeIndices);
 
-%Get the ratios
+% Get the ratios
 ratioFuncHandle=@(tableCount) tableCount./sumOfSynapses(:,2).Variables;
 synapseRatio=varfun(ratioFuncHandle, synCount(:,2:end));
 % Make sure they all sum up to 1
@@ -35,6 +35,6 @@ assert (all(sumRatios)==1,...
     'sum of all synapse ratios does not equal one');
 %Transfer treeIdx
 synapseRatio=cat(2,synCount(:,1),synapseRatio);
-%Get read of FUN_
+%Get rid of FUN_
 synapseRatio.Properties.VariableNames=synCount.Properties.VariableNames;
 end
