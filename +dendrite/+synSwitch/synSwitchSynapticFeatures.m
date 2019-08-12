@@ -27,7 +27,7 @@ synRatio.uc=dendrite.l2vsl3vsl5.combineL5AwithLPtATable(synRatio.uc);
 %% Datasets within L2: small datasets containing the main bifurcation 
 % annotations in L2
 [results]=...
-    dendrite.synSwitch.getCorrected.L2Datasets(skel,synRatio,synDensity);
+    dendrite.synSwitch.getCorrected.smallDatasets(skel,synRatio,synDensity);
 %% Small L2 datasets: Plotting correlation between corrected and not corrected
 % synapse density and ratios
 x_width=12;
