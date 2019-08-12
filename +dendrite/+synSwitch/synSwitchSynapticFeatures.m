@@ -1,38 +1,35 @@
-% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+%% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
+outputFolder=fullfile(util.dir.getFig3,'correctionforAxonSwitching');
+util.mkdir(outputFolder)
 m=matfile(fullfile(util.dir.getAnnotation,'matfiles',...
     'axonSwitchFraction.mat'));
 axonSwitchFraction=m.axonSwitchFraction;
 
-%% Small datasets
-bifurDense=apicalTuft.getObjects('bifurcation');
-apType={'l2Idx','dlIdx'};correctionName={'L2','Deep'};
-bifurCorrected=cell(length(apType),1);
-bifurUC=cell(length(apType),1);
-synInfoCorrected=cell(1,length(bifurDense));
-synInfoUC=cell(1,length(bifurDense));
-% get corrected and uncorrected synapse density and ratios
-for apT=1:2
-    for d=1:length(bifurDense)
-        curTree=bifurDense{d}.(apType{apT});
-        curCorrection=axonSwitchFraction.L2{correctionName{apT},:};
-        density=bifurDense{d}.getSynDensityPerType(curTree,curCorrection);
-        ratio=bifurDense{d}.getSynRatio(curTree,curCorrection);
-        densityUC=bifurDense{d}.getSynDensityPerType(curTree);
-        ratioUC=bifurDense{d}.getSynRatio(curTree);
-        synInfoCorrected{d}=join(density,ratio,'Keys','treeIndex');
-        synInfoUC{d}=join(densityUC,ratioUC,'Keys','treeIndex');
-    end
-    bifurCorrected{apT}=cat(1,synInfoCorrected{:});
-    bifurUC{apT}=cat(1,synInfoUC{:});
-end
-bifurCorrected=cell2table(bifurCorrected','VariableNames',correctionName);
-bifurUC=cell2table(bifurUC','VariableNames',correctionName);
+%% Get the skeletons for dense reconstruction
+skel.bifur=apicalTuft.getObjects('bifurcation');
+skel.l235=apicalTuft.getObjects('l2vsl3vsl5');
 
+%% Get the uncorrected synapse density and ratios
+synDensity.uc.bifur=apicalTuft.applyMethod2ObjectArray...
+    (skel.bifur,'getSynDensityPerType',[], false);
+synDensity.uc.l235=apicalTuft.applyMethod2ObjectArray...
+    (skel.l235,'getSynDensityPerType',[], false, ...
+    'mapping');
+synRatio.uc.bifur=apicalTuft.applyMethod2ObjectArray...
+    (skel.bifur,'getSynRatio',[], false);
+synRatio.uc.l235=apicalTuft.applyMethod2ObjectArray...
+    (skel.l235,'getSynRatio',[], false, ...
+    'mapping');
+synDensity.uc=dendrite.l2vsl3vsl5.combineL5AwithLPtATable(synDensity.uc);
+synRatio.uc=dendrite.l2vsl3vsl5.combineL5AwithLPtATable(synRatio.uc);
+
+%% Datasets within L2: small datasets containing the main bifurcation 
+% annotations in L2
+[synRatio,synDensity]=...
+    dendrite.synSwitch.getCorrected.L2Datasets(skel,synRatio,synDensity);
 %% Plotting
 % ratios
-outputFolder=fullfile(util.dir.getFig3,'correctionforAxonSwitching');
-util.mkdir(outputFolder)
 x_width=12;
 y_width=10;
 fh=figure;ax=gca;
@@ -77,18 +74,18 @@ set(ax,'xtick',1:4,'XTickLabel',repmat({'Uncorrected','Corrected'},1,2),...
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'synpseRatioSmall.svg',...
     'off','on');
+
 %% L2 vs L3 vs L5
-l235=apicalTuft.getObjects('l2vsl3vsl5');
-l235{2}=l235{2}.cropoutLowRes([],3,2768);%2767 in WK
-l235{2}=l235{2}.splitCC([],true);
-l235Info.c=cell(3,length(l235));
-l235Info.uc=cell(3,length(l235));
+skel.l235{2}=skel.l235{2}.cropoutLowRes([],3,2768);%2767 in WK
+skel.l235{2}=skel.l235{2}.splitCC([],true);
+skel.l235Info.c=cell(3,length(skel.l235));
+skel.l235Info.uc=cell(3,length(skel.l235));
 densityForPlot=cell(2,1);
 ratioForPlot=cell(2,1);
-for d=1:length(l235)
+for d=1:length(skel.l235)
     curDForPlot=[];curRForPlot=[];
     for apT=1:3
-        curTree=l235{d}.groupingVariable{1,apT}{1};
+        curTreeIdx=skel.l235{d}.groupingVariable{1,apT}{1};
         % Use the corrections of Deep for both L3 and L5 at the level of L2
         indexL35Deep=[1,2,2];
         if d==1
@@ -96,19 +93,20 @@ for d=1:length(l235)
         else
             curCorrection=axonSwitchFraction.L1{apT,:};
         end
-        density=l235{d}.getSynDensityPerType(curTree,curCorrection);
-        ratio=l235{d}.getSynRatio(curTree,curCorrection);
-        densityUC=l235{d}.getSynDensityPerType(curTree);
-        ratioUC=l235{d}.getSynRatio(curTree);
-        l235Info.c{apT,d}=join(density,ratio,'Keys','treeIndex');
-        l235Info.uc{apT,d}=join(densityUC,ratioUC,'Keys','treeIndex');
-        curDForPlot=cat(2,curDForPlot,{densityUC.Spine,density.Spine,...
-            densityUC.Shaft,density.Shaft});
+        curSynDensity=skel.l235{d}.getSynDensityPerType(curTreeIdx,curCorrection);
+        ratio=skel.l235{d}.getSynRatio(curTreeIdx,curCorrection);
+        densityUC=skel.l235{d}.getSynDensityPerType(curTreeIdx);
+        ratioUC=skel.l235{d}.getSynRatio(curTreeIdx);
+        skel.l235Info.c{apT,d}=join(curSynDensity,ratio,'Keys','treeIndex');
+        skel.l235Info.uc{apT,d}=join(densityUC,ratioUC,'Keys','treeIndex');
+        curDForPlot=cat(2,curDForPlot,{densityUC.Spine,curSynDensity.Spine,...
+            densityUC.Shaft,curSynDensity.Shaft});
         curRForPlot=cat(2,curRForPlot,{ratioUC.Shaft,ratio.Shaft});
     end
     densityForPlot{d}=curDForPlot;
     ratioForPlot{d}=curRForPlot;
 end
+
 %% Plotting
 % ratios
 outputFolder=fullfile(util.dir.getFig3,'correctionforAxonSwitching');
@@ -128,7 +126,7 @@ for i=1:2
         'XTickLabelRotation',-45,'XLim',[0.5 12.5],...
         'YTick',[0.04,0.4,4],'YLim',[0.025 8],'YScale','log');
     util.plot.cosmeticsSave...
-        (fh,ax,x_width,y_width,outputFolder,'synapseDensitiesl235.svg',...
+        (fh,ax,x_width,y_width,outputFolder,'synapseDensitiesskel.l235.svg',...
         'off','on');
 end
 colors={l2color,l2color,...
@@ -143,6 +141,6 @@ for i=1:2
         'XTickLabelRotation',-45,'XLim',[0.5 6.5],...
         'YTick',[0:0.25:1],'YLim',[0 1]);
     util.plot.cosmeticsSave...
-        (fh,ax,x_width,y_width,outputFolder,'synapseRatiol235.svg',...
+        (fh,ax,x_width,y_width,outputFolder,'synapseRatioskel.l235.svg',...
         'off','on');
 end
