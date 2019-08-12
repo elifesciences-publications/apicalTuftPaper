@@ -35,6 +35,20 @@ synRatio.L2.(seedTypes{2}){i}=...
     dendrite.synSwitch.fixShaftSeededL2Table...
     (synRatio.L2.(seedTypes{2}){i});
 end
+
+%% Add L5A single-spine innervation Ratio
+apTuft.L5A=apicalTuft.getObjects('L5ARatioMapping');
+l5ARatio=cellfun(@(x) x.getSynRatio,apTuft.L5A,'UniformOutput',false);
+% In distalAD (L1) annotations. Note the spine fraction we just use the L5B
+% fractions
+synRatio.L1=[synRatio.L1;...
+    {synRatio.L1{'deepLayerApicalDendriteSeeded',1},l5ARatio{1}}];
+synRatio.L1.Properties.RowNames{end}='layer5AApicalDendriteSeeded';
+% In Bifurcation annotations. Use Deep annotations for the spine switch
+% fraction
+synRatio.L2=[synRatio.L2;...
+    {synRatio.L2{'Deep',1},l5ARatio{2}}];
+synRatio.L2.Properties.RowNames{end}='L5A';
 %% Get the correction fractions
 layers={'L1','L2'};
 % Threshhold and anom function for gettting fraction of spine-seeded 
