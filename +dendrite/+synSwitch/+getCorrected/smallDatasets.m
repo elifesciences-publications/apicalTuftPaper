@@ -3,6 +3,8 @@ function [results] = smallDatasets(skel,...
 %L2DATASETS Function to get the corrected bifurcation synRatio for smaller
 % L2Datasets. The corrected output contains also the uncorrected values as
 % the first column of a 2 column matrix for
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 % Load axon switching fraction
 m=matfile(fullfile(util.dir.getAnnotation,'matfiles',...
     'axonSwitchFraction.mat'));
