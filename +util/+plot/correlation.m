@@ -1,4 +1,4 @@
-function [Rho,pval] = correlation(array,colors,markers)
+function [Rho,pval] = correlation(array,colors,markers,crossSize)
 % PLOTCORRELATION plots the correlation between two values. 
 % INPUT: 
 %       array: cell array with each cell having N x 2 structures. 
@@ -7,14 +7,16 @@ function [Rho,pval] = correlation(array,colors,markers)
 if ~exist('markers','var') || isempty(markers)
     markers = repmat({'x'},size(array));
 end
-
+if ~exist('crossSize','var') || isempty(crossSize)
+    crossSize=36;
+end
 % Remove empty cell array entries
 nonEmpty=~cellfun(@isempty,array);
 array=array(nonEmpty);
 colors=colors(nonEmpty);
 markers=markers(nonEmpty);
 
-crossSize=36;
+
 totalX=[];totalY=[];
 hold on
 for d=1:length(array)
@@ -28,5 +30,7 @@ end
 [Rho,pval]=corr(totalX,totalY);
 fprintf(['Correlation Coefficient is: ',num2str(Rho),'\n',...
     'The p-value is: ',num2str(pval),'\n']);
+fprintf(['Maximum X is: ',num2str(max(totalX)),'\n',...
+    'The Maximum Y is: ',num2str(max(totalY)),'\n'])
 end
 

@@ -1,6 +1,6 @@
 function [results] = LargeDatasets(skel,...
     synRatio,synDensity,results)
-%LARGEDATASETS updates the results structures l235 field to add the
+% LARGEDATASETS updates the results structures l235 field to add the
 % corrected and uncorrected synapse density/inh. ratio
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
