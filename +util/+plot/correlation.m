@@ -7,6 +7,13 @@ function [Rho,pval] = correlation(array,colors,markers)
 if ~exist('markers','var') || isempty(markers)
     markers = repmat({'x'},size(array));
 end
+
+% Remove empty cell array entries
+nonEmpty=~cellfun(@isempty,array);
+array=array(nonEmpty);
+colors=colors(nonEmpty);
+markers=markers(nonEmpty);
+
 crossSize=36;
 totalX=[];totalY=[];
 hold on
