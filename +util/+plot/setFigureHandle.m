@@ -4,8 +4,8 @@ function h = setFigureHandle(h,varargin)
 %           paperSize: (Optional) Set Din Paper Size. Default is 'A4'
 %           orientation: (Optional) Set orientation to either 'landscape'
 %               or 'portrait'. Default is 'portrait'
-%author: florian drawitsch<florian.drawitsch@brain.mpg.de>
-
+% author: florian drawitsch<florian.drawitsch@brain.mpg.de>
+% modified: Ali Karimi <ali.karimi@brain.mpg.de>
 checkHandle = @(x) ishandle(x) && strcmp(get(x,'type'),'figure');
 checkPaperSize = @(x) ~isempty(regexpi(x,'^A\d$'));
 checkOrientation = @(x) ~isempty(validatestring(x,{'portrait','landscape'}));
@@ -41,7 +41,7 @@ end
 set(h, 'PaperOrientation',p.Results.orientation)
 set(h, 'PaperUnits','centimeters')
 set(h, 'PaperSize',[X Y])
-set(h, 'Color', [1 1 1])
+set(h, 'Color', [1,1,1])
 
 % Set Paper Position
 xMargin = 1;        
@@ -73,8 +73,7 @@ set(h, 'PaperPosition',[xStart yStart xSize ySize])
 % Set Fonts to Arial
 set(findall(h,'-property','FontName'),'FontName','Arial')
 
-%AdditionalParameters For the boxplots
-
+% AdditionalParameters For the boxplots
 lines = findobj(h, 'type', 'line', 'Tag', 'Median');
 set(lines, 'LineWidth', 2);
 

@@ -1,6 +1,8 @@
 function [ h ] = setAxisHandle( h, colorToBlack,xtickMinor,ytickMinor)
 % SETAXISHANDLE Setting for figure axis
 % Author: florian drawitsch<florian.drawitsch@brain.mpg.de>
+% modified: Ali Karimi <ali.karimi@brain.mpg.de>
+
 if ~exist('colorToBlack','var') || isempty(colorToBlack)
     colorToBlack = 1;
 end
@@ -10,7 +12,8 @@ end
 if ~exist('xtickMinor','var') || isempty(xtickMinor)
     xtickMinor = 'off';
 end
-
+% normalize the axis inner size
+set(h,'Units','normalized', 'Position',[0.25 0.25 0.5 0.5]);
 set(h,'FontName','Arial')
 set(h,'FontSize',10)
 set(h,'Box','off')
