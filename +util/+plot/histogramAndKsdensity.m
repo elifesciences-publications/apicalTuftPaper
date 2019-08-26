@@ -13,6 +13,8 @@ histogram(data,...
 yyaxis(ax,'right')
 ax.YColor=[0,0,0,0.5];
 % Add transparency to color
+% Value of bandwidth (0.0573) was from deep L1 axons. To make the densities
+% comparable I used it for calculating both layer 2 and deep densities
 util.plot.ksdensity(data,color(:)',0.0573,[0 1]);
 ylim(ylimitsKS)
 hold off
