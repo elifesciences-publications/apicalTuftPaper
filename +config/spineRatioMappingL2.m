@@ -13,5 +13,7 @@ prop.synExclusion='unsureSynapse';
 prop.synGroups={{2,3,4,5}'}';
 prop.synLabel={'Spine','Shaft'}';
 prop.seed='seed';
+% Just added for the amira representation of L2_25 axon
+prop.fixedEnding={'exit','dead end'}';
 end
 
