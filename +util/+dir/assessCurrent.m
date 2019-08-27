@@ -6,6 +6,6 @@ function [] = assessCurrent()
 
 curDirectoryParts=strsplit(pwd,filesep);
 assert(strcmp(curDirectoryParts{end},'apicaltuftpaper'),...
-    'MATLAB working directorys should be set to the L1paper repository');
+    'MATLAB working directories should be set to the apicaltuftpaper repository');
 end
 
