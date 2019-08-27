@@ -1,4 +1,5 @@
-% Spine fraction in layer 2 datasets
+% Spine fraction in layer 1 and 2 datasets
+% Number of axons for text
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 %% set-up
 util.clearAll;
@@ -24,22 +25,29 @@ for l=1:2
         for cType=1:height(layerRatios)
             thisCellRatios=layerRatios{cType,sType}{1};
             if ~isempty(thisCellRatios)
-            util.plot.histogramAndKsdensity...
-                (thisCellRatios.Spine,curColor{cType},ylimitsKS);
+                % Plot histogram/KSdensity
+                util.plot.histogramAndKsdensity...
+                    (thisCellRatios.Spine,curColor{cType},ylimitsKS);
             end
         end
-        util.plot.cosmeticsSave(fh,ax,10,10,outputDir,fname);
+        % Save
+        util.plot.cosmeticsSave(fh,ax,1.8,1.4,outputDir,fname);
         hold off
     end
 end
 
 
-% For text: number of axons in each group
-tableOFNumberOFAxons=array2table(cellfun(@height,...
-    [synRatioInhibitoryCell(:,5),synRatioExcitatoryCell(:,4)]),...
-    'VariableNames',{'ShaftSeeded','spineSeeded'},...
-    'RowNames',{'layer 2', 'Deep'});
-disp('For text, number of axons in L2 datasets, per group:')
-disp(tableOFNumberOFAxons);
+%% For text: number of axons in each group
+
+for l=1:2
+    curRatio=synRatio.(layers{l});
+    tableOFNumberOFAxons.(layers{l})=array2table(cellfun(@util.table.height,...
+        curRatio.Variables));
+    tableOFNumberOFAxons.(layers{l})=util.table.copyRVNames...
+        (curRatio,tableOFNumberOFAxons.(layers{l}));
+    fprintf('For text, number of axons in %s datasets, per group:\n',layers{l})
+    disp(tableOFNumberOFAxons.(layers{l}));
+end
+
 
 
