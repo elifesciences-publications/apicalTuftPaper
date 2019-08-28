@@ -15,8 +15,7 @@ nonEmpty=~cellfun(@isempty,array);
 array=array(nonEmpty);
 colors=colors(nonEmpty);
 markers=markers(nonEmpty);
-
-
+% Merge all the cell array elements for the correlation plot
 totalX=[];totalY=[];
 hold on
 for d=1:length(array)
