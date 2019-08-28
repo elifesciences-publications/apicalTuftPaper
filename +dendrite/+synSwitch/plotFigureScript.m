@@ -14,11 +14,12 @@ dataset={'Aggregate'};
 densityRatioForPlotBifur = dendrite.synSwitch.rearrangeArrayForPlot(results.bifur,...
     dataset,variables);
 colors = {l2color,dlcolor};
+mkrSize = 20;
 for v=1:length(variables)
     fname=['L2Datasets',variables{v}];
     fh=figure('Name',fname);ax=gca;
     thisMeasure = densityRatioForPlotBifur.Aggregate.(variables{v});
-    util.plot.correlation(thisMeasure,colors,[],36);
+    util.plot.correlation(thisMeasure,colors,[],mkrSize);
     dendrite.synSwitch.getCorrected.correlationFigCosmetics(limits(v),ax);
     util.plot.cosmeticsSave...
         (fh,ax,x_width(v),y_width(v),outputFolder,...
@@ -33,7 +34,6 @@ densityRatioForPlot = dendrite.synSwitch.rearrangeArrayForPlot(results.l235,...
 colors=util.plot.getColors().l2vsl3vsl5;
 % X and Y figure axis limits (layerOrigin, variable (density,ratio))
 limits=[1,1,6;1,1,3];
-mkrSize = 36;
 for l = 1:length(layerOrigin)
     for v = 1:length(variables)
         fname = strjoin({variables{v},layerOrigin{l}},'_');
