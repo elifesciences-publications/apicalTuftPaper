@@ -38,7 +38,7 @@ if skel.connectedComp.splitDone
 else
     if any(switchCorrectionFactor~=0)
         % Make sure shaft synapses are the first column (matching the results
-        % from the switch fraction calculation in: 
+        % from the switch fraction calculation in:
         % getAxonFractionWithReverseIdentity)
         assert(isequal(skel.synLabel,{'Shaft','Spine'}))
         % Correction factor for the inhibitory spine should equal zero and
@@ -78,9 +78,13 @@ else
         % Bring back the double innervated spine to the excitatory group
         synapseCount.Spine=synapseCount.Spine+synapseCount.InhSpine;
         synapseCount=removevars(synapseCount,'InhSpine');
+        % Add "corrected" to variable names
+        synapseCount.Properties.VariableNames=...
+            cellfun(@(x) [x,'_corrected'],...
+            synapseCount.Properties.VariableNames,'uni',0);
         assert(...
             all(abs(sum(synapseCount.Variables,2)-totalRawSynNumber)<1e-8),...
-        'Sums dont match before and after correction')
+            'Sums dont match before and after correction')
     end
     % Transfer treeIdx
     synapseCount=cat(2,synIdx(:,1),synapseCount);
