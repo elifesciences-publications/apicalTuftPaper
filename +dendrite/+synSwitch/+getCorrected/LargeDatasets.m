@@ -1,9 +1,11 @@
 function [results] = LargeDatasets(skel,...
-    synRatio,synDensity,results)
+    synRatio,synDensity,results,verbose)
 % LARGEDATASETS updates the results structures l235 field to add the
 % corrected and uncorrected synapse density/inh. ratio
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-
+if ~exist('verbose','var') || isempty(verbose)
+    verbose = false;
+end
 % Load axon switching fraction
 axonSwitchFraction=dendrite.synSwitch.getCorrected.switchFactorl235(...
     synDensity.uc.l235.Properties.VariableNames);
@@ -26,19 +28,22 @@ for l=1:length(layerOrigin)
             results.l235{c,l}{1}=[];
             continue
         end
-        fprintf(['For cell type: ',cellType{c},...
-            '\nat: ',layerOrigin{l},...
-            '\nSkeleton: ',curSkel.filename,'\n']);
+       
         curTreeIdx=curSkel.groupingVariable.(cellType{c}){1};
         % Use the corrections of Deep for both L3 and L5 at the level of 
         % L2. L5A however has its own shaft correction
         curCorrectionIndex=indexCorrection(c,l);
         curCorrection=curFractionSwitch{curCorrectionIndex,:};
         % Report
+        if verbose
+        fprintf(['For cell type: ',cellType{c},...
+            '\nat: ',layerOrigin{l},...
+            '\nSkeleton: ',curSkel.filename,'\n']);
         fprintf(['Correction: ',...
             axonSwitchFraction.Properties.VariableNames{l}...
             ,' of ',curFractionSwitch. ...
             Properties.RowNames{curCorrectionIndex},'\n\n']);
+        end
         % Get corrected density/ratio
         curSynDensity=curSkel.getSynDensityPerType...
             (curTreeIdx,curCorrection);
