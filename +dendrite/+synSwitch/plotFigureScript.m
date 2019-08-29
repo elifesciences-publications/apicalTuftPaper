@@ -11,7 +11,7 @@ curResults=results.bifur.Aggregate;
 limits=[1,1,5];
 variables={'Shaft_Ratio','Shaft_Density','Spine_Density'};
 dataset={'Aggregate'};
-densityRatioForPlotBifur = dendrite.synSwitch.rearrangeArrayForPlot(results.bifur,...
+densityRatioForPlotBifur = dendrite.util.rearrangeArrayForPlot(results.bifur,...
     dataset,variables);
 colors = {l2color,dlcolor};
 mkrSize = 20;
@@ -29,7 +29,7 @@ end
 %% Plotting celltype (larger datasets)
 % Rearrange result table into cell array for input to correlation function
 layerOrigin = {'mainBifurcation','distalAD'};
-densityRatioForPlot = dendrite.synSwitch.rearrangeArrayForPlot(results.l235,...
+densityRatioForPlot = dendrite.util.rearrangeArrayForPlot(results.l235,...
     layerOrigin,variables);
 colors=util.plot.getColors().l2vsl3vsl5;
 % X and Y figure axis limits (layerOrigin, variable (density,ratio))

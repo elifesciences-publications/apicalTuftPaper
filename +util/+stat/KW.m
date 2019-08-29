@@ -1,6 +1,16 @@
-function [testResult] = KW(array,labels)
+function [testResult] = KW(array,labels,mergeGroups)
 %KW applies kruskall wallis test to elements of a cell array
 % Create array of data and labels for KW test
+% Merge groups specified
+if  ~exist('mergeGroups','var') || isempty(mergeGroups)
+else
+    for i=1:length(mergeGroups)
+        curIdx=mergeGroups{i};
+        array{curIdx(1)}=[array{curIdx(1)};array{curIdx(2)}];
+        labels(curIdx(2))=[];
+        array(curIdx(2))=[];
+    end
+end
 dataArray=cat(1,array{:});
 lengths=cellfun(@length,array);
 labelRepeated=repelem(labels(:),lengths);

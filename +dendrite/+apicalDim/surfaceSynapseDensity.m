@@ -3,6 +3,10 @@
 % larger datasets used to annotate the differences between l2, l3 and l5
 % pyramdial neurons
 util.clearAll;
+outputFolder = fullfile(util.dir.getFig3,...
+    'synapseDensityPerUnitSurface');
+util.mkdir(outputFolder)
+
 returnTable=true;
 skel.bifur.dense=apicalTuft.getObjects('bifurcation',[],returnTable);
 skel.bifur.dim=apicalTuft.getObjects('bifurcationDiameter',[],returnTable);
@@ -35,134 +39,111 @@ results=dendrite.apicalDim.surfaceDensity. ...
     generateDiameterTable(synCount,dim,pL);
 % Combine the annotations from LPtA (L2-5) and PPC2 (L5A) 
 % to create the distal group
-results.l235.LPtA{end}=results.l235.PPC2L5ADistal{end};
-results.l235=removevars(results.l235,'PPC2L5ADistal');
-results.l235.Properties.VariableNames={'mainBifurcation','distalAD'};
+[results] = dendrite.l2vsl3vsl5.combineL5AwithLPtATable(results);
 %% Plot the diameter of different cell types
 % Groups:
 % Smaller datasets: S1, V2, PPC and ACC: L2 vs. Deep
 % PPC2 dataset: L2 vs L3 vs L5 vs L5A
 % LPtA dataset: L2 vs L3 vs L5 vs L5A
-x_width=[8.5, 10, 10];
-y_width=[10, 10, 10];
-util.setColors;
-outputFolder=fullfile(util.dir.getFig3,...
-    'synapseDensityPerUnitSurface');
-util.mkdir(outputFolder)
-
-curResultsTables=results.bifur.Variables;
+x_width=[2, 2, 2];
+y_width=[4, 2, 2];
+mkrSize=15;
+variables={'apicalDiameter',{'inhSurfDensity','inhDensity'},...
+    {'excSurfDensity','excDensity'}};
+datasets={'All'};
 curColors={l2color,dlcolor};
 curResultStruct=...
-    dendrite.apicalDim.surfaceDensity.outputForPlot(curResultsTables);
+    dendrite.util.rearrangeArrayForPlot(results.bifur,datasets,variables);
 
 % Diameter comparison
 fname='Small_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
-util.plot.boxPlotRawOverlay(curResultStruct.diameter,1:2,...
-    'boxWidth',0.5,'color',curColors);
+util.plot.boxPlotRawOverlay(curResultStruct.apicalDiameter,1:2,...
+    'boxWidth',0.5,'color',curColors,'tickSize',mkrSize);
 xlim([0.5,2.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
 pvalDiameterSmall=...
-    util.stat.ranksum(curResultStruct.diameter{1},curResultStruct.diameter{2});
-
-% Excitatory surface vs pathlength synapse densities
-fname='Small_Excitatory_pathandSurfaceDensity';
+    util.stat.ranksum(curResultStruct.apicalDiameter{1},...
+    curResultStruct.apicalDiameter{2});
+vars=fieldnames(curResultStruct);
+% Excitatory/Inhibitory surface vs pathlength synapse densities
+for i=2:3
+fname=strjoin({'Small',vars{i}},'_');
 fhEx=figure('Name',fname);axEx=gca;
-util.plot.correlation(curResultStruct.excDensity,curColors);
-util.plot.addLinearFit(curResultStruct.excDensity);
+util.plot.correlation(curResultStruct.(vars{i}),curColors,[],20);
+util.plot.addLinearFit(curResultStruct.(vars{i}));
 util.plot.cosmeticsSave...
-    (fhEx,axEx,x_width(2),y_width(2),outputFolder,...
+    (fhEx,axEx,x_width(i),y_width(i),outputFolder,...
     [fname,'.svg'],'on','on');
-% Same for inhibitory
-fname='Small_Inhibitory_pathandSurfaceDensity';
-fhInh=figure('Name',fname);axInh=gca;
-util.plot.correlation(curResultStruct.inhDensity,curColors);
-util.plot.addLinearFit(curResultStruct.inhDensity);
-util.plot.cosmeticsSave...
-    (fhInh,axInh,x_width(3),y_width(3),outputFolder,...
-    [fname,'.svg'],'on','on');
+end
 
 %% Comparison of L2, L3 and L5 at the main bifurcation: PPC2 dataset
 cellTypes2Include=1:5;
-curResultsTables=results.l235.mainBifurcation;
-curResultStruct=...
-    dendrite.apicalDim.surfaceDensity.outputForPlot(curResultsTables);
+layerOrigin={'mainBifurcation','distalAD'};
+variables={'apicalDiameter',{'inhSurfDensity','inhDensity'},...
+    {'excSurfDensity','excDensity'}};
+l235esults=...
+    dendrite.util.rearrangeArrayForPlot(results.l235,...
+    layerOrigin,variables);
+curResultStruct=l235esults.mainBifurcation;
 curLabels=results.l235.Properties.RowNames(cellTypes2Include);
-% Constants
-outputFolder=fullfile(util.dir.getFig3,...
-    'synapseDensityPerUnitSurface');
-x_width=[8.5, 10, 10];
-y_width=[10, 10, 10];
 curColors={l2color;l3color;l5color;l2MNcolor;l5Acolor};
+mkrSize=15;
+
 % Diameter comparison
 fname='PPC2_mainBifurcation_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
-util.plot.boxPlotRawOverlay(curResultStruct.diameter,1:length(cellTypes2Include),...
-    'boxWidth',0.5,'color',curColors);
-xlim([0.5,length(cellTypes2Include)+.5])
+util.plot.boxPlotRawOverlay(curResultStruct.apicalDiameter,[1,2,3,1,4],...
+    'boxWidth',0.5,'color',curColors,'tickSize',mkrSize);
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
-util.stat.KW(curResultStruct.diameter,curLabels);
+% Merge L@ and L2MN cells for the KW test
+mergeGroups={[1,4]};
+util.stat.KW(curResultStruct.apicalDiameter,curLabels,mergeGroups);
 
-% Excitatory surface vs pathlength synapse densities
-fname='PPC2_mainBifur_Excitatory_pathandSurfaceDensity';
-fhEx=figure('Name',fname);axEx=gca;
-util.plot.correlation(curResultStruct.excDensity,curColors);
-util.plot.addLinearFit(curResultStruct.excDensity);
+% Excitatory/Inhibitory surface vs pathlength synapse densities
+vars=fieldnames(curResultStruct);
+for i=2:3
+fname=strjoin({'CellType_mainBifurcation',vars{i}},'_');
+fh=figure('Name',fname);ax=gca;
+util.plot.correlation(curResultStruct.(vars{i}),curColors);
+util.plot.addLinearFit(curResultStruct.(vars{i}));
 util.plot.cosmeticsSave...
-    (fhEx,axEx,x_width(2),y_width(2),outputFolder,...
+    (fh,ax,x_width(i),y_width(i),outputFolder,...
     [fname,'.svg'],'on','on');
-% Same for inhibitory
-fname='PPC2_mainBifur_Inhibitory_pathandSurfaceDensity';
-fhInh=figure('Name',fname);axInh=gca;
-util.plot.correlation(curResultStruct.inhDensity,curColors);
-util.plot.addLinearFit(curResultStruct.inhDensity);
-util.plot.cosmeticsSave...
-    (fhInh,axInh,x_width(3),y_width(3),outputFolder,...
-    [fname,'.svg'],'on','on');
+end
 
 %% Comparison of different cell types distal innervation: 
 % LPtA and PPC2 datasets
 cellTypes2Include=[1,2,3,5];
-curResultsTables=results.l235.distalAD;
+curResultStruct=l235esults.distalAD;
 % Remove empty L2 group
-curResultsTables=curResultsTables(cellTypes2Include);
-curResultStruct=...
-    dendrite.apicalDim.surfaceDensity.outputForPlot(curResultsTables);
-% Constants
-outputFolder=fullfile(util.dir.getFig3,...
-    'synapseDensityPerUnitSurface');
-x_width=[8.5, 10, 10];
-y_width=[10, 10, 10];
+curResultStruct=structfun(@(x) x(cellTypes2Include),curResultStruct,...
+    'UniformOutput',false);
+
 curColors={l2color;l3color;l5color;l5Acolor};
 curLabels=results.l235.Properties.RowNames(cellTypes2Include);
 % Diameter comparison
 fname='LPtAPPC2_distalAD_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
-util.plot.boxPlotRawOverlay(curResultStruct.diameter,1:length(cellTypes2Include),...
-    'boxWidth',0.5,'color',curColors);
-xlim([0.5,length(cellTypes2Include)+.5])
+util.plot.boxPlotRawOverlay(curResultStruct.apicalDiameter,1:length(cellTypes2Include),...
+    'boxWidth',0.5,'color',curColors,'tickSize',mkrSize);
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
-util.stat.KW(curResultStruct.diameter,curLabels);
+util.stat.KW(curResultStruct.apicalDiameter,curLabels);
 
-% Excitatory surface vs pathlength synapse densities
-fname='LPtAPPC2_distalAD_Excitatory_pathandSurfaceDensity';
-fhEx=figure('Name',fname);axEx=gca;
-util.plot.correlation(curResultStruct.excDensity,curColors);
-util.plot.addLinearFit(curResultStruct.excDensity);
+% Excitatory/Inhibitory surface vs pathlength synapse densities
+vars=fieldnames(curResultStruct);
+for i=2:3
+fname=strjoin({'CellType_DistalAD',vars{i}},'_');
+fh=figure('Name',fname);ax=gca;
+util.plot.correlation(curResultStruct.(vars{i}),curColors);
+util.plot.addLinearFit(curResultStruct.(vars{i}));
 util.plot.cosmeticsSave...
-    (fhEx,axEx,x_width(2),y_width(2),outputFolder,...
+    (fh,ax,x_width(i),y_width(i),outputFolder,...
     [fname,'.svg'],'on','on');
-% Same for inhibitory
-fname='LPtAPPC2_distalAD_Inhibitory_pathandSurfaceDensity';
-fhInh=figure('Name',fname);axInh=gca;
-util.plot.correlation(curResultStruct.inhDensity,curColors);
-util.plot.addLinearFit(curResultStruct.inhDensity);
-util.plot.cosmeticsSave...
-    (fhInh,axInh,x_width(3),y_width(3),outputFolder,...
-    [fname,'.svg'],'on','on');
+end

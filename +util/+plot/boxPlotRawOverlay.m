@@ -36,9 +36,32 @@ optIn.tickSize=36;
 optIn.boxplot=true;
 optIn.marker='x';
 optIn=Util.modifyStruct(optIn,varargin{:});
+optIn.xlim=[min(cell2mat(xLocation))-optIn.boxWidth,...
+    max(cell2mat(xLocation))+optIn.boxWidth];
 % repeat if you have a single RGB
 if ~iscell(optIn.color)
     optIn.color=repmat({optIn.color},size(array(:)));
+end
+
+% Different group with different color but plotted on the same location 
+% (Used) first time to add L2MN cells to L2 cells
+[~,ind]=unique(xlocationRaw);
+setdiff(1:length(xlocationRaw),ind)
+dupIdx=setdiff(1:length(xlocationRaw),ind);
+if ~isempty(dupIdx)
+    for i=1:length(dupIdx)
+        curDup=dupIdx(i);
+        curXLoc=xLocation{curDup};
+        lengthOriginal=length(array{curXLoc});
+        lengthDup=length(array{curDup});
+        % Concatenate the array to the original location
+        array{curXLoc}=[array{curXLoc};array{curDup}];
+        optIn.color{curXLoc}=[repmat(optIn.color{curXLoc},lengthOriginal,1);...
+            repmat(optIn.color{curDup},lengthDup,1)];
+    end
+    array(dupIdx)=[];
+    optIn.color(dupIdx)=[];
+    xLocation(dupIdx)=[];
 end
 %% Add noisy x for scatter plot
 arrayWithNoisyX=cellfun(@(array,position)util.plot.addHorizontalNoise(array,position,optIn.boxWidth-0.1),...
