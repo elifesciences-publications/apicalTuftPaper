@@ -9,5 +9,6 @@ p.x_width=3;p.y_width=9;
 p.RotMatrix=dendrite.l2vsl3vsl5.gallery.getRotationMatrixPPC2('l1');
 p.view=[90 0];p.camRoll=-180;
 p.drawMainBifurcationBbox=true;
+p.plotHighResBorder=false;
 end
 

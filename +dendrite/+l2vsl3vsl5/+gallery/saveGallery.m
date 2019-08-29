@@ -22,6 +22,9 @@ for i=1:length(trIndices)
         bifurCenter=p.RotMatrix*[apTuft.getBifurcationCoord(tr)]';
         dendrite.l2vsl3vsl5.gallery.drawSquareAroundPoint(bifurCenter);
     end
+    if p.plotHighResBorder
+        plot3([0,0],[191080,303480],[83040,83040],'Color','k')
+    end
     drawnow;pause(.5)
     hold off
     util.plot.cosmeticsSave(fh,ax,p.x_width,p.y_width,...

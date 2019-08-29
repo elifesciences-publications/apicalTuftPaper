@@ -10,5 +10,6 @@ p.x_width=3;p.y_width=9;
 p.RotMatrix=eye(3);
 p.view=[90 0];p.camRoll=-180;
 p.drawMainBifurcationBbox=false;
+p.plotHighResBorder=true;
 end
 
