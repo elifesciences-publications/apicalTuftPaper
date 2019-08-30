@@ -19,38 +19,41 @@ function [ synapseObject] = plotSynapses( skel,treeIndices,...
 
 % Setting defaults specific to plotSynapses
 if ~exist('treeIndices','var') || isempty(treeIndices)
-    treeIndices=1:skel.numTrees;
+    treeIndices = 1:skel.numTrees;
 end
-if ~exist('synCoords','var') || isempty(synCoords)
-    synCoords=skel.getSynCoord(treeIndices);
-    % Annoying property of cell2table results in inhomogenous table need to
-    % convert back to cell to be able to do the scale setting
-    variableNames=synCoords.Properties.VariableNames;
-    synCoords=table2cell(synCoords);
-end
-optIn.scale=skel.scale;
-optIn.theColorMap=colormap(lines);
-optIn.sphereSize=100;
+
+optIn.scale = skel.scale;
+optIn.theColorMap = colormap(lines);
+optIn.sphereSize = 100;
+optIn.rotationMatrix = eye(3);
+optIn.correction=zeros(1,skel.numTrees);
 optIn = Util.modifyStruct(optIn, varargin{:});
 
+if ~exist('synCoords','var') || isempty(synCoords)
+    synCoords = skel.getSynCoord(treeIndices,skel.scale);
+    % Annoying property of cell2table results in inhomogenous table need to
+    % convert back to cell to be able to do the scale setting
+    variableNames = synCoords.Properties.VariableNames;
+    synCoords = table2cell(synCoords);
+end
 
 % Object to have the graphics handle for the scatter spheres
-synapseObject=struct();
-fieldNameFun=@(tr) (['treeId' num2str(tr)]);
-
-% Get and scale synapse coordinates
-synCoords(:,2:end)=cellfun(@(coords) skel.setScale(coords,optIn.scale)...
-    ,synCoords(:,2:end),'UniformOutput',false);
+synapseObject = struct();
+fieldNameFun = @(tr) (['treeId' num2str(tr)]);
 
 hold on
 % Going through all the trees to be plotted
 counterTree=1;
 for tr = treeIndices(:)'
     for syType =1:size(synCoords,2)-1
-        thisSynCoords=synCoords{counterTree,syType+1};
+        thisSynCoords = synCoords{counterTree,syType+1};
+        % ApplyRotation matrix
+        thisSynCoords = (optIn.rotationMatrix*thisSynCoords')';
+        % Apply correction for no overlap (in X dimension)
+        thisSynCoords(:,1)= thisSynCoords(:,1) + optIn.correction(counterTree);
         % Initialize. the synapse object and coordinate table for this specific
         % tree
-        synapseObject.(fieldNameFun(tr))=gobjects(size(synCoords)-[0,1]);
+        synapseObject.(fieldNameFun(tr)) = gobjects(size(synCoords)-[0,1]);
         % Scatter plotting
         synapseObject.(fieldNameFun(tr))(syType) = ...
             scatter3(thisSynCoords(:,1),thisSynCoords(:,2),thisSynCoords(:,3)...
@@ -60,7 +63,7 @@ for tr = treeIndices(:)'
         synapseObject.(fieldNameFun(tr))(syType).DisplayName = ...
             variableNames{syType+1};
     end
-    counterTree=counterTree+1;
+    counterTree = counterTree+1;
 end
 end
 

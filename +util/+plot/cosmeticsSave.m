@@ -24,7 +24,7 @@ if isvalid(ax)
 end
 util.mkdir(outputFolder);
 print(fh,fullfile(outputFolder,...
-    util.addDateToFileName(fileName)),'-dsvg');
+    fileName),'-dsvg');
 [~,hostname]=system('hostname');
 if strcmp(hostname(1:6),'ali-pc')
     system('./synPlots.sht');

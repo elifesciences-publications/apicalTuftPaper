@@ -20,3 +20,4 @@ Figure3.SupplA.plotDense2(l235Converted.LPtA);
 Figure3.SupplA.plotDense2(l235Converted.PPC2);
 
 disp('Save the plots as .svg and manually arrange them in an editing software (e.g. in Adobe Illustrator)');
+

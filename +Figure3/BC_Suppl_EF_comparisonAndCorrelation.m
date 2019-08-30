@@ -23,8 +23,8 @@ distance2soma=cellfun(@(x) x.pathLengthInMicron,distance2soma.Variables,...
 outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
 util.mkdir(outputFolder)
 util.setColors
-x_width=5.3*2;
-y_width=3.5*2;
+x_width=5.3;
+y_width=3.5;
 colors={l2color,l3color,l5color};
 
 % inhibitory Ratio

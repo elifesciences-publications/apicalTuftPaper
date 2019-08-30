@@ -1,5 +1,6 @@
 function h = plot(skel, treeIndices, colors, umScale, lineWidths,...
-    realEndingComments,unityScale,somaSize,somaComment,rotationMatrix)
+    realEndingComments,unityScale,somaSize,somaComment,rotationMatrix,...
+    correctionFactor)
 %PLOT Simple line plot of Skeleton. Nodes are scaled with
 % skel.scale.
 % INPUT treeIndices:(Optional) [Nx1] vector of linear indices
@@ -49,6 +50,11 @@ end
 if ~exist('rotationMatrix','var') || isempty(rotationMatrix)
     rotationMatrix = eye(3);
 end
+% This is for moving each tree by a specified factor so they don't overlap
+% for the figure 3
+if ~exist('correctionFactor','var') || isempty(correctionFactor)
+    correctionFactor = zeros(1,skel.numTrees);
+end
 % If no color is specified, generate appropriate number of colors
 if ~exist('colors','var') || isempty(colors)
     colors = lines(numel(treeIndices));
@@ -58,7 +64,6 @@ if size(colors,1) < numel(treeIndices)
     colors = padarray(colors,numel(treeIndices)-size(colors,1),'circular',...
         'post');
 end
-
 % Check um scale
 if ~exist('unityScale','var') || isempty(unityScale) || unityScale == 0
     if ~exist('umScale','var') || isempty(umScale) || umScale == 0
@@ -100,6 +105,7 @@ end
 [sX,sY,sZ] = sphere;
 %structure to gather the line objects for each tree as h.treeIndex
 h=struct();
+cc=1;
 for tr = treeIndices
     if trim2BackBone
         skel=skel.getBackBone(tr,realEndingComments);
@@ -107,6 +113,9 @@ for tr = treeIndices
     trNodes = bsxfun(@times,skel.nodes{tr}(:,1:3),scale);
     % Apply rotation (identity matrix default)
     trNodes=(rotationMatrix*trNodes')';
+    % Apply correction factor to get rid of overlap between trees (X dimension)
+    % for now
+    trNodes(:,1)= trNodes(:,1) + correctionFactor(cc);
     lineWidth = lineWidths(tr);
     h.(['treeId' num2str(tr)])=gobjects(size(skel.edges{tr},1),1);
     for ed = 1:size(skel.edges{tr},1)
@@ -123,6 +132,7 @@ for tr = treeIndices
             sZ*somaSize+coord(3),'FaceColor',colors(treeIndices==tr,:),...
             'EdgeColor','None')
     end
+    cc = cc+1;
 end
 
 end
