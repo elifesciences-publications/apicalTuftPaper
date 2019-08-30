@@ -3,7 +3,9 @@ function [] = saveGallery(apTuft,trIndices,...
 %SAVEGALLERY This function prints the gallery of full dendrite annotations.
 % Note: the annotation should be so that the Z-axis is the radial cortical
 % axis
-
+    if p.correctionLowRes
+        apTuft=apTuft.correctionLowresLPtA;
+    end
 fh=figure;ax=gca;
 for i=1:length(trIndices)
     clf
@@ -23,8 +25,10 @@ for i=1:length(trIndices)
         dendrite.l2vsl3vsl5.gallery.drawSquareAroundPoint(bifurCenter);
     end
     if p.plotHighResBorder
-        plot3([0,0],[191080,303480],[83040,83040],'Color','k')
+        % High resolution y-extent[191080,303480]
+        plot3([0,0],p.ylims,[83040,83040],':','Color','k') 
     end
+
     drawnow;pause(.5)
     hold off
     util.plot.cosmeticsSave(fh,ax,p.x_width,p.y_width,...
