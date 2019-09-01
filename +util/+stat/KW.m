@@ -11,16 +11,17 @@ else
         array(curIdx(2))=[];
     end
 end
-dataArray=cat(1,array{:});
-lengths=cellfun(@length,array);
-labelRepeated=repelem(labels(:),lengths);
+array = array(:)';
+dataArray = cat(1,array{:});
+lengths = cellfun(@length,array);
+labelRepeated = repelem(labels(:),lengths);
 % Apply KW test to find whether any group is significantly different from
 % any other
-[testResult.pKW,~,stats]=kruskalwallis(dataArray,labelRepeated,'off');
+[testResult.pKW,~,stats] = kruskalwallis(dataArray,labelRepeated,'off');
 % Find groups that are significantly different using the multicomparison
 % post-hoc test
 [testResult.cMC] = multcompare(stats,'display','off');
-testResult.tableMeanSEM=table(cellfun(@mean,array)',...
+testResult.tableMeanSEM = table(cellfun(@mean,array)',...
     cellfun(@util.stat.sem,array)','VariableNames',{'Mean','SEM'},...
     'RowNames',labels);
 disp(['p-value from Kruskall Wallis test is: ',num2str(testResult.pKW)]);

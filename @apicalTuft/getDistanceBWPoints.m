@@ -8,7 +8,9 @@ function [ dist2soma ] = getDistanceBWPoints( skel,treeIndices,pointNames )
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices=1:skel.numTrees;
 end
-
+if ~exist('pointNames','var') || isempty(pointNames)
+    pointNames={'soma','bifurcation'};
+end
 dist2soma=cell(length(treeIndices),1);
 for i=1:length(treeIndices)
     tr=treeIndices(i);

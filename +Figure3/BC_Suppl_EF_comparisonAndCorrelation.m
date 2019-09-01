@@ -1,71 +1,68 @@
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
 util.clearAll;
-skel=apicalTuft('PPC2_l2vsl3vsl5');
-skel=skel.sortTreesByName;
-cellTypeRatios=skel.applyMethod2ObjectArray({skel},...
+skel = apicalTuft('PPC2_l2vsl3vsl5');
+skel = skel.sortTreesByName;
+cellTypeRatios = skel.applyMethod2ObjectArray({skel},...
     'getSynRatio',[],false,'mapping');
-distance2soma=skel.applyMethod2ObjectArray({skel},...
-    'pathLength',[],false,'dist2soma');
-cellTypeDensity=skel.applyMethod2ObjectArray({skel},...
+distance2soma = skel.applyMethod2ObjectArray({skel},...
+    'getDistanceBWPoints',[],false,'dist2soma');
+cellTypeDensity = skel.applyMethod2ObjectArray({skel},...
     'getSynDensityPerType',[],false,'mapping');
 
-shaftRatio=cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
+% Create cell arrays used for plotting
+shaftRatio = cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
     'UniformOutput',false);
-shaftDensity=cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
+shaftDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
     'UniformOutput',false);
-spineDensity=cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
+spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
     'UniformOutput',false);
-distance2soma=cellfun(@(x) x.pathLengthInMicron,distance2soma.Variables,...
-    'UniformOutput',false);
+distance2soma = distance2soma.Variables;
 
 %% Plotting for Figure 3: inhibitoy ratio
-outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
-util.mkdir(outputFolder)
-util.setColors
-x_width=5.3;
-y_width=3.5;
-colors={l2color,l3color,l5color};
 
+outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
+util.mkdir (outputFolder)
+util.setColors
+x_width=5;
+y_width=3.5;
+colors=util.plot.getColors().l2vsl3vsl5;
+indices=[1,2,3,1,4];
 % inhibitory Ratio
 fh=figure;ax=gca;
-util.plot.boxPlotRawOverlay(shaftRatio,1:3,'ylim',1,'boxWidth',0.5,...
-'color',colors);
-xticklabels([]);
+util.plot.boxPlotRawOverlay(shaftRatio,indices,'ylim',1,'boxWidth',0.5,...
+'color',colors,'tickSize',20);
+xticks(1:max(indices));
 yticks(0:0.2:1)
-ylabel([])
-xlabel([])
-xlim([0.5, 3.5])
+xlim([0.5, max(indices)+.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'ShaftFraction.svg');
-%% Do an anova test for the ratios
-[p,tbl,stats]=kruskalwallis(cat(2,shaftRatio{:}));
-c=multcompare(stats);
-%% Get the mean values for text, before the anova test report, Fig. 3b
-Means=cellfun(@(x)round(mean(x),2),shaftRatio);
-Sems=cellfun(@(x) round(util.stat.sem(x,[],1),3),shaftRatio);
 
-disp('Means (l2vs.l3vs.l5):')
-disp(Means)
-disp('Sems (l2vs.l3vs.l5):')
-disp(Sems)
+%% Do Kruskall-Wallis test for the shaft Ratios
+% Merge L2 and L2MN
+mergeGroups = {[1,4]};
+curLabels = cellTypeRatios.Properties.RowNames;
+testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups);
+
 %% Plotting for Figure 3: synapse density
-outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
+
+outputFolder = fullfile(util.dir.getFig3,'cellTypeComparison');
 util.mkdir(outputFolder)
-util.setColors
-x_width=10;
-y_width=8;
-colors={exccolor,exccolor,exccolor;inhcolor,inhcolor,inhcolor};
-allDensitites=[spineDensity';shaftDensity'];
+x_width = 2.7;
+y_width = 2.3;
+colors = [repmat({exccolor},1,5);repmat({inhcolor},1,5)];
+allDensitites = [spineDensity';shaftDensity'];
+% Merge L2 with L2MN
+densityIndices = 1:10;
+densityIndices(7:8)=1:2;
+densityIndices(9:10)=7:8;
 % Density plot
-fh=figure;ax=gca;
-util.plot.boxPlotRawOverlay(allDensitites(:),1:6,'ylim',10,'boxWidth',0.5,...
-'color',colors(:));
+fh = figure;ax = gca;
+util.plot.boxPlotRawOverlay(allDensitites(:),densityIndices(:),...
+    'ylim',10,'boxWidth',0.5,'color',colors(:),'tickSize',10);
 set(ax,'yscale','log');
-xticklabels([]);
-ylabel([]);
-xticks([]);
-xlim([0.5,6.5])
+
+xlim([0.5,8.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'synapseDensities.svg','off','on');
 
@@ -112,8 +109,8 @@ outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
 % Inhibitory Ratio
 [fh,ax,exponentialFit_Ratio]=dendrite.l2vsl3vsl5.plotCorrelation...
     (distance2soma,shaftRatio);
-x_width=14;
-y_width=7;
+x_width=5;
+y_width=2.5;
 % plot exponential with offset
 minDist2Soma=min(cell2mat(distance2soma));
 modelfun = @(b,x)(b(1)+b(2)*exp(b(3)*x));
