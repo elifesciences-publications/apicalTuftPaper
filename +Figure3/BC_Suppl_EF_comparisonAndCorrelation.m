@@ -20,7 +20,6 @@ spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
 distance2soma = distance2soma.Variables;
 
 %% Plotting for Figure 3: inhibitoy ratio
-
 outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
 util.mkdir (outputFolder)
 util.setColors
@@ -70,38 +69,20 @@ util.plot.cosmeticsSave...
 % the other layer 2 results
 % main bifurcation to soma distance vs. inhibitory fraction at the main
 % bifurcation
+curVariables = {'shaftRatio','shaftDensity','spineDensity','distance2soma'};
+% Create the bifur structure as the input
+for i = 1:length(curVariables)
+    bifur.(curVariables{i})=evalin('base',curVariables{i});
+end
 
-apDim=apicalTuft.getObjects('apicalDiameter');
-b.distance2Soma=apicalTuft. ...
-    applyMethod2ObjectArray(apDim,'getSomaDistance',...
-    [],[],[],'bifurcation');
+% Concatenation
+bifur = dendrite.l2vsl3vsl5.concatenateSmallDatasetL2(bifur);
 
-bifur=apicalTuft.getObjects('bifurcation');
-b.ratios=apicalTuft.applyMethod2ObjectArray...
-    (bifur,'getSynRatio');
-b.Densities=apicalTuft.applyMethod2ObjectArray...
-    (bifur,'getSynDensityPerType');
-b.shaftRatio=cellfun(@(x) x.Shaft,b.ratios.Variables,'UniformOutput',false);
-
-% Use bifurcaiton coordinate to match annotations between apicalDiameter
-% and bifurcation input mapping
-bifurCoordinates.inh=apicalTuft. ...
-    applyMethod2ObjectArray(bifur,'getBifurcationCoord',[],[],[],false);
-bifurCoordinates.SomaLoc=apicalTuft. ...
-    applyMethod2ObjectArray(apDim,'getBifurcationCoord',[],[],[],false);
-fun=@(x,y) intersect(x,y,'rows');
-[~,index.inh,index.SomaLoc]=cellfun(fun,bifurCoordinates.inh.Variables,bifurCoordinates.SomaLoc.Variables,...
-    'UniformOutput',false);
-
-% Update Layer 2 section with bifurcation mapping results
-shaftRatio{1}=[shaftRatio{1};b.shaftRatio{1,5}(index.inh{1,5})];
-shaftDensity{1}=[shaftDensity{1};...
-    b.Densities.Aggregate{1}.Shaft];
-spineDensity{1}=[spineDensity{1};...
-    b.Densities.Aggregate{1}.Spine];
-distance2soma{1}=[distance2soma{1};...
-    cell2mat(b.distance2Soma.Aggregate{1}.distance2Soma(index.SomaLoc{1,5}))];
-
+% Set the values to the concatenated values
+for i=1:length(curVariables)
+    assignin('base',curVariables{i},...
+        bifur.(curVariables{i}))
+end
 
 %%  = Correlation and Exponential fit
 outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');

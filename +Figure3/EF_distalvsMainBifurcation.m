@@ -1,47 +1,13 @@
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
-
-util.clearAll;
-skel=apicalTuft('PPC2_l2vsl3vsl5');
-skel=skel.sortTreesByName;
-cellTypeRatios=skel.applyMethod2ObjectArray({skel},...
-    'getSynRatio',[],false,'mapping');
-distance2soma=skel.applyMethod2ObjectArray({skel},...
-    'getDistanceBWPoints',[],false,'dist2soma');
-cellTypeDensity=skel.applyMethod2ObjectArray({skel},...
-    'getSynDensityPerType',[],false,'mapping');
-
-bifur.shaftRatio=cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
-    'UniformOutput',false);
-bifur.shaftDensity=cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
-    'UniformOutput',false);
-bifur.spineDensity=cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
-    'UniformOutput',false);
-
-% Get the layer 2 numbers form main bifurcation annotations and add them to
-% the other layer 2 results
-bifurSkel=apicalTuft.getObjects('bifurcation');
-b.ratios=apicalTuft.applyMethod2ObjectArray...
-    (bifurSkel,'getSynRatio');
-b.Densities=apicalTuft.applyMethod2ObjectArray...
-    (bifurSkel,'getSynDensityPerType');
-b.shaftRatio=cellfun(@(x) x.Shaft,b.ratios.Variables,'UniformOutput',false);
-% Update Layer 2 section with bifurcation mapping results
-bifur.shaftRatio{1}=[bifur.shaftRatio{1};b.shaftRatio{1,5}];
-bifur.shaftDensity{1}=[bifur.shaftDensity{1};...
-    b.Densities.Aggregate{1}.Shaft];
-bifur.spineDensity{1}=[bifur.spineDensity{1};...
-    b.Densities.Aggregate{1}.Spine];
-
 %% Distal tuft results from LPtA
+util.clearAll;
 distalSkel=apicalTuft('LPtA_l2vsl3vsl5');
 distalSkel=distalSkel.sortTreesByName;
-distalSkel=distalSkel.cropoutLowRes([],3,2768);%2767 in WK
-distalSkel=distalSkel.splitCC([],true);
+
 distal.synRatio=cell(3,1);
 distal.synRatioWithGroups=cell(3,1);
 for gr=1:3
     curRatio=distalSkel.getSynRatio(distalSkel.groupingVariable{1,gr}{1}).Shaft;
-    distal.synRatioWithGroups{gr}=[curRatio,repmat(gr,length(curRatio),1)];
     distal.synRatio{gr}=curRatio;
 end
 
@@ -49,8 +15,8 @@ end
 outputFolder=fullfile(util.dir.getFig3,'distalvsMain');
 util.mkdir(outputFolder)
 util.setColors
-x_width=3.1*2;
-y_width=2.7*2;
+x_width=3.1;
+y_width=2.7;
 colors={l2color,l3color,l5color};
 
 % inhibitory Ratio
@@ -64,14 +30,14 @@ xlabel([])
 xlim([0.5, 3.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'ShaftFraction.svg');
-% Do an anova test for the ratios
-concatAllCellTypes=cat(1,distal.synRatioWithGroups{:});
-[p,tbl,stats]=kruskalwallis(concatAllCellTypes(:,1),...
-    concatAllCellTypes(:,2));
-c=multcompare(stats);
+%% Do Kruskall-Wallis test for the shaft Ratios
+% Merge L2 and L2MN
+mergeGroups = {[1,4]};
+curLabels = cellTypeRatios.Properties.RowNames;
+testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups);
 %% Also do the densities
-x_width=2.3*2.5;
-y_width=1.7*2.5;
+x_width=2.3;
+y_width=1.7;
 colors={exccolor,exccolor,exccolor;inhcolor,inhcolor,inhcolor};
 for gr=1:3
     curDense=distalSkel.getSynDensityPerType(distalSkel.groupingVariable{1,gr}{1});
@@ -95,6 +61,24 @@ util.plot.cosmeticsSave...
 
 
 %% Do single cell type between regions comparison:
+skel=apicalTuft('PPC2_l2vsl3vsl5');
+skel=skel.sortTreesByName;
+cellTypeRatios=skel.applyMethod2ObjectArray({skel},...
+    'getSynRatio',[],false,'mapping');
+cellTypeDensity=skel.applyMethod2ObjectArray({skel},...
+    'getSynDensityPerType',[],false,'mapping');
+
+bifur.shaftRatio=cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
+    'UniformOutput',false);
+bifur.shaftDensity=cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
+    'UniformOutput',false);
+bifur.spineDensity=cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
+    'UniformOutput',false);
+
+% Get the layer 2 numbers form main bifurcation annotations and add them to
+% the other layer 2 results
+bifur=dendrite.l2vsl3vsl5.concatenateSmallDatasetL2(bifur);
+
 cellTypes={'L2','L3','L5'};
 for celltype=1:3
     disp([cellTypes{celltype},': main bifurcation vs. distal tuft'])

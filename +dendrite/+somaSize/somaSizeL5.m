@@ -9,8 +9,8 @@ treeTags={'layer5ApicalDendrite_dist2soma',...
 [vol,diameter]=dendrite.somaSize.getSomaSize(skel,treeTags,numTrees);
 
 %% Plot box plot of comparison between soma sizes of L5B and L5A
-x_width=8;
-y_width=10;
+x_width=3;
+y_width=3;
 outputFolder=fullfile(util.dir.getFig3,...
     'somaSizeL5vsL5A');
 fname='somaVolume_L5vsL5A';
@@ -21,7 +21,7 @@ util.plot.boxPlotRawOverlay(vol,1:2,...
     'boxWidth',0.5,'color',curColors);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
-    [fname,'.svg'],'on','on')
+    [fname,'.svg'],'off','on')
 
 fname='somaAverageDiameter_L5vsL5A';
 fh=figure('Name',fname);ax=gca;
@@ -29,4 +29,5 @@ util.plot.boxPlotRawOverlay(diameter,1:2,...
     'boxWidth',0.5,'color',curColors);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
-    [fname,'.svg'],'on','on')
+    [fname,'.svg'],'off','on');
+util.stat.ranksum(diameter{1},diameter{2});
