@@ -12,8 +12,8 @@ colors=repmat([{l2color};{dlcolor}],2,1);
 %% Plot
 fh = figure; ax = gca;
 hold on
-util.plot.boxPlotRawOverlay(aggregateSynapseSizes,num2cell(1:4),...
-    'boxWidth',.746,'color',colors)
+util.plot.boxPlotRawOverlay(aggregateSynapseSizes,1:4,...
+    'boxWidth',.5,'color',colors,'tickSize',10)
 % Cosmetics
 xlim([0.5,4.5]);
 ylim([0,2]);
@@ -23,5 +23,5 @@ yticks(0:0.5:2);
 statTestFile=fullfile(outputDir,'ranksumTestSynSize.txt');
 util.stat.ranksum.synSize(synapseSizes,{'Spine','Shaft'},statTestFile);
 % Cosmetics
-util.plot.cosmeticsSave(fh,ax,5.2,4.6,outputDir,'synSizeComparison.svg')
+util.plot.cosmeticsSave(fh,ax,2.6,3.7,outputDir,'synSizeComparison.svg')
 
