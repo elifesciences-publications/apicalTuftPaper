@@ -27,8 +27,7 @@ else
         'soma', 'AIS', 'spine', 'shaft'};
 end
 
-[bootstat,~]=bootstrp(bootN,meanFunc,allSpec,'Weights',weight,...
-    'UseParallel',true);
+[bootstat,~]=bootstrp(bootN,meanFunc,allSpec,'Weights',weight);
 %make table to make it more understable
 resultTable=array2table(bootstat,'VariableNames',allSpecVariableNames);
 
