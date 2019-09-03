@@ -45,11 +45,11 @@ results=dendrite.apicalDim.surfaceDensity. ...
 % Smaller datasets: S1, V2, PPC and ACC: L2 vs. Deep
 % PPC2 dataset: L2 vs L3 vs L5 vs L5A
 % LPtA dataset: L2 vs L3 vs L5 vs L5A
-x_width=[2, 2, 2];
-y_width=[4, 2, 2];
+x_width=[2, 2];
+y_width=[4, 3];
 mkrSize=15;
-variables={'apicalDiameter',{'inhSurfDensity','inhDensity'},...
-    {'excSurfDensity','excDensity'}};
+variables={'apicalDiameter','inhSurfDensity',...
+    'excSurfDensity'};
 datasets={'All'};
 curColors={l2color,dlcolor};
 curResultStruct=...
@@ -67,23 +67,30 @@ util.plot.cosmeticsSave...
 pvalDiameterSmall=...
     util.stat.ranksum(curResultStruct.apicalDiameter{1},...
     curResultStruct.apicalDiameter{2});
-vars=fieldnames(curResultStruct);
-% Excitatory/Inhibitory surface vs pathlength synapse densities
-for i=2:3
-fname=strjoin({'Small',vars{i}},'_');
-fhEx=figure('Name',fname);axEx=gca;
-util.plot.correlation(curResultStruct.(vars{i}),curColors,[],20);
-util.plot.addLinearFit(curResultStruct.(vars{i}));
+
+% Excitatory/Inhibitory surface Density boxplot
+fname = strjoin({'Small','Densities'},'_');
+fhDense = figure('Name',fname);axDense=gca;
+
+curSynSurfaceDensity = [curResultStruct.excSurfDensity;...
+    curResultStruct.inhSurfDensity];
+curColors = repmat({exccolor,inhcolor},1,2);
+
+util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),1:4,...
+    'boxWidth',0.5,'color',curColors,'tickSize',mkrSize);
+
+% Set density plot properties
+set(axDense,'XTickLabel',[],'XLim',[0.5 4.5],...
+    'YLim',[0.001,1],'YScale','log');
 util.plot.cosmeticsSave...
-    (fhEx,axEx,x_width(i),y_width(i),outputFolder,...
+    (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
     [fname,'.svg'],'on','on');
-end
 
 %% Comparison of L2, L3 and L5 at the main bifurcation: PPC2 dataset
 cellTypes2Include=1:5;
 layerOrigin={'mainBifurcation','distalAD'};
-variables={'apicalDiameter',{'inhSurfDensity','inhDensity'},...
-    {'excSurfDensity','excDensity'}};
+variables={'apicalDiameter','inhSurfDensity',...
+    'excSurfDensity'};
 l235esults=...
     dendrite.util.rearrangeArrayForPlot(results.l235,...
     layerOrigin,variables);
@@ -104,18 +111,23 @@ util.plot.cosmeticsSave...
 mergeGroups={[1,4]};
 util.stat.KW(curResultStruct.apicalDiameter,curLabels,mergeGroups);
 
-% Excitatory/Inhibitory surface vs pathlength synapse densities
-vars=fieldnames(curResultStruct);
-for i=2:3
-fname=strjoin({'CellType_mainBifurcation',vars{i}},'_');
-fh=figure('Name',fname);ax=gca;
-util.plot.correlation(curResultStruct.(vars{i}),curColors);
-util.plot.addLinearFit(curResultStruct.(vars{i}));
-util.plot.cosmeticsSave...
-    (fh,ax,x_width(i),y_width(i),outputFolder,...
-    [fname,'.svg'],'on','on');
-end
+% Excitatory/Inhibitory surface Density boxplot
+fname = strjoin({'CellType_mainBifurcation','Densities'},'_');
+fhDense = figure('Name',fname);axDense=gca;
 
+curSynSurfaceDensity = [curResultStruct.excSurfDensity;...
+    curResultStruct.inhSurfDensity];
+curColors = [repmat({exccolor},1,5);repmat({inhcolor},1,5)];
+indices=dendrite.l2vsl3vsl5.mergeL2Indices().density;
+
+util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),indices,...
+    'boxWidth',0.5,'color',curColors(:),'tickSize',mkrSize);
+% Set density plot properties
+set(axDense,'XTickLabel',[],'XLim',[0.5 8.5],...
+   'YLim',[0.01,2],'YScale','log');
+util.plot.cosmeticsSave...
+    (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
+    [fname,'.svg'],'on','on');
 %% Comparison of different cell types distal innervation: 
 % LPtA and PPC2 datasets
 cellTypes2Include=[1,2,3,5];
@@ -136,14 +148,21 @@ util.plot.cosmeticsSave...
     [fname,'.svg'],'off','on');
 util.stat.KW(curResultStruct.apicalDiameter,curLabels);
 
-% Excitatory/Inhibitory surface vs pathlength synapse densities
-vars=fieldnames(curResultStruct);
-for i=2:3
-fname=strjoin({'CellType_DistalAD',vars{i}},'_');
-fh=figure('Name',fname);ax=gca;
-util.plot.correlation(curResultStruct.(vars{i}),curColors);
-util.plot.addLinearFit(curResultStruct.(vars{i}));
+
+% Excitatory/Inhibitory surface Density boxplot
+fname = strjoin({'CellType_DistalAD','Densities'},'_');
+fhDense = figure('Name',fname);axDense=gca;
+
+curSynSurfaceDensity = [curResultStruct.excSurfDensity;...
+    curResultStruct.inhSurfDensity];
+curColors = [repmat({exccolor},1,4);repmat({inhcolor},1,4)];
+
+util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),...
+    1:8,...
+    'boxWidth',0.5,'color',curColors(:),'tickSize',mkrSize);
+% Set density plot properties
+set(axDense,'XTickLabel',[],'XLim',[0.5 8.5],...
+   'YLim',[0.01,1],'YScale','log');
 util.plot.cosmeticsSave...
-    (fh,ax,x_width(i),y_width(i),outputFolder,...
+    (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
     [fname,'.svg'],'on','on');
-end
