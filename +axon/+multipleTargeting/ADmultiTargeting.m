@@ -9,27 +9,17 @@
 util.clearAll;
 skel=apicalTuft.getObjects('inhibitoryAxon');
 
-%% First step remove all the seed targeting see how
-% that affects the results
-for d=1:length(skel)
-    figure('Name',skel{d}.filename)
-    ratioMinusSeed=axon.multipleTargeting.getRatioMinusSeed(skel{d});
-    util.plot.boxPlotRawOverlay([num2cell(ratioMinusSeed.l2Idx{:,2:3},1),...
-        num2cell(ratioMinusSeed.dlIdx{:,2:3},1)])
-    % Next plot correlation between seed targeting and fraction of other
-    % synapses on target
-    axon.multipleTargeting.plotCorrelation(ratioMinusSeed)
-end
 %% Most important: find the number of targeting per target group
 % results dims: cell: dataset, array: number of syn on target,target
 % apical type (1: L2, 2: dl), seed apical type (1: L2, 2,dl)
-results={zeros(10,2,2),zeros(10,2,2)};
+results = {zeros(10,2,2),zeros(10,2,2)};
+MultiPerDataset = cell(1,length(skel));
 for d=1:length(skel)
-    MultiPerDataset{d}=axon.multipleTargeting. ...
+    MultiPerDataset{d} = axon.multipleTargeting. ...
         extractMultipleTargeting(skel{d});
-    seedType={'l2Idx','dlIdx'};
-    for seed=1:2
-        results{d}(:,:,seed)=...
+    seedType = {'l2Idx','dlIdx'};
+    for seed = 1:2
+        results{d}(:,:,seed) = ...
             [sum(MultiPerDataset{d}{skel{d}.(seedType{seed}),'L2Apical'},1)',...
             sum(MultiPerDataset{d}{skel{d}.(seedType{seed}),'DeepApical'},1)'];
     end
@@ -40,38 +30,69 @@ end
 seedTag={'l2Idx','dlIdx'};
 for d=1:length(skel)
     for seedT=1:2
-        trIndices=skel{d}.(seedTag{seedT});
-        synCount=skel{d}.getSynCount(trIndices);
-        curSynCountSum=sum(synCount{:,2:3});
-        seedCounts=MultiPerDataset{d}.seedTargetingNr(trIndices,:);
-        seedCounts(:,seedT)=seedCounts(:,seedT)-1;
-        additionalSeedSynapses=sum(seedCounts,1);
-        allOtherSyn=sum(results{d}(:,:,seedT).*[1:10]',[1,3]);
+        trIndices = skel{d}.(seedTag{seedT});
+        synCount = skel{d}.getSynCount(trIndices);
+        curSynCountSum = sum(synCount{:,2:3});
+        seedCounts = MultiPerDataset{d}.seedTargetingNr(trIndices,:);
+        seedCounts(:,seedT) = seedCounts(:,seedT)-1;
+        additionalSeedSynapses = sum(seedCounts,1);
+        allOtherSyn = sum(results{d}(:,:,seedT).*[1:10]',[1,3]);
         disp(seedTag{seedT});
         disp(curSynCountSum);
         disp((allOtherSyn+additionalSeedSynapses))
     end
 end
+
+%% Seed targeting: histogram of number of times the seed is targeted
+colors={l2color,dlcolor};
+fname='NumberOfSeedTargeting';
+fh=figure('Name',fname);ax=gca;
+x_width=10;y_width = 7;
+maxSynNumber = 7;
+hold on
+for i=1:2
+    trIndices.(seedTag{i})=...
+        cellfun(@(x) x.(seedTag{i}),skel,'UniformOutput',false);
+    seedTargeting.(seedTag{i})=...
+        cellfun(@(x,y) x.seedTargetingNr(y,i),MultiPerDataset,...
+        trIndices.(seedTag{i}),'uni',0);
+    seedTargeting.(seedTag{i})=cat(1,seedTargeting.(seedTag{i}){:});
+    histogram(seedTargeting.(seedTag{i}),'BinEdges',1:maxSynNumber+1,...
+        'DisplayStyle','stairs','EdgeColor',colors{i},...
+        'Normalization','probability');
+end
+hold off
+
+set(ax,'XTick',1.5:1:maxSynNumber+1.5,'XTickLabel',1:maxSynNumber+1,...
+        'YLim',[0,1])
+util.plot.cosmeticsSave(fh,ax,x_width,y_width,...
+    outputDir,[fname,'.svg']);
+% Ranksum testing: not significant
+util.stat.ranksum(seedTargeting.l2Idx,seedTargeting.dlIdx);
 %% The histogram of the number of times axons target apical dendrites
 % Afggregated over datasets
 % separated by the seed tyepe (L2, Vs. DL)
 allData=results{1}+results{2}+results{3}+results{4};
 colors={l2color,dlcolor};
 maxSynNumber=6;
-x_width=10;y_width=7;
+x_width=2.2;y_width=2.2;
 outputDir=fullfile(util.dir.getFig2,'TheMultiInnervation');
+fnames={'L2Seeded','DeepSeeded'};
 for d=1:2
-    fh{d}=figure;ax{d}=gca;
+    fh=figure('Name',fnames{d});ax=gca;
     l2Target=allData(1:maxSynNumber,1,d);
     dltarget=allData(1:maxSynNumber,2,d);
     hold on
     histogram('BinEdges',0:maxSynNumber,'BinCounts', l2Target,...
-        'DisplayStyle','stairs','EdgeColor',l2color);
+        'DisplayStyle','stairs','EdgeColor',l2color,...
+        'Normalization','probability');
     histogram('BinEdges',0:maxSynNumber,'BinCounts', dltarget,...
-        'DisplayStyle','stairs','EdgeColor',dlcolor);
-    set(ax{d},'XTick',0.5:1:maxSynNumber+0.5,'XTickLabel',1:maxSynNumber)
-    util.plot.cosmeticsSave(fh{d},ax{d},x_width,y_width,...
-        outputDir,'histogram.svg');
+        'DisplayStyle','stairs','EdgeColor',dlcolor,...
+        'Normalization','probability');
+    set(ax,'XTick',0.5:1:maxSynNumber+0.5,'XTickLabel',1:maxSynNumber,...
+        'YLim',[0,1])
+    util.plot.cosmeticsSave(fh,ax,x_width,y_width,...
+        outputDir,[fnames{d},'.svg']);
     hold off
 end
 %% Plot probability matrices

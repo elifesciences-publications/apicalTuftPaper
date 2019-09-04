@@ -1,6 +1,5 @@
 function [ratioSynNoSeed] = getRatioMinusSeed(skel)
-%GETRATIOMINUSSEED Summary of this function goes here
-%   Detailed explanation goes here
+% GETRATIOMINUSSEED 
 typeTag={'l2Idx','dlIdx'};
 synTypeTag={'L2Apical','DeepApical'};
 for type=1:length(typeTag)

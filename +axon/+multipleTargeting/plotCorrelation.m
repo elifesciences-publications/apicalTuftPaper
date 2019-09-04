@@ -15,7 +15,8 @@ for seedT=1:length(seedTag)
             [],c.(colorTag{targetT}))
     end
     xlabel('Number of times seed is targeted');
-    ylabel('Fraction of synapses onto L2(grey) and Deep(orange) apicals')
+    ylabel('Fraction of synapses onto L2(grey) and Deep(orange) apicals');
+    xlim([0.5,6.5]);ylim([0,1])
     hold off
 end
 end
