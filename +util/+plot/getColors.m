@@ -11,5 +11,7 @@ colors.inhcolor=[0,0,1];
 colors.small={colors.l2color,colors.dlcolor};
 colors.l2vsl3vsl5={colors.l2color;colors.l3color;colors.l5color;...
     colors.l2MNcolor;colors.l5Acolor};
+colors.colorsCortex={[0.2 0.2 0.2],[227/255 65/255 50/255],...
+    [50/255 205/255 50/255],[50/255 50/255 205/255]}';
 end
 
