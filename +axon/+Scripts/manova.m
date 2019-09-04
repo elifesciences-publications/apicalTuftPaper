@@ -1,3 +1,10 @@
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+% This script deos the following:
+% First, an manova test is applied to the specificity of axons seeded from
+% L2 and Deep apical dendrites. This test finds if any mean is different
+% from any other (dim==0 means to significant difference).
+% Next, we apply the bonferroni corrected onw-way anova to each specificity
+% to find the significant differences (Only soma in the L2 group)
 apTuft= apicalTuft.getObjects('inhibitoryAxon');
 synRatio=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
 synRatio=synRatio.Variables;
