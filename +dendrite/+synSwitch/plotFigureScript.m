@@ -5,8 +5,8 @@ util.mkdir(outputFolder)
 results=dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
 %% L2 (smaller) datasets: Plotting correlation between corrected and not corrected
 % synapse density and ratios
-x_width=[3,1.5,1.5];
-y_width=[3,1.5,1.5];
+x_width=[2,1,1];
+y_width=[2,1,1];
 curResults=results.bifur.Aggregate;
 limits=[1,1,5];
 variables={'Shaft_Ratio','Shaft_Density','Spine_Density'};
@@ -14,7 +14,7 @@ dataset={'Aggregate'};
 densityRatioForPlotBifur = dendrite.util.rearrangeArrayForPlot(results.bifur,...
     dataset,variables);
 colors = {l2color,dlcolor};
-mkrSize = 20;
+mkrSize = 10;
 for v=1:length(variables)
     fname=['L2Datasets',variables{v}];
     fh=figure('Name',fname);ax=gca;
@@ -33,7 +33,7 @@ densityRatioForPlot = dendrite.util.rearrangeArrayForPlot(results.l235,...
     layerOrigin,variables);
 colors=util.plot.getColors().l2vsl3vsl5;
 % X and Y figure axis limits (layerOrigin, variable (density,ratio))
-limits=[1,1,6;1,1,3];
+limits=[1,1,6;1,0.5,3];
 for l = 1:length(layerOrigin)
     for v = 1:length(variables)
         fname = strjoin({variables{v},layerOrigin{l}},'_');
