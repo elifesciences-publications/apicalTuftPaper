@@ -23,24 +23,14 @@ fileName2Save=fullfile(outputFolder,...
 util.stat.ranksum.shaftRatio...
     (shaftRatio,ratios.Properties.VariableNames,fileName2Save)
 
-%% Plot part: All Together
-x_width=7.2;
-y_width=6;
-fh=figure;ax=gca;
-util.setColors;
-colors=repmat([{l2color};{dlcolor}],5,1);
-% plotting
-util.plot.boxPlotRawOverlay(shaftRatio(:),horizontalLocation,...
-    'ylim',1,'boxWidth',1.5,'color',colors);
-util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'ShaftFraction.svg');
+
 %% Plot: Separate aggregate data
 aggRatio=shaftRatio(:,5);
 sepRatio=shaftRatio(:,1:4);
-tickSize=50;
+tickSize=10;
 % First plot Aggregate
-x_width=6.6;
-y_width=5.6;
+x_width=3.1;
+y_width=2.8;
 fh=figure;ax=gca;
 util.setColors;
 colors=repmat([{l2color};{dlcolor}],4,1);
@@ -48,20 +38,19 @@ horizontalLocation=num2cell((1.5:2:17)');
 % plotting
 util.plot.boxPlotRawOverlay(sepRatio(:),horizontalLocation,...
     'xlim',[0,17],'ylim',1,'boxWidth',1.5,'color',colors,'tickSize',tickSize);
-set(ax,'YTickLabel',[],'xtick',[]);
+set(ax,'YTickLabel',[],'YTick',0:0.2:1);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'ShaftFraction_Seperate.svg');
 % Second: plot separate
-x_width=6.6;
-y_width=5.6;
+
 fh=figure;ax=gca;
 util.setColors;
 colors=repmat([{l2color};{dlcolor}],1,1);
-horizontalLocation=num2cell((1.5:2:4)');
+horizontalLocation=num2cell([1.275,3.825]');
 % plotting
 util.plot.boxPlotRawOverlay(aggRatio(:),horizontalLocation,...
-    'xlim',[0,5],'ylim',1,'boxWidth',0.735,'color',colors,'tickSize',tickSize);
-set(ax,'YTickLabel',[],'xtick',[]);
+    'ylim',1,'boxWidth',0.75,'color',colors,'tickSize',tickSize);
+set(ax,'YTickLabel',[],'YTick',0:0.2:1,'XLim',[0.2 5.3]);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'ShaftFraction_Aggregate.svg');
 %% Main text ratio

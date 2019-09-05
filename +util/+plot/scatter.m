@@ -22,5 +22,6 @@ end
 scatterHandle=scatter(array(1,:),array(2,:),theSize,color);
 scatterHandle.Marker=marker;
 scatterHandle.MarkerFaceColor='flat';
+scatterHandle.LineWidth=1;
 end
 

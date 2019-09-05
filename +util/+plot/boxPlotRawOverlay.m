@@ -18,10 +18,13 @@ function boxPlotRawOverlay(array,xlocationRaw,varargin)
 if ~exist('xlocationRaw','var') || isempty(xlocationRaw)
     xlocationRaw=1:length(array);
 end
+% Make sure that xlocationRaw is a double array and the xLocation is a cell
+% array
 if ~iscell(xlocationRaw)
     xLocation=num2cell(xlocationRaw);
 else
     xLocation=xlocationRaw;
+    xlocationRaw=cell2mat(xlocationRaw);
 end
 xLocation=xLocation(:);
 array=array(:);
@@ -32,7 +35,7 @@ optIn.boxWidth=1;
 optIn.xlim=[min(cell2mat(xLocation))-optIn.boxWidth,...
     max(cell2mat(xLocation))+optIn.boxWidth];
 optIn.color=[1 0 0];
-optIn.tickSize=36;
+optIn.tickSize=10;
 optIn.boxplot=true;
 optIn.marker='x';
 optIn=Util.modifyStruct(optIn,varargin{:});
