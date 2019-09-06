@@ -17,16 +17,17 @@ synCount=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynCount');
 % double innervated group
 fractionOfDoubleSpines=cellfun(@(x) x.InhSpines./x.Spine,...
     synCount(:,5).Variables,'UniformOutput',false);
+%% Plot
 fh = figure; ax = gca;
 hold on
 util.plot.boxPlotRawOverlay(fractionOfDoubleSpines,[{1},{2}],...
-    'boxWidth',.3732,'color',[{l2color},{dlcolor}]);
+    'boxWidth',.4655,'color',[{l2color},{dlcolor}]);
 
 % Cosmetics
 xlim([0.5,2.5]);
 ylim([0,0.25]);
 set(gca, 'YTickLabel',[]);
-util.plot.cosmeticsSave(fh,ax,5.2,3.8,...
+util.plot.cosmeticsSave(fh,ax,2,1.9,...
     outputFolder,util.addDateToFileName('DoubleSpineFraction.svg'));
 %% Write result table to matfile
 matFileName=fullfile(outputFolder,'Figure1_DoubleSpineRatio.mat');

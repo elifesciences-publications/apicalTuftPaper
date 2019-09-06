@@ -40,7 +40,7 @@ fh=figure;ax=gca;
 horizontalLocation=[spineXLocation,shaftXLocation];
 horizontalLocation=horizontalLocation(:);
 % the colors
-colors=repmat([{[1,0,0]},{[0,0,1]}],2,1);
+colors=repmat([{exccolor},{inhcolor}],2,1);
 colors=colors(:);
 % plotting
 util.plot.boxPlotRawOverlay(densities_Agg,horizontalLocation,...
@@ -60,7 +60,7 @@ fh=figure;ax=gca;
 horizontalLocation=[spineXLocation,shaftXLocation];
 horizontalLocation=horizontalLocation(:);
 % the colors
-colors=repmat([{[1,0,0]},{[0,0,1]}],8,1);
+colors=repmat([{exccolor,inhcolor}],8,1);
 colors=colors(:);
 % plotting
 util.plot.boxPlotRawOverlay(densities_Sep,horizontalLocation,...

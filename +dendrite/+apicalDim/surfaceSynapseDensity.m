@@ -45,9 +45,10 @@ results=dendrite.apicalDim.surfaceDensity. ...
 % Smaller datasets: S1, V2, PPC and ACC: L2 vs. Deep
 % PPC2 dataset: L2 vs L3 vs L5 vs L5A
 % LPtA dataset: L2 vs L3 vs L5 vs L5A
-x_width=[2, 2];
-y_width=[4, 3];
-mkrSize=15;
+x_width=[2, 2.6];
+y_width=[3.8, 3.8];
+boxWidths=[.4655,0.708];
+mkrSize=10;
 variables={'apicalDiameter','inhSurfDensity',...
     'excSurfDensity'};
 datasets={'All'};
@@ -59,7 +60,7 @@ curResultStruct=...
 fname='Small_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
 util.plot.boxPlotRawOverlay(curResultStruct.apicalDiameter,1:2,...
-    'boxWidth',0.5,'color',curColors,'tickSize',mkrSize);
+    'boxWidth',boxWidths(1),'color',curColors,'tickSize',mkrSize);
 xlim([0.5,2.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
@@ -77,16 +78,21 @@ curSynSurfaceDensity = [curResultStruct.excSurfDensity;...
 curColors = repmat({exccolor,inhcolor},1,2);
 
 util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),1:4,...
-    'boxWidth',0.5,'color',curColors,'tickSize',mkrSize);
+    'boxWidth',boxWidths(2),'color',curColors,'tickSize',mkrSize);
 
 % Set density plot properties
 set(axDense,'XTickLabel',[],'XLim',[0.5 4.5],...
     'YLim',[0.001,1],'YScale','log');
 util.plot.cosmeticsSave...
     (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
-    [fname,'.svg'],'on','on');
+    [fname,'.svg'],'off','on');
 
 %% Comparison of L2, L3 and L5 at the main bifurcation: PPC2 dataset
+% Correct
+x_width=[2.6, 2.6];
+y_width=[3.8, 3.8];
+boxWidths=[0.708,0.708];
+
 cellTypes2Include=1:5;
 layerOrigin={'mainBifurcation','distalAD'};
 variables={'apicalDiameter','inhSurfDensity',...
@@ -97,13 +103,12 @@ l235esults=...
 curResultStruct=l235esults.mainBifurcation;
 curLabels=results.l235.Properties.RowNames(cellTypes2Include);
 curColors={l2color;l3color;l5color;l2MNcolor;l5Acolor};
-mkrSize=15;
 
 % Diameter comparison
 fname='PPC2_mainBifurcation_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
 util.plot.boxPlotRawOverlay(curResultStruct.apicalDiameter,[1,2,3,1,4],...
-    'boxWidth',0.5,'color',curColors,'tickSize',mkrSize);
+    'boxWidth',boxWidths(1),'color',curColors,'tickSize',mkrSize);
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
@@ -121,13 +126,13 @@ curColors = [repmat({exccolor},1,5);repmat({inhcolor},1,5)];
 indices=dendrite.l2vsl3vsl5.mergeL2Indices().density;
 
 util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),indices,...
-    'boxWidth',0.5,'color',curColors(:),'tickSize',mkrSize);
+    'boxWidth',boxWidths(2),'color',curColors(:),'tickSize',mkrSize);
 % Set density plot properties
 set(axDense,'XTickLabel',[],'XLim',[0.5 8.5],...
    'YLim',[0.01,2],'YScale','log');
 util.plot.cosmeticsSave...
     (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
-    [fname,'.svg'],'on','on');
+    [fname,'.svg'],'off','on');
 %% Comparison of different cell types distal innervation: 
 % LPtA and PPC2 datasets
 cellTypes2Include=[1,2,3,5];
@@ -142,7 +147,7 @@ curLabels=results.l235.Properties.RowNames(cellTypes2Include);
 fname='LPtAPPC2_distalAD_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
 util.plot.boxPlotRawOverlay(curResultStruct.apicalDiameter,1:length(cellTypes2Include),...
-    'boxWidth',0.5,'color',curColors,'tickSize',mkrSize);
+    'boxWidth',boxWidths(1),'color',curColors,'tickSize',mkrSize);
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
@@ -159,10 +164,10 @@ curColors = [repmat({exccolor},1,4);repmat({inhcolor},1,4)];
 
 util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),...
     1:8,...
-    'boxWidth',0.5,'color',curColors(:),'tickSize',mkrSize);
+    'boxWidth',boxWidths(2),'color',curColors(:),'tickSize',mkrSize);
 % Set density plot properties
 set(axDense,'XTickLabel',[],'XLim',[0.5 8.5],...
    'YLim',[0.01,1],'YScale','log');
 util.plot.cosmeticsSave...
     (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
-    [fname,'.svg'],'on','on');
+    [fname,'.svg'],'off','on');
