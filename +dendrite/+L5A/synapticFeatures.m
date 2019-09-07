@@ -27,7 +27,7 @@ forPlot.diameter = ...
 forPlot.spineDensity = cellfun(@(x) x.Spine,synDensity,'UniformOutput',false);
 
 %% Plot Diameter/spineDensity
-x_width=2.6;
+x_width=1.9;
 y_width=1.9;
 boxWidths=0.708;
 outputFolder=fullfile(util.dir.getFig3,'L5L5AComparison');
