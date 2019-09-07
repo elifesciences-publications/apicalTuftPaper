@@ -1,3 +1,5 @@
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+% Generates the soma size and volume figure
 fileName=fullfile(util.dir.getAnnotation,...
     'otherAnnotations','PPC2_somaDiameter.nml');
 skel=skeleton(fileName);
@@ -6,7 +8,7 @@ treeTags={'layer5ApicalDendrite_dist2soma',...
     'layer5AApicalDendrite_dist2soma'};
 % Get the volume and diameter from measurements of format:
 % treename_01,02,03: the three diameters
-[vol,diameter]=dendrite.somaSize.getSomaSize(skel,treeTags,numTrees);
+[vol,diameter]=dendrite.L5A.getSomaSize(skel,treeTags,numTrees);
 
 %% Plot box plot of comparison between soma sizes of L5B and L5A
 x_width=2;
