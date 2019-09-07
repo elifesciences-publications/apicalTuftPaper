@@ -39,7 +39,7 @@ results=dendrite.apicalDim.surfaceDensity. ...
     generateDiameterTable(synCount,dim,pL);
 % Combine the annotations from LPtA (L2-5) and PPC2 (L5A) 
 % to create the distal group
-[results] = dendrite.l2vsl3vsl5.combineL5AwithLPtATable(results);
+[results.l235] = dendrite.l2vsl3vsl5.combineL5AwithLPtATable(results.l235);
 %% Plot the diameter of different cell types
 % Groups:
 % Smaller datasets: S1, V2, PPC and ACC: L2 vs. Deep
