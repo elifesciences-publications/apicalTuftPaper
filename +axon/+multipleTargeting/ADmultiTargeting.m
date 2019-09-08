@@ -8,7 +8,8 @@
 % double-innervated spine of deep apical dendrite
 util.clearAll;
 skel=apicalTuft.getObjects('inhibitoryAxon');
-
+outputDir=fullfile(util.dir.getFig2,'TheMultiInnervation');
+util.mkdir(outputDir);
 %% Most important: find the number of targeting per target group
 % results dims: cell: dataset, array: number of syn on target,target
 % apical type (1: L2, 2: dl), seed apical type (1: L2, 2,dl)
@@ -24,6 +25,7 @@ for d=1:length(skel)
             sum(MultiPerDataset{d}{skel{d}.(seedType{seed}),'DeepApical'},1)'];
     end
 end
+
 
 % check that the total number of synapse in the apical dendrite groups
 % match with what we get from syncount
@@ -51,11 +53,11 @@ x_width=10;y_width = 7;
 maxSynNumber = 7;
 hold on
 for i=1:2
-    trIndices.(seedTag{i})=...
+    trIndicesStruct.(seedTag{i})=...
         cellfun(@(x) x.(seedTag{i}),skel,'UniformOutput',false);
     seedTargeting.(seedTag{i})=...
         cellfun(@(x,y) x.seedTargetingNr(y,i),MultiPerDataset,...
-        trIndices.(seedTag{i}),'uni',0);
+        trIndicesStruct.(seedTag{i}),'uni',0);
     seedTargeting.(seedTag{i})=cat(1,seedTargeting.(seedTag{i}){:});
     histogram(seedTargeting.(seedTag{i}),'BinEdges',1:maxSynNumber+1,...
         'DisplayStyle','stairs','EdgeColor',colors{i},...
@@ -95,6 +97,47 @@ for d=1:2
         outputDir,[fnames{d},'.svg']);
     hold off
 end
+%% Boxplot of average number of synapses per target for each axon
+% Aggregate data based on the seed type
+clear targetingPerSeedType
+for s=1:2
+    for d=1:length(skel)
+    targetingPerSeedType.(seedType{s}){d} = ...
+        MultiPerDataset{d}(skel{d}.(seedType{s}),...
+        {'L2Apical','DeepApical'});
+    end
+   targetingPerSeedType.([seedType{s},'seeded']) = ... 
+       cat(1,targetingPerSeedType.(seedType{s}){:});
+end
+seed={'l2Idxseeded','dlIdxseeded'};
+targets=targetingPerSeedType.dlIdxseeded.Properties.VariableNames;
+for s=1:2
+    for t=1:2
+    curTargetingDist=targetingPerSeedType.(seed{s}).(targets{t});
+    curTotalSynNummer=sum(curTargetingDist.*[1:size(curTargetingDist,2)],2);
+    curTotalTargetNummer = sum(curTargetingDist,2);
+    curSynPerTarget=curTotalSynNummer./curTotalTargetNummer;
+    % remove the nans  for axons with no synapse on target
+    curSynPerTarget = curSynPerTarget(~isnan(curSynPerTarget));
+    avgSynPerAxon{s,t} = curSynPerTarget;
+    end
+end
+%% Plot as a boxplot
+fh=figure;ax=gca;
+colors=repmat({l2color,dlcolor},1,2);
+x_width=2.5;
+y_width=2.5;
+util.plot.boxPlotRawOverlay(avgSynPerAxon(:),1:4,...
+    'ylim',4.5,'boxWidth',0.5496,'color',colors(:),'tickSize',10);
+yticks(0:4);yticklabels(0:4);
+xticks([])
+util.plot.cosmeticsSave...
+    (fh,ax,x_width,y_width,outputDir,'synPerTarget.svg');
+disp('L2Seeded: ')
+util.stat.ranksum(avgSynPerAxon{1,1},avgSynPerAxon{1,2});
+disp('DeepSeeded')
+util.stat.ranksum(avgSynPerAxon{2,1},avgSynPerAxon{2,2});
+
 %% Plot probability matrices
 % two plots:
 % 1. per AD: each target counted as one no matter how many times targeted
