@@ -5,7 +5,7 @@ skel = apicalTuft('PPC2_l2vsl3vsl5');
 skel = skel.sortTreesByName;
 cellTypeRatios = skel.applyMethod2ObjectArray({skel},...
     'getSynRatio',[],false,'mapping');
-distance2soma = skel.applyMethod2ObjectArray({skel},...
+distance2somaRaw = skel.applyMethod2ObjectArray({skel},...
     'getDistanceBWPoints',[],false,'dist2soma');
 cellTypeDensity = skel.applyMethod2ObjectArray({skel},...
     'getSynDensityPerType',[],false,'mapping');
@@ -17,20 +17,47 @@ shaftDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
     'UniformOutput',false);
 spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
     'UniformOutput',false);
-distance2soma = distance2soma.Variables;
-
+distance2soma = distance2somaRaw.Variables;
+%% Set the values of the L5st group to the corrected values and 
+% also keep the uncorrected values for later plotting 
+results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
+% Keep only the main bifurcation results from L5A (L5st) group
+resultsL5A = results.l235{end,:}{1};
+% varibales for assigning
+variableNames={'shaftRatio','shaftDensity','spineDensity'};
+tableVariableNames={'Shaft_Ratio','Shaft_Density','Spine_Density'};
+for i=1:3
+    curUncorrected=evalin('base',[variableNames{i},'{end}']);
+    curCorrected=resultsL5A.(tableVariableNames{i})(:,2);
+    assert(isequal(curUncorrected,resultsL5A.(tableVariableNames{i})(:,1)));
+    % save uncorrected (raw values for plotting later)
+    l5ARawData.(variableNames{i}) = curUncorrected;
+    % Change values to corrected for plotting
+    evalin('base',[variableNames{i},'{end} = curCorrected']);
+end
 %% Plotting for Figure 3: inhibitoy ratio
 outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
 util.mkdir (outputFolder)
 util.setColors
-x_width=5;
-y_width=3.5;
+x_width=3;
+y_width=3.8;
 colors=util.plot.getColors().l2vsl3vsl5;
 indices=[1,2,3,1,4];
 % inhibitory Ratio
 fh=figure;ax=gca;
-util.plot.boxPlotRawOverlay(shaftRatio,indices,'ylim',1,'boxWidth',0.5,...
-'color',colors,'tickSize',20);
+mkrSize=10;
+noisyXValues=...
+    util.plot.boxPlotRawOverlay(shaftRatio,indices,'ylim',1,'boxWidth',0.5496,...
+    'color',colors,'tickSize',mkrSize);
+% Make sure order of corrected and uncorrected values match
+L5Ahorizontal = noisyXValues{end}(1,:)';
+assert( isequal(noisyXValues{end}(2,:)', resultsL5A.Shaft_Ratio(:,2)) );
+
+% Plot the uncorrected L5A values as grey crosses and connect them with a
+% line
+dendrite.L5A.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
+    L5Ahorizontal)
+
 xticks(1:max(indices));
 yticks(0:0.2:1)
 xlim([0.5, max(indices)+.5])
@@ -47,8 +74,8 @@ testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups);
 
 outputFolder = fullfile(util.dir.getFig3,'cellTypeComparison');
 util.mkdir(outputFolder)
-x_width = 2.7;
-y_width = 2.3;
+x_width = 2;
+y_width = 2.2;
 colors = [repmat({exccolor},1,5);repmat({inhcolor},1,5)];
 allDensitites = [spineDensity';shaftDensity'];
 % Merge L2 with L2MN
@@ -57,9 +84,17 @@ densityIndices(7:8)=1:2;
 densityIndices(9:10)=7:8;
 % Density plot
 fh = figure;ax = gca;
-util.plot.boxPlotRawOverlay(allDensitites(:),densityIndices(:),...
+curXLoc=util.plot.boxPlotRawOverlay(allDensitites(:),densityIndices(:),...
     'ylim',10,'boxWidth',0.5,'color',colors(:),'tickSize',10);
 set(ax,'yscale','log');
+
+% Get the uncorrected values and concatenate the excitatory and inhibitory
+% synapse densities
+curXLoc=cat(2,curXLoc{end-1:end})';
+thisUnCorrected=[l5ARawData.spineDensity;l5ARawData.shaftDensity];
+
+% Add the L5A raw data points
+dendrite.L5A.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1))
 
 xlim([0.5,8.5])
 util.plot.cosmeticsSave...
@@ -84,14 +119,17 @@ for i=1:length(curVariables)
         bifur.(curVariables{i}))
 end
 
-%%  = Correlation and Exponential fit
+%% Correlation and Exponential fit
 outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
 
 % Inhibitory Ratio
 [fh,ax,exponentialFit_Ratio]=dendrite.l2vsl3vsl5.plotCorrelation...
     (distance2soma,shaftRatio);
-x_width=5;
-y_width=2.5;
+% Add L5A uncorrected
+dendrite.L5A.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
+    distance2soma{end});
+x_width=3.7;
+y_width=3;
 % plot exponential with offset
 minDist2Soma=min(cell2mat(distance2soma));
 modelfun = @(b,x)(b(1)+b(2)*exp(b(3)*x));
@@ -118,6 +156,9 @@ disp(['Single exponential fit Rsquared, Ratio: ',...
 beta0Inh=[0.1000,0.5824, -0.0299];
 [fh,ax,exponentialFit_inh]=dendrite.l2vsl3vsl5.plotCorrelation...
     (distance2soma,shaftDensity,beta0Inh);
+% Add L5A uncorrected
+dendrite.L5A.plotUncorrected(l5ARawData.shaftDensity,shaftDensity{end},...
+    distance2soma{end});
 x_width=7.5;
 y_width=5;
 % plot exponential with offset
@@ -140,6 +181,9 @@ disp(['Single exponential fit Rsquared, Ratio: ',...
 % spineDensity
 [fh,ax,exponentialFit_Exc]=dendrite.l2vsl3vsl5.plotCorrelation...
     (distance2soma,spineDensity);
+% Add L5A uncorrected
+dendrite.L5A.plotUncorrected(l5ARawData.spineDensity,spineDensity{end},...
+    distance2soma{end});
 x_width=7.5;
 y_width=5;
 % plot exponential with offset

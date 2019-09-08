@@ -1,4 +1,4 @@
-function boxPlotRawOverlay(array,xlocationRaw,varargin)
+function [arrayWithNoisyX]=boxPlotRawOverlay(array,xlocationRaw,varargin)
 % boxPlotRawOverlay creates an overlay of raw data  over a boxplot for a cell
 % array
 % INPUT:
@@ -67,7 +67,8 @@ if ~isempty(dupIdx)
     xLocation(dupIdx)=[];
 end
 %% Add noisy x for scatter plot
-arrayWithNoisyX=cellfun(@(array,position)util.plot.addHorizontalNoise(array,position,optIn.boxWidth-0.1),...
+arrayWithNoisyX=cellfun(@(array,position)util.plot.addHorizontalNoise...
+    (array,position,optIn.boxWidth-0.1),...
     array(:),xLocation,'UniformOutput',false);
 
 %% Creating the figure

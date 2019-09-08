@@ -5,7 +5,7 @@ if ~exist('beta0','var') || isempty (beta0)
     beta0=[];
 end
 
-crossSize=20;
+crossSize=10;
 dist2somaColors=util.plot.getColors().l2vsl3vsl5;
 fh=figure;ax=gca;
 hold on
