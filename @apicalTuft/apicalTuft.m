@@ -76,6 +76,8 @@ classdef apicalTuft < skeleton
             obj=obj.updateGrouping;
             % Set dataset properties if available
             obj=obj.setDatasetProperties;
+            % Sort trees by name
+            obj=obj.sortTreesByName;
         end
         % Set the properties from the configuration file
         function obj=readProperties(obj,properties)
