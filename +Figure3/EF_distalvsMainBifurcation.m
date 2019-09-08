@@ -14,17 +14,45 @@ vars=fieldnames(distal);
 for i=1:length(vars)
     distal.(vars{i})=[distal.(vars{i});distalL5A.(vars{i})];
 end
+%% Set the values of the L5st group to the corrected values and 
+% also keep the uncorrected values for later plotting 
+results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
+% Keep only the distalAD results from L5A (L5st) group
+resultsL5A = results.l235{end,:}{2};
+% varibales for assigning
+variableNames={'shaftRatio','shaftDensity','spineDensity'};
+tableVariableNames={'Shaft_Ratio','Shaft_Density','Spine_Density'};
+for i=1:3
+    curUncorrected = distal.(variableNames{i}){end};
+    curCorrected = resultsL5A.(tableVariableNames{i})(:,2);
+    assert(isequal(curUncorrected,resultsL5A.(tableVariableNames{i})(:,1)));
+    % save uncorrected (raw values for plotting later)
+    l5ARawData.(variableNames{i}) = curUncorrected;
+    % Change values to corrected for plotting
+    distal.(variableNames{i}){end} = curCorrected;
+end
 %% Plot inhibitory Ratios
 outputFolder=fullfile(util.dir.getFig3,'distalvsMain');
 util.mkdir(outputFolder);
 util.setColors;
 x_width=3;
-y_width=3;
+y_width=3.8;
 colors={l2color,l3color,l5color,l5Acolor};
 
 fh=figure;ax=gca;
-util.plot.boxPlotRawOverlay(distal.shaftRatio,1:4,'ylim',1,'boxWidth',0.5,...
+noisyXValues=...
+    util.plot.boxPlotRawOverlay(distal.shaftRatio,1:4,'ylim',1,'boxWidth',0.5496,...
 'color',colors,'tickSize',15);
+
+% Make sure order of corrected and uncorrected values match
+L5Ahorizontal = noisyXValues{end}(1,:)';
+assert( isequal(noisyXValues{end}(2,:)', resultsL5A.Shaft_Ratio(:,2)) );
+
+% Plot the uncorrected L5A values as grey crosses and connect them with a
+% line
+dendrite.L5A.plotUncorrected(l5ARawData.shaftRatio,distal.shaftRatio{end},...
+    L5Ahorizontal);
+
 xticklabels([]);
 yticks(0:0.2:1);
 xlim([0.5, 4.5]);
@@ -38,18 +66,29 @@ testResult = util.stat.KW(distal.shaftRatio,cellTypes);
 
 %% Also do the densities
 x_width=2;
-y_width=2;
+y_width=2.2;
 colors=[repmat({exccolor},1,4);repmat({inhcolor},1,4)];
 
 allDensitites=[distal.spineDensity';distal.shaftDensity'];
 fh=figure;ax=gca;
-util.plot.boxPlotRawOverlay(allDensitites(:),1:8,'ylim',10,'boxWidth',0.75,...
+curXLoc = ...
+    util.plot.boxPlotRawOverlay(allDensitites(:),1:8,'ylim',10,'boxWidth',0.5,...
 'color',colors(:),'tickSize',10);
 set(ax,'yscale','log');
+yticks([0.1,1,10]);
+yticklabels([0.1,1,10]);
 xticklabels([]);
 
+% Get the uncorrected values and concatenate the excitatory and inhibitory
+% synapse densities
+curXLoc=cat(2,curXLoc{end-1:end})';
+thisUnCorrected=[l5ARawData.spineDensity;l5ARawData.shaftDensity];
+
+% Add the L5A raw data points
+dendrite.L5A.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1));
+
 xlim([0.5,8.5])
-ylim([0.1,10])
+ylim([0.05,10])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'synapseDensities.svg','off','on');
 
@@ -96,13 +135,13 @@ for celltype=1:length(cellTypes)
         testResultsRatios.(curField).sem,....
         'Color',curColor);
 end
-xlim([0.75, 2.25]);
-ylim([0,0.6]);
+xlim([0.85, 2.15]);
+ylim([0,0.45]);
 xticks(1:2);
 yticks(0:0.1:0.6)
 xticklabels([]);
-x_width=3.6;
-y_width=1.7;
+x_width=3.5;
+y_width=2.5;
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'summaryPlot.svg','off','on');
 %% layer 5 excitatory shaft, spine synapse density and inhibitory fraction

@@ -86,7 +86,6 @@ densityIndices(9:10)=7:8;
 fh = figure;ax = gca;
 curXLoc=util.plot.boxPlotRawOverlay(allDensitites(:),densityIndices(:),...
     'ylim',10,'boxWidth',0.5,'color',colors(:),'tickSize',10);
-set(ax,'yscale','log');
 
 % Get the uncorrected values and concatenate the excitatory and inhibitory
 % synapse densities
@@ -96,6 +95,10 @@ thisUnCorrected=[l5ARawData.spineDensity;l5ARawData.shaftDensity];
 % Add the L5A raw data points
 dendrite.L5A.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1))
 
+% Fig props
+set(ax,'yscale','log');
+yticks([0.1,1,10]);
+yticklabels([0.1,1,10]);
 xlim([0.5,8.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'synapseDensities.svg','off','on');
@@ -177,15 +180,16 @@ util.plot.cosmeticsSave...
 disp(['Single exponential fit Rsquared, Ratio: ',...
     num2str(exponentialFit_inh.oneWithOff.Rsquared.Ordinary)]);
 
-
 % spineDensity
 [fh,ax,exponentialFit_Exc]=dendrite.l2vsl3vsl5.plotCorrelation...
     (distance2soma,spineDensity);
+
 % Add L5A uncorrected
 dendrite.L5A.plotUncorrected(l5ARawData.spineDensity,spineDensity{end},...
     distance2soma{end});
 x_width=7.5;
 y_width=5;
+
 % plot exponential with offset
 modelRatio=modelfun(exponentialFit_Exc.oneWithOff.Coefficients.Estimate',...
     distRange);
