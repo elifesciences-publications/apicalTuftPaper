@@ -37,8 +37,16 @@ for l=1:2
 end
 axonSwitchFraction=structfun(@(x)fliplr(x),axonSwitchFraction,...
     'UniformOutput',false);
-% Save the output for later retrieval
+%% Save the output for later retrieval
 if saveMatfile
     save(fullfile(util.dir.getAnnotation,'matfiles','axonSwitchFraction'),...
-        'axonSwitchFraction')
+        'axonSwitchFraction');
 end
+textFileName=fullfile(util.dir.getFig3,'correctionforAxonSwitching',...
+    'axonSwitchFraction');
+f=fieldnames(axonSwitchFraction);
+for i=1:length(f)
+    writetable(axonSwitchFraction.(f{i}),...
+        [textFileName,'_',f{i},'.xlsx'],'WriteRowNames',true);
+end
+system('./synPlots.sht');
