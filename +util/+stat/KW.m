@@ -1,4 +1,4 @@
-function [testResult] = KW(array,labels,mergeGroups)
+function [testResult] = KW(array,labels,mergeGroups,fname)
 %KW applies kruskall wallis test to elements of a cell array
 % Create array of data and labels for KW test
 % Merge groups specified
@@ -11,6 +11,12 @@ else
         array(curIdx(2))=[];
     end
 end
+if ~exist('fname','var') || isempty(fname)
+    writeResult=false;
+else
+    writeResult=true;
+end
+
 array = array(:)';
 dataArray = cat(1,array{:});
 lengths = cellfun(@length,array);
@@ -26,5 +32,11 @@ testResult.tableMeanSEM = table(cellfun(@mean,array)',...
     'RowNames',labels);
 disp(['p-value from Kruskall Wallis test is: ',num2str(testResult.pKW)]);
 disp(testResult.tableMeanSEM);
+% Write each field in a separate text file
+if writeResult
+    writetable(array2table(testResult.pKW),[fname,'pvalKW.xlsx'])
+    writetable(array2table(testResult.cMC),[fname,'multCompare.xlsx']);
+    writetable(testResult.tableMeanSEM,[fname,'meanSEM.xlsx'],'WriteRowNames',true);
+end
 end
 
