@@ -1,4 +1,4 @@
-function [Rho,pval] = correlation(array,colors,markers,crossSize,fname)
+function [out] = correlation(array,colors,markers,crossSize,fname)
 % PLOTCORRELATION plots the correlation between two values.
 % INPUT:
 %       array: cell array with each cell having N x 2 structures.
@@ -12,6 +12,7 @@ if ~exist('crossSize','var') || isempty(crossSize)
 end
 if ~exist('fname','var') || isempty(fname)
     write2file=false;
+    fname=[];
 else
     write2file=true;
 end
@@ -30,18 +31,8 @@ for d=1:length(array)
     totalX=[totalX;curX];
     totalY=[totalY;curY];
 end
-% Get the correlation coefficient and its significance level
-if write2file
-    [Rho,pval] = corr(totalX,totalY);
-    fid = fopen(fname,'w+');
-    modelUnity=@(x) x;
-    Rsquared = util.stat.coeffDetermination(modelUnity, [totalX,totalY]);
-    fprintf(fid, ['Correlation Coefficient is: ',num2str(Rho),'\n',...
-        'The p-value is: ',num2str(pval),'\n']);
-    fprintf(fid, ['Maximum X is: ',num2str(max(totalX)),'\n',...
-        'The Maximum Y is: ',num2str(max(totalY)),'\n']);
-    fprintf(fid, ['R squared is: ',num2str(Rsquared),'\n']);
-    fclose(fid);
-end
+modelUnity=@(x) x;
+out=util.stat.correlationStatFileWriter(totalX,totalY,fname,modelUnity);
+
 end
 

@@ -39,14 +39,26 @@ limits=[1,1,6;1,0.5,3];
 for l = 1:length(layerOrigin)
     for v = 1:length(variables)
         fname = strjoin({variables{v},layerOrigin{l}},'_');
+        fullfname=fullfile(outputFolder,fname);
         fh=figure('Name',fname);ax=gca;
         hold on
         curLim = limits(l,v);
         thisMeasure = densityRatioForPlot.(layerOrigin{l}).(variables{v});
+        % Plot the correlation and write the text file with Rho and
+        % Rsquared
         util.plot.correlation(thisMeasure,colors,[],mkrSize,...
             fullfile(outputFolder,[fname,'.txt']));
         dendrite.synSwitch.getCorrected.correlationFigCosmetics(curLim,ax);
         hold off
+        % Used in text: Separate L5st and other neurons for calculation of 
+        % Rsquared
+        modelUnity=@(x) x;
+        otherCells=cat(1,thisMeasure{1:4});
+        L5st=thisMeasure{5};
+        util.stat.correlationStatFileWriter(otherCells(:,1),otherCells(:,2),...
+            [fullfname,'_OtherCells.txt'],modelUnity);
+        util.stat.correlationStatFileWriter(L5st(:,1),L5st(:,2),...
+            [fullfname,'_L5st.txt'],modelUnity);
         util.plot.cosmeticsSave...
             (fh,ax,x_width(v),y_width(v),outputFolder,[fname,'.svg'],...
             'on','on');
