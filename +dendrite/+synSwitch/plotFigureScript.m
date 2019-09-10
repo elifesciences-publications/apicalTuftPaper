@@ -15,11 +15,13 @@ densityRatioForPlotBifur = dendrite.util.rearrangeArrayForPlot(results.bifur,...
     dataset,variables);
 colors = {l2color,dlcolor};
 mkrSize = 10;
+
 for v=1:length(variables)
     fname=['L2Datasets',variables{v}];
     fh=figure('Name',fname);ax=gca;
     thisMeasure = densityRatioForPlotBifur.Aggregate.(variables{v});
-    util.plot.correlation(thisMeasure,colors,[],mkrSize);
+    util.plot.correlation(thisMeasure,colors,[],mkrSize,...
+        fullfile(outputFolder,[fname,'.txt']));
     dendrite.synSwitch.getCorrected.correlationFigCosmetics(limits(v),ax);
     util.plot.cosmeticsSave...
         (fh,ax,x_width(v),y_width(v),outputFolder,...
@@ -41,7 +43,8 @@ for l = 1:length(layerOrigin)
         hold on
         curLim = limits(l,v);
         thisMeasure = densityRatioForPlot.(layerOrigin{l}).(variables{v});
-        util.plot.correlation(thisMeasure,colors,[],mkrSize);
+        util.plot.correlation(thisMeasure,colors,[],mkrSize,...
+            fullfile(outputFolder,[fname,'.txt']));
         dendrite.synSwitch.getCorrected.correlationFigCosmetics(curLim,ax);
         hold off
         util.plot.cosmeticsSave...
