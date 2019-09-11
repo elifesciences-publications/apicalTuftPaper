@@ -38,14 +38,11 @@ dim.l235=apicalTuft.applyMethod2ObjectArray...
 results = ...
     dendrite.apicalDim.surfaceDensity.generateDiameterTable ...
     (synCount, dim, pL, skel.l235.dense);
-% Combine the annotations from LPtA (L2-5) and PPC2 (L5A) 
+% Combine the annotations from LPtA (L2-5) and PPC2 (L5A)
 % to create the distal group
 [results.l235] = dendrite.l2vsl3vsl5.combineL5AwithLPtATable(results.l235);
-%% Plot the diameter of different cell types
-% Groups:
-% Smaller datasets: S1, V2, PPC and ACC: L2 vs. Deep
-% PPC2 dataset: L2 vs L3 vs L5 vs L5A
-% LPtA dataset: L2 vs L3 vs L5 vs L5A
+%% Plot the diameter of small datasets
+
 x_width=[2, 2.6];
 y_width=[3.8, 3.8];
 boxWidths=[.4655,0.708];
@@ -68,14 +65,19 @@ util.plot.cosmeticsSave...
     [fname,'.svg'],'off','on');
 
 
-% Excitatory/Inhibitory surface Density boxplot
+%% Small datasets: Excitatory/Inhibitory surface Density boxplot
 fname = strjoin({'Small','Densities'},'_');
 fhDense = figure('Name',fname);axDense=gca;
 
 curSynSurfaceDensity = [curResultStruct.excSurfDensity;...
     curResultStruct.inhSurfDensity];
 curColors = repmat({exccolor,inhcolor},1,2);
-
+% Testing for the diameter
+for v=1:3
+    util.stat.ranksum(curResultStruct.(variables{v}){1},...
+        curResultStruct.(variables{v}){2},...
+        fullfile(outputFolder,[fname,'_',variables{v}]));
+end
 util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),1:4,...
     'boxWidth',boxWidths(2),'color',curColors,'tickSize',mkrSize);
 
@@ -85,12 +87,7 @@ set(axDense,'XTickLabel',[],'XLim',[0.5 4.5],...
 util.plot.cosmeticsSave...
     (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
     [fname,'.svg'],'off','on');
-% Testing for the diameter
-for v=1:3
-util.stat.ranksum(curResultStruct.(variables{v}){1},...
-    curResultStruct.(variables{v}){2},...
-    fullfile(outputFolder,[fname,'_',variables{v}]));
-end
+
 
 %% Comparison of L2, L3 and L5 at the main bifurcation: PPC2 dataset
 % Correct
@@ -102,27 +99,30 @@ cellTypes2Include=1:5;
 layerOrigin={'mainBifurcation','distalAD'};
 variables={'apicalDiameter','inhSurfDensity',...
     'excSurfDensity'};
-l235esults=...
+l235results=...
     dendrite.util.rearrangeArrayForPlot(results.l235,...
     layerOrigin,variables);
-curResultStruct=l235esults.mainBifurcation;
+curResultStruct=l235results.mainBifurcation;
 curLabels=results.l235.Properties.RowNames(cellTypes2Include);
 curColors={l2color;l3color;l5color;l2MNcolor;l5Acolor};
 
-% Diameter comparison
+%% Diameter comparison, main bifurcation PPC2
 fname='PPC2_mainBifurcation_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
 util.plot.boxPlotRawOverlay(curResultStruct.apicalDiameter,[1,2,3,1,4],...
     'boxWidth',boxWidths(1),'color',curColors,'tickSize',mkrSize);
-util.plot.cosmeticsSave...
-    (fh,ax,x_width(1),y_width(1),outputFolder,...
-    [fname,'.svg'],'off','on');
+
 % Merge L2 and L2MN cells for the KW test
 mergeGroups={[1,4]};
 util.stat.KW(curResultStruct.apicalDiameter,curLabels,mergeGroups,...
     fullfile(outputFolder,fname));
 
-% Excitatory/Inhibitory surface Density boxplot
+util.plot.cosmeticsSave...
+    (fh,ax,x_width(1),y_width(1),outputFolder,...
+    [fname,'.svg'],'off','on');
+
+
+%% Excitatory/Inhibitory surface Density boxplot
 fname = strjoin({'CellType_mainBifurcation','Densities'},'_');
 fhDense = figure('Name',fname);axDense=gca;
 
@@ -131,18 +131,32 @@ curSynSurfaceDensity = [curResultStruct.excSurfDensity;...
 curColors = [repmat({exccolor},1,5);repmat({inhcolor},1,5)];
 indices=dendrite.l2vsl3vsl5.mergeL2Indices().density;
 
-util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),indices,...
+xLoc = util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),indices,...
     'boxWidth',boxWidths(2),'color',curColors(:),'tickSize',mkrSize);
 % Set density plot properties
 set(axDense,'XTickLabel',[],'XLim',[0.5 8.5],...
-   'YLim',[0.01,2],'YScale','log');
+    'YLim',[0.01,2],'YTick',[0.01,0.1,1],'YTickLabel',[0.01,0.1,1],...
+    'YScale','log');
+
+dendrite.apicalDim.surfaceDensity.addL5AUncorrected(xLoc, results,...
+    'mainBifurcation');
+
+% Merge L2 and L2MN cells for the KW test
+mergeGroups={[1,4]};
+synTypeLabel = {'inhSurfDensity','excSurfDensity'};
+for i=1:2
+    util.stat.KW(curResultStruct.(synTypeLabel{i}),curLabels,mergeGroups,...
+        fullfile(outputFolder,[fname,'_',synTypeLabel{i}]));
+end
+
 util.plot.cosmeticsSave...
     (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
     [fname,'.svg'],'off','on');
-%% Comparison of different cell types distal innervation: 
+
+%% Comparison of different cell types distal innervation:
 % LPtA and PPC2 datasets
 cellTypes2Include=[1,2,3,5];
-curResultStruct=l235esults.distalAD;
+curResultStruct=l235results.distalAD;
 % Remove empty L2 group
 curResultStruct=structfun(@(x) x(cellTypes2Include),curResultStruct,...
     'UniformOutput',false);
@@ -154,13 +168,14 @@ fname='LPtAPPC2_distalAD_apicalDiameter';
 fh=figure('Name',fname);ax=gca;
 util.plot.boxPlotRawOverlay(curResultStruct.apicalDiameter,1:length(cellTypes2Include),...
     'boxWidth',boxWidths(1),'color',curColors,'tickSize',mkrSize);
+% KW test
+util.stat.KW(curResultStruct.apicalDiameter,curLabels,[],...
+    fullfile(outputFolder,fname));
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
-util.stat.KW(curResultStruct.apicalDiameter,curLabels);
 
-
-% Excitatory/Inhibitory surface Density boxplot
+%% Excitatory/Inhibitory surface Density boxplot
 fname = strjoin({'CellType_DistalAD','Densities'},'_');
 fhDense = figure('Name',fname);axDense=gca;
 
@@ -168,12 +183,24 @@ curSynSurfaceDensity = [curResultStruct.excSurfDensity;...
     curResultStruct.inhSurfDensity];
 curColors = [repmat({exccolor},1,4);repmat({inhcolor},1,4)];
 
-util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),...
+xLoc=util.plot.boxPlotRawOverlay(curSynSurfaceDensity(:),...
     1:8,...
     'boxWidth',boxWidths(2),'color',curColors(:),'tickSize',mkrSize);
 % Set density plot properties
 set(axDense,'XTickLabel',[],'XLim',[0.5 8.5],...
-   'YLim',[0.01,1],'YScale','log');
+    'YLim',[0.01,1],'YTick',[0.01,0.1,1],'YTickLabel',[0.01,0.1,1],...
+    'YScale','log');
+
+% Add L5st uncorrected
+dendrite.apicalDim.surfaceDensity.addL5AUncorrected(xLoc, results,...
+    'distalAD');
+
+% Merge L2 and L2MN cells for the KW test
+synTypeLabel = {'inhSurfDensity','excSurfDensity'};
+for i=1:2
+    util.stat.KW(curResultStruct.(synTypeLabel{i}),curLabels,[],...
+        fullfile(outputFolder,[fname,'_',synTypeLabel{i}]));
+end
 util.plot.cosmeticsSave...
     (fhDense,axDense,x_width(2),y_width(2),outputFolder,...
     [fname,'.svg'],'off','on');

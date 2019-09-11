@@ -17,7 +17,6 @@ else
     end
 end
 
-
 for l=1:length(layerOriginOrDataset)
     curResults=results.(layerOriginOrDataset{l});
     indices=~cellfun(@isempty,curResults);

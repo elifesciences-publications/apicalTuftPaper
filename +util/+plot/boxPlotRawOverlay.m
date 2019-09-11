@@ -48,18 +48,17 @@ end
 
 % Different group with different color but plotted on the same location 
 % (Used) first time to add L2MN cells to L2 cells
-[~,ind]=unique(xlocationRaw);
-setdiff(1:length(xlocationRaw),ind)
-dupIdx=setdiff(1:length(xlocationRaw),ind);
+[~,ind] = unique(xlocationRaw);
+dupIdx = setdiff(1:length(xlocationRaw),ind);
 if ~isempty(dupIdx)
-    for i=1:length(dupIdx)
-        curDup=dupIdx(i);
-        curXLoc=xLocation{curDup};
-        lengthOriginal=length(array{curXLoc});
-        lengthDup=length(array{curDup});
+    for i = 1:length(dupIdx)
+        curDup = dupIdx(i);
+        curXLoc = xLocation{curDup};
+        lengthOriginal = length(array{curXLoc});
+        lengthDup = length(array{curDup});
         % Concatenate the array to the original location
-        array{curXLoc}=[array{curXLoc};array{curDup}];
-        optIn.color{curXLoc}=[repmat(optIn.color{curXLoc},lengthOriginal,1);...
+        array{curXLoc} = [array{curXLoc};array{curDup}];
+        optIn.color{curXLoc} = [repmat(optIn.color{curXLoc},lengthOriginal,1);...
             repmat(optIn.color{curDup},lengthDup,1)];
     end
     array(dupIdx)=[];
