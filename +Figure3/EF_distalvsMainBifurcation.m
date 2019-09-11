@@ -63,7 +63,11 @@ util.plot.cosmeticsSave...
 % Merge L2 and L2MN
 cellTypes = {'L2','L3','L5B','L5A'};
 testResult = util.stat.KW(distal.shaftRatio,cellTypes);
+% Text: Ranksum comparison L2, L2MN, L5st, L5tt
 
+util.stat.ranksum(distal.shaftRatio{3},distal.shaftRatio{4},fullfile(outputFolder,...
+    'Distal_L5ttL5stComparison_ShaftRation'))
+util.copyfiles2fileServer;
 %% Also do the densities
 x_width=2;
 y_width=2.2;

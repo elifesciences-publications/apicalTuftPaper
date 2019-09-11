@@ -51,3 +51,10 @@ for i=1:2
     end
 end
 
+%% Testing for the text: combine distalAD and main bifurcaiton
+util.stat.ranksum(cat(1,forPlot.diameter{1,:}),cat(1,forPlot.diameter{2,:}),...
+    fullfile(outputFolder,'dimeterTestAll'));
+
+util.stat.ranksum(cat(1,forPlot.spineDensity{1,:}),cat(1,forPlot.spineDensity{2,:}),...
+    fullfile(outputFolder,'spineDensityCombined'));
+util.copyfiles2fileServer

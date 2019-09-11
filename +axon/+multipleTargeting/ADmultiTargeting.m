@@ -131,13 +131,15 @@ util.plot.boxPlotRawOverlay(avgSynPerAxon(:),1:4,...
     'ylim',4.5,'boxWidth',0.5496,'color',colors(:),'tickSize',10);
 yticks(0:4);yticklabels(0:4);
 xticks([])
+
+disp('L2Seeded: ')
+util.stat.ranksum(avgSynPerAxon{1,1},avgSynPerAxon{1,2},...
+    fullfile(outputDir,'L2Seeded'));
+disp('DeepSeeded')
+util.stat.ranksum(avgSynPerAxon{2,1},avgSynPerAxon{2,2},...
+    fullfile(outputDir,'DeepSeeded'));
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputDir,'synPerTarget.svg');
-disp('L2Seeded: ')
-util.stat.ranksum(avgSynPerAxon{1,1},avgSynPerAxon{1,2});
-disp('DeepSeeded')
-util.stat.ranksum(avgSynPerAxon{2,1},avgSynPerAxon{2,2});
-
 %% Plot probability matrices
 % two plots:
 % 1. per AD: each target counted as one no matter how many times targeted

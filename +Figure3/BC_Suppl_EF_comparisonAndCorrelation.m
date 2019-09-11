@@ -69,7 +69,12 @@ util.plot.cosmeticsSave...
 mergeGroups = {[1,4]};
 curLabels = cellTypeRatios.Properties.RowNames;
 testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups);
-
+% Text: Ranksum comparison L2, L2MN, L5st, L5tt
+util.stat.ranksum(shaftRatio{1},shaftRatio{4},fullfile(outputFolder,...
+    'L2L2MNComparison_ShaftRation'))
+util.stat.ranksum(shaftRatio{3},shaftRatio{5},fullfile(outputFolder,...
+    'L5ttL5stComparison_ShaftRation'))
+util.copyfiles2fileServer;
 %% Plotting for Figure 3: synapse density
 
 outputFolder = fullfile(util.dir.getFig3,'cellTypeComparison');
