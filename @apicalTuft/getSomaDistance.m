@@ -10,7 +10,7 @@ if ~exist('fromString','var') || isempty(fromString)
     fromString='bifurcation';
 end
 % Get the location of the other point to compare to soma
-locationIdx=skel.getNodesWithComment(skel.(fromString),...
+locationIdx=skel.getNodesWithComment(fromString,...
     treeIndices,'partial');
 % Make sure it is a cell
 if ~iscell(locationIdx)

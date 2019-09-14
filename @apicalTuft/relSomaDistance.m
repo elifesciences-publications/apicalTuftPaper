@@ -15,7 +15,7 @@ if ~exist('additionalDist','var') || isempty(additionalDist)
     additionalDist=zeros(size(treeIndices));
 end
 % Get the location of the other point to compare to soma
-somaLocationIdx=skel.getNodesWithComment(skel.(toString),...
+somaLocationIdx = skel.getNodesWithComment(toString,...
     treeIndices,'partial');
 % Make sure it is a cell
 if ~iscell(somaLocationIdx)

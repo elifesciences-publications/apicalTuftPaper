@@ -1,7 +1,7 @@
 function [skel] = relSomaBinCountInhRatio(skel,...
     treeIndices,range)
-% relSomaBinCountInhRatio this is for relative to soma distance analysis of
-% layer 2 pyramidal cells
+% relSomaBinCountInhRatio calculate the inhibitory ratio relative to soma 
+% distance. Used for analysis in layer 2 pyramidal cells
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices=1:skel.numTrees;
@@ -9,7 +9,10 @@ end
 if ~exist('range','var') || isempty(range)
     range=0:10:200;
 end
+% Synapses from bins with less than the following threshhold were merged
+% into the neighboring bins
 threshSynNum=4;
+
 assert(~isempty(skel.distSoma.synDistance2Soma))
 skel.distSoma.synBinCountRelSoma=...
     skel.createEmptyTable(treeIndices,[],'cell');
@@ -27,20 +30,20 @@ for tr=treeIndices(:)'
     end
     inh=skel.distSoma.synBinCountRelSoma{tr,'Shaft'}{1};
     exc=skel.distSoma.synBinCountRelSoma{tr,'Spine'}{1};
-    % Keep a copy for checking later
+    % Keep a copy of total synapse numbers for assertions later
     inhPre=inh;
     excPre=exc;
-    smallSynNumberIntervals=(inh+exc)<threshSynNum & (inh+exc)>0;
+    lowSynNumberIntervals=(inh+exc)<threshSynNum & (inh+exc)>0;
     noSynInterval=(inh+exc)<1;
-    assert(~any(smallSynNumberIntervals&noSynInterval));
-    if ~isempty(smallSynNumberIntervals)
-        smallIntervalIdx=find(smallSynNumberIntervals);
+    assert(~any(lowSynNumberIntervals&noSynInterval));
+    if ~isempty(lowSynNumberIntervals)
+        smallIntervalIdx=find(lowSynNumberIntervals);
         synPresenceIdx=find(~noSynInterval);
         largeIntervalIdx = setdiff(synPresenceIdx,smallIntervalIdx);
         assert(~isempty(largeIntervalIdx),...
             'no synapse group has enough synapses');
-        % Note: sometimes there are multiple small synapse number groups on
-        % the edges of the bins. We need to
+        % Note: sometimes there are multiple bins with low synapse numbers groups on
+        % the edges of the bins. We need to merge them all together
         for i=smallIntervalIdx(:)'
             j=1;
             id2copy=[];
@@ -70,16 +73,16 @@ for tr=treeIndices(:)'
         assert(all([isnan(inh(smallIntervalIdx)),...
             isnan(exc(smallIntervalIdx))]));
         assert(nansum(exc)==sum(excPre)&&nansum(inh)==sum(inhPre));
-        totalExc=totalExc+nansum(exc);
-        totalInh=totalInh+nansum(inh);
-        skel.distSoma.inhRatioRelSoma{tr,2}{1}=...
+        totalExc = totalExc + nansum(exc);
+        totalInh = totalInh + nansum(inh);
+        skel.distSoma.inhRatioRelSoma{tr,2}{1} = ...
             inh./(inh+exc);
-        skel.distSoma.acceptableInhRatios{tr,2}{1}=...
+        skel.distSoma.acceptableInhRatios{tr,2}{1} = ...
             inh./(inh+exc);
-        skel.distSoma.acceptableInhRatios{tr,2}{1}(noSynInterval)=...
+        skel.distSoma.acceptableInhRatios{tr,2}{1}(noSynInterval) = ...
             nan;
     end
 end
-skel.distSoma.total=totalExc+totalInh;
+skel.distSoma.total = totalExc+totalInh;
 end
 

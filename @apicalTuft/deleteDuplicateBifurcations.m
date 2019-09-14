@@ -1,6 +1,6 @@
 function [skels] = deleteDuplicateBifurcations(skels)
-%deleteDuplicateBifurcations delete bifurcation tracings that were used as
-%starting point for whole dendrite tracing
+% deleteDuplicateBifurcations delete bifurcation tracings that were used as
+% starting point for whole dendrite tracing
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 % S1
 exclude{1}={'deepLayerApicalDendrite10','deepLayerApicalDendrite09',...
