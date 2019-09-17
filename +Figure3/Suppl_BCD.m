@@ -49,6 +49,8 @@ chopped = structfun(annotTableFun,backBone,...
 % combine all annotations
 splitCC = dendrite.wholeApical.iterateOverBboxes(chopped,'splitCC');
 
+
+
 %% Gather all the information
 allInfo = dendrite.wholeApical.iterateOverBboxes...
     (splitCC,'getFullInfoTableCC',...
@@ -245,10 +247,18 @@ valuesUnbinned.Shaft_Count=synCountsTotal(1);
 valuesUnbinned.Spine_Count=synCountsTotal(2);
 % Path length from unsliced
 allBackbones=[table2cell(backBone.allDend),table2cell(backBone.l235)];
+totalApicalDendriteNumber=sum(cellfun(@(x)length(x.names),allBackbones));
+
 valuesUnbinned.pathLengthInMicron=...
     sum(cellfun(@(x) x.getTotalBackonePath,...
     allBackbones));
-totalApicalDendriteNumber=sum(cellfun(@(x)length(x.names),allBackbones));
+% Get all the path length
+p = ...
+    dendrite.wholeApical.iterateOverBboxes(chopped,'getTotalPathLength',...
+    [], [],[],true);
+sumChoppedPerDataset=[sum(cat(1,p.allDend{:})),sum(cat(1,p.l235{:}))];
+sumUnChoppedPerDataset = cellfun(@(x) x.getTotalBackonePath,...
+    allBackbones);
 % Comparison:
 format long
 disp(valuesFromBinning)

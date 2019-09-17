@@ -1,5 +1,5 @@
 function [output] = iterateOverBboxes(input,apfun,...
-    separategroups, createAggregate,cellFlag)
+    separategroups, createAggregate,cellFlag,outputCell)
 %ITERATEOVERBBOXES
 if ~exist('createAggregate','var') || isempty (createAggregate)
     createAggregate=false;
@@ -17,6 +17,10 @@ if cellFlag
 else
     fun=@(annot) apicalTuft.applyMethod2ObjectArray...
         (annot,apfun,separategroups, createAggregate,'mapping');
+end
+% Make the output a cell as well
+if ~exist('outputCell','var') || isempty (outputCell)
+    outputCell=false;
 end
 
 output=struct('allDend',[],'l235',[]);
@@ -37,6 +41,10 @@ for b=1:numSlices
     % function to it you should set the cellflag to true
     output.allDend= [output.allDend;{curOut.allDend}];
     output.l235= [output.l235;{curOut.l235}];
+end
+if outputCell
+    output=structfun(@(x) cellfun(@(y) y.Variables,x,'uni',0),output,...
+        'UniformOutput',false);
 end
 end
 
