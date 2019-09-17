@@ -1,6 +1,6 @@
 function [results] = extractInformation(g,fun,variables,ignoreSizeThreshold)
 %EXTRACTINFORMATION This function is for working with the table of tables
-%generated for Figure 3 analysis
+% generated for Figure 3 analysis
 % Return the whole values of a feature if the function is empty
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 

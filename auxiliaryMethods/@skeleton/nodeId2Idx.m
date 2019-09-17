@@ -1,3 +1,4 @@
+
 function [ nodeIdx, treeIdx ] = nodeId2Idx( skel, treeIndices )
 %NODEID2IDX Get the linear index of a node given its id.
 % INPUT treeIndices: (Optional) [Nx1] int or logical

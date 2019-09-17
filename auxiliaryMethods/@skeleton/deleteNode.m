@@ -20,7 +20,7 @@ nodeId = obj.nodesNumDataAll{treeIndex}(index,1);
 nodeEdges = find(any(obj.edges{treeIndex} == index,2));
 neighborIdx = setdiff(obj.edges{treeIndex}(nodeEdges,:),index);
 
-%close gap by connecting neighbors with a random path
+% close gap by connecting neighbors with a random path
 if closeGap && length(neighborIdx) > 1
     newEdges = repmat(neighborIdx',2,1);
     newEdges = reshape(newEdges(2:end-1),[length(newEdges) - 1,2]);

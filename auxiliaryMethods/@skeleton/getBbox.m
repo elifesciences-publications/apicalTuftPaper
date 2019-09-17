@@ -17,7 +17,7 @@ end
 nodes = skel.getNodes(treeIndices);
 bbox = [min(nodes, [], 1); max(nodes, [], 1)]';
 
-% Make sure all of the bounds of the bbox are positiiive numbers
+% Make sure all of the bounds of the bbox are positive numbers
 if positiveBounds
     bbox(bbox<1)=1;
 end

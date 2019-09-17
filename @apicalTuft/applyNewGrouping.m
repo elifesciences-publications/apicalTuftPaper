@@ -43,7 +43,8 @@ else
         % Apply the method
         treeIndices=apTuftArray{dataset}.groupingVariable...
             (:,groups2ApplyMethod).Variables;
-        treeIndices=cat(1,treeIndices{:});
+        % Use sorted tree Indices after concatenation
+        treeIndices=sort(cat(1,treeIndices{:}));
         outputOfMethod{1,dataset}=apTuftArray{dataset}. ...
             (method)(treeIndices,varargin{:});
     end
@@ -69,7 +70,7 @@ outputOfMethod=cell2table(outputOfMethod,'VariableNames',datasetNames,...
 % This function is used to choose a subset of tree groups to apply a
 % method, i.e. we don't want to measure synapse density on dist2soma
 % annotations which do not contain synapses
-    function groups=pickGroups
+    function groups = pickGroups
         switch annotationType
             case 'both'
                 groups=1:length(apTuftArray{1}.groupingVariable. ...

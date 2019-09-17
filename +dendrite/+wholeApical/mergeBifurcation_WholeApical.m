@@ -21,8 +21,10 @@ for d=1:max([length(wholeApical),length(bifurRemoveDuplicates)])
         allDendrites{d}=wholeApical{d};
     end
 end
+% Update tree grouping names and then sort trees by names
 for i=1:totalTracingNum
     allDendrites{i}=allDendrites{i}.updateL2DLIdx;
+    allDendrites{i}=allDendrites{i}.sortTreesByName;
 end
 end
 

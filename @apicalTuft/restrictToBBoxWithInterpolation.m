@@ -1,7 +1,7 @@
 function [skel,toKeepNodes] = restrictToBBoxWithInterpolation...
     (skel, bbox, treeIndices,comment2Add)
-%Restrict nodes of a Skeleton to a cubic bounding box. All
-%nodes outside of this bounding box will be deleted.
+% Restrict nodes of a Skeleton to a cubic bounding box. All
+% nodes outside of this bounding box will be deleted.
 % INPUT bbox: [3x2] integer array containing the first and last
 %             voxel of the bounding box in the respective
 %             dimension.
@@ -20,20 +20,20 @@ if ~exist('comment2Add','var') || isempty(comment2Add)
     comment2Add = '';
 end
 closeGap = false;
-originalSkeleton=skel;
-toKeepNodes=cell(size(treeIndices));
+originalSkeleton = skel;
+toKeepNodes = cell(size(treeIndices));
 for i = 1:length(treeIndices)
-    tr=treeIndices(i);
+    tr = treeIndices(i);
     if ~isempty(skel.nodes{tr})
         trNodes = skel.nodes{tr}(:,1:3);
         toDelNodes = any(bsxfun(@gt,trNodes, bbox(:,2)') | ...
             bsxfun(@lt,trNodes, bbox(:,1)'),2);
         skel = skel.deleteNodes(tr, toDelNodes, closeGap);
-        skel=interpolateEdges...
+        skel = interpolateEdges...
             (skel,originalSkeleton,toDelNodes,tr,bbox,comment2Add);
         % Get the ID of the nodes you keep and pass them as output
-        idx2IDMap=originalSkeleton.nodeIdx2Id(tr);
-        toKeepNodes{i}=idx2IDMap{1}(~toDelNodes);
+        idx2IDMap = originalSkeleton.nodeIdx2Id(tr);
+        toKeepNodes{i} = idx2IDMap{1}(~toDelNodes);
     end
 end
 
@@ -46,79 +46,79 @@ if ~exist('comment2Add','var') || isempty(comment2Add)
     comment2Add = '';
 end
 % Nodes: Convert from logical to indices
-toKeepNodes=find(~toDelNodes);
-toDelNodes=find(toDelNodes);
+toKeepNodes = find(~toDelNodes);
+toDelNodes = find(toDelNodes);
 % Do not continue if all or none of the nodes are deleted
 % Interpolation is unnecessary in these cases
-if isempty(toKeepNodes) ||isempty(toDelNodes)
-    skelInterpolated=skel;
+if isempty(toKeepNodes) || isempty(toDelNodes)
+    skelInterpolated = skel;
     return
 end
 % Get a list of nodes involved on the border of the Bbox
-edgeList=originalSkeleton.edges{tr};
-BorderEdgesIdx=(ismember(edgeList(:,1),toDelNodes) & ...
+edgeList = originalSkeleton.edges{tr};
+BorderEdgesIdx = (ismember(edgeList(:,1),toDelNodes) & ...
     ismember(edgeList(:,2),toKeepNodes)) |...
     (ismember(edgeList(:,1),toKeepNodes) & ...
     ismember(edgeList(:,2),toDelNodes));
-BorderEdges=originalSkeleton.edges{tr}(BorderEdgesIdx,:);
-BorderEdgesCell=...
+BorderEdges = originalSkeleton.edges{tr}(BorderEdgesIdx,:);
+BorderEdgesCell = ...
     mat2cell(BorderEdges,ones(length(1:size(BorderEdges,1)),1),2);
-nodesOfTheEdges=cellfun(@(x) originalSkeleton.nodes{tr}(x,1:3), ...
+nodesOfTheEdges = cellfun(@(x) originalSkeleton.nodes{tr}(x,1:3), ...
     BorderEdgesCell,'UniformOutput',false);
 
 % Find location on the bbox to interpolate the edges
-dim2InterpolateAlong=skel.datasetProperties.dimPiaWM;
+dim2InterpolateAlong = skel.datasetProperties.dimPiaWM;
 [ylocation2Interpolate, validInterpolationFlag]=cellfun(@(nodes)...
     util.crossBboxAndEdges(nodes,bbox,dim2InterpolateAlong), ...
     nodesOfTheEdges,'UniformOutput',false);
 
 % Actual interpolation
-interpolatedNodes=cellfun...
+interpolatedNodes = cellfun...
     (@ (x,y)util.math.linearInterpolation3(x,y,dim2InterpolateAlong),...
     nodesOfTheEdges,ylocation2Interpolate,'UniformOutput',false);
 
 % Find the row index of the node to connect
-idx2ID=originalSkeleton.nodeIdx2Id{tr};
+idx2ID = originalSkeleton.nodeIdx2Id{tr};
 % Note: output of the intersect is set to sorted by default
-nodeIdx2Attach=zeros(size(BorderEdges,1),1);
+nodeIdx2Attach = zeros(size(BorderEdges,1),1);
 for i=1:size(BorderEdges,1)
-    nodeIdx2Attach(i,1)=intersect(BorderEdges(i,:),toKeepNodes,'stable');
+    nodeIdx2Attach(i,1) = intersect(BorderEdges(i,:),toKeepNodes,'stable');
 end
 % Now get the node ID which could be used to get the node Idx in the new
 % tree
-nodeID2Attach=idx2ID(nodeIdx2Attach);
+nodeID2Attach = idx2ID(nodeIdx2Attach);
 
 % Note: Only keep the interpolated nodes that do not match an actual node in the
 % annotation. This is the case when the edge node coincides with the bbox
 % edge
 if ~isempty(validInterpolationFlag)
-    validInterpolationFlag=cell2mat(validInterpolationFlag);
+    validInterpolationFlag = cell2mat(validInterpolationFlag);
     nodeID_valid=nodeID2Attach(validInterpolationFlag);
-    nodeID_alreadyPresent=nodeID2Attach(~validInterpolationFlag);
-    interpolatedNodes=interpolatedNodes(validInterpolationFlag);
-    nodeIdx2Attach=nodeIdx2Attach(validInterpolationFlag);
-    BorderEdges=BorderEdges(validInterpolationFlag,:);
+    nodeID_alreadyPresent = nodeID2Attach(~validInterpolationFlag);
+    interpolatedNodes = interpolatedNodes(validInterpolationFlag);
+    nodeIdx2Attach = nodeIdx2Attach(validInterpolationFlag);
+    BorderEdges = BorderEdges(validInterpolationFlag,:);
     % Add the "end" comment to the nodes which are already present
     % (original, not interpolated edge nodes)
     if ~isempty(nodeID_alreadyPresent)
-        IDToIdxMap=skel.nodeId2Idx;
-        nodeIndices2AddEndComment=full(IDToIdxMap(nodeID_alreadyPresent));
-        commentRepmat=repmat({comment2Add},length(nodeIndices2AddEndComment),1);
-        skel=skel.setComments(tr,nodeIndices2AddEndComment,commentRepmat);
+        IDToIdxMap = skel.nodeId2Idx;
+        nodeIndices2AddEndComment = full(IDToIdxMap(nodeID_alreadyPresent));
+        commentRepmat = repmat({comment2Add},length(nodeIndices2AddEndComment),1);
+        skel = skel.setComments(tr,nodeIndices2AddEndComment,commentRepmat);
     end
 else
     error('the valid interpolation flag should not be empty')
 end
 
 % Add the interpolated nodes to the skeleton
-assert(length(interpolatedNodes)==length(nodeID_valid),...
+assert(length(interpolatedNodes) == length(nodeID_valid),...
     ['interpolated nodes numbers does not match the nodes ',...
     'we would like to connect them to']);
-skelInterpolated=skel;
-for i=1:length(interpolatedNodes)
+skelInterpolated = skel;
+for i = 1:length(interpolatedNodes)
     assert(ismember(nodeIdx2Attach(i),BorderEdges(i,:)),...
         'The indices do not match ');
-    skelInterpolated=skelInterpolated.addNode ...
+    skelInterpolated = skelInterpolated.addNode ...
         (tr,interpolatedNodes{i},nodeID_valid(i),[],comment2Add);
 end
 end

@@ -19,37 +19,41 @@ synIdx = skel.getSynIdx;
 for i = 1:length(treeIndices)
     tr = treeIndices(i);
     % Get the Idx of backbone in the untrimmed annotation
-    IdxNodesBackBone2Full = ...
+    IdxMapFromBackBone2Full = ...
         skel.nodeIdxToIdxAnotherSkel(skelTrimmed,tr);
-    IdxNodesBackBone2Full = IdxNodesBackBone2Full{1};
+    IdxMapFromBackBone2Full = IdxMapFromBackBone2Full{1};
     % Get the shortest path between synapse Idx and the backbone Idx. This
     % would be the Idx of the synapse on the backbone
     curShortestPaths = shortestPaths{tr};
     cursynIdx = synIdx(tr,:);
     
     % Initialize
-    synIdxBackBoneCell = cell(1,width(cursynIdx));
-    synIdxBackBoneCell{1} = cursynIdx{1,1};
+    synIdxBackBone = cell(1,width(cursynIdx));
+    synIdxBackBone{1} = cursynIdx{1,1};
     for synGroup=2:width(cursynIdx)
-        currentShortestDist = curShortestPaths(IdxNodesBackBone2Full,...
-            cursynIdx{1,synGroup}{1});
+        curSynTypeIdx=cursynIdx{1,synGroup}{1};
+        currentShortestDist = curShortestPaths(IdxMapFromBackBone2Full,...
+            curSynTypeIdx);
         [minValues,minIndices] = min(currentShortestDist,[],1);
         % Checks:
         % 8 um spine neck threshhold
-        assert(length(minValues) == length(cursynIdx{1,synGroup}{1}))
+        assert(length(minValues) == length(curSynTypeIdx))
         assert(all(minValues<8000)); 
+        backBoneNodesWithMinDist=IdxMapFromBackBone2Full(minIndices);
         if length(minIndices)>1
-            synIdxBackBoneCell{1,synGroup} = ...
-                IdxNodesBackBone2Full(minIndices);
+            synIdxBackBone{1,synGroup} = ...
+                backBoneNodesWithMinDist;
         else
-            synIdxBackBoneCell{1,synGroup} = ...
-                {IdxNodesBackBone2Full(minIndices)};
+            synIdxBackBone{1,synGroup} = ...
+                {backBoneNodesWithMinDist};
         end
         assert(...
-            max(IdxNodesBackBone2Full(minIndices)) <= length(skel.nodes{tr}),...
+            max(backBoneNodesWithMinDist) <= length(skel.nodes{tr}),...
             'Make sure synapse backbone Idx are within Range');
+        assert(length(backBoneNodesWithMinDist)==length(curSynTypeIdx),...
+            'Make sure synapse numbers are not changed')
     end
-    skel.connectedComp.synIdx(i,:) = cell2table(synIdxBackBoneCell,...
+    skel.connectedComp.synIdx(i,:) = cell2table(synIdxBackBone,...
         'VariableNames',...
         cursynIdx.Properties.VariableNames);
     if debugPlot
@@ -65,11 +69,13 @@ treeIndices);
         clf
         skel.plot(tr);
         % scatter plot backone coords for checking
-        backBoneCoords = skel.getNodes(tr,IdxNodesBackBone2Full,1);
+        backBoneCoords = skel.getNodes(tr,IdxMapFromBackBone2Full,1);
         util.plot.scatter3(backBoneCoords,[1,0,0]);
         % Plot the backbone synapse lines for debugging
-        edgesSpine = [skel.connectedComp.synIdx.Spine{tr},cursynIdx.Spine{1}];
-        edgesShaft = [skel.connectedComp.synIdx.Shaft{tr},cursynIdx.Shaft{1}];
+        edgesSpine = [skel.connectedComp.synIdx.Spine{tr},...
+            cursynIdx.Spine{1}];
+        edgesShaft = [skel.connectedComp.synIdx.Shaft{tr},...
+            cursynIdx.Shaft{1}];
         trNodes = bsxfun(@times,skel.nodes{tr}(:,1:3),skel.scale);
         hold on
         for ed = 1: size(edgesSpine,1)
@@ -89,15 +95,20 @@ treeIndices);
     end
 
 end
-function synNumberPerNodeID=getIDTable(skel,synIdxBackbone,treeIndices)
+function synNumberPerNodeID = getIDTable(skel,synIdxBackbone,treeIndices)
 % Create a sparse matrix of synapse number and node ID 
 synNumberPerNodeID = synIdxBackbone;
 Idx2IDMap = repmat(skel.nodeIdx2Id(treeIndices),1,...
 width(synNumberPerNodeID)-1);
+% Get each node ID and the number of synapses that have that specific ID
 synIDCount = @(syn,idx2IdMap) ...
     [idx2IdMap(unique(syn)),histc(syn,unique(syn))];
-synNumberPerNodeID{:,2:end} = ...
+curSynNumbers= ...
     cellfun(synIDCount,synIdxBackbone{:,2:end},...
     Idx2IDMap,'UniformOutput',false);
+synNumberPerNodeID{:,2:end} = curSynNumbers;
+% Make sure synapse count does not change
+assert(isequal(cellfun(@(x) sum(x(:,2)),curSynNumbers), ...
+    skel.getSynCount{:,2:end}));
 end
 

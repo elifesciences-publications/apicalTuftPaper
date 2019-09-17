@@ -2,14 +2,17 @@ function [synCount] = getSynapseNumbers(apTuft)
 %GETSYNAPSENUMBERS Gets synapse number of dendrites for text
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-synapseCount=apicalTuft.applyMethod2ObjectArray(apTuft,...
-    'getSynCount');
 if apTuft{1,1}.legacyGrouping
     numberOfGroups=2;
     rowNames={'layer 2', 'Deep','Aggregate'};
+    synapseCount=apicalTuft.applyMethod2ObjectArray(apTuft,...
+    'getSynCount');
 else
-    numberOfGroups=3;
-    rowNames={'layer 2', 'layer 3','layer 5','Aggregate'};
+    numberOfGroups=5;
+    rowNames={'layer 2', 'layer 3','layer 5',...
+        'layer2MN','layer5A','Aggregate'};
+    synapseCount=apicalTuft.applyMethod2ObjectArray(apTuft,...
+    'getSynCount',true,true,'mapping');
 end
 synCountRaw=arrayfun(@(x) varfun(@sum,synapseCount.Aggregate{x}(:,2:end)),...
     1:numberOfGroups,'UniformOutput',false);

@@ -26,13 +26,13 @@ synRatio.Properties.VariableNames=cellfun(@(x) [x,'_Ratio'],...
     synRatio.Properties.VariableNames,'UniformOutput',false);
 
 pathLength=obj.pathLength(treeIndices);
-pathThresh=pathLength.pathLengthInMicron>ccLengthThresh;
+pathThresh=pathLength.pathLengthInMicron > ccLengthThresh;
 
 synDensity=obj.createEmptyTable(treeIndices,cellfun(@(x) [x,'_Density'],...
     synCount.Properties.VariableNames,'UniformOutput',false),'double');
 synDensity{:,2:end}=bsxfun(@rdivide,synCount{:,2:end},pathLength{:,2});
 
-combinedThresh=synThreshold&pathThresh;
+combinedThresh=synThreshold & pathThresh;
 Thresholds=table(synThreshold,pathThresh,combinedThresh);
 
 allInfo=[pathLength, synCount(:,2:end), synDensity(:,2:end),...

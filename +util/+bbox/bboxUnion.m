@@ -1,11 +1,11 @@
 function [unionBbox] = bboxUnion...
     (bboxArray,minSideOne)
-%BBOXUNION The bbox created by combining all bounding boxes
+%BBOXUNION The largest bbox encompassing all bounding boxes
 if  ~exist('minSideOne','var') || isempty(minSideOne)
     minSideOne=false;
 end
 if isstruct(bboxArray)
-    % Specific for fixing the bounsing boxes of ceonnected component output
+    % Specific for fixing the bounding boxes of ceonnected component output
     bboxArray=struct2cell(bboxArray);
     bboxArray=cellfun(@(x) reshape(x',3,2),bboxArray,...
         'UniformOutput',false);
@@ -16,11 +16,11 @@ bboxArray=cat(1,bboxArray{:});
 assert(all(bboxArray(:)>0),'Bboxes have negative nodes');
 
 if minSideOne
-    minSide=[1;1;1];
+    minSide = [1;1;1];
 else
-    minSide=min(reshape(bboxArray(:,1),3,[]),[],2);
+    minSide = min(reshape(bboxArray(:,1),3,[]),[],2);
 end
-maxSide=max(reshape(bboxArray(:,2),3,[]),[],2);
-unionBbox=[minSide,maxSide];
+maxSide = max(reshape(bboxArray(:,2),3,[]),[],2);
+unionBbox = [minSide,maxSide];
 end
 
