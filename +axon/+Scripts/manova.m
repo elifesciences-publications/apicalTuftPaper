@@ -44,3 +44,13 @@ sigAnova=(p<0.05/6);
 significance=array2table(sigAnova,'RowNames',aggRatios{1}.Properties.VariableNames(2:7),...
     'VariableNames',{'L2','Deep'});
 disp(significance)
+
+%% Numbers for methods Statistics part
+synCount = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynCount');
+totalSynNumbers = sum(synCount.Aggregate{2}{:,2:9},'all')+...
+    sum(synCount.Aggregate{1}{:,2:9},'all');
+AISGlia = sum(synCount.Aggregate{1}{:,8:9})+...
+    sum(synCount.Aggregate{2}{:,8:9});
+
+fraction = round(AISGlia./totalSynNumbers,4); 
+disp(fraction)
