@@ -52,3 +52,14 @@ for i=1:length(f)
         [textFileName,'_',f{i},'.xlsx'],'WriteRowNames',true);
 end
 system('./synPlots.sht');
+
+%% Total number of axons involved for the text
+% Use this section to get the total number of axons involved in the identity 
+% correction fractions. Number used in methods, figure legends
+synRatioNoL5ASpine = synRatio;
+for i=1:2
+    synRatioNoL5ASpine.(layers{i}){end,'Spine'}={table()};
+    totalSynNumbers = cellfun(@height,...
+        synRatioNoL5ASpine.(layers{i}).Variables);
+    disp(sum(totalSynNumbers,'all'))
+end
