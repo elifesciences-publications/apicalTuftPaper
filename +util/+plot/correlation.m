@@ -32,7 +32,7 @@ for d=1:length(array)
     totalY=[totalY;curY];
 end
 modelUnity=@(x) x;
-out=util.stat.correlationStatFileWriter(totalX,totalY,fname,modelUnity);
+out = util.stat.correlationStatFileWriter(totalX,totalY,fname,modelUnity);
 
 end
 

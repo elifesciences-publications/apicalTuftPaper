@@ -48,7 +48,8 @@ y_width=[3.8, 3.8];
 boxWidths=[.4655,0.708];
 mkrSize=10;
 variables={'apicalDiameter','inhSurfDensity',...
-    'excSurfDensity'};
+    'excSurfDensity',...
+    {'apicalDiameter','inhDensity'},{'apicalDiameter','excDensity'}};
 datasets={'All'};
 curColors={l2color,dlcolor};
 curResultStruct=...
@@ -63,8 +64,24 @@ xlim([0.5,2.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
-
-
+%% Also plot correlation between path length synapse density and diameter
+curVars=...
+    cellfun(@ (x) strjoin(x,'_'),  variables(4:5),'UniformOutput',false);
+ylims=[0,1;0,4.5];
+cor.xWidth=2;cor.yWidth=2;
+for i=1:2
+fname=['SmallDataset',curVars{i}];
+fh=figure('Name',fname);ax=gca;
+fullNameForText=fullfile(outputFolder,[fname,'.txt']);
+util.plot.correlation(curResultStruct.(curVars{i}),...
+    {l2color,dlcolor},[],10,fullNameForText);
+xlim([1,3.5]);ylim(ylims(i,:))
+util.plot.addLinearFit(curResultStruct.(curVars{i}),[],false,...
+    fullNameForText);
+util.plot.cosmeticsSave...
+    (fh,ax,cor.xWidth,cor.yWidth,outputFolder,...
+    [fname,'.svg'],'on','on');
+end
 %% Small datasets: Excitatory/Inhibitory surface Density boxplot
 fname = strjoin({'Small','Densities'},'_');
 fhDense = figure('Name',fname);axDense=gca;
@@ -98,7 +115,8 @@ boxWidths=[0.708,0.708];
 cellTypes2Include=1:5;
 layerOrigin={'mainBifurcation','distalAD'};
 variables={'apicalDiameter','inhSurfDensity',...
-    'excSurfDensity'};
+    'excSurfDensity',{'apicalDiameter','inhDensity'},...
+    {'apicalDiameter','excDensity'}};
 l235results=...
     dendrite.util.rearrangeArrayForPlot(results.l235,...
     layerOrigin,variables);
@@ -120,7 +138,22 @@ util.stat.KW(curResultStruct.apicalDiameter,curLabels,mergeGroups,...
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
-
+%% Also plot correlation between path length synapse density and diameter
+curVars=...
+    cellfun(@ (x) strjoin(x,'_'),  variables(4:5),'UniformOutput',false);
+ylims=[0,0.8;0,4.5];
+cor.xWidth=2.5;cor.yWidth=2.5;
+for i=1:2
+fname=['mainbifurcation_cellTypes',curVars{i}];
+fh=figure('Name',fname);ax=gca;
+util.plot.correlation(curResultStruct.(curVars{i}),...
+    curColors,[],10,fullfile(outputFolder,[fname,'.txt']));
+%xlim([1,4]);ylim(ylims(i,:))
+util.plot.addLinearFit(curResultStruct.(curVars{i}));
+util.plot.cosmeticsSave...
+    (fh,ax,cor.xWidth,cor.yWidth,outputFolder,...
+    [fname,'.svg'],'on','on');
+end
 
 %% Excitatory/Inhibitory surface Density boxplot
 fname = strjoin({'CellType_mainBifurcation','Densities'},'_');
@@ -174,7 +207,22 @@ util.stat.KW(curResultStruct.apicalDiameter,curLabels,[],...
 util.plot.cosmeticsSave...
     (fh,ax,x_width(1),y_width(1),outputFolder,...
     [fname,'.svg'],'off','on');
-
+%% Also plot correlation between path length synapse density and diameter
+curVars=...
+    cellfun(@ (x) strjoin(x,'_'),  variables(4:5),'UniformOutput',false);
+ylims=[0,0.8;0,4.5];
+cor.xWidth=2.5;cor.yWidth=2.5;
+for i=1:2
+fname=['distalAD_cellTypes',curVars{i}];
+fh=figure('Name',fname);ax=gca;
+util.plot.correlation(curResultStruct.(curVars{i}),...
+    curColors,[],10,fullfile(outputFolder,[fname,'.txt']));
+%xlim([1,4]);ylim(ylims(i,:))
+util.plot.addLinearFit(curResultStruct.(curVars{i}));
+util.plot.cosmeticsSave...
+    (fh,ax,cor.xWidth,cor.yWidth,outputFolder,...
+    [fname,'.svg'],'on','on');
+end
 %% Excitatory/Inhibitory surface Density boxplot
 fname = strjoin({'CellType_DistalAD','Densities'},'_');
 fhDense = figure('Name',fname);axDense=gca;
