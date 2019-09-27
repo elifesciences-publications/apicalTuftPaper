@@ -19,7 +19,7 @@ sumOverAxons.layer2=sum(count.layer2,1);
 sumOverAxons.deep=sum(count.deep,1);
 mleP.layer2=sumOverAxons.layer2./sum(sumOverAxons.layer2);
 mleP.deep=sumOverAxons.deep./sum(sumOverAxons.deep);
-probabilityMatrixForApicals=[[0.5,0.5];mleP.deep(1:2)];
+probabilityMatrixForApicals=[mleP.layer2(1:2);mleP.deep(1:2)];
 
 % Plot probability matrix
 util.plot.probabilityMatrix(probabilityMatrixForApicals,...

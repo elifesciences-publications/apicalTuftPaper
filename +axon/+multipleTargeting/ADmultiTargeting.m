@@ -15,41 +15,25 @@ util.mkdir(outputDir);
 % apical type (1: L2, 2: dl), seed apical type (1: L2, 2,dl)
 results = {zeros(10,2,2),zeros(10,2,2)};
 MultiPerDataset = cell(1,length(skel));
+seedType = {'l2Idx','dlIdx'};
 for d=1:length(skel)
-    MultiPerDataset{d} = axon.multipleTargeting. ...
-        extractMultipleTargeting(skel{d});
-    seedType = {'l2Idx','dlIdx'};
-    for seed = 1:2
-        results{d}(:,:,seed) = ...
-            [sum(MultiPerDataset{d}{skel{d}.(seedType{seed}),'L2Apical'},1)',...
-            sum(MultiPerDataset{d}{skel{d}.(seedType{seed}),'DeepApical'},1)'];
+    MultiPerDataset{d} = axon.multipleTargeting.extractMultipleTargeting...
+        (skel{d});
+    for s = 1:2
+        results{d}(:,:,s) = ...
+            [sum(MultiPerDataset{d}{skel{d}.(seedType{s}),'L2Apical'},1)',...
+            sum(MultiPerDataset{d}{skel{d}.(seedType{s}),'DeepApical'},1)'];
     end
 end
-
-
-% check that the total number of synapse in the apical dendrite groups
-% match with what we get from syncount
-seedTag={'l2Idx','dlIdx'};
-for d=1:length(skel)
-    for seedT=1:2
-        trIndices = skel{d}.(seedTag{seedT});
-        synCount = skel{d}.getSynCount(trIndices);
-        curSynCountSum = sum(synCount{:,2:3});
-        seedCounts = MultiPerDataset{d}.seedTargetingNr(trIndices,:);
-        seedCounts(:,seedT) = seedCounts(:,seedT)-1;
-        additionalSeedSynapses = sum(seedCounts,1);
-        allOtherSyn = sum(results{d}(:,:,seedT).*[1:10]',[1,3]);
-        disp(seedTag{seedT});
-        disp(curSynCountSum);
-        disp((allOtherSyn+additionalSeedSynapses))
-    end
-end
+% Check the total number of synapses
+axon.multipleTargeting.checkTotalSynapseNumber(skel,MultiPerDataset,results)
 
 %% Seed targeting: histogram of number of times the seed is targeted
 colors={l2color,dlcolor};
+seedTag={'l2Idx','dlIdx'};
 fname='NumberOfSeedTargeting';
 fh=figure('Name',fname);ax=gca;
-x_width=10;y_width = 7;
+x_width=3;y_width = 1.5;
 maxSynNumber = 7;
 hold on
 for i=1:2
@@ -72,7 +56,7 @@ util.plot.cosmeticsSave(fh,ax,x_width,y_width,...
 % Ranksum testing: not significant
 util.stat.ranksum(seedTargeting.l2Idx,seedTargeting.dlIdx);
 %% The histogram of the number of times axons target apical dendrites
-% Afggregated over datasets
+% Aggregated over datasets
 % separated by the seed tyepe (L2, Vs. DL)
 allData=results{1}+results{2}+results{3}+results{4};
 colors={l2color,dlcolor};
@@ -122,6 +106,7 @@ for s=1:2
     avgSynPerAxon{s,t} = curSynPerTarget;
     end
 end
+
 %% Plot as a boxplot
 fh=figure;ax=gca;
 colors=repmat({l2color,dlcolor},1,2);
@@ -138,21 +123,48 @@ util.stat.ranksum(avgSynPerAxon{1,1},avgSynPerAxon{1,2},...
 disp('DeepSeeded')
 util.stat.ranksum(avgSynPerAxon{2,1},avgSynPerAxon{2,2},...
     fullfile(outputDir,'DeepSeeded'));
+% Write to table
+curfname=fullfile(outputDir,'synPerTarget');
+axonNumberWithADSynInEachGroup = ...
+    array2table(cellfun(@length,avgSynPerAxon),'VariableNames',...
+    {'L2Target','DeepTarget'},'RowNames',{'L2SeededAxons','DeepSeededAxons'});
+writetable(axonNumberWithADSynInEachGroup,[curfname,'.xlsx']);
+
+% Save fig
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputDir,'synPerTarget.svg');
+    (fh,ax,x_width,y_width,[],[fname,'.svg']);
 %% Plot probability matrices
 % two plots:
 % 1. per AD: each target counted as one no matter how many times targeted
 % 2. per synapse: multiply by number of targets
-fname={fullfile(outputDir,'perDendriteTarget.svg'),...
-    fullfile(outputDir,'perSynapse.svg')};
+fname={fullfile(outputDir,'perDendriteTarget'),...
+    fullfile(outputDir,'perSynapse')};
 correctionFactor={ones(10,1),[1:10]'};
+addTheSeed = false;
+if addTheSeed
+    seedTargetingCount = structfun(@(x) accumarray(x,1),...
+        seedTargeting,'UniformOutput',false);
+    seedArray=cat(3,[seedTargetingCount.l2Idx;0],...
+        seedTargetingCount.dlIdx);
+    % Add zeros to the size
+    seedArray(:,2,2) = 0;
+    % Flip the second dimension for the Deep seeded axon values
+    seedArray(:,:,2) = fliplr(seedArray(:,:,2));
+    % Remove the seed synapse itself leaving the rest
+    seedArray(1,:,:)=[];
+    curAllData=allData+padarray(seedArray,4,0,'post')
+else
+    curAllData=allData;
+end
 for i=1:length(correctionFactor)
-    sumData=squeeze(sum(allData.*correctionFactor{i},1));
-    squeeze(sum(allData,1));
+    sumData=squeeze(sum(curAllData.*correctionFactor{i},1));
+    squeeze(sum(curAllData,1));
     % individual synapse fraction
     % (multiply individual target by the number of hits)
     sumData=sumData./sum(sumData,2);
-    util.plot.probabilityMatrix(sumData,fname{i});
-    disp(sumData)
+    probTable = array2table(sumData,'VariableNames',...
+    {'L2Target','DeepTarget'},'RowNames',{'L2SeededAxons','DeepSeededAxons'});
+    writetable(probTable,[fname{i},'.xlsx']);
+    util.plot.probabilityMatrix(sumData,[fname{i},'.svg']);
+
 end
