@@ -37,7 +37,7 @@ for tr=1:height(synIdx)
             % Find the number of each targeting
             curRawCount=accumarray(synTargetNumber{ap},1);
             % Take out seed targeting in case of looking at the seed
-            % targeet type innervation
+            % target type innervation
             % Note seed targeting does not include the first synapse
             % since it is called seed X
             if seedTargetingNr(tr,ap) >0
