@@ -19,42 +19,42 @@ synDensity = synDensity{[3,5],:};
 dim = dim{[3,5],:};
 
 %% Get variables ready for plotting
-forPlot.diameter = ...
+forPlotSep.diameter = ...
     cellfun(@(x) x.apicalDiameter,dim,'UniformOutput',false);
-forPlot.diameter = ...
-    cellfun(@(x) cellfun(@mean,x),forPlot.diameter ,'UniformOutput',false);
+forPlotSep.diameter = ...
+    cellfun(@(x) cellfun(@mean,x),forPlotSep.diameter ,'UniformOutput',false);
 % Spine density is equal to exc syn density without correction
-forPlot.spineDensity = cellfun(@(x) x.Spine,synDensity,'UniformOutput',false);
-
+forPlotSep.spineDensity = cellfun(@(x) x.Spine,synDensity,'UniformOutput',false);
+% Merge distalAD with the bifurcation area results
+for i=1:2
+    forPlot.spineDensity{i}=cat(1, forPlotSep.spineDensity{i,:});
+    forPlot.diameter{i}=cat(1, forPlotSep.diameter{i,:});
+end
 %% Plot Diameter/spineDensity
-x_width=1.9;
+x_width=2;
 y_width=1.9;
-boxWidths=0.708;
+boxWidths=0.4655;
 outputFolder=fullfile(util.dir.getFig3,'L5L5AComparison');
-curColors=repmat({l5color,l5Acolor},1,2);
+curColors={l5color,l5Acolor};
 varNames={'diameter','spineDensity'};
 region={'mainBifurcation','distalAD'};
 for i=1:2
     fname=['L5L5AComparison_',varNames{i}];
     fh=figure('Name',fname);ax=gca;
     curVariable=forPlot.(varNames{i});
-    util.plot.boxPlotRawOverlay(curVariable(:),1:4,...
+    util.plot.boxPlotRawOverlay(curVariable(:),1:2,...
         'boxWidth',boxWidths,'color',curColors(:),'tickSize',10);
-    xlim([0.5,4.5]);
+    xlim([0.5,2.5]);
     util.plot.cosmeticsSave...
         (fh,ax,x_width,y_width,outputFolder,...
         [fname,'.svg'],'off','on');
-    for j=1:2
-        disp(['Variable',varNames{i}])
-        disp(['Region:',region{j}])
-        util.stat.ranksum(curVariable{1,j},curVariable{2,j});
-    end
+
 end
 
 %% Testing for the text: combine distalAD and main bifurcaiton
-util.stat.ranksum(cat(1,forPlot.diameter{1,:}),cat(1,forPlot.diameter{2,:}),...
+util.stat.ranksum(cat(1,forPlot.diameter{1}),cat(1,forPlot.diameter{2}),...
     fullfile(outputFolder,'dimeterTestAll'));
 
-util.stat.ranksum(cat(1,forPlot.spineDensity{1,:}),cat(1,forPlot.spineDensity{2,:}),...
+util.stat.ranksum(cat(1,forPlot.spineDensity{1}),cat(1,forPlot.spineDensity{2}),...
     fullfile(outputFolder,'spineDensityCombined'));
 util.copyfiles2fileServer

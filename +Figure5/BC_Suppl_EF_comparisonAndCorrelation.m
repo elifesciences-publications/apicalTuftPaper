@@ -1,6 +1,8 @@
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
 util.clearAll;
+outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
+
 skel = apicalTuft('PPC2_l2vsl3vsl5');
 skel = skel.sortTreesByName;
 cellTypeRatios = skel.applyMethod2ObjectArray({skel},...
@@ -35,8 +37,7 @@ for i=1:3
     % Change values to corrected for plotting
     evalin('base',[variableNames{i},'{end} = curCorrected']);
 end
-%% Plotting for Figure 3: inhibitoy ratio
-outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
+%% Plotting for Figure 5: inhibitoy ratio
 util.mkdir (outputFolder)
 util.setColors
 x_width=3;
@@ -44,7 +45,8 @@ y_width=3.8;
 colors=util.plot.getColors().l2vsl3vsl5;
 indices=[1,2,3,1,4];
 % inhibitory Ratio
-fh=figure;ax=gca;
+fname = 'ShaftFraction_mainBifurcation';
+fh=figure('Name',fname);ax=gca;
 mkrSize=10;
 noisyXValues=...
     util.plot.boxPlotRawOverlay(shaftRatio,indices,'ylim',1,'boxWidth',0.5496,...
@@ -62,22 +64,28 @@ xticks(1:max(indices));
 yticks(0:0.2:1)
 xlim([0.5, max(indices)+.5])
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'ShaftFraction.svg');
+    (fh,ax,x_width,y_width,outputFolder,[fname,'.svg']);
 
 %% Do Kruskall-Wallis test for the shaft Ratios
 % Merge L2 and L2MN
 mergeGroups = {[1,4]};
 curLabels = cellTypeRatios.Properties.RowNames;
-testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups);
+testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups,...
+    fullfile(outputFolder,fname));
+
 % Text: Ranksum comparison L2, L2MN, L5st, L5tt
 util.stat.ranksum(shaftRatio{1},shaftRatio{4},fullfile(outputFolder,...
     'L2L2MNComparison_ShaftRation'))
 util.stat.ranksum(shaftRatio{3},shaftRatio{5},fullfile(outputFolder,...
-    'L5ttL5stComparison_ShaftRation'))
-util.copyfiles2fileServer;
-%% Plotting for Figure 3: synapse density
+    'L5ttL5stComparison_ShaftRation'));
 
-outputFolder = fullfile(util.dir.getFig3,'cellTypeComparison');
+% KW test for ecitatory and inhibitory synapse density as well
+testResult.Exc = util.stat.KW(spineDensity,curLabels,mergeGroups,...
+    fullfile(outputFolder,'excDensity'));
+testResult.Inh = util.stat.KW(shaftDensity,curLabels,mergeGroups,...
+    fullfile(outputFolder,'inhDensity'));
+util.copyfiles2fileServer;
+%% Plotting for Figure 5: synapse density
 util.mkdir(outputFolder)
 x_width = 2;
 y_width = 2.2;
@@ -128,8 +136,6 @@ for i=1:length(curVariables)
 end
 
 %% Correlation and Exponential fit
-outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
-
 % Inhibitory Ratio
 [fh,ax,exponentialFit_Ratio]=dendrite.l2vsl3vsl5.plotCorrelation...
     (distance2soma,shaftRatio);

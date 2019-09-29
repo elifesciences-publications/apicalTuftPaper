@@ -34,9 +34,14 @@ disp(['p-value from Kruskall Wallis test is: ',num2str(testResult.pKW)]);
 disp(testResult.tableMeanSEM);
 % Write each field in a separate text file
 if writeResult
-    writetable(array2table(testResult.pKW),[fname,'pvalKW.xlsx'])
-    writetable(array2table(testResult.cMC),[fname,'multCompare.xlsx']);
-    writetable(testResult.tableMeanSEM,[fname,'meanSEM.xlsx'],'WriteRowNames',true);
+    writetable(array2table(testResult.pKW),...
+        [fname,'pvalKW.xlsx'])
+    writetable(array2table(testResult.cMC,...
+    'VariableNames',{'index1','index2','lowerBound',...
+    'actualMedianDiff','upperBound','pValues'}),...
+    [fname,'multCompare.xlsx']);
+    writetable(testResult.tableMeanSEM,...
+        [fname,'meanSEM.xlsx'],'WriteRowNames',true);
 end
 end
 

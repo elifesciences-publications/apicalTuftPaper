@@ -38,8 +38,8 @@ util.setColors;
 x_width=3;
 y_width=3.8;
 colors={l2color,l3color,l5color,l5Acolor};
-
-fh=figure;ax=gca;
+fname = 'ShaftFraction';
+fh=figure('Name',fname);ax=gca;
 noisyXValues=...
     util.plot.boxPlotRawOverlay(distal.shaftRatio,1:4,'ylim',1,'boxWidth',0.5496,...
 'color',colors,'tickSize',15);
@@ -57,12 +57,13 @@ xticklabels([]);
 yticks(0:0.2:1);
 xlim([0.5, 4.5]);
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'ShaftFraction.svg');
+    (fh,ax,x_width,y_width,outputFolder,[fname,'.svg']);
 
 %% Do Kruskall-Wallis test for the shaft Ratios
 % Merge L2 and L2MN
 cellTypes = {'L2','L3','L5B','L5A'};
-testResult = util.stat.KW(distal.shaftRatio,cellTypes);
+testResult = util.stat.KW(distal.shaftRatio,cellTypes, ...
+    [],fullfile(outputFolder,fname));
 % Text: Ranksum comparison L2, L2MN, L5st, L5tt
 
 util.stat.ranksum(distal.shaftRatio{3},distal.shaftRatio{4},fullfile(outputFolder,...
@@ -95,8 +96,13 @@ xlim([0.5,8.5])
 ylim([0.05,10])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'synapseDensities.svg','off','on');
-
-
+%% Kruskall Wallis test for densities
+cellTypes = {'L2','L3','L5B','L5A'};
+testResult_inhDensity = util.stat.KW(distal.shaftDensity,cellTypes, ...
+    [],fullfile(outputFolder,'InhDensity'));
+testResult_excDensity = util.stat.KW(distal.spineDensity,cellTypes, ...
+    [],fullfile(outputFolder,'excDensity'));
+util.copyfiles2fileServer
 %% Do single cell type between regions comparison:
 skel=apicalTuft('PPC2_l2vsl3vsl5');
 skel=skel.sortTreesByName;
@@ -176,3 +182,14 @@ disp('Means (l2vs.l3vs.l5):')
 disp(Means)
 disp('Sems (l2vs.l3vs.l5):')
 disp(Sems)
+
+%% Get total synapse numbers for the text
+L5ACount = L5ASkel.getSynCount;
+
+% Get trees with the mappings
+mappingG = contains(distalSkel.groupingVariable.Properties.VariableNames,...
+    'mapping');
+curIndices = cat(1,distalSkel.groupingVariable{:,mappingG}{:});
+L235BCount = distalSkel.getSynCount(curIndices);
+
+Total= sum(L235BCount{:,2:end},1) + sum(L5ACount{:,2:end},1)
