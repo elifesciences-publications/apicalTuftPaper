@@ -22,7 +22,13 @@ util.plot.errorbarSpecificity(synRatio(:,5),[],...
     [{l2color},{dlcolor}]);
 % Figure properties
 util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'E.svg');
+%% Fraction of spine synapses which are single
+synCount=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynCount',false,true);
+synCountSingle= sum(synCount.Aggregate{1}.SpineSingle);
+synCountDouble = sum(synCount.Aggregate{1}.SpineDouble);
+spineSingleFraction = synCountSingle ./ (synCountSingle+synCountDouble);
 
+disp (['Fraction of Double innervated targets: ', num2str(1-spineSingleFraction)])
 %% F 
 fh=figure;ax=gca;
 %Plotting
