@@ -28,7 +28,8 @@ synCountSingle= sum(synCount.Aggregate{1}.SpineSingle);
 synCountDouble = sum(synCount.Aggregate{1}.SpineDouble);
 spineSingleFraction = synCountSingle ./ (synCountSingle+synCountDouble);
 
-disp (['Fraction of Double innervated targets: ', num2str(1-spineSingleFraction)])
+disp (['Fraction of Double innervated targets: ', ...
+    num2str(1-spineSingleFraction)])
 %% F 
 fh=figure;ax=gca;
 %Plotting
@@ -50,4 +51,3 @@ util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'G_unweighted.svg');
 TestResults=util.stat.bootStrapTest(synRatio{1,5},synRatio{2,5},false);
 writetable(TestResults,fullfile(outputDir,...
     util.addDateToFileName('E_bootStrapTestResults.txt')));
-%% Manova test for the cortical area cortical areas

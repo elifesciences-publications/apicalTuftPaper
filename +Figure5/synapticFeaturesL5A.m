@@ -34,7 +34,8 @@ end
 x_width=2;
 y_width=1.9;
 boxWidths=0.4655;
-outputFolder=fullfile(util.dir.getFig3,'L5L5AComparison');
+outputFolder=fullfile(util.dir.getFig5,...
+    'L5L5AComparison');util.mkdir(outputFolder)
 curColors={l5color,l5Acolor};
 varNames={'diameter','spineDensity'};
 region={'mainBifurcation','distalAD'};

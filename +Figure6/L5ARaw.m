@@ -5,7 +5,7 @@ apTuftPruned=apicalTuft('PPC2L5ADist2SomaPruned_l2vsl3vsl5');
 apTuftPruned=apTuftPruned.sortTreesByName;
 %%
 fname='L5A_denseDistalAD';
-outputDir=fullfile(util.dir.getFig3,'TheL5ADistalADDense');
+outputDir=fullfile(util.dir.getFig6,'TheL5ADistalADDense');
 fh=figure('Name',fname);ax=gca;
 hold on;
 p=dendrite.l2vsl3vsl5.gallery.parametersPPC2;

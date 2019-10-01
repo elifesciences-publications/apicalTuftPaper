@@ -1,7 +1,9 @@
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
 util.clearAll;
-outputFolder=fullfile(util.dir.getFig3,'cellTypeComparison');
+outputFolder=fullfile(util.dir.getFig5,...
+    'cellType_SynapticDensity_Comparison_Correlation');
+util.mkdir(outputFolder);
 
 skel = apicalTuft('PPC2_l2vsl3vsl5');
 skel = skel.sortTreesByName;

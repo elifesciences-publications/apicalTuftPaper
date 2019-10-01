@@ -32,7 +32,7 @@ for i=1:3
     distal.(variableNames{i}){end} = curCorrected;
 end
 %% Plot inhibitory Ratios
-outputFolder=fullfile(util.dir.getFig3,'distalvsMain');
+outputFolder=fullfile(util.dir.getFig6,'distalvsMain');
 util.mkdir(outputFolder);
 util.setColors;
 x_width=3;
@@ -192,4 +192,4 @@ mappingG = contains(distalSkel.groupingVariable.Properties.VariableNames,...
 curIndices = cat(1,distalSkel.groupingVariable{:,mappingG}{:});
 L235BCount = distalSkel.getSynCount(curIndices);
 
-Total= sum(L235BCount{:,2:end},1) + sum(L5ACount{:,2:end},1)
+Total= sum(L235BCount{:,2:end},1) + sum(L5ACount{:,2:end},1);

@@ -13,8 +13,8 @@ treeTags={'layer5ApicalDendrite_dist2soma',...
 %% Plot box plot of comparison between soma sizes of L5B and L5A
 x_width=2;
 y_width=1.9;
-outputFolder=fullfile(util.dir.getFig3,...
-    'somaSizeL5vsL5A');
+outputFolder=fullfile(util.dir.getFig5,...
+    'somaSizeL5vsL5A');util.mkdir(outputFolder);
 fname='somaVolume_L5vsL5A';
 fh=figure('Name',fname);ax=gca;
 util.setColors;

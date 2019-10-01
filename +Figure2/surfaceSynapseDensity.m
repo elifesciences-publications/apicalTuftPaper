@@ -3,7 +3,7 @@
 % larger datasets used to annotate the differences between l2, l3 and l5
 % pyramdial neurons
 util.clearAll;
-outputFolder = fullfile(util.dir.getFig3,...
+outputFolder = fullfile(util.dir.getFig2,...
     'synapseDensityPerUnitSurface');
 util.mkdir(outputFolder)
 
