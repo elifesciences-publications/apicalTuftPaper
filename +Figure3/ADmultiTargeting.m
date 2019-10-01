@@ -119,10 +119,14 @@ xticks([])
 
 disp('L2Seeded: ')
 util.stat.ranksum(avgSynPerAxon{1,1},avgSynPerAxon{1,2},...
-    fullfile(outputDir,'L2Seeded'));
+    fullfile(outputDir,'L2Seeded_avgSynPerAxon'));
 disp('DeepSeeded')
 util.stat.ranksum(avgSynPerAxon{2,1},avgSynPerAxon{2,2},...
-    fullfile(outputDir,'DeepSeeded'));
+    fullfile(outputDir,'DeepSeeded_avgSynPerAxon'));
+disp('L2seededvsDeepSeeded');
+util.stat.ranksum([avgSynPerAxon{1,1};avgSynPerAxon{1,2}],...
+    [avgSynPerAxon{2,1};avgSynPerAxon{2,2}],...
+    fullfile(outputDir,'L2seededvsDeepSeeded_avgSynPerAxon'));
 % Write to table
 curfname=fullfile(outputDir,'synPerTarget');
 axonNumberWithADSynInEachGroup = ...

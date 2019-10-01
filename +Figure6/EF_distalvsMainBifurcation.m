@@ -18,14 +18,14 @@ end
 % also keep the uncorrected values for later plotting 
 results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
 % Keep only the distalAD results from L5A (L5st) group
-resultsL5A = results.l235{end,:}{2};
+curResultsL5A = results.l235{end,:}{2};
 % varibales for assigning
 variableNames={'shaftRatio','shaftDensity','spineDensity'};
 tableVariableNames={'Shaft_Ratio','Shaft_Density','Spine_Density'};
 for i=1:3
     curUncorrected = distal.(variableNames{i}){end};
-    curCorrected = resultsL5A.(tableVariableNames{i})(:,2);
-    assert(isequal(curUncorrected,resultsL5A.(tableVariableNames{i})(:,1)));
+    curCorrected = curResultsL5A.(tableVariableNames{i})(:,2);
+    assert(isequal(curUncorrected,curResultsL5A.(tableVariableNames{i})(:,1)));
     % save uncorrected (raw values for plotting later)
     l5ARawData.(variableNames{i}) = curUncorrected;
     % Change values to corrected for plotting
@@ -46,7 +46,7 @@ noisyXValues=...
 
 % Make sure order of corrected and uncorrected values match
 L5Ahorizontal = noisyXValues{end}(1,:)';
-assert( isequal(noisyXValues{end}(2,:)', resultsL5A.Shaft_Ratio(:,2)) );
+assert( isequal(noisyXValues{end}(2,:)', curResultsL5A.Shaft_Ratio(:,2)) );
 
 % Plot the uncorrected L5A values as grey crosses and connect them with a
 % line
@@ -127,6 +127,20 @@ for i=1:length(f)
     bifur.(f{i}){1}=[bifur.(f{i}){1};bifur.(f{i}){4}];
     bifur.(f{i})(4)=[];
 end
+% Only for L5st: switch to corrected value as in the distalAD case
+% previously
+curResultsL5A = results.l235{end,:}{1};
+% Table variable names in results
+tableVariableNames={'Shaft_Ratio','Shaft_Density','Spine_Density'};
+for i=1:length(f)
+    curUncorrected = bifur.(f{i}){end};
+    curCorrected = curResultsL5A.(tableVariableNames{i})(:,2);
+    assert(isequal(curUncorrected,curResultsL5A.(tableVariableNames{i})(:,1)));
+    % Change values to corrected for plotting
+    bifur.(f{i}){end} = curCorrected;
+end
+% Test for main bifurcation vs distal tuft results
+% Also get the mean and SEMs for summary plot
 for celltype=1:length(cellTypes)
     disp([cellTypes{celltype},': main bifurcation vs. distal tuft'])
     testResultsRatios.(cellTypes{celltype})=...
