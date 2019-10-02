@@ -146,10 +146,11 @@ dendrite.L5A.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
     distance2soma{end});
 x_width=3.7;
 y_width=3;
+xLimit = 600;
 % plot exponential with offset
 minDist2Soma=min(cell2mat(distance2soma));
 modelfun = @(b,x)(b(1)+b(2)*exp(b(3)*x));
-distRange=linspace(minDist2Soma,500,500);
+distRange=linspace(minDist2Soma,xLimit,500);
 modelRatio=modelfun(exponentialFit_Ratio.oneWithOff.Coefficients.Estimate',...
     distRange);
 plot(distRange,modelRatio,'k');
@@ -157,8 +158,8 @@ legend('off')
 xlabel([]);
 ylabel([]);
 ylim([0 1]);
-xticks(0:100:500);
-xlim([0,500]);
+xticks(0:300:xLimit);
+xlim([0,xLimit]);
 yticks(0:0.2:1);
 ylim([0,1]);
 util.plot.cosmeticsSave...
@@ -185,8 +186,8 @@ plot(distRange,modelRatio,'k');
 legend('off')
 xlabel([]);
 ylabel([]);
-xticks(0:250:500);
-xlim([0,500]);
+xticks(0:300:xLimit);
+xlim([0,xLimit]);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
     'coorrelationFigureShaft.svg','on','on');
@@ -210,8 +211,8 @@ legend('off')
 xlabel([]);
 ylabel([]);
 ylim([0,6])
-xticks(0:250:500);
-xlim([0,500]);
+xticks(0:300:xLimit);
+xlim([0,xLimit]);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
     'coorrelationFigureSpine.svg','on','on');
