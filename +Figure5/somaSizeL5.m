@@ -3,7 +3,7 @@
 fileName=fullfile(util.dir.getAnnotation,...
     'otherAnnotations','PPC2_somaDiameter.nml');
 skel=skeleton(fileName);
-numTrees=[10,3];
+numTrees=[12,6];
 treeTags={'layer5ApicalDendrite_dist2soma',...
     'layer5AApicalDendrite_dist2soma'};
 % Get the volume and diameter from measurements of format:
