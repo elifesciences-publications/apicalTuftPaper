@@ -141,8 +141,10 @@ util.plot.cosmeticsSave...
 % two plots:
 % 1. per AD: each target counted as one no matter how many times targeted
 % 2. per synapse: multiply by number of targets
+% 3. Average over individual axons
 fname={fullfile(outputDir,'perDendriteTarget'),...
-    fullfile(outputDir,'perSynapse')};
+    fullfile(outputDir,'perSynapse'),...
+    fullfile(outputDir,'averageOverAxons')};
 correctionFactor={ones(10,1),[1:10]'};
 addTheSeed = false;
 if addTheSeed
@@ -172,3 +174,20 @@ for i=1:length(correctionFactor)
     util.plot.probabilityMatrix(sumData,[fname{i},'.svg']);
 
 end
+
+%% Also plot average over axons
+
+apTuft = apicalTuft.getObjects('inhibitoryAxon');
+synRatios=apicalTuft.applyMethod2ObjectArray...
+    (apTuft,'getSynRatio');
+synRatios=synRatios{:,5};
+apicalRatioTargetingAveragedOverAxons = ...
+    array2table(zeros(2,2),'VariableNames',...
+    {'L2Target','DeepTarget'},'RowNames',{'L2SeededAxons','DeepSeededAxons'});
+apicalRatioTargetingAveragedOverAxons {:,1} = ...
+    cellfun(@(x) nanmean(x.L2Apical./(x.L2Apical+x.DeepApical)),synRatios);
+apicalRatioTargetingAveragedOverAxons {:,2} = ...
+    cellfun(@(x) nanmean(x.DeepApical./(x.L2Apical+x.DeepApical)),synRatios);
+    writetable(apicalRatioTargetingAveragedOverAxons,[fname{3},'.xlsx'],...
+        'WriteRowNames',true);
+util.plot.probabilityMatrix(apicalRatioTargetingAveragedOverAxons.Variables,[fname{3},'.svg']);
