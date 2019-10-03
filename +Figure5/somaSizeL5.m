@@ -35,3 +35,33 @@ util.stat.ranksum(diameter{1},diameter{2},...
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
     [fname,'.svg'],'off','on');
+%% correlation between soma size and shaft ratio
+% Get results
+results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
+%% Plot
+resultsL5 = results.l235.mainBifurcation([3,5])';
+% Get corrected shaft ratio for L5tt and uncorrected shaft ratio for
+% first row is uncorrected (L5tt) vs second row of each results is
+% corrected (L5st)
+curVars={'Shaft_Ratio','Shaft_Density','Spine_Density'};
+indexCorrection = [1,2];
+xWidth=2;yWidth=2;
+for i=1:3
+    fname=['CorrelationL5_SomaSize_',curVars{i}];
+    fh=figure('Name',fname);ax=gca;
+    fullNameForText=fullfile(outputFolder,[fname,'.txt']);
+    curMeasure= cell(1,2);
+    % Concatenate soma diameter with the shaft,spine density/fraction
+    for l5=1:2
+        curMeasure{l5} = [diameter{l5}', ...
+            resultsL5{l5}.(curVars{i})(:,indexCorrection(l5))];
+    end
+    % Plot with scatter with linear fit
+    util.plot.correlation(curMeasure,{l5color,l5Acolor},...
+        [],10,fullNameForText);
+    util.plot.addLinearFit(curMeasure,[],true,...
+        fullNameForText);
+    util.plot.cosmeticsSave...
+        (fh,ax,xWidth,yWidth,outputFolder,...
+        [fname,'.svg'],'on','on');
+end
