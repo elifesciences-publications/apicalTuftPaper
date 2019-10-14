@@ -60,7 +60,7 @@ util.stat.ranksum(cat(1,forPlot.spineDensity{1}),cat(1,forPlot.spineDensity{2}),
     fullfile(outputFolder,'spineDensityCombined'));
 util.copyfiles2fileServer
 
-%% Save the soma depth information
+%% Save the AD diameter and spine density information
 diameterBifurcation = forPlotSep.diameter(:,1)';
 spineDensityBifurcation = forPlotSep.spineDensity(:,1)';
 
@@ -69,3 +69,17 @@ matfolder = fullfile(util.dir.getAnnotation,'matfiles',...
 util.mkdir (matfolder)
 save(fullfile(matfolder,'diameterAndSpineDensityAtMainBifurcation.mat'),...
     'diameterBifurcation','spineDensityBifurcation');
+%% Plot correlation between AD diameter at MB and the synaptic features
+% Get corrected shaft ratio for L5tt and uncorrected shaft ratio for
+% first row is uncorrected (L5tt) vs second row of each results is
+% corrected (L5st)
+xWidth=2; yWidth=2;
+curVars={'Shaft_Ratio','Shaft_Density','Spine_Density'};
+[fh,ax] = dendrite.L5A.plotCorrelationWithSynDensity(diameterBifurcation,outputFolder);
+for i=1:3
+    fname=['CorrelationL5_ADdiameter_',curVars{i}];
+    xlim(ax{i},[0.5,2.5])
+    util.plot.cosmeticsSave...
+        (fh{i},ax{i},xWidth,yWidth,outputFolder,...
+        [fname,'.svg'],'on','on');
+end
