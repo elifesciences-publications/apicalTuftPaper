@@ -59,3 +59,13 @@ util.stat.ranksum(cat(1,forPlot.diameter{1}),cat(1,forPlot.diameter{2}),...
 util.stat.ranksum(cat(1,forPlot.spineDensity{1}),cat(1,forPlot.spineDensity{2}),...
     fullfile(outputFolder,'spineDensityCombined'));
 util.copyfiles2fileServer
+
+%% Save the soma depth information
+diameterBifurcation = forPlotSep.diameter(:,1)';
+spineDensityBifurcation = forPlotSep.spineDensity(:,1)';
+
+matfolder = fullfile(util.dir.getAnnotation,'matfiles',...
+    'L5stL5ttFeatures');
+util.mkdir (matfolder)
+save(fullfile(matfolder,'diameterAndSpineDensityAtMainBifurcation.mat'),...
+    'diameterBifurcation','spineDensityBifurcation');
