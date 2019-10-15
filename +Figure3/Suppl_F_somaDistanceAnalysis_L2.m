@@ -155,5 +155,5 @@ ylim([0,1]);
 yticks(0:0.2:1)
 %xlabel('Distance to Soma along the apical dendrite');
 %ylabel('inhibitory synapse fraction');
-util.plot.cosmeticsSave(fh,ax,5,2.5,outputDir,...
+util.plot.cosmeticsSave(fh,ax,4,2.6,outputDir,...
     'dist2Soma_L2PYRCells_scatter.svg','on','on',false);

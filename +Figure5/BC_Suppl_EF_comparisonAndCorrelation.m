@@ -144,8 +144,8 @@ end
 % Add L5A uncorrected
 dendrite.L5A.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
     distance2soma{end});
-x_width=3.7;
-y_width=3;
+x_width=4;
+y_width=2.6;
 xLimit = 600;
 % plot exponential with offset
 minDist2Soma=min(cell2mat(distance2soma));
