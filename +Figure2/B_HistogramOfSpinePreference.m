@@ -60,7 +60,7 @@ allSynCount = cat(1,synCount.L1.Spine{:},synCount.L2.Spine{:},...
     synCount.L1.Shaft{:},synCount.L2.Shaft{:});
 assert(height(allSynCount)==430);
 disp(['Total synapse range per axon:', num2str([min(allSynCount.totalSynapseNumber,...
-    max(allSynCount.totalSynapseNumber]))]);
+    max(allSynCount.totalSynapseNumber))]);
 % Current total misclassification rate: 3.7973%
 % see below
 % Load axon switching fraction

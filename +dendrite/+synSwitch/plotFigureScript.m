@@ -26,6 +26,16 @@ for v=1:length(variables)
     util.plot.cosmeticsSave...
         (fh,ax,x_width(v),y_width(v),outputFolder,...
         [fname,'.svg'],'on','on');
+    % Also plot as kernel Densities
+    % Separate measure into corrected and uncorrected
+    fnameKernel = [fname,'_KernelDensity'];
+    fh=figure('Name',fnameKernel);ax=gca;
+    hold on
+
+    dendrite.synSwitch.plotKernelDensity(thisMeasure,colors);
+    util.plot.cosmeticsSave...
+        (fh,ax,3,3,outputFolder,[fnameKernel,'.svg'],...
+        'on','on');
 end
 
 %% Plotting celltype (larger datasets)
@@ -50,7 +60,7 @@ for l = 1:length(layerOrigin)
             fullfile(outputFolder,[fname,'.txt']));
         dendrite.synSwitch.getCorrected.correlationFigCosmetics(curLim,ax);
         hold off
-        % Used in text: Separate L5st and other neurons for calculation of 
+        % Used in text: Separate L5st and other neurons for calculation of
         % Rsquared
         modelUnity=@(x) x;
         otherCells=cat(1,thisMeasure{1:4});
