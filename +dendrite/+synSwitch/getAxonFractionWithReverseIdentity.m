@@ -7,7 +7,7 @@ util.mkdir(outputDir)
 seedTypes={'Spine','Shaft'};
 saveMatfile=false;
 %% Get all the synapse ratios:
-synRatio=dendrite.synSwitch.getAllSpineRatios;
+synRatio=dendrite.synSwitch.getSynapseMeasure('getSynRatio');
 %% Get the correction fractions
 layers={'L1','L2'};
 % Threshhold and anom function for gettting fraction of spine-seeded 
