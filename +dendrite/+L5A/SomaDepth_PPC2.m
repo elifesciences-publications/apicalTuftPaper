@@ -1,4 +1,4 @@
-% Clear all
+% Clear a1ll
 util.clearAll;
 %% Load skeleton an pia surface
 pia = util.plot.loadPia;
@@ -24,7 +24,20 @@ for cellT = 1:length(tr_L5L5A)
         dendrite.L5A.somaDepth.dist2plane...
         (pia.fitSurfaceNM,curSomaCoordsInNM)./1000;
 end
-
+%% Also get depth of all somata for methods text
+somaDepthAll = dendrite.L5A.somaDepth.getSkeleton...
+    (skel,dist2somaTreeIdx.Variables);
+depthRanges = ...
+    cellfun(@util.math.returnMinMax,somaDepthAll,'UniformOutput',false);
+allRangeArray = cat(1,depthRanges{:});
+allRangeT = array2table(allRangeArray,'VariableNames',...
+    {'MinDepth','MaxDepth'},'RowNames',...
+    dist2somaTreeIdx.Properties.VariableNames);
+outputFolderRanges=fullfile(util.dir.getFig5,...
+    'somaDepthRanges');util.mkdir(outputFolderRanges);
+writetable(allRangeT,fullfile(outputFolderRanges,'somaDepthRanges_PPC2.txt'),...
+    'WriteRowNames',true);
+util.copyfiles2fileServer;
 %% Plot box plot of comparison between somatic depth of L5tt and L5st cells
 % relative to pial surface
 
