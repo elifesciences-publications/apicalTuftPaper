@@ -4,8 +4,8 @@ util.clearAll;
 outputDir=fullfile(util.dir.getFig2,'B');
 util.mkdir(outputDir)
 debug=false;
-%   Authors: Ali Karimi <ali.karimi@brain.mpg.de>
-% Get the axonal objects and set the coordinate to distance from pia
+
+%% Get the axonal objects and set the coordinate to distance from pia
 apTuft=apicalTuft.getObjects('inhibitoryAxon');
 apTuftTrimmed=apicalTuft.applyMethod2ObjectArray...
     (apTuft,'getBackBone',false,false);
@@ -22,7 +22,7 @@ fullbboxes=cellfun(@(x) x.getBbox([],true), table2cell(apTuftTrimmed),...
 maxLim=max(cat(2,fullbboxes{:}),[],2);
 bboxLimAlongPiaWM=[1,maxLim(2)+100];
 
-% Initialize
+%% Initialize
 bboxes=cell(1,4);
 axonFraction=bboxes;
 axonDensity=bboxes;
@@ -79,10 +79,10 @@ util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,...
     'pathDensityFraction.svg');
 
 %% Fraction of pathLength at each location: Text
-pathPerTree=apicalTuft.applyMethod2ObjectArray...
+pathPerTree = apicalTuft.applyMethod2ObjectArray...
     (apTuftTrimmed,'pathLength',true,false);
-totalPatLength=(sum(cellfun(@(x)sum(x,1),table2cell(pathPerTree)),2))./1e6;
-disp('layer 2 vs. deep total pathlength')
+totalPatLength=(sum(cellfun(@(x)sum(x.pathLengthInMicron,1), table2cell(pathPerTree)),2))./1e3;
+disp('layer 2 vs. deep total pathlength (mm): ')
 disp(totalPatLength)
 
 
