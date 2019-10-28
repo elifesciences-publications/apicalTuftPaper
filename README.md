@@ -83,6 +83,10 @@ Volumetric data used to generate surfaces uses the [Webknossos-wrapper](https://
 Dirichlet-multinomial model fitting (Fig. 2b) was done using the [fastfit package](https://github.com/tminka/fastfit) developed by:
 
 * **Thomas P. Minka**
-
+ 
+## License
+This project is licensed under the [MIT license]().
+Copyright (c) 2019 Department of Connectomics, Max Planck Institute for
+Brain Research, D-60438 Frankfurt am Main, Germany
 
 
