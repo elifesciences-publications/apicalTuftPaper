@@ -85,7 +85,7 @@ Dirichlet-multinomial model fitting (Fig. 2b) was done using the [fastfit packag
 * **Thomas P. Minka**
  
 ## License
-This project is licensed under the [MIT license]().
+This project is licensed under the [MIT license](LICENSE).
 Copyright (c) 2019 Department of Connectomics, Max Planck Institute for
 Brain Research, D-60438 Frankfurt am Main, Germany
 
