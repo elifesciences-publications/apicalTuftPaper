@@ -1,5 +1,8 @@
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
+% This script prints out multiple panels for the inhibitory fraciton and
+% synapse densities around the main bifurcation and distal AD
+
 util.clearAll;
 outputFolder=fullfile(util.dir.getFig5,...
     'cellType_SynapticDensity_Comparison_Correlation');

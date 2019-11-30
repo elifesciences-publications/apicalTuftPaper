@@ -163,6 +163,8 @@ classdef apicalTuft < skeleton
         [ apicalDiameter,idx2keep ] = getApicalDiameter(skel,treeIndices);
         [ dist2soma ] = getDistanceBWPoints( skel,treeIndices,pointNames );
         [totalPathLengthInMicron] = getTotalPathLength(obj, treeIndices);
+        [NrOfObliques, ListOfCoords] = ...
+            getNumberOfObliques(skel,treeIndices)
     end
     
     methods (Static)

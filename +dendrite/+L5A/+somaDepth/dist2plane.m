@@ -17,7 +17,7 @@ A=thisfit.p10;
 B=thisfit.p01;
 C=-1;
 D=thisfit.p00;
-distformula=@(point) abs(A*point(1)+B*point(2)+C*point(3)+D)/sqrt(A^2+B^2+C^2);
+distformula=@(point) (A*point(1)+B*point(2)+C*point(3)+D)/sqrt(A^2+B^2+C^2);
 if size(allPoints,1)==1
     pCell={allPoints};
 else

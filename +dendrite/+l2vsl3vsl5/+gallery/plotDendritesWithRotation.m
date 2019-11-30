@@ -9,7 +9,7 @@ dist2somaGroups=contains(apTuft.PPC2.groupingVariable.Properties.VariableNames,.
 trIndices=table2cell(apTuft.PPC2.groupingVariable(1,dist2somaGroups));
 colors=util.plot.getColors().l2vsl3vsl5;
 p=dendrite.l2vsl3vsl5.gallery.parametersPPC2;
-for g=1:5
+for g=3:5
     dendrite.l2vsl3vsl5.gallery.saveGallery(apTuft.PPC2,trIndices{g},...
         colors{g},p);
 end
