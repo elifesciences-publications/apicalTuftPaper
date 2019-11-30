@@ -80,15 +80,20 @@ statsSummary = grpstats(curFeat,'clusters',{'mean','sem'});
 %% Look at the synapse ratios around their main bifurcations
 % 1:middle, 2: L5st, 3:L5tt
 trIndicesCluster = cell(length(unique(clusters)),1);
+curMappingNames = cell(length(unique(clusters)),1);
 for curCluster = unique(clusters)'
     treeIndicesInRow = (curFeat.clusters == curCluster);
     curNames = curFeat.Properties.RowNames(treeIndicesInRow);
-    curMappingNames = cellfun (@(x)strrep(x,'dist2soma','mapping'),curNames,...
+    curMappingNames{curCluster} = cellfun (@(x)strrep(x,'dist2soma','mapping'),curNames,...
         'UniformOutput',false);
-    curIndices = skel_main.getTreeWithName(curMappingNames,'exact');
+    curIndices = skel_main.getTreeWithName(curMappingNames{curCluster},'exact');
     assert (length(curIndices) == sum(treeIndicesInRow));
     trIndicesCluster{curCluster} = curIndices;
 end
+
+%% Save the names inside each cluster for use later
+save(fullfile(util.dir.getAnnotation,'matfiles','clusteringTreeNames'),...
+    'curMappingNames');
 %% Get the synaptic ratio
 clusterInhRatios = cell(1,k);
 for i = 1:length(trIndicesCluster)
