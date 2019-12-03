@@ -1,18 +1,18 @@
 <things>
   <meta name="writer" content="NmlWriter.scala" />
-  <meta name="writerGitCommit" content="f6bd1af6062d6e84e6fb33d0d57d68f27802fc18" />
-  <meta name="timestamp" content="1570056375487" />
-  <meta name="annotationId" content="5d9522d2010000354d6d2960" />
+  <meta name="writerGitCommit" content="d2713a2dc99fa522c13c7404fdebd2325b1b388e" />
+  <meta name="timestamp" content="1575283151113" />
+  <meta name="annotationId" content="5de4e5bc0100005971ace3fd" />
   <meta name="username" content="Ali Karimi" />
   <parameters>
     <experiment name="AK_CorrelativeExperiment06469_P57_st003_st004" organization="Connectomics_Department" description="&#xa;&#xa;" />
     <scale x="11.24" y="11.24" z="30.0" />
     <offset x="0" y="0" z="0" />
     <time ms="1537539945716" />
-    <editPosition x="13786" y="42246" z="9169" />
-    <editRotation xRot="0.0" yRot="0.0" zRot="0.0" />
+    <editPosition x="7464" y="43182" z="9522" />
+    <editRotation xRot="90.0" yRot="0.0" zRot="0.0" />
     <zoomLevel zoom="7.400249944258134" />
-    <activeNode id="61786" />
+    <activeNode id="61794" />
   </parameters>
   <thing id="290" color.r="0.4470588266849518" color.g="0.48235294222831726" color.b="0.10196078568696976" color.a="1.0" name="layer5ApicalDendrite_dist2soma12_03">
     <nodes>
@@ -4655,11 +4655,11 @@
   </thing>
   <thing id="267" color.r="0.0" color.g="0.24313725531101227" color.b="0.13725490868091583" color.a="1.0" name="layer5ApicalDendrite_dist2soma09_03">
     <nodes>
-      <node id="59531" radius="112.399994" x="14830" y="44558" z="8566" rotX="90.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="3" bitDepth="4" interpolation="true" time="1565110006596" />
-      <node id="59532" radius="112.399994" x="14826" y="44558" z="9018" rotX="90.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="3" bitDepth="4" interpolation="true" time="1565110010204" />
+      <node id="61803" radius="112.399994" x="14830" y="44062" z="8670" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="4" interpolation="true" time="1575282862913" />
+      <node id="61804" radius="112.399994" x="14830" y="44756" z="8932" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="4" interpolation="true" time="1575282867069" />
     </nodes>
     <edges>
-      <edge source="59531" target="59532" />
+      <edge source="61803" target="61804" />
     </edges>
   </thing>
   <thing id="266" color.r="0.0" color.g="0.6196078658103943" color.b="0.24313725531101227" color.a="1.0" name="layer5ApicalDendrite_dist2soma09_02">
@@ -4682,38 +4682,38 @@
   </thing>
   <thing id="264" color.r="0.27450981736183167" color.g="0.2078431397676468" color.b="0.13725490868091583" color.a="1.0" name="layer5ApicalDendrite_dist2soma08_03">
     <nodes>
-      <node id="59525" radius="112.399994" x="6863" y="45549" z="7926" rotX="90.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="3" bitDepth="4" interpolation="true" time="1565109919716" />
-      <node id="59526" radius="112.399994" x="6867" y="45549" z="8466" rotX="90.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="3" bitDepth="4" interpolation="true" time="1565109922557" />
+      <node id="61797" radius="112.399994" x="6863" y="45050" z="8405" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="4" interpolation="true" time="1575282668067" />
+      <node id="61798" radius="112.399994" x="6863" y="46132" z="7986" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="4" interpolation="true" time="1575282677907" />
     </nodes>
     <edges>
-      <edge source="59525" target="59526" />
+      <edge source="61797" target="61798" />
     </edges>
   </thing>
   <thing id="263" color.r="0.6549019813537598" color.g="0.24313725531101227" color.b="0.4470588266849518" color.a="1.0" name="layer5ApicalDendrite_dist2soma08_02">
     <nodes>
-      <node id="59523" radius="112.399994" x="6930" y="44690" z="8200" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="4" interpolation="true" time="1565109907140" />
-      <node id="59524" radius="112.399994" x="6934" y="46326" z="8200" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="4" interpolation="true" time="1565109911602" />
+      <node id="61799" radius="112.399994" x="6863" y="45064" z="8014" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="4" interpolation="true" time="1575282688094" />
+      <node id="61800" radius="112.399994" x="6863" y="45897" z="8385" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="4" interpolation="true" time="1575282692567" />
     </nodes>
     <edges>
-      <edge source="59523" target="59524" />
+      <edge source="61799" target="61800" />
     </edges>
   </thing>
   <thing id="262" color.r="0.4156862795352936" color.g="0.03529411926865578" color.b="0.27450981736183167" color.a="1.0" name="layer5ApicalDendrite_dist2soma08_01">
     <nodes>
-      <node id="59521" radius="112.399994" x="7686" y="45563" z="8200" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="4" interpolation="true" time="1565109899398" />
-      <node id="59522" radius="112.399994" x="6068" y="45563" z="8200" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="4" interpolation="true" time="1565109901606" />
+      <node id="61801" radius="112.399994" x="7691" y="45523" z="8202" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="4" interpolation="true" time="1575282775301" />
+      <node id="61802" radius="112.399994" x="6077" y="45534" z="8202" rotX="0.0" rotY="0.0" rotZ="0.0" inVp="0" inMag="3" bitDepth="4" interpolation="true" time="1575282777569" />
     </nodes>
     <edges>
-      <edge source="59521" target="59522" />
+      <edge source="61801" target="61802" />
     </edges>
   </thing>
   <thing id="261" color.r="0.3450980484485626" color.g="0.5176470875740051" color.b="0.5176470875740051" color.a="1.0" name="layer5ApicalDendrite_dist2soma07_03">
     <nodes>
-      <node id="59519" radius="112.399994" x="18618" y="47140" z="8238" rotX="90.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="3" bitDepth="4" interpolation="true" time="1565109835027" />
       <node id="59520" radius="112.399994" x="18615" y="47140" z="8677" rotX="90.0" rotY="0.0" rotZ="0.0" inVp="2" inMag="3" bitDepth="4" interpolation="true" time="1565109838001" />
+      <node id="61795" radius="112.399994" x="18615" y="47239" z="8230" rotX="0.0" rotY="270.0" rotZ="0.0" inVp="1" inMag="3" bitDepth="4" interpolation="true" time="1575282588541" />
     </nodes>
     <edges>
-      <edge source="59519" target="59520" />
+      <edge source="59520" target="61795" />
     </edges>
   </thing>
   <thing id="260" color.r="0.48235294222831726" color.g="0.003921568859368563" color.b="0.6901960968971252" color.a="1.0" name="layer5ApicalDendrite_dist2soma07_02">
