@@ -6,7 +6,7 @@ function [bifurDepth] = bifurcationDepth(skel,treeNames)
 distL1Pia = 145;
 l1 = util.plot.loadl1;
 bifurDepth = table(zeros(size(treeNames(:))),...
-    'RowNames',treeNames, 'VariableNames',{'ADTrunkDiameter'});
+    'RowNames',treeNames, 'VariableNames',{'bifurcationDepth'});
 for i=1:length(treeNames)
     curTr = skel.getTreeWithName(treeNames{i});
     assert (length(curTr) == 1);

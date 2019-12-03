@@ -16,7 +16,8 @@ testResult.percent1over2=(mean(array1)./mean(array2))*100;
 testResult.percent2over1=(mean(array2)./mean(array1))*100;
 testResult.sem(1)=util.stat.sem(array1);
 testResult.sem(2)=util.stat.sem(array2);
-testResult.string=sprintf('Wilcoxon ranksum - H=%f - P=%d \nMeans: %f, %f \nSEM: %f, %f\n',...
+testResult.string=sprintf(...
+    'Wilcoxon ranksum - H=%f - P=%d \nMeans: %f, %f \nSEM: %f, %f\n',...
     testResult.h,testResult.p,testResult.mean, testResult.sem);
 disp(testResult.string);
 % Write as a table

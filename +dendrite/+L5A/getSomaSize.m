@@ -12,6 +12,7 @@ for i=1:length(treeNames)
     % Get all the diameters for a tree
     curDiameter=...
         skel.pathLength(skel.getTreeWithName(curTreeNames))./1000;
+    assert (length(curDiameter) == 3);
     % Get the diameter of sphere with equal volume to the ellipsoid
     curAvgDiameter= nthroot(prod(curDiameter),3);
     diameter{i,1}=curAvgDiameter;
