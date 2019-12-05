@@ -1,4 +1,4 @@
-function [] = addLinearFit(array,model,plotLine,fname)
+function [f] = addLinearFit(array,model,plotLine,fname)
 %ADDLINEARFIT Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -20,8 +20,11 @@ for d=1:length(array)
     curX=[curX;array{d}(:,1)];
     curY=[curY;array{d}(:,2)];
 end
+
 % Linear model fitting
 [f,gof]=fit(curX,curY,model);
+% Add the information about correlation coefficient
+util.stat.correlationStatFileWriter(curX, curY,fname,f);
 if write2file
     fid = fopen(fname,'a');
     fprintf(fid,'------Output from addLinearFit------\n');

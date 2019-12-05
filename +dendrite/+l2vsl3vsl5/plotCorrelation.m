@@ -1,18 +1,19 @@
 function [fh,ax,exp] = plotCorrelation(distance2soma,...
-    Measure,beta0)
+    Measure,beta0, colors)
 % PLOTCORRELATION
 if ~exist('beta0','var') || isempty (beta0)
     beta0=[];
 end
-
+if ~exist('colors','var') || isempty (colors)
+    colors = util.plot.getColors().l2vsl3vsl5;
+end
 crossSize=10;
-dist2somaColors=util.plot.getColors().l2vsl3vsl5;
 fh=figure;ax=gca;
 hold on
 for dataset=1:length(distance2soma)
     curDist=distance2soma{dataset};
     curRatio=Measure{dataset};
-    scatter(curDist,curRatio,crossSize,dist2somaColors{dataset},'x');
+    scatter(curDist,curRatio,crossSize,colors{dataset},'x');
 end
 distArray=cat(1,distance2soma{:});
 ratioArray=cat(1,Measure{:});

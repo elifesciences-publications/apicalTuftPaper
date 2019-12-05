@@ -1,8 +1,8 @@
 % This script extract features and tries to apply a clustering method to
 % classification of L5 pyramidal neurons
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-saveResults = false
 util.clearAll;
+saveResults = false;
 outputFolder=fullfile(util.dir.getFig5,...
     'ClassificationCriteriaForL5');
 util.mkdir(outputFolder);
@@ -128,7 +128,7 @@ for f = 1:4
     for c=1:2
         indices = (curFeat.clusters == c);
         histogram(curFeat{indices,f},'BinEdges',BinEdges{f},...
-            'DisplayStyle','stairs','EdgeColor', curColors{c});        
+            'DisplayStyle','stairs','EdgeColor', curColors{c});
     end
     hold off
     xlim([0,max(BinEdges{f})+.5]);
@@ -165,9 +165,10 @@ for c=1:2
     end
 end
 %% correct tree names and save
+names = cell2table([skel_main.names(cat (1,trIndices{:})), cat(2,newTrNames{:})'],...
+    'VariableNames',{'OldName','NewName'});
 if saveResults
-    names = cell2table([skel_main.names(cat (1,trIndices{:})), cat(2,newTrNames{:})'],...
-        'VariableNames',{'OldName','NewName'});
+    
     skel_main.names(cat (1,trIndices{:})) = cat (2,newTrNames{:})';
     skel_main = skel_main.updateGrouping;
     skel_main.write ('PPC2_l2vsl3vsl5_L5newGrouping')
@@ -175,3 +176,75 @@ if saveResults
     save(fullfile(util.dir.getAnnotation,'matfiles','clusteringTreeNames.mat'),...
         'names');
 end
+%%  Get the correction fraction and treeIndices for synapse densities
+curMappingNames = cellfun (@(x)strrep(x,'dist2soma','mapping'),skel_main.names(IdxL5),...
+    'UniformOutput',false);
+IdxL5_mapping = skel_main.getTreeWithName(curMappingNames,'exact');
+
+% Plot scores vs. inhibitory fractions
+axonSwitchFraction = dendrite.synSwitch.getCorrected.switchFactorl235;
+correctionFrac = axonSwitchFraction.mainBifurcation{1}{'L5A',:};
+%% Investigate the cause of the negatice relationship
+
+theDensity = skel_main.getSynDensityPerType(IdxL5_mapping,correctionFrac);
+ylimit = [0,0.3,4];
+for g = 2:3
+    fname = theDensity.Properties.VariableNames{g};
+    fh = figure('Name', fname);ax = gca;
+    x_width = 2;
+    y_width = 2;
+    hold on
+    for i=1:length(unique(clusters))
+        scores_Cell{i} = scores(clusters==i,1);
+        curDensity{i} = theDensity{clusters==i,g};
+        combinedArray{i} = [scores_Cell{i},curDensity{i}];
+        util.plot.scatter([scores_Cell{i},curDensity{i}]',colors{i})
+    end
+    fullname = fullfile(outputFolder,[fname,'.txt']);
+    model{g-1} = util.plot.addLinearFit(combinedArray,[],[],fullname);
+    hold off
+    % Plot the exponential
+    ylim([0,ylimit(g)]);xlim([-3 5]);
+    util.plot.cosmeticsSave...
+        (fh,ax,x_width,y_width,outputFolder,...
+        [fname,'.svg'],'on','on');
+    clear combinedArray;
+end
+
+
+%% Inhibitory ratio
+
+inhRatio = skel_main.getSynRatio(IdxL5_mapping,correctionFrac).Shaft_corrected;
+fh = figure;ax = gca;
+x_width = 2;
+y_width = 2;
+hold on
+for i=1:length(unique(clusters))
+    scores_Cell{i} = scores(clusters==i,1);
+    inhRatio_Cell{i} = inhRatio(clusters==i);
+    combinedArray{i} = [scores_Cell{i},inhRatio_Cell{i}];
+    util.plot.scatter([scores_Cell{i},inhRatio_Cell{i}]',colors{i})
+end
+% combine L5st and tt groups
+allX = cat(1,scores_Cell{:});
+allY = cat(1,inhRatio_Cell{:});
+
+% Plot the combination of linear fits to the synatptic densities
+% combine excitatory and inhibitory model coefficients to get the
+% inhibitory fraction fit from the two linear fits
+combinedCoeffs = coeffvalues(model{1})+coeffvalues(model{2});
+inhCoeff = coeffvalues(model{1});
+minMax = [min(allX), max(allX)];
+% inh / (inh+exc)
+modelRatioFun = @(x) arrayfun(@(y)(inhCoeff *[y;1])/(combinedCoeffs*[y;1]),x);
+util.plot.genericModel(modelRatioFun,minMax);
+
+% Get the coefficient of determination
+
+ylim([0,0.5]);xlim([-3 5]);
+util.plot.cosmeticsSave...
+    (fh,ax,x_width,y_width,outputFolder,...
+    ['InhFrac_PC1.svg'],'on','on');
+
+
+

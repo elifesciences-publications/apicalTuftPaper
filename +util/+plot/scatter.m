@@ -6,7 +6,7 @@ if ~exist('color','var') || isempty(color)
     color=[1,0,0];
 end
 if ~exist('theSize','var') || isempty(theSize)
-    theSize=36;
+    theSize=10;
 end
 if ~exist('marker','var') || isempty(marker)
     marker='x';
