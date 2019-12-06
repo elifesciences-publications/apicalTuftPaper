@@ -184,8 +184,7 @@ IdxL5_mapping = skel_main.getTreeWithName(curMappingNames,'exact');
 % Plot scores vs. inhibitory fractions
 axonSwitchFraction = dendrite.synSwitch.getCorrected.switchFactorl235;
 correctionFrac = axonSwitchFraction.mainBifurcation{1}{'L5A',:};
-%% Investigate the cause of the negatice relationship
-
+%% Investigate the cause of the negative relationship
 theDensity = skel_main.getSynDensityPerType(IdxL5_mapping,correctionFrac);
 ylimit = [0,0.3,4];
 for g = 2:3
@@ -201,16 +200,15 @@ for g = 2:3
         util.plot.scatter([scores_Cell{i},curDensity{i}]',colors{i})
     end
     fullname = fullfile(outputFolder,[fname,'.txt']);
-    model{g-1} = util.plot.addLinearFit(combinedArray,[],[],fullname);
+    linearModel{g-1} = util.plot.addLinearFit(combinedArray,[],fullname);
     hold off
     % Plot the exponential
-    ylim([0,ylimit(g)]);xlim([-3 5]);
+    ylim([0,ylimit(g)]);xlim([-3 4]);
     util.plot.cosmeticsSave...
         (fh,ax,x_width,y_width,outputFolder,...
         [fname,'.svg'],'on','on');
     clear combinedArray;
 end
-
 
 %% Inhibitory ratio
 
@@ -223,7 +221,7 @@ for i=1:length(unique(clusters))
     scores_Cell{i} = scores(clusters==i,1);
     inhRatio_Cell{i} = inhRatio(clusters==i);
     combinedArray{i} = [scores_Cell{i},inhRatio_Cell{i}];
-    util.plot.scatter([scores_Cell{i},inhRatio_Cell{i}]',colors{i})
+    util.plot.scatter([scores_Cell{i},inhRatio_Cell{i}]',colors{i});
 end
 % combine L5st and tt groups
 allX = cat(1,scores_Cell{:});
@@ -232,19 +230,41 @@ allY = cat(1,inhRatio_Cell{:});
 % Plot the combination of linear fits to the synatptic densities
 % combine excitatory and inhibitory model coefficients to get the
 % inhibitory fraction fit from the two linear fits
-combinedCoeffs = coeffvalues(model{1})+coeffvalues(model{2});
-inhCoeff = coeffvalues(model{1});
+combinedCoeffs = fliplr( linearModel{1}.Coefficients.Estimate' +...
+    linearModel{2}.Coefficients.Estimate');
+inhCoeff = fliplr(linearModel{1}.Coefficients.Estimate');
+excCoeff = fliplr(linearModel{2}.Coefficients.Estimate');
+
 minMax = [min(allX), max(allX)];
 % inh / (inh+exc)
 modelRatioFun = @(x) arrayfun(@(y)(inhCoeff *[y;1])/(combinedCoeffs*[y;1]),x);
-util.plot.genericModel(modelRatioFun,minMax);
+util.plot.genericModel(modelRatioFun,minMax,'k--');
 
 % Get the coefficient of determination
+numParams = 4;
+combinedRsquared.total = util.stat.coeffDetermination(modelRatioFun,[allX,allY],numParams);
+ylim([0,0.5]);xlim([-3 4]);
+%% Fit nonlinear model with form (b(1)x+b(2)/b(3)x+b(4)) to inhibitory fraction
+bilinearModel = @(b,x) (b(1)*x+b(2))./ (b(3)*x+b(4));
+beta0 = [inhCoeff,combinedCoeffs];
+fname = fullfile(outputFolder,'Linear_Ratio_fit.txt');
+bilinearFit = util.plot.addNonLinearFit({[allX,allY]}, bilinearModel, ...
+    true,fname,[inhCoeff,combinedCoeffs],'-');
 
-ylim([0,0.5]);xlim([-3 5]);
+
+%% Fit only inhibitory or excitatory model
+avgInh = mean(theDensity.Shaft_corrected);
+avgExc = mean(theDensity.Spine_corrected);
+
+modelOnlyExc = @(x) arrayfun(@(y) avgInh/(avgInh+excCoeff*[y;1]),x);
+modelOnlyInh = @(x) arrayfun(@(y)(inhCoeff *[y;1])/((inhCoeff*[y;1])+avgExc),x);
+
+util.plot.genericModel(modelOnlyExc,minMax,'r--');
+util.plot.genericModel(modelOnlyInh,minMax,'b--');
+
+numParams = 2;
+combinedRsquared.Inh = util.stat.coeffDetermination(modelOnlyInh,[allX,allY],numParams);
+combinedRsquared.Exc = util.stat.coeffDetermination(modelOnlyExc,[allX,allY],numParams);
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,...
-    ['InhFrac_PC1.svg'],'on','on');
-
-
-
+    (fh,ax,4,4,outputFolder,...
+    ['InhFrac_PC1.svg'],'on','on',false);
