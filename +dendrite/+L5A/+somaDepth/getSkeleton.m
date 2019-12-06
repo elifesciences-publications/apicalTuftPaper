@@ -5,7 +5,7 @@ if ~exist('treeIndices', 'var') || isempty(treeIndices)
 end
 switch skel.filename
     case 'PPC2_l2vsl3vsl5'
-        pia = util.plot.loadPia;
+        l1 = util.plot.loadPia;
         measureRel2Pia = true;
     case 'LPtA_l2vsl3vsl5'
         

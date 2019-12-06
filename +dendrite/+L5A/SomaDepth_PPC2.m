@@ -1,7 +1,7 @@
 % Clear a1ll
 util.clearAll;
 %% Load skeleton an pia surface
-pia = util.plot.loadPia;
+l1 = util.plot.loadl1;
 skel = apicalTuft('PPC2_l2vsl3vsl5');
 %% Get tree Indices of L5 and L5A neurons
 dist2somaTreeIdx = skel.groupingVariable(:,...
@@ -21,8 +21,8 @@ for cellT = 1:length(tr_L5L5A)
     curSomaCoordsInNM = round(curSomaCoords.*skel.scale)';
     % Measurement of distance to pia
     somaDepth{cellT}=...
-        dendrite.L5A.somaDepth.dist2plane...
-        (pia.fitSurfaceNM,curSomaCoordsInNM)./1000;
+        (dendrite.L5A.somaDepth.dist2plane...
+        (l1.fitSurfaceNM,curSomaCoordsInNM)./1000)+145;
 end
 %% Also get depth of all somata for methods text
 somaDepthAll = dendrite.L5A.somaDepth.getSkeleton...
@@ -38,6 +38,24 @@ outputFolderRanges=fullfile(util.dir.getFig5,...
 writetable(allRangeT,fullfile(outputFolderRanges,'somaDepthRanges_PPC2.txt'),...
     'WriteRowNames',true);
 util.copyfiles2fileServer;
+%% Plot their histgrams
+
+curColors ={l5color,l5Acolor};
+curFeatName = 'histogram_somaDepthL5';
+fh = figure ('Name',curFeatName);ax = gca;
+x_width=2;
+y_width=1;
+hold on
+for c=1:2
+    histogram(somaDepth{c},'BinEdges',520:20:640,...
+        'DisplayStyle','stairs','EdgeColor', curColors{c});
+end
+hold off
+xlim([520,640]);
+util.plot.cosmeticsSave...
+    (fh,ax,x_width,y_width,outputFolder,...
+    [curFeatName,'_histogram.svg'],'on','off');
+
 %% Plot box plot of comparison between somatic depth of L5tt and L5st cells
 % relative to pial surface
 
