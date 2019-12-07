@@ -6,6 +6,7 @@ apTuftPruned=apTuftPruned.sortTreesByName;
 %%
 fname='L5A_denseDistalAD';
 outputDir=fullfile(util.dir.getFig6,'TheL5ADistalADDense');
+util.mkdir(outputDir)
 fh=figure('Name',fname);ax=gca;
 hold on;
 p=dendrite.l2vsl3vsl5.gallery.parametersPPC2;
