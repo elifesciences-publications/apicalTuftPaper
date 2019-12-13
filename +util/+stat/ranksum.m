@@ -19,6 +19,8 @@ testResult.sem(2)=util.stat.sem(array2);
 testResult.string=sprintf(...
     'Wilcoxon ranksum - H=%f - P=%d \nMeans: %f, %f \nSEM: %f, %f\n',...
     testResult.h,testResult.p,testResult.mean, testResult.sem);
+testResult.N1= length(array1);
+testResult.N2 = length(array2);
 disp(testResult.string);
 % Write as a table
 if writeResult

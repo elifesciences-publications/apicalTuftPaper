@@ -11,14 +11,17 @@ else
     write2file=true;
 end
 [out.Rho,out.pval] = corr(X,Y);
-out.Rsquared = util.stat.coeffDetermination(model, [X,Y]);
+out.Rsquared = util.stat.coeffDetermination(model, [X,Y],2);
 if write2file
     fid = fopen(fname,'w+');
     fprintf(fid, ['Correlation Coefficient is: ',num2str(out.Rho),'\n',...
         'The p-value is: ',num2str(out.pval),'\n']);
     fprintf(fid, ['Maximum X is: ',num2str(max(X)),'\n',...
         'The Maximum Y is: ',num2str(max(Y)),'\n']);
-    fprintf(fid, ['R squared is: ',num2str(out.Rsquared),'\n']);
+    fprintf(fid, ['R squared (raw) is: ',...
+        num2str(out.Rsquared.ordinal),'\n']);
+    fprintf(fid, ['R squared (adjusted) is: ',...
+        num2str(out.Rsquared.adjusted),'\n']);
     fclose(fid);
 end
 end

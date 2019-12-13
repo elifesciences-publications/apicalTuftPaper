@@ -179,12 +179,12 @@ beta0Inh=[0.1000,0.5824, -0.0299];
 % Add L5A uncorrected
 dendrite.L5A.plotUncorrected(l5ARawData.shaftDensity,shaftDensity{end},...
     distance2soma{end});
-x_width=4;
-y_width=2.6;
+x_width=2;
+y_width=1.3;
 % plot exponential with offset
 modelRatio=modelfun(exponentialFit_inh.oneWithOff.Coefficients.Estimate',...
     distRange);
-plot(distRange,modelRatio,'k');
+% plot(distRange,modelRatio,'k');
 
 legend('off')
 xlabel([]);
@@ -209,7 +209,7 @@ dendrite.L5A.plotUncorrected(l5ARawData.spineDensity,spineDensity{end},...
 % plot exponential with offset
 modelRatio=modelfun(exponentialFit_Exc.oneWithOff.Coefficients.Estimate',...
     distRange);
-plot(distRange,modelRatio,'k');
+% plot(distRange,modelRatio,'k');
 legend('off')
 xlabel([]);
 ylabel([]);
