@@ -1,4 +1,4 @@
-function [dist] = dist2plane(thisfit,allPoints)
+function [dist] = dist2plane(thisfit,allPoints,signed)
 %% Function to calculate the distance from a point to a plane
 
 % input:
@@ -12,18 +12,26 @@ function [dist] = dist2plane(thisfit,allPoints)
 
 % Note: It would make sense to use the fitSurfaceNM and convert the
 % coordinates to NM as well. Then the distance would be in NM as well
-
+if ~exist('signed','var') || isempty(signed)
+    signed = false;
+end
 A=thisfit.p10;
 B=thisfit.p01;
 C=-1;
 D=thisfit.p00;
-distformula=@(point) abs(A*point(1)+B*point(2)+C*point(3)+D)/sqrt(A^2+B^2+C^2);
+distformula.unsigned = @(point) abs(A*point(1)+B*point(2)+C*point(3)+D)/sqrt(A^2+B^2+C^2);
+distformula.signed = @(point) (A*point(1)+B*point(2)+C*point(3)+D)/sqrt(A^2+B^2+C^2);
 if size(allPoints,1)==1
     pCell={allPoints};
 else
     assert(size(allPoints,1)==3)
     pCell=num2cell(allPoints,1);
 end
-dist=cellfun(distformula,pCell);
+% Absolute or signed value
+if signed
+    dist=cellfun(distformula.signed,pCell);
+else
+    dist=cellfun(distformula.unsigned,pCell);
+end
 
 end

@@ -18,7 +18,7 @@ for i=1:length(treeNames)
     % Measurement of distance to pia
     bifurDepth{i,1}=distL1Pia-...
         (dendrite.L5A.somaDepth.dist2plane...
-        (l1.fitSurfaceNM,curbifurCoordsInNM)./1000);
+        (l1.fitSurfaceNM,curbifurCoordsInNM,true)./1000);
 end
 end
 
