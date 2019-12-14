@@ -21,6 +21,8 @@ testResult.string=sprintf(...
     testResult.h,testResult.p,testResult.mean, testResult.sem);
 testResult.N1= length(array1);
 testResult.N2 = length(array2);
+testResult.sd(1)= std(array1);
+testResult.sd(2) = std(array2);
 disp(testResult.string);
 % Write as a table
 if writeResult
