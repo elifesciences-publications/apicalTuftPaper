@@ -32,7 +32,7 @@ for i=1:3
     distal.(variableNames{i}){end} = curCorrected;
 end
 %% Plot inhibitory Ratios
-outputFolder=fullfile(util.dir.getFig6,'distalvsMain');
+outputFolder=fullfile(util.dir.getFig7,'distalvsMain');
 util.mkdir(outputFolder);
 util.setColors;
 x_width=3;
@@ -145,22 +145,25 @@ for celltype=1:length(cellTypes)
     disp([cellTypes{celltype},': main bifurcation vs. distal tuft'])
     testResultsRatios.(cellTypes{celltype})=...
         util.stat.ranksum....
-        (bifur.shaftRatio{celltype},distal.shaftRatio{celltype});
+        (bifur.shaftRatio{celltype},distal.shaftRatio{celltype},...
+        fullfile (outputFolder, ['ranksumBifurAndDistal_',...
+        cellTypes{celltype},'.txt']));
 end
+util.copyfiles2fileServer
 %% create the error bar for summary plot
 fh=figure;ax=gca;
 colors={l2color,l3color,l5color,l5Acolor};
 hold on
-
+loc=-([-0.15:0.1:0.15]./8);
 for celltype=1:length(cellTypes)
     curField=cellTypes{celltype};
     curColor=colors{celltype};
-    errorbar([2,1],testResultsRatios.(curField).mean,...
-        testResultsRatios.(curField).sem,....
+    errorbar([2,1]+loc(celltype),testResultsRatios.(curField).mean,...
+        testResultsRatios.(curField).sd,....
         'Color',curColor);
 end
 xlim([0.85, 2.15]);
-ylim([0,0.45]);
+ylim([0,0.6]);
 xticks(1:2);
 yticks(0:0.1:0.6)
 xticklabels([]);

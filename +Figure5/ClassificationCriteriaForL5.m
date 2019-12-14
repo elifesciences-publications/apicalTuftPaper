@@ -190,8 +190,8 @@ ylimit = [0,0.3,4];
 for g = 2:3
     fname = theDensity.Properties.VariableNames{g};
     fh = figure('Name', fname);ax = gca;
-    x_width = 2;
-    y_width = 2;
+    x_width = 1.5;
+    y_width = 1.5;
     hold on
     for i=1:length(unique(clusters))
         scores_Cell{i} = scores(clusters==i,1);
@@ -214,8 +214,8 @@ end
 
 inhRatio = skel_main.getSynRatio(IdxL5_mapping,correctionFrac).Shaft_corrected;
 fh = figure;ax = gca;
-x_width = 2;
-y_width = 2;
+y_width = 4.5;
+x_width = 3;
 hold on
 for i=1:length(unique(clusters))
     scores_Cell{i} = scores(clusters==i,1);
@@ -266,5 +266,5 @@ numParams = 2;
 combinedRsquared.Inh = util.stat.coeffDetermination(modelOnlyInh,[allX,allY],numParams);
 combinedRsquared.Exc = util.stat.coeffDetermination(modelOnlyExc,[allX,allY],numParams);
 util.plot.cosmeticsSave...
-    (fh,ax,4,4,outputFolder,...
+    (fh,ax,x_width,y_width,outputFolder,...
     ['InhFrac_PC1.svg'],'on','on',false);
