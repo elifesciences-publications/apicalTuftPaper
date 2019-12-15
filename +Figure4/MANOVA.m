@@ -40,7 +40,7 @@ for i=1:2
     end
 end
 %% test values which are significant from the multiple anovas
-sigAnova=(p<0.05/6);
+sigAnova=(p < 0.05/6);
 significance=array2table(sigAnova,'RowNames',aggRatios{1}.Properties.VariableNames(2:7),...
     'VariableNames',{'L2','Deep'});
 disp(significance)

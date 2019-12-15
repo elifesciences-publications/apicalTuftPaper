@@ -19,6 +19,5 @@ if thisPlot
     util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,[],filename);
 end
-
 end
 
