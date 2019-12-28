@@ -26,7 +26,7 @@ for cellT = 1:length(treeIndices)
     if measureRel2Pia
         somaDepth{cellT}=...
             dendrite.L5A.somaDepth.dist2plane...
-            (pia.fitSurfaceNM,curSomaCoordsInNM)./1000;
+            (l1.fitSurfaceNM,curSomaCoordsInNM)./1000;
     else
         % Use the Y coordinate as soma depth
         % Note: the skeleton should be converted using convert2piacoord

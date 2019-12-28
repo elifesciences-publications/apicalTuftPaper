@@ -15,8 +15,10 @@ matFileName=fullfile(outputFolder,'Figure1_synapseDensity.mat');
 save(util.addDateToFileName( matFileName),'Density');
 %% Statistic testing (Wilcoxon ranksum test)
 % testing the aggregate
-util.stat.ranksum(shaftDensity{1,5},shaftDensity{2,5});
-util.stat.ranksum(spineDensity{1,5},spineDensity{2,5});
+util.stat.ranksum(shaftDensity{1,5},shaftDensity{2,5},...
+    fullfile(outputFolder,'raksumTestResults_inh_agg'));
+util.stat.ranksum(spineDensity{1,5},spineDensity{2,5},...
+    fullfile(outputFolder,'raksumTestResults_exc_agg'));
 filename2Save=fullfile(outputFolder,'raksumTestResults.txt');
 util.stat.ranksum.synapseDensity(shaftDensity,spineDensity,...
     Density.Properties.VariableNames,filename2Save);

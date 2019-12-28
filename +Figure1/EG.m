@@ -19,11 +19,12 @@ save(util.addDateToFileName( matFileName),'ratios');
 % ratio aggregate comparison
 util.stat.ranksum(shaftRatio{1,5},shaftRatio{2,5})
 fileName2Save=fullfile(outputFolder,...
-    util.addDateToFileName('ranksumTestResults'));
+    'ranksumTestResults.txt');
 util.stat.ranksum.shaftRatio...
     (shaftRatio,ratios.Properties.VariableNames,fileName2Save)
 
-
+util.stat.ranksum...
+    (shaftRatio{1,5},shaftRatio{2,5},fileName2Save)
 %% Plot: Separate aggregate data
 aggRatio=shaftRatio(:,5);
 sepRatio=shaftRatio(:,1:4);

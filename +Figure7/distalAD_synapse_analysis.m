@@ -158,12 +158,12 @@ loc=-([-0.15:0.1:0.15]./8);
 for celltype=1:length(cellTypes)
     curField=cellTypes{celltype};
     curColor=colors{celltype};
-    errorbar([2,1]+loc(celltype),testResultsRatios.(curField).mean,...
-        testResultsRatios.(curField).sd,....
+    errorbar([2,1],testResultsRatios.(curField).mean,...
+        testResultsRatios.(curField).sem,....
         'Color',curColor);
 end
 xlim([0.85, 2.15]);
-ylim([0,0.6]);
+ylim([0,0.4]);
 xticks(1:2);
 yticks(0:0.1:0.6)
 xticklabels([]);

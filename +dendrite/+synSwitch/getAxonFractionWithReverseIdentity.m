@@ -18,6 +18,9 @@ layers={'L1','L2'};
 threshold=0.5;
 fractionFun={@(x)sum(x<threshold)/length(x),...
     @(x)sum(x>threshold)/length(x)};
+numFun = {@(x) [sum(x<threshold),length(x)],...
+    @(x) [sum(x>threshold),length(x)]};
+numForReport = [];
 % Loop through layers, seed type (spine vs. shaft) and apical type
 for l=1:2
     curLayer=synRatio.(layers{l});
@@ -26,9 +29,10 @@ for l=1:2
         seedType=seedTypes{synapseSeedType};
         for apTypeSeed=1:length(curSeedT)
             spInnervationFraction=curSeedT{apTypeSeed}.Spine;
-            curFun=fractionFun{synapseSeedType};
+            curFun = fractionFun{synapseSeedType};
             curResult.(seedType)(apTypeSeed,1)=...
                     curFun(spInnervationFraction);
+            numForReport = [numForReport;numFun{synapseSeedType}(spInnervationFraction)];
         end
     end
     axonSwitchFraction.(layers{l})=struct2table(curResult,...
@@ -63,3 +67,18 @@ for i=1:2
         synRatioNoL5ASpine.(layers{i}).Variables);
     disp(sum(totalSynNumbers,'all'))
 end
+
+%% Report the total error rate by combining all the data 
+% (reviewer response letter)
+
+numForReport([4,11],:) = [];
+summed = sum(numForReport,1);
+fractionOfAxonsFromTotal = summed(1)/summed(2);
+disp (fractionOfAxonsFromTotal);
+
+%% Number of synapses per axon
+synCount = dendrite.synSwitch.getSynapseMeasure('getTotalSynapseNumber');
+% Remove duplicates for L5A
+synCount.L2{3,1}{1}=[];
+synCount.L1{4,1}{1}=[];
+

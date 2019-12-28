@@ -39,7 +39,8 @@ writetable(allRangeT,fullfile(outputFolderRanges,'somaDepthRanges_PPC2.txt'),...
     'WriteRowNames',true);
 util.copyfiles2fileServer;
 %% Plot their histgrams
-
+outputFolder=fullfile(util.dir.getFig5,...
+    'somaDepthL5ttL5st');util.mkdir(outputFolder);
 curColors ={l5color,l5Acolor};
 curFeatName = 'histogram_somaDepthL5';
 fh = figure ('Name',curFeatName);ax = gca;
@@ -61,8 +62,7 @@ util.plot.cosmeticsSave...
 
 x_width=2;
 y_width=1.9;
-outputFolder=fullfile(util.dir.getFig5,...
-    'somaDepthL5ttL5st');util.mkdir(outputFolder);
+
 fname='somaDepthRelPia_L5vsL5A';
 fh=figure('Name',fname);ax=gca;
 util.setColors;
