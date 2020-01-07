@@ -62,7 +62,6 @@ allData=results{1}+results{2}+results{3}+results{4};
 colors={l2color,dlcolor};
 maxSynNumber=6;
 x_width=2.2;y_width=2.2;
-outputDir=fullfile(util.dir.getFig2,'TheMultiInnervation');
 fnames={'L2Seeded','DeepSeeded'};
 for d=1:2
     fh=figure('Name',fnames{d});ax=gca;

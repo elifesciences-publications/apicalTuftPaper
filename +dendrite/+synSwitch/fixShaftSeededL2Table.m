@@ -1,12 +1,13 @@
-function [thisTable] = fixShaftSeededL2Table(thisTable)
+function [newTable] = fixShaftSeededL2Table(oldTable)
 %FIXSHAFTSEEDEDL2TABLE Convert the large shaft seeded axons from the L2
 %datasets into a Shaft/Spine table
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-
-assert(all(sum(thisTable{:,2:end},2)-1<1e-8));
-vars2Del=thisTable.Properties.VariableNames([2,3,5:end]);
-thisTable.Spine=thisTable.SpineSinglePlusApicalSingle;
-thisTable.Shaft=1-thisTable.SpineSinglePlusApicalSingle;
-thisTable=removevars(thisTable,vars2Del);
+newTable = oldTable;
+vars2Del=oldTable.Properties.VariableNames([2,3,5:end]);
+vars2sum = oldTable.Properties.VariableNames([2:4,6:end]);
+newTable.Spine=oldTable.SpineSinglePlusApicalSingle;
+newTable.Shaft=sum(oldTable{:,vars2sum},2);
+newTable=removevars(newTable,vars2Del);
+assert(all(sum (newTable{:,2:end},2) == sum (oldTable{:,2:end},2)))
 end
 

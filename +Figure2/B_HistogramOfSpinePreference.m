@@ -5,7 +5,7 @@
 %% set-up
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig1,'SpineInnervationFraction');
+outputDir=fullfile(util.dir.getFig2,'SpineInnervationFraction');
 util.mkdir(outputDir);
 
 %% fetch the ratio of each postsynaptic type
@@ -59,21 +59,35 @@ synCount.L2.Spine{end} = [];
 allSynCount = cat(1,synCount.L1.Spine{:},synCount.L2.Spine{:},...
     synCount.L1.Shaft{:},synCount.L2.Shaft{:});
 assert(height(allSynCount)==430);
-disp(['Total synapse range per axon:', num2str([min(allSynCount.totalSynapseNumber,...
-    max(allSynCount.totalSynapseNumber))]);
+disp(['Total synapse range per axon:', ...
+    num2str([min(allSynCount.totalSynapseNumber),...
+    max(allSynCount.totalSynapseNumber)])]);
 % Current total misclassification rate: 3.7973%
 % see below
 % Load axon switching fraction
 m=matfile(fullfile(util.dir.getAnnotation,'matfiles',...
     'axonSwitchFraction.mat'));
-axonSwitchFraction=m.axonSwitchFraction;
+axonSwitchFraction = m.axonSwitchFraction;
 
 for l=1:2
     curNum = tableOFNumberOFAxons.(layers{l});
     curCorrection = axonSwitchFraction.(layers{l});
-    curMisclassified = curNum.Variables .* curCorrection.Variables;
+    % Shaft and spine columns switched along for number and fractions
+    curMisclassified = curNum.Variables .* fliplr(curCorrection.Variables);
     total(l) = sum(curNum.Variables,'all');
     misclassified(l) = sum(curMisclassified,'all');
 end
 % Percent of misclassified axons
 percentMisclassified = (sum(misclassified)./sum(total))*100;
+%% L2 and DL 90% and 80% minimum fraction percentiles in L2
+seedTypes = {'Spine','Shaft'};
+adTypes = {'L2','DL'};
+for seedT = 1:2
+    for adT = 1:2
+        curRatio = synRatio.L2.(seedTypes{seedT}){adT}.(seedTypes{seedT});
+        disp([seedTypes{seedT},'_seeded_',adTypes{adT}]);
+        disp(['TotalNum: ',num2str(length(curRatio))]);
+        disp(['At least 90% on seed type:',num2str(sum(curRatio>=.9))]);
+        disp(['At least 80% on seed type:',num2str(sum(curRatio>=.8))]);
+    end
+end

@@ -3,7 +3,7 @@ function [synapseMeasure] = getSynapseMeasure(func)
 if ~exist('func','var') || isempty(func)
     func = 'getSynRatio';
 end
-if strcmp(func,'getSynRatio')
+if any(strcmp(func,{'getSynRatio','getSynCount'}))
     fixRatioValues = true;
 else
     fixRatioValues = false;
