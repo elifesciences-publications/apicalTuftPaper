@@ -1,6 +1,6 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
-util.setColors();
+colors = util.plot.getColors;
 outputFolder=fullfile(util.dir.getFig(1),'DF');
 util.mkdir(outputFolder);
 %% Get synapse densities per shaft path length
@@ -43,11 +43,11 @@ fh=figure;ax=gca;
 horizontalLocation=[spineXLocation,shaftXLocation];
 horizontalLocation=horizontalLocation(:);
 % the colors
-colors=repmat([{exccolor},{inhcolor}],2,1);
-colors=colors(:);
+curColors=repmat([{colors.exccolor},{colors.inhcolor}],2,1);
+curColors=curColors(:);
 % plotting
 util.plot.boxPlotRawOverlay(densities_Agg,horizontalLocation,...
-    'boxWidth',0.75,'color',colors,'tickSize',10);
+    'boxWidth',0.75,'color',curColors,'tickSize',10);
 % Additional options
 set(ax,'XLim',[0.2 5.3],'YLim',[0.025 4.5],...
    'YTick',[0.01,0.1,1],'YScale','log');
@@ -63,11 +63,11 @@ fh=figure;ax=gca;
 horizontalLocation=[spineXLocation,shaftXLocation];
 horizontalLocation=horizontalLocation(:);
 % the colors
-colors=repmat([{exccolor,inhcolor}],8,1);
-colors=colors(:);
+curColors=repmat([{colors.exccolor,colors.inhcolor}],8,1);
+curColors=curColors(:);
 % plotting
 util.plot.boxPlotRawOverlay(densities_Sep,horizontalLocation,...
-    'boxWidth',.85,'color',colors);
+    'boxWidth',.85,'color',curColors);
 % Additional options
 set(ax,'XLim',[0.2 20.3],...
    'YTick',[0.01,0.1,1],'YLim',[0.025 4.5],'YScale','log');
