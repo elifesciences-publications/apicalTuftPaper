@@ -166,7 +166,7 @@ for i=1:length(correctionFactor)
     squeeze(sum(curAllData,1));
     % individual synapse fraction
     % (multiply individual target by the number of hits)
-    sumData=sumData./sum(sumData,2);
+    sumData = sumData./sum(sumData,2);
     probTable = array2table(sumData,'VariableNames',...
     {'L2Target','DeepTarget'},'RowNames',{'L2SeededAxons','DeepSeededAxons'});
     writetable(probTable,[fname{i},'.xlsx']);
