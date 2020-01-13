@@ -1,5 +1,5 @@
 util.clearAll;
-outputFolder = fullfile(util.dir.getFig4,'CV');
+outputFolder = fullfile(util.dir.getFig(4),'CV');
 util.mkdir(outputFolder);
 apTuft = apicalTuft.getObjects('inhibitoryAxon');
 synRatio = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');

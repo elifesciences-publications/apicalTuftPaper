@@ -24,7 +24,7 @@ addpath(genpath(lightSpeedDirectory));
 addpath(genpath(fastFitDirectory));
 
 % Get the axonal counts
-outputDir=fullfile(util.dir.getFig2,'B');
+outputDir=fullfile(util.dir.getFig(2),'B');
 util.mkdir(outputDir);
 count = axon.modelFit.getSynapseCountInh;
 

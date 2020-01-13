@@ -1,7 +1,7 @@
 % Get the histogram of path density of axons 
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 util.clearAll;
-outputDir=fullfile(util.dir.getFig2,'B');
+outputDir=fullfile(util.dir.getFig(2),'B');
 util.mkdir(outputDir)
 debug=false;
 
@@ -47,10 +47,10 @@ for dataset=1:4
     toc;
 end
 save(util.addDateToFileName...
-    (fullfile(util.dir.getFig2,'B','axonDensity')),...
+    (fullfile(util.dir.getFig(2),'B','axonDensity')),...
     'axonDensity','axonFraction');
 %% Plotting along the Pia-WM axis\
-outputDir=fullfile(util.dir.getFig2,'B');
+outputDir=fullfile(util.dir.getFig(2),'B');
 x_width=6;
 y_width=4;
 axonFractionArray=cat(2,axonFraction{:});

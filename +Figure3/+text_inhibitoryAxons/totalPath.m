@@ -1,7 +1,7 @@
 %% total pathdensity of axons: used in results text
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 apTuft=apicalTuft.getObjects('inhibitoryAxon');
-outputDir=fullfile(util.dir.getFig3,'forText_inhibitoryAxon');
+outputDir=fullfile(util.dir.getFig(3),'forText_inhibitoryAxon');
 
 pathLength=apicalTuft.applyMethod2ObjectArray...
     (apTuft,'getBackBonePathLength');

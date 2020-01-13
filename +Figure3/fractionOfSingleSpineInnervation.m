@@ -1,5 +1,5 @@
 util.clearAll
-outputDir=fullfile(util.dir.getFig3,'singleInnervation');
+outputDir=fullfile(util.dir.getFig(3),'singleInnervation');
 util.mkdir(outputDir);
 % Get the apicalSpecificity
 apTuft = apicalTuft.getObjects('inhibitoryAxon');

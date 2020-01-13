@@ -6,7 +6,7 @@
 % and then uses bootstrap sampling from that MLE to get a estimate of variab
 % Get the axonal counts
 util.clearAll;
-outputDir=fullfile(util.dir.getFig2,'A');
+outputDir=fullfile(util.dir.getFig(2),'A');
 util.mkdir(outputDir);
 count=axon.modelFit.getSynapseCountInh;
 

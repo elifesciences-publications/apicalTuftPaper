@@ -1,7 +1,7 @@
 % Plot the ratio of double innervated spines
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
-outputFolder=fullfile(util.dir.getFig1,'J');
+outputFolder=fullfile(util.dir.getFig(1),'J');
 util.mkdir(outputFolder);
 %% Get Ratio of inhibitory counts
 

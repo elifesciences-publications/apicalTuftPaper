@@ -3,7 +3,7 @@
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig3,'BifurcationDepth');
+outputDir=fullfile(util.dir.getFig(3),'BifurcationDepth');
 util.mkdir(outputDir)
 % Get the bifurcation objects and then convert their coordinate to distance
 % relative to pia (in voxels)

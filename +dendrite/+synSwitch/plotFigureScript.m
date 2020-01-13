@@ -1,6 +1,6 @@
 %% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
-outputFolder=fullfile(util.dir.getFig3,'correctionforAxonSwitching');
+outputFolder=fullfile(util.dir.getFig(3),'correctionforAxonSwitching');
 util.mkdir(outputFolder)
 results=dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
 %% L2 (smaller) datasets: Plotting correlation between corrected and not corrected

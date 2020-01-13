@@ -5,7 +5,7 @@
 %% set-up
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig2,'SpineInnervationFraction');
+outputDir=fullfile(util.dir.getFig(2),'SpineInnervationFraction');
 util.mkdir(outputDir);
 
 %% fetch the ratio of each postsynaptic type

@@ -1,5 +1,5 @@
 % Load axon switching fraction
-outputFolder=fullfile(util.dir.getFig3,'correctionforAxonSwitching');
+outputFolder=fullfile(util.dir.getFig(3),'correctionforAxonSwitching');
 
 m=matfile(fullfile(util.dir.getAnnotation,'matfiles',...
     'axonSwitchFraction.mat'));

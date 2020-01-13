@@ -32,7 +32,7 @@ for i=1:3
     distal.(variableNames{i}){end} = curCorrected;
 end
 %% Plot inhibitory Ratios
-outputFolder=fullfile(util.dir.getFig7,'distalvsMain');
+outputFolder=fullfile(util.dir.getFig(7),'distalvsMain');
 util.mkdir(outputFolder);
 util.setColors;
 x_width=3;

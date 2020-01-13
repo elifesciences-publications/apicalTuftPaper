@@ -1,6 +1,6 @@
 util.clearAll;
 skel=apicalTuft.getObjects('inhibitoryAxon');
-outputDir=fullfile(util.dir.getFig3,'TestForMultiInnervation');
+outputDir=fullfile(util.dir.getFig(3),'TestForMultiInnervation');
 util.mkdir(outputDir);
 %% Most important: find the number of targeting per target group
 % results dims: cell: dataset, array: treeIdx,target

@@ -1,6 +1,6 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
-outputFolder=fullfile(util.dir.getFig1,'EG');
+outputFolder=fullfile(util.dir.getFig(1),'EG');
 util.mkdir(outputFolder);
 %% Get synapse ratios
 apTuft=apicalTuft.getObjects('bifurcation');

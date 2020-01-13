@@ -1,6 +1,6 @@
 %% The shaft seeded tree
 util.clearAll
-outputFolder=fullfile(util.dir.getFig1,'AmiraForSpineTargetingRatio');
+outputFolder=fullfile(util.dir.getFig(1),'AmiraForSpineTargetingRatio');
 util.mkdir(outputFolder);
 
 inputSkel={{'PPC_inhibitoryAxon','singleSpineLumped'},...

@@ -1,7 +1,7 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 % Get apical targeting percent used in the result text
 util.clearAll
-outputDir=fullfile(util.dir.getFig3,'forText_inhibitoryAxon');
+outputDir=fullfile(util.dir.getFig(3),'forText_inhibitoryAxon');
 util.mkdir(outputDir)
 %% Numbers averaged over axons
 apTuft = apicalTuft.getObjects('inhibitoryAxon');

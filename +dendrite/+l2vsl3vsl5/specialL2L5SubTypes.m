@@ -35,7 +35,7 @@ end
 
 
 %% Plotting inhibitoy ratio
-outputFolder=fullfile(util.dir.getFig3,'weirdCellType');
+outputFolder=fullfile(util.dir.getFig(3),'weirdCellType');
 util.mkdir(outputFolder);
 wColor=[0,0,0];
 wMarker='*';

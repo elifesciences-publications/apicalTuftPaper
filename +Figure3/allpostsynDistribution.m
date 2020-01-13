@@ -3,7 +3,7 @@
 
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig3,'E_allpostsynDistribution');
+outputDir=fullfile(util.dir.getFig(3),'E_allpostsynDistribution');
 util.mkdir(outputDir)
 colorsDE={[0.2 0.2 0.2],[227/255 65/255 50/255],...
     [50/255 205/255 50/255],[50/255 50/255 205/255]}';

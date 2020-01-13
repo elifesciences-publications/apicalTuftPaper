@@ -1,2 +1,0 @@
-Fun_L2Apical,Fun_DeepApical,Fun_Shaft,Fun_SpineDouble,Fun_SpineSingle,Fun_Soma,Fun_AIS,Fun_Glia
-0,0,0.0223,0.592,0.5813,0.0014,0.1034,0.2346

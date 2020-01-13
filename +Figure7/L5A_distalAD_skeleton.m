@@ -5,7 +5,7 @@ apTuftPruned=apicalTuft('PPC2L5ADist2SomaPruned_l2vsl3vsl5');
 apTuftPruned=apTuftPruned.sortTreesByName;
 %%
 fname='L5A_denseDistalAD';
-outputDir=fullfile(util.dir.getFig6,'TheL5ADistalADDense');
+outputDir=fullfile(util.dir.getFig(6),'TheL5ADistalADDense');
 util.mkdir(outputDir)
 fh=figure('Name',fname);ax=gca;
 hold on;

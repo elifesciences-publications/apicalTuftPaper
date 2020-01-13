@@ -3,7 +3,7 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
 saveResults = false;
-outputFolder=fullfile(util.dir.getFig5,...
+outputFolder=fullfile(util.dir.getFig(5),...
     'ClassificationCriteriaForL5');
 util.mkdir(outputFolder);
 

@@ -3,7 +3,7 @@
 util.clearAll
 synapseSizes= dendrite.synSize.synapseSize;
 %%Initial set-up
-outputDir=fullfile(util.dir.getFig1,'I');
+outputDir=fullfile(util.dir.getFig(1),'I');
 util.mkdir(outputDir)
 
 aggregateSynapseSizes=synapseSizes(:,:,5);

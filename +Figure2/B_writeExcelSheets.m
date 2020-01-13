@@ -1,6 +1,6 @@
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig2,'SpineInnervationFraction');
+outputDir=fullfile(util.dir.getFig(2),'SpineInnervationFraction');
 util.mkdir(outputDir);
 %% Get ratio and count of synapses
 synRatio = dendrite.synSwitch.getSynapseMeasure('getSynRatio');

@@ -106,7 +106,7 @@ disp(['Total synapse number: ',...
 disp(['Total synapse number (from individual chopped trees): ',...
     num2str(sum(cellfun(@(x) x.distSoma.total,skel_synInhRatio)))]);
 %% Create aggregate plot
-outputDir=fullfile(util.dir.getFig5,'dist2Soma');
+outputDir=fullfile(util.dir.getFig(5),'dist2Soma');
 util.mkdir(outputDir);
 inhSyn=[];
 excSyn=[];

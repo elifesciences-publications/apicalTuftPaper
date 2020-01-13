@@ -2,7 +2,7 @@
 %% set-up
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig1,'AxonReversing');
+outputDir=fullfile(util.dir.getFig(1),'AxonReversing');
 util.mkdir(outputDir)
 seedTypes={'Spine','Shaft'};
 saveMatfile=false;
@@ -46,7 +46,7 @@ if saveMatfile
     save(fullfile(util.dir.getAnnotation,'matfiles','axonSwitchFraction'),...
         'axonSwitchFraction');
 end
-textFileName=fullfile(util.dir.getFig3,'correctionforAxonSwitching',...
+textFileName=fullfile(util.dir.getFig(3),'correctionforAxonSwitching',...
     'axonSwitchFraction');
 f=fieldnames(axonSwitchFraction);
 for i=1:length(f)

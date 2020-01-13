@@ -3,7 +3,7 @@
 % as the weight
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig2,'EFG');
+outputDir=fullfile(util.dir.getFig(2),'EFG');
 util.mkdir(outputDir)
 colorsDE={[0.2 0.2 0.2],[227/255 65/255 50/255],...
     [50/255 205/255 50/255],[50/255 50/255 205/255]}';

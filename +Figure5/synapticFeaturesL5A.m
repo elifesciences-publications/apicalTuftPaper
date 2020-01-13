@@ -24,7 +24,7 @@ end
 x_width=2;
 y_width=3.8;
 boxWidths=0.4655;
-outputFolder=fullfile(util.dir.getFig5,...
+outputFolder=fullfile(util.dir.getFig(5),...
     'L5L5AComparison');util.mkdir(outputFolder)
 curColors={l5color,l5Acolor};
 region={'mainBifurcation','distalAD'};

@@ -2,7 +2,7 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 % set up
 util.clearAll
-outputDir=fullfile(util.dir.getFig3,'B_Boxplot_rightPanel');
+outputDir=fullfile(util.dir.getFig(3),'B_Boxplot_rightPanel');
 util.mkdir(outputDir);
 horizontalLocation=num2cell([1.5:2:8])';
 noiseLevel=1.3;

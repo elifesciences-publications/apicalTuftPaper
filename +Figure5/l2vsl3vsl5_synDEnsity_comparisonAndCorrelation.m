@@ -4,7 +4,7 @@
 % synapse densities around the main bifurcation and distal AD
 
 util.clearAll;
-outputFolder=fullfile(util.dir.getFig5,...
+outputFolder=fullfile(util.dir.getFig(5),...
     'cellType_SynapticDensity_Comparison_Correlation');
 util.mkdir(outputFolder);
 

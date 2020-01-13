@@ -1,1 +1,0 @@
-Wilcoxon ranksum for double spines- h=1.000000, p=0.014818
