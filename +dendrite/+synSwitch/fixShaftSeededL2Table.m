@@ -8,6 +8,7 @@ vars2sum = oldTable.Properties.VariableNames([2:4,6:end]);
 newTable.Spine=oldTable.SpineSinglePlusApicalSingle;
 newTable.Shaft=sum(oldTable{:,vars2sum},2);
 newTable=removevars(newTable,vars2Del);
-assert(all(sum (newTable{:,2:end},2) == sum (oldTable{:,2:end},2)))
+% Only throw errors if difference is larger than 1e-6
+assert(all( (sum(newTable{:,2:end},2)-sum(oldTable{:,2:end},2)) < 1e-6 ))
 end
 
