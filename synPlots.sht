@@ -1,9 +1,0 @@
-#!/bin/bash
-
-rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure1/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/1/
-rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure2/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/2/
-rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure3/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/3/
-rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure4/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/4/
-rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure5/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/5/
-rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure6/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/6/
-rsync -aqvzh /home/alik/code/apicaltuftpaper/+Figure7/plot /mnt/mpibr/data/Data/karimia/presentationsWriting/L1Paper/Figures/7/
