@@ -7,6 +7,5 @@ function [] = clearAll()
 
 evalin('base','clearvars');
 evalin('base','close all');
-util.setColors;
 end
 
