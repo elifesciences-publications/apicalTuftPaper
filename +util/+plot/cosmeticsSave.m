@@ -1,4 +1,4 @@
-function [] = cosmeticsSave(fh,ax,x_width,y_width,outputFolder,fileName,...
+function [] = cosmeticsSave(fh,ax,x_width,y_width,outputFolderLocal,fileName,...
     xtickMinor,ytickMinor,removeDashedLinesForBoxplot)
 % cosmeticsSave prepares and saves the figure panel. This is done by
 % setting figure and axes properties
@@ -6,7 +6,7 @@ function [] = cosmeticsSave(fh,ax,x_width,y_width,outputFolder,fileName,...
 %        ax: axes handle object
 %        x_width: width of the image panel(in mm)
 %        y_width: height of the image panel (in mm)
-%        outputFolder: Directory to save the panel
+%        outputFolderLocal: Local directory to save the panel
 %        fileName: The name of the file (including extension). The default
 %        extenion is SVG
 %        xtickMinor: (default: 'off') Whether to add minor ticks to X-axis
@@ -55,19 +55,22 @@ end
 
 % If output folder does not exist assume the filename is the fullname of
 % the file
-
-if ~exist('outputFolder','var') || isempty(outputFolder)
+if ~exist('outputFolderLocal','var') || isempty(outputFolderLocal)
     print(fh,fileName,ftype);
 else
-    util.mkdir(outputFolder);
-    print(fh,fullfile(outputFolder,...
+    util.mkdir(outputFolderLocal);
+    print(fh,fullfile(outputFolderLocal,...
         fileName),ftype);
 end
-% Copy files to the fileserver for import into Adobe Illustrator
-[~,hostname]= system('hostname');
-if strcmp(hostname(1:6),'ali-pc')
-    system('./synPlots.sht');
-    disp('Copied plots to fileServer')
+% Generate remote file name
+remoteStub = util.dir.loadRemote;
+if ~isempty(remoteStub)
+    splitLocal = strsplit(outputFolderLocal,'Figures');
+    remoteDir = fullfile(remoteStub,splitLocal{2});
+    util.mkdir(remoteDir,false);
+    % Copy files to the fileserver for import into Adobe Illustrator
+    success = copyfile(fullfile(outputFolderLocal,fileName),fullfile(remoteDir));
+    assert(success,'file not copied to file server');
 end
 end
 
