@@ -1,7 +1,7 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
 colors = util.plot.getColors;
-outputFolder=fullfile(util.dir.getFig(1),'DF');
+outputFolder = fullfile(util.dir.getFig(1),'DF');
 util.mkdir(outputFolder);
 %% Get synapse densities per shaft path length
 apTuft=apicalTuft.getObjects('bifurcation');

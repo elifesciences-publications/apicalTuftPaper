@@ -1,6 +1,9 @@
 classdef apicalTuft < skeleton
-    %APICALTUFT This is a class for manipulating and extracting information
-    % from annotation of apical tufts and their associated axons
+    % APICALTUFT This is a class for further manipulating and 
+    % extracting synaptic/morphological information from skeleton
+    % annotations from webKnossos
+    % This class is designed for use with annotations of apical tufts and 
+    % their associated axons
     
     % Author: Ali Karimi <ali.karimi@brain.mpg.de>
     
@@ -27,12 +30,13 @@ classdef apicalTuft < skeleton
             'correction', [],'highResBorder',[],'L1BorderInPixel',...
             [],'bbox',[]);
         fixedEnding=[];
-        % This property is to hold the correspondence information between
-        % after and before application of splitCC 
+        % This property is to hold the correspondence synaptic information 
+        % before and after splitting skeletons (e.g. Fig. 7, Fig. Suppl. 1) 
         connectedComp=struct('treeIdx',[],'nodeID',[],...
             'synIDPre',table(),'synIDPost',table(),...
             'splitDone',false,'emptyTracing',false);
-        % This is for distnace to soma analysis
+        % Same as previous for splitting skeletons relative to distance to
+        % soma Fig. 7c
         distSoma=struct('synBinCount',[],'inhRatioRelSoma',[],...
             'acceptableInhRatios',[],'synDistance2Soma',[]);
     end
@@ -40,10 +44,10 @@ classdef apicalTuft < skeleton
     methods
         function obj = apicalTuft(nmlName,configName)
             % APICALTUFT Construct an instance of the apical tuft class
-            annotationDir=util.dir.getAnnotation;
+            annotationDir = util.dir.getAnnotation;
             % Give a warning if the name of nml does not follow
             % datasetName_tracingType
-            nameSplit=strsplit(nmlName,'_');
+            nameSplit = strsplit(nmlName,'_');
             if(length(nameSplit)~=2)
                 warning('nmlName does not follow datasetName_tracingType');
             end
@@ -54,8 +58,7 @@ classdef apicalTuft < skeleton
             if ~exist('configName','var') || isempty(configName)
                 configName=nmlNameData.tracingType;
             end
-            % Try reading json file if it is present, compatible with
-            % skeleton tracings without a json file
+            % Try reading the configuration file
             try
                 properties=config.(configName);
             catch
@@ -80,7 +83,7 @@ classdef apicalTuft < skeleton
             obj=obj.sortTreesByName;
         end
         % Set the properties from the configuration file
-        function obj=readProperties(obj,properties)
+        function obj = readProperties(obj,properties)
             if ~isempty(properties)
                 for fn = fieldnames(properties)'
                     if~iscell(properties.(fn{1}))
@@ -93,7 +96,7 @@ classdef apicalTuft < skeleton
         end
         
         % Returns the uniqueTableID
-        function strings=treeUniqueString(obj,treeIndices)
+        function strings = treeUniqueString(obj,treeIndices)
             if ~exist('treeIndices','var') || isempty(treeIndices)
                 treeIndices = 1:obj.numTrees;
             end
@@ -106,7 +109,7 @@ classdef apicalTuft < skeleton
             end
         end
         % Method definitions for methods in separate files
-        obj=appendString2Syn(obj,treeIndices,strings)
+        obj = appendString2Syn(obj,treeIndices,strings)
         [skel] = reformatApicalTreeNames(skel, treeIndices,newNameStrings,method)
         obj = setDatasetProperties(obj);
         [] = checkSeedUniqueness(obj,treeIndices);
@@ -144,7 +147,7 @@ classdef apicalTuft < skeleton
             deleteNonUniqueNodeCoord(obj,treeIndices);
         skel = sortTreesByName( skel );
         [objCropped] = cropoutLowRes...
-    (obj,treeIndices,dimLowresBorder,edgeLowRes)
+            (obj,treeIndices,dimLowresBorder,edgeLowRes)
         [objNew] =  splitCC(obj,treeIndices, doVanillaSplit)
         [identifier] = getTreeIdentifier(obj,treeIndices);
         [pL] = pathLength(obj,treeIndices);
@@ -168,19 +171,17 @@ classdef apicalTuft < skeleton
     end
     
     methods (Static)
-        % Compares tables based on their first variable (treeIndex)
         [ ] = compareTwoTables( table1,table2 )
-        % returns the names of the nml files from different tracing types
-        [out]= nmlName();
-        [ ]=pairwiseIntersection(synapses);
+        [out] = nmlName();
+        [ ] = pairwiseIntersection(synapses);
         [skel] = getObjects(type,configName,returnTable)
         [outputOfMethod] = applyMethod2ObjectArray...
             (apTuftArray,method, separategroups,...
             createAggregate, annotationType,varargin);
-        outputOfMethod=applyLegacyGrouping...
+        outputOfMethod = applyLegacyGrouping...
             (apTuftArray,method, separategroups, ...
             createAggregate,varargin);
-        outputOfMethod=applyNewGrouping...
+        outputOfMethod = applyNewGrouping...
             (apTuftArray,method, separategroups, ...
             createAggregate, annotationType,varargin)
         [apTuftObj] = removeGroupingBifurcation(apTuftObj);

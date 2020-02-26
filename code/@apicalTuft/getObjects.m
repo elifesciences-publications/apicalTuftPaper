@@ -1,7 +1,7 @@
 function [skel] = getObjects(type,configName,returnTable)
-% GETBIFURCATIONOBJECTS returns the objects of the "type" of
-% apical dendrite tracing as a cell array
-% See nmlName method for available
+% getObjects returns the collection of apicaltuft objects defined by the 
+% "type" of apical dendrite tracing 
+% See apicaltuft.nmlName method for available types
 % INPUT: 
 %       type: string having the name of annotation type as defined in
 %       nmlName method
