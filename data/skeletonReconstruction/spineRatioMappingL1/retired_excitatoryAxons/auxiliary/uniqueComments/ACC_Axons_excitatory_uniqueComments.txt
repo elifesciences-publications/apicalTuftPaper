@@ -1,7 +1,0 @@
-Var1
-"Dead end"
-"dead end"
-"seed"
-"sh"
-"sp"
-"sp (back)"

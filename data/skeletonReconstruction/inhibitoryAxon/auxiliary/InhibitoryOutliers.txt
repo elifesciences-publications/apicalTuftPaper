@@ -1,4 +1,0 @@
-              treeIndex                   L2ApicalMinusSingleSpine    DeepApicalMinusSingleSpine    Soma     Shaft     SpineDouble    SpineSinglePlusApicalSingle    AIS    Glia
-    ______________________________________    ________________________    __________________________    ____    _______    ___________    ___________________________    ___    ____
-
-    'V2_Axons_specdl-bifur001-axon008_022'    0                           0                             0       0.14286    0              0.85714                        0      0   
