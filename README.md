@@ -1,11 +1,11 @@
 ## About Apical Tuft Paper code repository:
 
 This repository contains all the code and data used for the following manuscript:   
-**Cell-type specific innervation of cortical pyramidal cells at their apical tufts**   
+[**Cell-type specific innervation of cortical pyramidal cells at their apical dendrites**](https://elifesciences.org/articles/46876)  
 Ali Karimi\*, Jan Odenthal\*, Florian Drawitsch, Kevin M. Boergens, Moritz Helmstaedter   
 \* equally contributing   
 
-This code repository was developed at the Max Planck Insitute for brain research (2015-2019)
+This code repository was developed at the Max Planck Insitute for brain research (2015-2020)
 
 ## How to get the code repository:
 You can download the complete code repository via the Download option on top of this page (cloud icon).   
@@ -28,8 +28,8 @@ You can then set your matlab working directory to this code repository and run t
 This should add the necessary variables and paths to you matlab working environment and paths.
 
 ## Requirements:
-This code repository is written in [MATLAB](https://www.mathworks.com/) and tested using version R2017b. 
-In addition to the basic matlab installation we require the following packages to be installed as well:   
+This code repository is written in [MATLAB](https://www.mathworks.com/) and tested using version R2019a. 
+In addition to the basic matlab installation, specific segments of the code might require the following packages to be installed as well:   
 * 'Statistics and Machine Learning Toolbox'
 * 'Curve Fitting Toolbox'
 * 'Bioinformatics Toolbox'
@@ -45,18 +45,19 @@ To access the methods/scripts of within each package folder you need to use dot 
 %% Example from this code repository: synapse density Fig. 1d,f
 >>Figure1.DF 
 ```
-Here's a list of the packages and folders with a short description of the contents:
-* **+Figure1**: Contains scripts to generate figures used in Fig. 1 of the publication
-* **+Figure2**: Same as above for Fig. 2
-* **+Figure3**: Same as above for Fig. 3
-* **annotationData**: contains all the skeleton and 3D annotation Data used for the analysis and surface generation, respectively.
-* **+axon**: Routines used for presynaptic analysis (mostly used in Fig. 2)
-* **+dendrite**: Routines used for postsynaptic analysis (Mostly Figs. 1,3)
+Here's a list of the contents:
+* **/code**
+* **+FigureN**: Contains scripts to generate figures used in Fig. N (1-7) of the publication
+* **+axon**: Routines used for presynaptic analysis (mostly used in Fig. 3-4)
+* **+dendrite**: Routines used for postsynaptic analysis
 * **+surface**: Routines used for surface generation from volumetric data
 * **+util**: All the utility functionalities specific to this repository
 * **+config**: configuration files for each annotation NML file type
 * **@apicalTuft**: Class used for parsing the skeleton annotations and their properties. This is a subclass of the skeleton class
 * **auxiliaryMethods**: Other utilities used for the analysis.
+* **/data**
+* **skeletonReconstruction**: contains all the skeleton reconstructions used for the analysis.
+* **Other**: contains other data files such as volume annotations (wkw format), .mat and excel data files.
 ## Authors
 
 The Apical Tuft Paper code repository was developed by
@@ -80,13 +81,10 @@ The Matlab class used to represent single neurite skeletons and other utility fu
 
 Volumetric data used to generate surfaces uses the [Webknossos-wrapper](https://github.com/scalableminds/webknossos-wrap) file format. You can visit their website for a complete list of authors.
 
-Dirichlet-multinomial model fitting (Fig. 2b) was done using the [fastfit package](https://github.com/tminka/fastfit) developed by:
-
-* **Thomas P. Minka**
  
 ## License
 This project is licensed under the [MIT license](LICENSE).
-Copyright (c) 2019 Department of Connectomics, Max Planck Institute for
+Copyright (c) 2020 Department of Connectomics, Max Planck Institute for
 Brain Research, D-60438 Frankfurt am Main, Germany
 
 
