@@ -5,7 +5,11 @@
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-% Tree names
+% initial set up, clears all the figures and variables
+util.clearAll;
+c = util.plot.getColors();
+% Tree names used in the figure from the dense bifurcation annotations
+
 trNames = struct();
 trNames.s1 = {'layer2ApicalDendrite01','deepLayerApicalDendrite05'};
 trNames.v2 = {'layer2ApicalDendrite04','deepLayerApicalDendrite05'};
@@ -16,7 +20,7 @@ trNames = struct2table(trNames);
 bifur = apicalTuft.getObjects('bifurcation');
 % Settings
 viewAngles = {[0,90],[0,-90],[0,-90],[0,90]};
-colors = {l2color,dlcolor};
+colors = {c.l2color,c.dlcolor};
 fh = figure('Name', 'Fig. 1C');ax = gca;
 
 % Plotting loop

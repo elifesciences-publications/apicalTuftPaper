@@ -1,5 +1,8 @@
 function [colors] = getColors()
-%GETCOLORS
+% GETCOLORS return structure with the most common RGB values used
+% Note use: c = util.plot.getColors();
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 colors.l2color=[157/255,157/255,156/255];
 colors.l2MNcolor=[0,0,0];
 colors.dlcolor=[243/255,146/255,0/255];
