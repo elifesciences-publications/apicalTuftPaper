@@ -1,6 +1,7 @@
 function [skel] = appendCommentWithIdx...
     (skel,treeIndices,nodeIdx,commentSuffix)
-% appends comment at specific nodeIds
+% appendCommentWithIdx appends the commentSuffix at specific nodeIdx
+
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
 % Set defaults

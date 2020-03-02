@@ -1,7 +1,7 @@
 function [ synapseObject] = plotSynapses( skel,treeIndices,...
     synCoords,varargin)
-%PLOTSYNAPSES Plots the synapses of multiple trees
-%INPUT:
+% PLOTSYNAPSES Plots the synapses of multiple trees
+% INPUT:
 %       synCoord: (Optional:synapse coord of all trees) 
 %                   Contains the coordinates of all synapses as a table
 %       varargin: 
@@ -11,10 +11,11 @@ function [ synapseObject] = plotSynapses( skel,treeIndices,...
 %       color (default lines)
 %       sphereSize: radius of the sphere used for each synapse
 %       For the rest Refer to getSynIdxComment doc
-%OUTPUT:
+% OUTPUT:
 %       synapseObject:structure with tree having it's own field within the
 %                       field exists the object array for the scatter sphere
 %                       use this to change properties outside the function
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 % Setting defaults specific to plotSynapses
@@ -24,7 +25,7 @@ end
 
 optIn.scale = skel.scale;
 optIn.theColorMap = colormap(lines);
-optIn.sphereSize = 100;
+optIn.sphereSize = 50;
 optIn.rotationMatrix = eye(3);
 optIn.correction=zeros(1,skel.numTrees);
 optIn = Util.modifyStruct(optIn, varargin{:});
