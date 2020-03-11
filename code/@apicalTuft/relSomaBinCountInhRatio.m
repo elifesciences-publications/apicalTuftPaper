@@ -72,7 +72,7 @@ for tr=treeIndices(:)'
         end
         assert(all([isnan(inh(smallIntervalIdx)),...
             isnan(exc(smallIntervalIdx))]));
-        assert(nansum(exc)==sum(excPre)&&nansum(inh)==sum(inhPre));
+        assert(nansum(exc) == sum(excPre)&&nansum(inh) == sum(inhPre));
         totalExc = totalExc + nansum(exc);
         totalInh = totalInh + nansum(inh);
         skel.distSoma.inhRatioRelSoma{tr,2}{1} = ...

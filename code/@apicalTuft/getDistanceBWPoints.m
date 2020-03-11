@@ -17,7 +17,7 @@ for i=1:length(treeIndices)
     allPaths=skel.getShortestPaths(tr);
     nodeIndicesOfInterest=cellfun(@(name) ...
         skel.getNodesWithComment(name,tr,'partial'), pointNames);
-    assert(size(nodeIndicesOfInterest,1)==1);
+    assert(size(nodeIndicesOfInterest,1) == 1);
     distanceMatrixBWPointsOfInterest=allPaths{1}...
         (nodeIndicesOfInterest,nodeIndicesOfInterest)./1000;
     % Return the lower triangular matrix in sparse format
@@ -25,7 +25,7 @@ for i=1:length(treeIndices)
     
 end
 % Return a scalar if only two points are used
-if length(pointNames)==2
+if length(pointNames) == 2
     dist2soma=cellfun(@(x)full(x(2,1)),dist2soma);
 end
 end

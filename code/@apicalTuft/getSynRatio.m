@@ -31,7 +31,7 @@ synapseRatio=varfun(ratioFuncHandle, synCount(:,2:end));
 ratioNum=synapseRatio.Variables;
 treesWithValidRatios=~any(isnan(ratioNum),2);
 sumRatios=uint8(sum(ratioNum(treesWithValidRatios,:),2));
-assert (all(sumRatios)==1,...
+assert (all(sumRatios) == 1,...
     'sum of all synapse ratios does not equal one');
 %Transfer treeIdx
 synapseRatio=cat(2,synCount(:,1),synapseRatio);

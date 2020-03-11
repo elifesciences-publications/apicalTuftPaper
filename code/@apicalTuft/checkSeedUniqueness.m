@@ -14,7 +14,7 @@ if ~isempty(obj.seed)
     if ~iscell(seedComments)
         seedComments={seedComments};
     end
-    assert (all(cellfun(@length,seedComments)==1),...
+    assert (all(cellfun(@length,seedComments) == 1),...
         'seed comment is not unique');
 end
 end

@@ -11,7 +11,7 @@ if ~exist('treeIndices','var') || isempty(treeIndices)
 end    
     treeIndices=treeIndices(:)';
     seedIdx=skel.getNodesWithComment(skel.seed,treeIndices,'partial');
-    assert(all(cellfun(@length,seedIdx)==1),'Seed uniqueness check')
+    assert(all(cellfun(@length,seedIdx) == 1),'Seed uniqueness check')
     targetNrFinder=@(tr,seedIdx) regexp(skel.nodesAsStruct{tr}(seedIdx).comment,...
         [char(skel.seed),' (\d)'],'tokens');
     rawNumberofTargeting=cellfun(targetNrFinder,num2cell(treeIndices)',...

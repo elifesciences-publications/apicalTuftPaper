@@ -118,7 +118,7 @@ for i=1:length(concatRawLinear)
     func.inhRatio=@(x) sum(x(:,1))./(sum(x(:,1))+sum(x(:,2)));
     % Note: matrices of size 1 are thought of as vectors and create an
     % error in the bootstrap function. We just use an error of 0
-    if size(curSample,1)~=1
+    if size(curSample,1) ~= 1
         % Here grand sample mean and bootstrap confidence interval
         % (nboot = 10000) is calculated
         curResult.inhDensity=util.stat.bootCI(...
@@ -128,7 +128,7 @@ for i=1:length(concatRawLinear)
         curResult.inhRatio=util.stat.bootCI(...
             func.inhRatio,curSample);
     else
-        disp('sample is a vector, size(dim 1)==1');
+        disp('sample is a vector, size(dim 1) == 1');
         disp(curSample);
         curResult.inhDensity=repmat(func.inhDensity(curSample),1,3);
         curResult.inhRatio=repmat(func.inhRatio(curSample), 1,3);

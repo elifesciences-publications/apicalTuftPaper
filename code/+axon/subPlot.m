@@ -37,10 +37,10 @@ for data=1:nrDataRow-1
             'Normalization', 'probability', 'facecolor',dlcolor,...
             'facealpha',.6,'edgecolor','none')
         %Xlabel and ylabel only at the edges
-        if data==1
+        if data == 1
             title(featureNames{feature})
         end
-        if feature==1
+        if feature == 1
             ylabel(dataTypes{data})
         end
         set(gca, 'FontSize', 10, 'FontName', 'Arial');
@@ -48,9 +48,9 @@ for data=1:nrDataRow-1
         xlim([0 endEdge])
         ylim([0 1])
         
-        if data==lumpedDataRow
+        if data == lumpedDataRow
             subplot(nrDataRow,nrFeatureCol,PlotNum+nrFeatureCol)
-            if feature==1
+            if feature == 1
                 ylabel('KernelDensity Lumped')
             end
             hold on
@@ -64,7 +64,7 @@ for data=1:nrDataRow-1
         end
         PlotNum = PlotNum + 1;
     end
-    if data==lumpedDataRow
+    if data == lumpedDataRow
         PlotNum = PlotNum + nrFeatureCol;
     end
     legend('L2 PYR','DL PYR');

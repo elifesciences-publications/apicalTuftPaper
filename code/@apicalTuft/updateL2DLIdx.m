@@ -6,7 +6,7 @@ if ~isempty(obj.apicalType)
     obj.dlIdx=obj.getTreeWithName(obj.apicalType{2},'first');
     obj.l2Idx=obj.l2Idx(:)';
     obj.dlIdx=obj.dlIdx(:)';
-    if length(obj.names)~=length(obj.l2Idx)+length(obj.dlIdx)
+    if length(obj.names) ~= length(obj.l2Idx)+length(obj.dlIdx)
         warning(...
             'skeleton has additional trees not detected by the apicalType strings');
     end

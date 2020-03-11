@@ -16,7 +16,7 @@ function [ branchNodes ] = getBranchNodesToDel( skel,tr,realTreeEndings)
 % Authors: Ali Karimi <ali.karimi@brain.mpg.de>
 %          Jan Odenthal <jan.odenthal@brain.mpg.de>
 Neighbors=skel.getNeighborList(tr);
-degree1Nodes=find(cellfun(@(x)length(x)==1,Neighbors));
+degree1Nodes=find(cellfun(@(x)length(x) == 1,Neighbors));
 % Avoid trimming the real endings of the tracing signified by specific
 % comments
 degree1Nodes=setdiff(degree1Nodes,realTreeEndings);
@@ -37,10 +37,10 @@ for ii=1:length(degree1Nodes)
     while contSignal
         steps=steps+1;
         branchNodes(steps)=currentNode;
-        if  length(Neighbors{nextNode})==2
+        if  length(Neighbors{nextNode}) == 2
             oldNode=currentNode;
             currentNode=nextNode;
-            nextNode=Neighbors{nextNode}(Neighbors{nextNode}~=oldNode);
+            nextNode=Neighbors{nextNode}(Neighbors{nextNode} ~= oldNode);
         else
             contSignal=false;
         end

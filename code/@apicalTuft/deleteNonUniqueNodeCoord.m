@@ -5,7 +5,7 @@ if ~exist('treeIndices', 'var') || isempty(treeIndices)
     treeIndices = 1:obj.numTrees();
 end
 % Test beforehand as well: see end of function
-assert(length(obj.splitCC.names)==length(obj.names))
+assert(length(obj.splitCC.names) == length(obj.names))
 for i=1:length(treeIndices)
     tr=treeIndices(i);
     % Unique values
@@ -29,7 +29,7 @@ for i=1:length(treeIndices)
         % duplication location
         emptycomments=cellfun(@isempty,allInfo.comments);
         commentedNodes=allInfo.groupingOfDoubles(~emptycomments);
-        assert(length(unique(commentedNodes))==...
+        assert(length(unique(commentedNodes)) == ...
             length(commentedNodes));
         % keep commented nodes
         allInfo=allInfo(emptycomments,:);
@@ -49,7 +49,7 @@ for i=1:length(treeIndices)
     end
 end
 % Make sure no additional CC is created from node deletion
-assert(length(obj.splitCC.names)==length(obj.names));
+assert(length(obj.splitCC.names) == length(obj.names));
 % Check the unqiueness of all nodes
 assert(isempty(obj.getNonUniqueNodeCoord))
 end

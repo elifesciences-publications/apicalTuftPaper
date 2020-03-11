@@ -17,7 +17,7 @@ if ~iscell(locationIdx)
     locationIdx={locationIdx};
 end
 % check point uniqueness per tree
-assert(all(cellfun(@length,locationIdx)==1),...
+assert(all(cellfun(@length,locationIdx) == 1),...
         'location comment is not unique');
 distance=cell(length(treeIndices),1);
 % Get all path for the treeIndices
@@ -30,7 +30,7 @@ for i=1:length(treeIndices)
     curAllPaths=allPaths{1,i};
     try
         somaIdx=skel.getNodesWithComment(skel.soma,tr,'partial');
-        assert(length(somaIdx)==1);
+        assert(length(somaIdx) == 1);
         distance{i}=curAllPaths(curlocationIdx,somaIdx)./1000;
     catch
         disp('soma location not found')

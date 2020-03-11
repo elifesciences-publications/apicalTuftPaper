@@ -4,7 +4,7 @@ function [y] = varfunKeepNames(fun,x,varargin)
 
 y=varfun(fun,x,varargin{:});
 y.Properties.VariableNames=x.Properties.VariableNames;
-if height(y)==height(x)
+if height(y) == height(x)
 y.Properties.RowNames=x.Properties.RowNames;
 end
 end

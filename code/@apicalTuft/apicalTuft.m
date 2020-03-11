@@ -62,7 +62,7 @@ classdef apicalTuft < skeleton
             % Give a warning if the name of nml does not follow
             % datasetName_tracingType
             nameSplit = strsplit(nmlName,'_');
-            if(length(nameSplit)~=2)
+            if(length(nameSplit) ~= 2)
                 warning('nmlName does not follow datasetName_tracingType');
             end
             nmlNameData=struct('datasetName',nameSplit{1},...

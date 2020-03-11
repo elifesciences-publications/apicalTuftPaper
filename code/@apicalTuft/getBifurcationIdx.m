@@ -14,7 +14,7 @@ if ~iscell(bifurcationComments)
     bifurcationComments={bifurcationComments};
 end
 % check bifurcation uniqueness
-assert (all(cellfun(@length,bifurcationComments)==1),...
+assert (all(cellfun(@length,bifurcationComments) == 1),...
         'bifurcation comment is not unique');
 end
 

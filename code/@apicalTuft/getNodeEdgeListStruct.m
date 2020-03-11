@@ -7,7 +7,7 @@ function [agglo] = getNodeEdgeListStruct(skel,treeIndex)
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist('treeIndex','var') || isempty(treeIndex)
-    assert(skel.numTrees==1);
+    assert(skel.numTrees == 1);
     treeIndex=1;
 end
 agglo=struct();

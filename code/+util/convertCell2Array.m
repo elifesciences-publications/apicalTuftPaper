@@ -3,7 +3,7 @@ function [ numberArray ] = convertCell2Array( inputCellArray )
 %convert to normal array if size 1
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-if length(inputCellArray)==1
+if length(inputCellArray) == 1
     numberArray=inputCellArray{1};
 else
     numberArray=cat(1,inputCellArray{:});

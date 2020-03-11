@@ -93,8 +93,8 @@ clusters = cluster(clusterTree,'maxclust',k);
 % Note: only works with k = 2
 [~,Itt]=max(curFeat.numObliques);
 if clusters(Itt) ~= 1
-    clusters(clusters==1)= 2;
-    clusters (clusters==2) = 1;
+    clusters(clusters == 1)= 2;
+    clusters (clusters == 2) = 1;
 end
 % summary stat of clusters
 curFeat.clusters = clusters;
@@ -110,7 +110,7 @@ colors = {l5color,l5Acolor};
 [~,scores] = pca(X);
 hold on
 for i=1:length(unique(clusters))
-    util.plot.scatter(scores(clusters==i,1:2)',colors{i},10)
+    util.plot.scatter(scores(clusters == i,1:2)',colors{i},10)
 end
 xlim ([-4,4]);ylim([-1.2,1.2]);
 util.plot.cosmeticsSave...
@@ -194,8 +194,8 @@ for g = 2:3
     y_width = 1.5;
     hold on
     for i=1:length(unique(clusters))
-        scores_Cell{i} = scores(clusters==i,1);
-        curDensity{i} = theDensity{clusters==i,g};
+        scores_Cell{i} = scores(clusters == i,1);
+        curDensity{i} = theDensity{clusters == i,g};
         combinedArray{i} = [scores_Cell{i},curDensity{i}];
         util.plot.scatter([scores_Cell{i},curDensity{i}]',colors{i})
     end
@@ -218,8 +218,8 @@ y_width = 4.5;
 x_width = 3;
 hold on
 for i=1:length(unique(clusters))
-    scores_Cell{i} = scores(clusters==i,1);
-    inhRatio_Cell{i} = inhRatio(clusters==i);
+    scores_Cell{i} = scores(clusters == i,1);
+    inhRatio_Cell{i} = inhRatio(clusters == i);
     combinedArray{i} = [scores_Cell{i},inhRatio_Cell{i}];
     util.plot.scatter([scores_Cell{i},inhRatio_Cell{i}]',colors{i});
 end

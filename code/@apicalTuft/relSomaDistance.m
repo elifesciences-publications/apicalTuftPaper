@@ -22,7 +22,7 @@ if ~iscell(somaLocationIdx)
     somaLocationIdx={somaLocationIdx};
 end
 % check point uniqueness per tree
-assert(all(cellfun(@length,somaLocationIdx)==1),...
+assert(all(cellfun(@length,somaLocationIdx) == 1),...
         'location comment is not unique');
 
 % Get all path for the treeIndices

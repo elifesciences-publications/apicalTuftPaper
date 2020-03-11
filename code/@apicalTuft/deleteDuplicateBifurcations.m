@@ -22,7 +22,7 @@ for i=1:length(skels)
         skels{i}=skels{i}.deleteTreeWithName(exclude{i}{j},'exact');
     end
     
-    assert(lengthBeforeDeleting==length(skels{i}.names)+length(exclude{i}))
+    assert(lengthBeforeDeleting == length(skels{i}.names)+length(exclude{i}))
 end    
 end
 

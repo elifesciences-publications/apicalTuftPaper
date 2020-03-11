@@ -105,7 +105,7 @@ if isempty(skel.synLabel)
 end
 
 % Convert to Table
-assert(size(synapseIdx,2)==length(skel.synLabel)+1)
+assert(size(synapseIdx,2) == length(skel.synLabel)+1)
 synapseIdx=cell2table(synapseIdx,'VariableNames' ,...
     cellstr([{'treeIndex'},Util.makeVarName(skel.synLabel)]));
 end

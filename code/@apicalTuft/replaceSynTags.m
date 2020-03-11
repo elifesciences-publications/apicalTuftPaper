@@ -10,7 +10,7 @@ function [skel] = replaceSynTags(skel,treeIndices,curTags,replaceTags)
 if ~exist('treeIndices','var') || ~isempty(treeIndices)
     treeIndices=1:skel.numTrees;
 end
-assert (length(curTags)==length(replaceTags),'not equal length')
+assert (length(curTags) == length(replaceTags),'not equal length')
 
 for i=1:length(curTags)
     skel=skel.replaceComments( curTags{i}, replaceTags{i}, 'partial', ...

@@ -55,6 +55,6 @@ elseif contains(obj.dataset,'LPtA')
 else
         disp('datasetProperties setting failed, no dataset information present!')
 end
-    assert(countNrofDatasets==1);
+    assert(countNrofDatasets == 1);
 end
 
