@@ -1,22 +1,36 @@
 classdef apicalTuft < skeleton
-    % APICALTUFT This is a class for further manipulating and 
-    % extracting synaptic/morphological information from skeleton
-    % annotations from webKnossos
+    % apicalTuft a sub-class of the "skeleton" class 
+    % (see auxiliaryMethods/@skeleton) for extracting the
+    % synaptic and morphological properties of skeleton reconstructions 
+    % from their comment strings and node coordinates/edgeLists.
     % This class is designed for use with annotations of apical tufts and 
     % their associated axons
     
     % Author: Ali Karimi <ali.karimi@brain.mpg.de>
     
     properties
-        legacyGrouping=true;
-        l2Idx=[];
-        dlIdx=[];
+        % L2 vs. DL grouping which was then replaced by L2, L3, subtypes of
+        % L5 in the larger datasets
+        legacyGrouping = true;
+        l2Idx = [];
+        dlIdx = [];
+        % New table variable containg L2, L3 and subtypes of
+        % L5 in the larger datasets
         groupingVariable=table();
+        % Name of dataset and the type of tracing extracted from NML file
+        % name. format: dataset_tracingType.nml
         dataset='';
         tracingType='';
+        % outputDirectory: used for writing the skeleton. It is the
+        % directory containing the annotation
         outputDir='';
+        % Types of apical dendrites in the annotation. This is based on the
+        % treeName used for distinguishing each type
         apicalType={};
+        % Comment strings to get the synapse nodes
         syn={};
+        % Comment string to exclude the synapse. This is used to exclude
+        % synapses which are not clear (unsure decision by the annotator)
         synExclusion=[];
         synGroups={};
         synGroups2remove={};

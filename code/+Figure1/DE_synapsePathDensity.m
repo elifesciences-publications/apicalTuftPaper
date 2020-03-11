@@ -1,11 +1,14 @@
+% Fig.1D and Fig.1E: The density of synapses normalized to the path length
+% of the shaft of the apical dendrite
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
-colors = util.plot.getColors;
+c = util.plot.getColors;
 outputFolder = fullfile(util.dir.getFig(1),'DF');
 util.mkdir(outputFolder);
 %% Get synapse densities per shaft path length
-apTuft=apicalTuft.getObjects('bifurcation');
-Density=apicalTuft.applyMethod2ObjectArray...
+apTuft = apicalTuft.getObjects('bifurcation');
+Density = apicalTuft.applyMethod2ObjectArray...
     (apTuft,'getSynDensityPerType');
 shaftDensity=cellfun(@(x) x.Shaft,Density.Variables,...
     'UniformOutput',false);
@@ -43,7 +46,7 @@ fh=figure;ax=gca;
 horizontalLocation=[spineXLocation,shaftXLocation];
 horizontalLocation=horizontalLocation(:);
 % the colors
-curColors=repmat([{colors.exccolor},{colors.inhcolor}],2,1);
+curColors=repmat([{c.exccolor},{c.inhcolor}],2,1);
 curColors=curColors(:);
 % plotting
 util.plot.boxPlotRawOverlay(densities_Agg,horizontalLocation,...
@@ -63,7 +66,7 @@ fh=figure;ax=gca;
 horizontalLocation=[spineXLocation,shaftXLocation];
 horizontalLocation=horizontalLocation(:);
 % the colors
-curColors=repmat([{colors.exccolor,colors.inhcolor}],8,1);
+curColors=repmat([{c.exccolor,c.inhcolor}],8,1);
 curColors=curColors(:);
 % plotting
 util.plot.boxPlotRawOverlay(densities_Sep,horizontalLocation,...
