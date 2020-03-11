@@ -8,7 +8,7 @@ function [IdxOfSkelSubsetNodesInSkel] = ...
 % used here to match the subset to full tree nodes.
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('treeIndices', 'var') || isempty(treeIndices)
-    assert(skel.numTrees>=skelSubset.numTrees)
+    assert(skel.numTrees >= skelSubset.numTrees)
     treeIndices = 1:skel.numTrees();
 end
 

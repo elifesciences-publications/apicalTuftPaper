@@ -8,13 +8,13 @@ end
 
 % Trim the skeleton to shaft Backbone (in case obj.fixedEnding exists)
 if ~isempty(obj.fixedEnding)
-    skeltrimmed=obj.getBackBone(treeIndices,obj.fixedEnding);
+    skeltrimmed = obj.getBackBone(treeIndices,obj.fixedEnding);
 else
-    skeltrimmed=obj;
+    skeltrimmed = obj;
 end
 
 % Measure pathlength of BackBone
-pathLengthInMicron=skeltrimmed.pathLength...
+pathLengthInMicron = skeltrimmed.pathLength...
     (treeIndices);
 
 end

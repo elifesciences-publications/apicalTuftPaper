@@ -5,16 +5,16 @@ function [prop] = spineRatioMappingL1()
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-prop.outputDir=util.dir.getSpineFractionMapping;
-prop.apicalType={ 'layer2ApicalDendriteSeeded',...
+prop.outputDir = util.dir.getSpineFractionMapping;
+prop.apicalType = { 'layer2ApicalDendriteSeeded',...
     'layer3ApicalDendriteSeeded',...
     'deepLayerApicalDendriteSeeded'};
-prop.syn={'spine_singleInnervaterd','shaft','spine_DoubleInnervaterd','spine_neck','cellBody'}';
-prop.synExclusion='unsureSynapse';
-prop.synGroups={{2,3,4,5}'}';
-prop.synLabel={'Spine','Shaft'}';
-prop.seed='seed';
-prop.legacyGrouping=false;
+prop.syn = {'spine_singleInnervaterd','shaft','spine_DoubleInnervaterd','spine_neck','cellBody'}';
+prop.synExclusion = 'unsureSynapse';
+prop.synGroups = {{2,3,4,5}'}';
+prop.synLabel = {'Spine','Shaft'}';
+prop.seed = 'seed';
+prop.legacyGrouping = false;
 
 end
 

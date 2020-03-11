@@ -39,7 +39,7 @@ end
 
 end
 
-function skelInterpolated=interpolateEdges...
+function skelInterpolated = interpolateEdges...
     (skel,originalSkeleton,toDelNodes,tr,bbox,comment2Add)
 % Comment added to new cut edges
 if ~exist('comment2Add','var') || isempty(comment2Add)
@@ -68,7 +68,7 @@ nodesOfTheEdges = cellfun(@(x) originalSkeleton.nodes{tr}(x,1:3), ...
 
 % Find location on the bbox to interpolate the edges
 dim2InterpolateAlong = skel.datasetProperties.dimPiaWM;
-[ylocation2Interpolate, validInterpolationFlag]=cellfun(@(nodes)...
+[ylocation2Interpolate, validInterpolationFlag] = cellfun(@(nodes)...
     util.crossBboxAndEdges(nodes,bbox,dim2InterpolateAlong), ...
     nodesOfTheEdges,'UniformOutput',false);
 
@@ -81,7 +81,7 @@ interpolatedNodes = cellfun...
 idx2ID = originalSkeleton.nodeIdx2Id{tr};
 % Note: output of the intersect is set to sorted by default
 nodeIdx2Attach = zeros(size(BorderEdges,1),1);
-for i=1:size(BorderEdges,1)
+for i = 1:size(BorderEdges,1)
     nodeIdx2Attach(i,1) = intersect(BorderEdges(i,:),toKeepNodes,'stable');
 end
 % Now get the node ID which could be used to get the node Idx in the new
@@ -93,7 +93,7 @@ nodeID2Attach = idx2ID(nodeIdx2Attach);
 % edge
 if ~isempty(validInterpolationFlag)
     validInterpolationFlag = cell2mat(validInterpolationFlag);
-    nodeID_valid=nodeID2Attach(validInterpolationFlag);
+    nodeID_valid = nodeID2Attach(validInterpolationFlag);
     nodeID_alreadyPresent = nodeID2Attach(~validInterpolationFlag);
     interpolatedNodes = interpolatedNodes(validInterpolationFlag);
     nodeIdx2Attach = nodeIdx2Attach(validInterpolationFlag);

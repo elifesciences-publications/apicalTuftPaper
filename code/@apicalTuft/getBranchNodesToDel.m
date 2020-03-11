@@ -15,34 +15,34 @@ function [ branchNodes ] = getBranchNodesToDel( skel,tr,realTreeEndings)
 % Note: Repeated usage of this function results on a backbone
 % Authors: Ali Karimi <ali.karimi@brain.mpg.de>
 %          Jan Odenthal <jan.odenthal@brain.mpg.de>
-Neighbors=skel.getNeighborList(tr);
-degree1Nodes=find(cellfun(@(x)length(x) == 1,Neighbors));
+Neighbors = skel.getNeighborList(tr);
+degree1Nodes = find(cellfun(@(x)length(x) == 1,Neighbors));
 % Avoid trimming the real endings of the tracing signified by specific
 % comments
-degree1Nodes=setdiff(degree1Nodes,realTreeEndings);
-steps=0;
+degree1Nodes = setdiff(degree1Nodes,realTreeEndings);
+steps = 0;
 
 %If there's no degree 1 nodes left return an empty array
 if isempty(degree1Nodes)
-    branchNodes=[];
+    branchNodes = [];
     return
 end
 
 % This loop would walk along the tree starting at each branch ending and
 % would stop when a node does not have a degree 2
-for ii=1:length(degree1Nodes)
-    contSignal=true;
-    currentNode=degree1Nodes(ii);
-    nextNode=Neighbors{currentNode};
+for ii = 1:length(degree1Nodes)
+    contSignal = true;
+    currentNode = degree1Nodes(ii);
+    nextNode = Neighbors{currentNode};
     while contSignal
-        steps=steps+1;
-        branchNodes(steps)=currentNode;
+        steps = steps+1;
+        branchNodes(steps) = currentNode;
         if  length(Neighbors{nextNode}) == 2
-            oldNode=currentNode;
-            currentNode=nextNode;
-            nextNode=Neighbors{nextNode}(Neighbors{nextNode} ~= oldNode);
+            oldNode = currentNode;
+            currentNode = nextNode;
+            nextNode = Neighbors{nextNode}(Neighbors{nextNode} ~= oldNode);
         else
-            contSignal=false;
+            contSignal = false;
         end
     end
 end

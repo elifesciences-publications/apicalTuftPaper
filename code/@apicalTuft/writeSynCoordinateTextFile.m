@@ -1,4 +1,4 @@
-function [synCoords]=writeSynCoordinateTextFile( skel,treeIndices,...
+function [synCoords] = writeSynCoordinateTextFile( skel,treeIndices,...
     outputFolder,colors, mergeAllSynapses)
 %WRITESYNCOORDINATETEXTFILE writes the coordinates to text file in folder:
 %                           outputFolderForCoordinates
@@ -13,38 +13,38 @@ if ~exist('treeIndices','var') || isempty(treeIndices)
 end
 
 if ~exist('outputFolder','var') || isempty(outputFolder)
-    outputFolder=pwd;
+    outputFolder = pwd;
 end
 
 if ~exist('colors','var') || isempty(colors)
     % Shaft, Spine, Inhibitory spine
-    colors={'blue','red','blue'};
+    colors = {'blue','red','blue'};
 end
 if ~exist('mergeAllSynapses','var') || isempty(mergeAllSynapses)
-    mergeAllSynapses=false;
+    mergeAllSynapses = false;
 end
 %   Get Coordinates
-synCoords=skel.getSynCoord(treeIndices);
+synCoords = skel.getSynCoord(treeIndices);
 %   Write to output textFile
-counterTree=1;
+counterTree = 1;
 
 for tr = treeIndices(:)'
     % delete file in case of merging
     if mergeAllSynapses
-        fname=[outputFolder,filesep,colors,'_',skel.names{tr}];
+        fname = [outputFolder,filesep,colors,'_',skel.names{tr}];
         delete(fname);
         % Don't forget to write the seed coordinate as well
-        seedCoord=skel.getNodes(tr,skel.getSeedIdx(tr));
+        seedCoord = skel.getNodes(tr,skel.getSeedIdx(tr));
         dlmwrite(fname,seedCoord,'-append','delimiter',' ');
     end
     for syType =2:size(synCoords,2)
-        thisSynCoords=synCoords{counterTree,syType}{1};
+        thisSynCoords = synCoords{counterTree,syType}{1};
         if ~isempty(thisSynCoords)
             if mergeAllSynapses
-                fname=[outputFolder,filesep,colors,'_',skel.names{tr}];
+                fname = [outputFolder,filesep,colors,'_',skel.names{tr}];
                 dlmwrite(fname,thisSynCoords,'-append','delimiter',' ');
             else
-                fname=fullfile(outputFolder,skel.names{tr},...
+                fname = fullfile(outputFolder,skel.names{tr},...
                     [colors{syType-1},'_',...
                     synCoords.Properties.VariableNames{syType},'_',...
                     skel.names{tr}]);
@@ -54,7 +54,7 @@ for tr = treeIndices(:)'
             disp('no syn existent')
         end
     end
-    counterTree=counterTree+1;
+    counterTree = counterTree+1;
 end
 end
 

@@ -30,8 +30,8 @@ for i = 1:length(treeIndices)
     % Initialize
     synIdxBackBone = cell(1,width(cursynIdx));
     synIdxBackBone{1} = cursynIdx{1,1};
-    for synGroup=2:width(cursynIdx)
-        curSynTypeIdx=cursynIdx{1,synGroup}{1};
+    for synGroup = 2:width(cursynIdx)
+        curSynTypeIdx = cursynIdx{1,synGroup}{1};
         currentShortestDist = curShortestPaths(IdxMapFromBackBone2Full,...
             curSynTypeIdx);
         [minValues,minIndices] = min(currentShortestDist,[],1);
@@ -39,7 +39,7 @@ for i = 1:length(treeIndices)
         % 8 um spine neck threshhold
         assert(length(minValues) == length(curSynTypeIdx))
         assert(all(minValues<8000)); 
-        backBoneNodesWithMinDist=IdxMapFromBackBone2Full(minIndices);
+        backBoneNodesWithMinDist = IdxMapFromBackBone2Full(minIndices);
         if length(minIndices)>1
             synIdxBackBone{1,synGroup} = ...
                 backBoneNodesWithMinDist;

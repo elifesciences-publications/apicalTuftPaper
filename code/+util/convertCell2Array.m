@@ -4,9 +4,9 @@ function [ numberArray ] = convertCell2Array( inputCellArray )
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if length(inputCellArray) == 1
-    numberArray=inputCellArray{1};
+    numberArray = inputCellArray{1};
 else
-    numberArray=cat(1,inputCellArray{:});
+    numberArray = cat(1,inputCellArray{:});
 end
 
 end

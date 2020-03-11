@@ -27,7 +27,7 @@ optIn.scale = skel.scale;
 optIn.theColorMap = colormap(lines);
 optIn.sphereSize = 50;
 optIn.rotationMatrix = eye(3);
-optIn.correction=zeros(1,skel.numTrees);
+optIn.correction = zeros(1,skel.numTrees);
 optIn = Util.modifyStruct(optIn, varargin{:});
 
 if ~exist('synCoords','var') || isempty(synCoords)
@@ -44,7 +44,7 @@ fieldNameFun = @(tr) (['treeId' num2str(tr)]);
 
 hold on
 % Going through all the trees to be plotted
-counterTree=1;
+counterTree = 1;
 for tr = treeIndices(:)'
     for syType =1:size(synCoords,2)-1
         thisSynCoords = synCoords{counterTree,syType+1};

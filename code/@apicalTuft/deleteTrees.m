@@ -8,7 +8,7 @@ function obj = deleteTrees(obj, varargin)
 %           true
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-obj=deleteTrees@skeleton(obj,varargin{:});
-obj=obj.updateGrouping;    
+obj = deleteTrees@skeleton(obj,varargin{:});
+obj = obj.updateGrouping;    
 end
 

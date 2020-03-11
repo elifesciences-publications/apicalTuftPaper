@@ -15,13 +15,13 @@ if ~exist('treeIndices','var') || isempty(treeIndices)
 end
 
 % prepare the synSumCount table
-synCount=skel.getSynCount(treeIndices);
-synSumCount=array2table(zeros(size(synCount,1),1),'VariableNames', ...
+synCount = skel.getSynCount(treeIndices);
+synSumCount = array2table(zeros(size(synCount,1),1),'VariableNames', ...
     {'totalSynapseNumber'});
-synSumCount=cat(2,synCount(:,1),synSumCount);
+synSumCount = cat(2,synCount(:,1),synSumCount);
 
 % here it calculates the sum
-synSumCount(:,2).Variables=sum(synCount(:,2:end).Variables,2);
+synSumCount(:,2).Variables = sum(synCount(:,2:end).Variables,2);
 
 end
 

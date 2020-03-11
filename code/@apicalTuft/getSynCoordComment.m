@@ -12,11 +12,11 @@ function [ synapseCoords] =...
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 %Get synapse Idx
-synIdx=skel.getSynIdx(treeIndices,varargin{:});
+synIdx = skel.getSynIdx(treeIndices,varargin{:});
 
 %Get Coords now
-getCoordsWithTrueCellOutput=@(tr,nodeIdList)...
+getCoordsWithTrueCellOutput = @(tr,nodeIdList)...
     skel.getNodes(tr,nodeIdList);
-synapseCoords=skel.synCellTableFun(getCoordsWithTrueCellOutput,synIdx);
+synapseCoords = skel.synCellTableFun(getCoordsWithTrueCellOutput,synIdx);
 
 end

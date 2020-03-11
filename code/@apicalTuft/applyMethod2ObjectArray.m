@@ -28,30 +28,30 @@ function [outputOfMethod] = applyMethod2ObjectArray...
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('separategroups','var') || isempty (separategroups)
-    separategroups=true;
+    separategroups = true;
 end
 if ~exist('createAggregate','var') || isempty (createAggregate)
-    createAggregate=true;
+    createAggregate = true;
 end
 if ~exist('annotationType','var') || isempty (annotationType)
-    annotationType='both';
+    annotationType = 'both';
 end
 
 % Correct the table array which is the output of this function to look like
 % the input. Thereby allowing to chain this function
 if istable(apTuftArray)
     if ismember('Aggregate', apTuftArray.Properties.VariableNames)
-        apTuftArray.Aggregate=[];
+        apTuftArray.Aggregate = [];
     end
-    apTuftArray=table2cell(apTuftArray);
+    apTuftArray = table2cell(apTuftArray);
 end
 
 % Application of method based on the grouping type
 if apTuftArray{1}.legacyGrouping
-    outputOfMethod=apicalTuft.applyLegacyGrouping...
+    outputOfMethod = apicalTuft.applyLegacyGrouping...
         (apTuftArray,method, separategroups, createAggregate,varargin{:});
 else
-    outputOfMethod=apicalTuft.applyNewGrouping...
+    outputOfMethod = apicalTuft.applyNewGrouping...
         (apTuftArray,method, separategroups, createAggregate, ...
         annotationType,varargin{:});
 end

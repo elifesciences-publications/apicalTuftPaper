@@ -3,7 +3,7 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
 saveResults = false;
-outputFolder=fullfile(util.dir.getFig(5),...
+outputFolder = fullfile(util.dir.getFig(5),...
     'ClassificationCriteriaForL5');
 util.mkdir(outputFolder);
 
@@ -23,12 +23,12 @@ ADTrunkD = dendrite.L5A.getADTrunkDiameter(skel_ADDiameter,treeNamesL5);
 curFeat = join(numObliques,ADTrunkD,'Keys','RowNames');
 
 %% Get the diameter of the soma
-fileName=fullfile(util.dir.getAnnotation,...
+fileName = fullfile(util.dir.getAnnotation,...
     'otherAnnotations','PPC2_somaDiameter.nml');
 skel_SomaD = skeleton(fileName);
 % Get the volume and diameter from measurements of format:
 % treename_01,02,03: the three diameters
-[somaDiameter]=dendrite.L5A.getSomaSize(skel_SomaD,treeNamesL5);
+[somaDiameter] = dendrite.L5A.getSomaSize(skel_SomaD,treeNamesL5);
 curFeat = join(somaDiameter,curFeat,'Keys','RowNames',...
     'KeepOneCopy','somaDiameter');
 
@@ -56,8 +56,8 @@ distMetricNames = {'euclidean','squaredeuclidean','seuclidean',...
 linkageMethodNames = {'average','centroid','complete','median','single',...
     'ward','weighted'};
 
-for r=1:length(distMetricNames)
-    for h=1:length(linkageMethodNames)
+for r = 1:length(distMetricNames)
+    for h = 1:length(linkageMethodNames)
         curMetric = distMetricNames{r};
         curMethod = linkageMethodNames{h};
         Dist = pdist(X,curMetric);
@@ -78,8 +78,8 @@ Dist = pdist(X,'cosine');
 clusterTree = linkage(Dist,'average');
 fname = 'dendrogram';
 fh = figure ('Name',fname);ax = gca;
-x_width=2;
-y_width=2;
+x_width = 2;
+y_width = 2;
 H = dendrogram(clusterTree,'Labels',...
     cellfun(@(x) x(end-1:end),curFeat.Properties.RowNames,'uni',0),...
     'ColorThreshold','default');
@@ -91,7 +91,7 @@ disp(['Cophenet CC: ',num2str(cophenet(clusterTree, Dist))]);
 clusters = cluster(clusterTree,'maxclust',k);
 % Correct cluster IDs so that the L5tt group has ID 1 always
 % Note: only works with k = 2
-[~,Itt]=max(curFeat.numObliques);
+[~,Itt] = max(curFeat.numObliques);
 if clusters(Itt) ~= 1
     clusters(clusters == 1)= 2;
     clusters (clusters == 2) = 1;
@@ -104,12 +104,12 @@ statsSummary = grpstats(curFeat,'clusters',{'mean','sem'});
 %% do PCA on the features and make a plot
 fname = 'PCA';
 fh = figure ('Name',fname);ax = gca;
-x_width=2;
-y_width=2;
+x_width = 2;
+y_width = 2;
 colors = {l5color,l5Acolor};
 [~,scores] = pca(X);
 hold on
-for i=1:length(unique(clusters))
+for i = 1:length(unique(clusters))
     util.plot.scatter(scores(clusters == i,1:2)',colors{i},10)
 end
 xlim ([-4,4]);ylim([-1.2,1.2]);
@@ -122,10 +122,10 @@ curColors ={l5color,l5Acolor};
 for f = 1:4
     curFeatName = curFeat.Properties.VariableNames{f};
     fh = figure ('Name',curFeatName);ax = gca;
-    x_width=1.5;
-    y_width=1;
+    x_width = 1.5;
+    y_width = 1;
     hold on
-    for c=1:2
+    for c = 1:2
         indices = (curFeat.clusters == c);
         histogram(curFeat{indices,f},'BinEdges',BinEdges{f},...
             'DisplayStyle','stairs','EdgeColor', curColors{c});
@@ -144,10 +144,10 @@ annotationTypes = {'dist2soma','mapping'};
 L5nameStubs= {'layer5ApicalDendrite','layer5AApicalDendrite'};
 trIndices = cell(2,2);
 newTrNames = cell(2,2);
-for c=1:2
+for c = 1:2
     % Get cluster trees sorted by the number of obliques
     linearIndices = find(clusters == c);
-    [~,Isort]=sort(curFeat.numObliques(linearIndices),'descend');
+    [~,Isort] = sort(curFeat.numObliques(linearIndices),'descend');
     linearIndices = linearIndices(Isort);
     % Get name of trees
     trNames {1} = curFeat.Properties.RowNames(linearIndices);
@@ -155,7 +155,7 @@ for c=1:2
         @(x) strrep (x,annotationTypes{1},annotationTypes{2}),...
         trNames{1},'UniformOutput',false);
     assert (length(trNames{1}) == length(trNames{2}));
-    for i=1:length(trNames)
+    for i = 1:length(trNames)
         % Get their indices
         trIndices{i,c} = skel_main.getTreeWithName(trNames{i},'exact');
         % generate new tree names
@@ -193,7 +193,7 @@ for g = 2:3
     x_width = 1.5;
     y_width = 1.5;
     hold on
-    for i=1:length(unique(clusters))
+    for i = 1:length(unique(clusters))
         scores_Cell{i} = scores(clusters == i,1);
         curDensity{i} = theDensity{clusters == i,g};
         combinedArray{i} = [scores_Cell{i},curDensity{i}];
@@ -217,7 +217,7 @@ fh = figure;ax = gca;
 y_width = 4.5;
 x_width = 3;
 hold on
-for i=1:length(unique(clusters))
+for i = 1:length(unique(clusters))
     scores_Cell{i} = scores(clusters == i,1);
     inhRatio_Cell{i} = inhRatio(clusters == i);
     combinedArray{i} = [scores_Cell{i},inhRatio_Cell{i}];

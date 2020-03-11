@@ -7,6 +7,6 @@ if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:obj.numTrees;
 end
 obj.checkSeedUniqueness(treeIndices);
-seedComments=obj.getNodesWithComment(obj.seed,treeIndices,'partial');
+seedComments = obj.getNodesWithComment(obj.seed,treeIndices,'partial');
 end
 

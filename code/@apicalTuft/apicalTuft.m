@@ -16,42 +16,42 @@ classdef apicalTuft < skeleton
         dlIdx = [];
         % New table variable containg L2, L3 and subtypes of
         % L5 in the larger datasets
-        groupingVariable=table();
+        groupingVariable = table();
         % Name of dataset and the type of tracing extracted from NML file
         % name. format: dataset_tracingType.nml
-        dataset='';
-        tracingType='';
+        dataset = '';
+        tracingType = '';
         % outputDirectory: used for writing the skeleton. It is the
         % directory containing the annotation
-        outputDir='';
+        outputDir = '';
         % Types of apical dendrites in the annotation. This is based on the
         % treeName used for distinguishing each type
-        apicalType={};
+        apicalType = {};
         % Comment strings to get the synapse nodes
-        syn={};
+        syn = {};
         % Comment string to exclude the synapse. This is used to exclude
         % synapses which are not clear (unsure decision by the annotator)
-        synExclusion=[];
-        synGroups={};
-        synGroups2remove={};
-        synLabel={};
-        synCenterTPA=false;
-        seed=[];
-        bifurcation='bifurcation';
-        soma='soma';
-        start='start';
+        synExclusion = [];
+        synGroups = {};
+        synGroups2remove = {};
+        synLabel = {};
+        synCenterTPA = false;
+        seed = [];
+        bifurcation = 'bifurcation';
+        soma = 'soma';
+        start = 'start';
         datasetProperties = struct( 'dimPiaWM', [],...
             'correction', [],'highResBorder',[],'L1BorderInPixel',...
             [],'bbox',[]);
-        fixedEnding=[];
+        fixedEnding = [];
         % This property is to hold the correspondence synaptic information 
         % before and after splitting skeletons (e.g. Fig. 7, Fig. Suppl. 1) 
-        connectedComp=struct('treeIdx',[],'nodeID',[],...
+        connectedComp = struct('treeIdx',[],'nodeID',[],...
             'synIDPre',table(),'synIDPost',table(),...
             'splitDone',false,'emptyTracing',false);
         % Same as previous for splitting skeletons relative to distance to
         % soma Fig. 7c
-        distSoma=struct('synBinCount',[],'inhRatioRelSoma',[],...
+        distSoma = struct('synBinCount',[],'inhRatioRelSoma',[],...
             'acceptableInhRatios',[],'synDistance2Soma',[]);
     end
     
@@ -65,36 +65,36 @@ classdef apicalTuft < skeleton
             if(length(nameSplit) ~= 2)
                 warning('nmlName does not follow datasetName_tracingType');
             end
-            nmlNameData=struct('datasetName',nameSplit{1},...
+            nmlNameData = struct('datasetName',nameSplit{1},...
                 'tracingType',nameSplit{2});
             % Set the configuration name to tracingType if not explicitly
             % given
             if ~exist('configName','var') || isempty(configName)
-                configName=nmlNameData.tracingType;
+                configName = nmlNameData.tracingType;
             end
             % Try reading the configuration file
             try
-                properties=config.(configName);
+                properties = config.(configName);
             catch
-                properties=[];
+                properties = [];
                 disp ...
                     ('The annotation does not have the configuration file check +config')
             end
             % Construct the skeleton object
-            annotationDir=fullfile(annotationDir,nameSplit{2});
-            nmlName=fullfile(annotationDir,nmlName);
+            annotationDir = fullfile(annotationDir,nameSplit{2});
+            nmlName = fullfile(annotationDir,nmlName);
             obj@skeleton(nmlName);
             
-            obj.dataset=nmlNameData.datasetName;
-            obj.tracingType=nmlNameData.tracingType;
-            obj=obj.readProperties(properties);
+            obj.dataset = nmlNameData.datasetName;
+            obj.tracingType = nmlNameData.tracingType;
+            obj = obj.readProperties(properties);
             
             % Get tree indices of the layer 2 and deep layer apical dendrites
-            obj=obj.updateGrouping;
+            obj = obj.updateGrouping;
             % Set dataset properties if available
-            obj=obj.setDatasetProperties;
+            obj = obj.setDatasetProperties;
             % Sort trees by name
-            obj=obj.sortTreesByName;
+            obj = obj.sortTreesByName;
         end
         % Set the properties from the configuration file
         function obj = readProperties(obj,properties)
@@ -115,11 +115,11 @@ classdef apicalTuft < skeleton
                 treeIndices = 1:obj.numTrees;
             end
             
-            strings=cell(length(treeIndices),1);
-            cc=1;
-            for tr=treeIndices(:)'
-                strings{cc}=[obj.filename,'_',obj.names{tr},'_',num2str(tr,'%0.3u')];
-                cc=cc+1;
+            strings = cell(length(treeIndices),1);
+            cc = 1;
+            for tr = treeIndices(:)'
+                strings{cc} = [obj.filename,'_',obj.names{tr},'_',num2str(tr,'%0.3u')];
+                cc = cc+1;
             end
         end
         % Method definitions for methods in separate files
@@ -202,6 +202,6 @@ classdef apicalTuft < skeleton
         [apTuftObj] = groupInhibitorySpines(apTuftObj)
         [skels] = deleteDuplicateBifurcations(skels);
         [apTuft] = skeletonConverter(apTuft,skel);
-        [scaledCoords]=setScale(coords,scale);
+        [scaledCoords] = setScale(coords,scale);
     end
 end

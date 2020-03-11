@@ -7,7 +7,7 @@ if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:obj.numTrees;
 end
 
-totalPathLengthInMicron=...
+totalPathLengthInMicron = ...
     sum(obj.getBackBonePathLength.pathLengthInMicron);
 
 end

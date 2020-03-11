@@ -24,11 +24,11 @@ colors = {c.l2color,c.dlcolor};
 fh = figure('Name', 'Fig. 1C');ax = gca;
 
 % Plotting loop
-for i=1:4
+for i = 1:4
     trIdx = bifur{i}.getTreeWithName(trNames{1,i});
     % Only 2 trees per dataset
     assert(length(trIdx) == 2);
-    for j=1:2
+    for j = 1:2
         subplot(2,4,4*(j-1)+i)
         bifur{i}.plot(trIdx(j),colors{j});
         bifur{i}.plotSynapses(trIdx(j),[],'sphereSize',20);

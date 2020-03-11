@@ -14,14 +14,14 @@ end
 if ~exist('edgeLowRes','var') || isempty(edgeLowRes)
     edgeLowRes = obj.datasetProperties.highResBorder;
 end
-Bbox=obj.getBbox;
+Bbox = obj.getBbox;
 
-Bbox(dimLowresBorder,2)=edgeLowRes;
-comment2Add='newEndings';
-objCropped=obj.restrictToBBoxWithInterpolation(Bbox,treeIndices,...
+Bbox(dimLowresBorder,2) = edgeLowRes;
+comment2Add = 'newEndings';
+objCropped = obj.restrictToBBoxWithInterpolation(Bbox,treeIndices,...
     comment2Add);
-objCropped.fixedEnding=[objCropped.fixedEnding,{comment2Add}];
+objCropped.fixedEnding = [objCropped.fixedEnding,{comment2Add}];
 % Split the connected components of the cropped out high res annotations
-objCropped=objCropped.splitCC([],true);
+objCropped = objCropped.splitCC([],true);
 end
 

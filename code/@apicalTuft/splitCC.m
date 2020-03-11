@@ -48,7 +48,7 @@ objNew.connectedComp.nodeID = origNodeIDs;
 % is not empty
 objNew.connectedComp.splitDone = true;
 objNew.connectedComp.emptyTracing = false;
-objNew=objNew.updateGrouping;
+objNew = objNew.updateGrouping;
 % Only do a vanilla version of splitting no synapses invovlved if requested
 % Use case distal vs bifurcation analysis on Jan 2019
 if doVanillaSplit
@@ -57,7 +57,7 @@ if doVanillaSplit
 end
 objNew.connectedComp.synIDPost = objNew.createEmptyTable([],...
     objNew.connectedComp.synIDPre.Properties.VariableNames);
-findSynInCC=@(allSynIDs, ccIDs) ...
+findSynInCC = @(allSynIDs, ccIDs) ...
     allSynIDs(ismember(allSynIDs(:,1),intersect(allSynIDs(:,1),ccIDs)),:);
 objNew.connectedComp.synIDPost{:,2:end} = ...
     cellfun(findSynInCC, ...

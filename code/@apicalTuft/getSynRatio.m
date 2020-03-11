@@ -16,25 +16,25 @@ if ~exist('switchCorrectionFactor','var') || ...
         isempty(switchCorrectionFactor)
     switchCorrectionFactor = zeros(size(skel.synLabel));
 end
-synCount=skel.getSynCount(treeIndices,switchCorrectionFactor);
+synCount = skel.getSynCount(treeIndices,switchCorrectionFactor);
 if isempty(synCount)
-    synapseRatio=table();
+    synapseRatio = table();
     disp([skel.filename,': empty annotation, no synapses found']);
     return;
 end
-sumOfSynapses=skel.getTotalSynNumber(treeIndices);
+sumOfSynapses = skel.getTotalSynNumber(treeIndices);
 
 % Get the ratios
-ratioFuncHandle=@(tableCount) tableCount./sumOfSynapses(:,2).Variables;
-synapseRatio=varfun(ratioFuncHandle, synCount(:,2:end));
+ratioFuncHandle = @(tableCount) tableCount./sumOfSynapses(:,2).Variables;
+synapseRatio = varfun(ratioFuncHandle, synCount(:,2:end));
 % Make sure they all sum up to 1
-ratioNum=synapseRatio.Variables;
-treesWithValidRatios=~any(isnan(ratioNum),2);
-sumRatios=uint8(sum(ratioNum(treesWithValidRatios,:),2));
+ratioNum = synapseRatio.Variables;
+treesWithValidRatios = ~any(isnan(ratioNum),2);
+sumRatios = uint8(sum(ratioNum(treesWithValidRatios,:),2));
 assert (all(sumRatios) == 1,...
     'sum of all synapse ratios does not equal one');
 %Transfer treeIdx
-synapseRatio=cat(2,synCount(:,1),synapseRatio);
+synapseRatio = cat(2,synCount(:,1),synapseRatio);
 %Get rid of FUN_
-synapseRatio.Properties.VariableNames=synCount.Properties.VariableNames;
+synapseRatio.Properties.VariableNames = synCount.Properties.VariableNames;
 end

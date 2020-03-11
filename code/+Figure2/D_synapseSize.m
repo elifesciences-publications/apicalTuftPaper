@@ -3,12 +3,12 @@
 util.clearAll
 synapseSizes= dendrite.synSize.synapseSize;
 %%Initial set-up
-outputDir=fullfile(util.dir.getFig(1),'I');
+outputDir = fullfile(util.dir.getFig(1),'I');
 util.mkdir(outputDir)
 
-aggregateSynapseSizes=synapseSizes(:,:,5);
-aggregateSynapseSizes=aggregateSynapseSizes(:);
-colors=repmat([{l2color};{dlcolor}],2,1);
+aggregateSynapseSizes = synapseSizes(:,:,5);
+aggregateSynapseSizes = aggregateSynapseSizes(:);
+colors = repmat([{l2color};{dlcolor}],2,1);
 %% Plot
 fh = figure; ax = gca;
 hold on
@@ -20,7 +20,7 @@ ylim([0,2]);
 yticklabels([]);
 yticks(0:0.5:2);
 
-statTestFile=fullfile(outputDir,'ranksumTestSynSize.txt');
+statTestFile = fullfile(outputDir,'ranksumTestSynSize.txt');
 util.stat.ranksum.synSize(synapseSizes,{'Spine','Shaft'},statTestFile);
 % Cosmetics
 util.plot.cosmeticsSave(fh,ax,2.6,3.8,outputDir,'synSizeComparison.svg',...

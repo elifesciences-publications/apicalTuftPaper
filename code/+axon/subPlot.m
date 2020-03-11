@@ -3,29 +3,29 @@ function [] = subPlot(featureArray,listOfFeatures,endEdge)
 %Define basic parameters
 clf
 if ~exist('endEdge','var') || isempty(endEdge)
-    getEndEdge=true;
+    getEndEdge = true;
 else
-    getEndEdge=false;
+    getEndEdge = false;
 end
-lumpedDataRow=5;
-l2color=[0.8 0.8 0.8];
-dlcolor=[0.9 0.14 0];
-nrOfbins=25;
-nrDataRow=size(featureArray,1)+1;
-nrFeatureCol=length(listOfFeatures);
+lumpedDataRow = 5;
+l2color = [0.8 0.8 0.8];
+dlcolor = [0.9 0.14 0];
+nrOfbins = 25;
+nrDataRow = size(featureArray,1)+1;
+nrFeatureCol = length(listOfFeatures);
 
-featureNames=listOfFeatures;%{'PathLength[um]','Total synapse number','Synapse Density[1/um]'};
-dataTypes={'S1','V2','PPC','ACC','Lumped','Exc PPC'};
-PlotNum=1;
-for data=1:nrDataRow-1
-    for feature=1:nrFeatureCol
+featureNames = listOfFeatures;%{'PathLength[um]','Total synapse number','Synapse Density[1/um]'};
+dataTypes = {'S1','V2','PPC','ACC','Lumped','Exc PPC'};
+PlotNum = 1;
+for data = 1:nrDataRow-1
+    for feature = 1:nrFeatureCol
         % Get the edges for the bins of histogram and the limits in x
         if getEndEdge
-            endEdge=max([featureArray{lumpedDataRow,1}.(listOfFeatures{feature});...
+            endEdge = max([featureArray{lumpedDataRow,1}.(listOfFeatures{feature});...
                 featureArray{lumpedDataRow,2}.(listOfFeatures{feature})]);
-            endEdge=endEdge+(1/nrOfbins)*endEdge;
+            endEdge = endEdge+(1/nrOfbins)*endEdge;
         end
-        edges=linspace(0,endEdge,nrOfbins);
+        edges = linspace(0,endEdge,nrOfbins);
         
         % Plotting histogram
         subplot(nrDataRow,nrFeatureCol,PlotNum)
@@ -54,9 +54,9 @@ for data=1:nrDataRow-1
                 ylabel('KernelDensity Lumped')
             end
             hold on
-            [xl2,yl2]=ksdensity(ignoreNan(featureArray{data,1}.(listOfFeatures{feature})), ...
+            [xl2,yl2] = ksdensity(ignoreNan(featureArray{data,1}.(listOfFeatures{feature})), ...
                 edges);
-            [xdl,ydl]=ksdensity(ignoreNan(featureArray{data,2}.(listOfFeatures{feature})),...
+            [xdl,ydl] = ksdensity(ignoreNan(featureArray{data,2}.(listOfFeatures{feature})),...
                 edges);
             plot(yl2,xl2,'Color','k','LineWidth',1.5);
             plot(ydl,xdl,'Color',dlcolor,'LineWidth',1.5);

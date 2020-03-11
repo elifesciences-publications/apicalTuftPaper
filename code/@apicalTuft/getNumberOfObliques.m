@@ -7,7 +7,7 @@ function [NrOfObliques, ListOfCoords] = ...
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist('treeIndices','var') || isempty(treeIndices)
-    treeIndices=1:skel.numTrees;
+    treeIndices = 1:skel.numTrees;
 end
 Idx2IdConverter = skel.nodeIdx2Id (treeIndices);
 allNodeDegrees = skel.calculateNodeDegree(treeIndices);
@@ -16,7 +16,7 @@ NrOfObliques = table(zeros(size(treeIndices(:))),...
     'RowNames',skel.names(treeIndices), 'VariableNames',{'numObliques'});
 ListOfCoords = table(cell(size(treeIndices(:))),...
     'RowNames',skel.names(treeIndices), 'VariableNames',{'coordinates'});
-for i=1:length(treeIndices)
+for i = 1:length(treeIndices)
     tr = treeIndices(i);
     % Get bifurcaiton and soma ID and Idx
     bifurIdx = skel.getNodesWithComment('bifurcation',tr);

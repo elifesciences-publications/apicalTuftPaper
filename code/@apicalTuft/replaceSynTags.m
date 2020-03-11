@@ -8,12 +8,12 @@ function [skel] = replaceSynTags(skel,treeIndices,curTags,replaceTags)
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
 if ~exist('treeIndices','var') || ~isempty(treeIndices)
-    treeIndices=1:skel.numTrees;
+    treeIndices = 1:skel.numTrees;
 end
 assert (length(curTags) == length(replaceTags),'not equal length')
 
-for i=1:length(curTags)
-    skel=skel.replaceComments( curTags{i}, replaceTags{i}, 'partial', ...
+for i = 1:length(curTags)
+    skel = skel.replaceComments( curTags{i}, replaceTags{i}, 'partial', ...
     'partial', treeIndices);
 end
 

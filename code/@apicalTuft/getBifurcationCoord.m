@@ -9,8 +9,8 @@ end
 if ~exist('toNm','var') || isempty(toNm)
     toNm = true;
 end
-idx=obj.getBifurcationIdx(treeIndices);
-bifurcationCoord=obj.getNodes(treeIndices,idx,toNm);
+idx = obj.getBifurcationIdx(treeIndices);
+bifurcationCoord = obj.getNodes(treeIndices,idx,toNm);
 
 end
 

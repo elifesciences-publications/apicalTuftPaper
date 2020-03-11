@@ -1,18 +1,18 @@
 %% Plot L5A distal soma annotation to add to old annotations
-apTuft=apicalTuft.getObjects('l2vsl3vsl5',[],true);
+apTuft = apicalTuft.getObjects('l2vsl3vsl5',[],true);
 apTuft= util.varfunKeepNames(@(x) x.sortTreesByName,apTuft);
-apTuftPruned=apicalTuft('PPC2L5ADist2SomaPruned_l2vsl3vsl5');
-apTuftPruned=apTuftPruned.sortTreesByName;
+apTuftPruned = apicalTuft('PPC2L5ADist2SomaPruned_l2vsl3vsl5');
+apTuftPruned = apTuftPruned.sortTreesByName;
 %%
-fname='L5A_denseDistalAD';
-outputDir=fullfile(util.dir.getFig(6),'TheL5ADistalADDense');
+fname = 'L5A_denseDistalAD';
+outputDir = fullfile(util.dir.getFig(6),'TheL5ADistalADDense');
 util.mkdir(outputDir)
-fh=figure('Name',fname);ax=gca;
+fh = figure('Name',fname);ax = gca;
 hold on;
-p=dendrite.l2vsl3vsl5.gallery.parametersPPC2;
+p = dendrite.l2vsl3vsl5.gallery.parametersPPC2;
 % No overlap between trees
-correctionTree=[0:2e5:4e5];
-correctionTreeDense=repelem(correctionTree,2);
+correctionTree = [0:2e5:4e5];
+correctionTreeDense = repelem(correctionTree,2);
 
 apTuft.PPC2L5ADistal.plot([],[0,0,0],[], [],...
     [],[],[],[],p.RotMatrix,correctionTreeDense);

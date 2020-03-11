@@ -1,4 +1,4 @@
-function objTrimmed=getBackBone(obj,treeIndices,...
+function objTrimmed = getBackBone(obj,treeIndices,...
     comments2Avoid,trimLastEdgeTPA,makeDebugPlots)
 % getBackBone This function deletes all the branch nodes until there's no
 % degree 1 node left except for the real endings specified by
@@ -36,20 +36,20 @@ if ~exist('makeDebugPlots','var') || isempty(makeDebugPlots)
     makeDebugPlots = false;
 end
 if ~iscell(obj.synExclusion)
-    obj.synExclusion={obj.synExclusion};
+    obj.synExclusion = {obj.synExclusion};
 end
 
 % Initialize the object with trimmed tree
-objTrimmed=obj;
-for tr=treeIndices(:)'
-    realTreeEndings=[];
-    for c=1:size(comments2Avoid,2)
-        realTreeEndings=cat(1,realTreeEndings,objTrimmed.getNodesWithComment...
+objTrimmed = obj;
+for tr = treeIndices(:)'
+    realTreeEndings = [];
+    for c = 1:size(comments2Avoid,2)
+        realTreeEndings = cat(1,realTreeEndings,objTrimmed.getNodesWithComment...
             (comments2Avoid{c},tr,'exact'));
     end
-    realTreeEndings=removeunsure(objTrimmed,realTreeEndings,tr);
+    realTreeEndings = removeunsure(objTrimmed,realTreeEndings,tr);
     % Get the first round of nodes which need to be deleted
-    nodes2Del=objTrimmed.getBranchNodesToDel(tr,realTreeEndings);
+    nodes2Del = objTrimmed.getBranchNodesToDel(tr,realTreeEndings);
     
     % This while loop would continue until there's no
     while ~isempty(nodes2Del)
@@ -57,24 +57,24 @@ for tr=treeIndices(:)'
         assert(isempty(intersect(nodes2Del,realTreeEndings)),...
             'The real tree endings should not be deleted');
         % Delete the nodes from last round
-        objTrimmed=objTrimmed.deleteNodes(tr,nodes2Del,true);
+        objTrimmed = objTrimmed.deleteNodes(tr,nodes2Del,true);
         % Update the real tree ending Indices
-        realTreeEndings=[];
-        for cc=1:size(comments2Avoid,2)
-            realTreeEndings=cat(1,realTreeEndings,...
+        realTreeEndings = [];
+        for cc = 1:size(comments2Avoid,2)
+            realTreeEndings = cat(1,realTreeEndings,...
                 objTrimmed.getNodesWithComment(comments2Avoid{cc},...
                 tr,'exact'));
         end
         % Remove unsure from real tree endings
-        realTreeEndings=removeunsure(objTrimmed,realTreeEndings,tr);
-        nodes2Del=objTrimmed.getBranchNodesToDel(tr,realTreeEndings);
+        realTreeEndings = removeunsure(objTrimmed,realTreeEndings,tr);
+        nodes2Del = objTrimmed.getBranchNodesToDel(tr,realTreeEndings);
     end
     % if spines are avoided delete the last extra node of the spine 3 point
     % annotation
     if trimLastEdgeTPA
         if any(cellfun(@(x)contains(x,'spine'),comments2Avoid))
-            spineLastNode=objTrimmed.getNodesWithComment('spine',tr,'partial');
-            objTrimmed=objTrimmed.deleteNodes(tr,spineLastNode,true);
+            spineLastNode = objTrimmed.getNodesWithComment('spine',tr,'partial');
+            objTrimmed = objTrimmed.deleteNodes(tr,spineLastNode,true);
         end
     end
     
@@ -83,9 +83,9 @@ end
 if makeDebugPlots
     % Create overlay of before and after trimming for sanity check
     % Do this for each individual tree and pause for key press
-    for i=1:length(treeIndices)
-        tr=treeIndices(i);
-        fh=figure('Name',obj.names{tr},...
+    for i = 1:length(treeIndices)
+        tr = treeIndices(i);
+        fh = figure('Name',obj.names{tr},...
             'units','normalized','outerposition',[0 0 1 1]);
         obj.plot(tr,[0,1,1]);
         objTrimmed.plot(tr,[1,0,1]);
@@ -98,15 +98,15 @@ if makeDebugPlots
 end
 end
 
-function realTreeEndings=removeunsure(objTrimmed,realTreeEndings,tr)
+function realTreeEndings = removeunsure(objTrimmed,realTreeEndings,tr)
 %Avoiding to keep unsure synapse in the case of a spine keeping
-unsureSynapse=[];
-for cm=1:length(objTrimmed.synExclusion)
+unsureSynapse = [];
+for cm = 1:length(objTrimmed.synExclusion)
     unsureSynapse = [unsureSynapse,objTrimmed. ...
         getNodesWithComment(objTrimmed.synExclusion{cm}, tr, 'partial')];
 end
-unsureSynapse=unique(unsureSynapse);
-realTreeEndings=setdiff(realTreeEndings,unsureSynapse);
+unsureSynapse = unique(unsureSynapse);
+realTreeEndings = setdiff(realTreeEndings,unsureSynapse);
 end
 
 

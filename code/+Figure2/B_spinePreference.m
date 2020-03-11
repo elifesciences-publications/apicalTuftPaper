@@ -5,28 +5,28 @@
 %% set-up
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig(2),'SpineInnervationFraction');
+outputDir = fullfile(util.dir.getFig(2),'SpineInnervationFraction');
 util.mkdir(outputDir);
 
 %% fetch the ratio of each postsynaptic type
 synRatio = dendrite.synSwitch.getSynapseMeasure('getSynRatio');
-synRatio.L2{'L5A','Spine'}{1}=[];
-synRatio.L1{'layer5AApicalDendriteSeeded','Spine'}{1}=[];
+synRatio.L2{'L5A','Spine'}{1} = [];
+synRatio.L1{'layer5AApicalDendriteSeeded','Spine'}{1} = [];
 
 %% Plot the fraction of single spine innervation
-layers=fieldnames(synRatio);
-seedTypes=synRatio.L1.Properties.VariableNames;
-colors={util.plot.getColors().l2vsl3vsl5([1:3,5]),{l2color,dlcolor,l5Acolor}};
-ylimitsKS=[0,15];
-for l=1:2
-    layerRatios=synRatio.(layers{l});
-    curColor=colors{l};
-    for sType=1:2
-        fname=strjoin({layers{l},seedTypes{sType}},'_');
+layers = fieldnames(synRatio);
+seedTypes = synRatio.L1.Properties.VariableNames;
+colors = {util.plot.getColors().l2vsl3vsl5([1:3,5]),{l2color,dlcolor,l5Acolor}};
+ylimitsKS = [0,15];
+for l = 1:2
+    layerRatios = synRatio.(layers{l});
+    curColor = colors{l};
+    for sType = 1:2
+        fname = strjoin({layers{l},seedTypes{sType}},'_');
         fh = figure('Name',fname); ax = gca;
         hold on
-        for cType=1:height(layerRatios)
-            thisCellRatios=layerRatios{cType,sType}{1};
+        for cType = 1:height(layerRatios)
+            thisCellRatios = layerRatios{cType,sType}{1};
             if ~isempty(thisCellRatios)
                 % Plot histogram/KSdensity
                 util.plot.histogramAndKsdensity...
@@ -40,11 +40,11 @@ for l=1:2
 end
 
 %% For text: number of axons in each group
-for l=1:2
-    curRatio=synRatio.(layers{l});
-    tableOFNumberOFAxons.(layers{l})=array2table(cellfun(@util.table.height,...
+for l = 1:2
+    curRatio = synRatio.(layers{l});
+    tableOFNumberOFAxons.(layers{l}) = array2table(cellfun(@util.table.height,...
         curRatio.Variables));
-    tableOFNumberOFAxons.(layers{l})=util.table.copyRVNames...
+    tableOFNumberOFAxons.(layers{l}) = util.table.copyRVNames...
         (curRatio,tableOFNumberOFAxons.(layers{l}));
     fprintf('For text, number of axons in %s datasets, per group:\n',layers{l})
     disp(tableOFNumberOFAxons.(layers{l}));
@@ -65,11 +65,11 @@ disp(['Total synapse range per axon:', ...
 % Current total misclassification rate: 3.7973%
 % see below
 % Load axon switching fraction
-m=matfile(fullfile(util.dir.getAnnotation,'matfiles',...
+m = matfile(fullfile(util.dir.getAnnotation,'matfiles',...
     'axonSwitchFraction.mat'));
 axonSwitchFraction = m.axonSwitchFraction;
 
-for l=1:2
+for l = 1:2
     curNum = tableOFNumberOFAxons.(layers{l});
     curCorrection = axonSwitchFraction.(layers{l});
     % Shaft and spine columns switched along for number and fractions
@@ -87,7 +87,7 @@ for seedT = 1:2
         curRatio = synRatio.L2.(seedTypes{seedT}){adT}.(seedTypes{seedT});
         disp([seedTypes{seedT},'_seeded_',adTypes{adT}]);
         disp(['TotalNum: ',num2str(length(curRatio))]);
-        disp(['At least 90% on seed type:',num2str(sum(curRatio>=.9))]);
-        disp(['At least 80% on seed type:',num2str(sum(curRatio>=.8))]);
+        disp(['At least 90% on seed type:',num2str(sum(curRatio >= .9))]);
+        disp(['At least 80% on seed type:',num2str(sum(curRatio >= .8))]);
     end
 end

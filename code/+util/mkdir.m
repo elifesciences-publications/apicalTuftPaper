@@ -1,4 +1,4 @@
-function []=mkdir(dirPath, verbose)
+function [] = mkdir(dirPath, verbose)
 % Creates the directory if it does not exist already
 % Author <ali.karimi@brain.mpg.de>
 if ~exist('verbose','var') || isempty(verbose)

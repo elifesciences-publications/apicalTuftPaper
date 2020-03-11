@@ -10,9 +10,9 @@ end
 
 
 if ~isempty(obj.seed)
-    seedComments=obj.getNodesWithComment(obj.seed,treeIndices,'partial');
+    seedComments = obj.getNodesWithComment(obj.seed,treeIndices,'partial');
     if ~iscell(seedComments)
-        seedComments={seedComments};
+        seedComments = {seedComments};
     end
     assert (all(cellfun(@length,seedComments) == 1),...
         'seed comment is not unique');

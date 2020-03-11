@@ -4,10 +4,10 @@ function [] = onlyShaftApical()
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-prop=config.inhibitoryAxons();
-prop.synGroups={{4,5,7,8,10,11}',{6,9,12}',{10,11}'}';
+prop = config.inhibitoryAxons();
+prop.synGroups = {{4,5,7,8,10,11}',{6,9,12}',{10,11}'}';
 
-prop.synLabel={'L2Apical','DeepApical','Shaft','SpineDouble',...
+prop.synLabel = {'L2Apical','DeepApical','Shaft','SpineDouble',...
     'SpineSingle','Soma','AIS','Glia'}';
 end
 

@@ -22,19 +22,19 @@ if ~exist('switchCorrectionFactor','var') || ...
     switchCorrectionFactor = zeros(size(skel.synLabel));
 end
 % Calculate total synapse number
-treeFeatures=skel.getTotalSynNumber(treeIndices);
+treeFeatures = skel.getTotalSynNumber(treeIndices);
 
 % Trim the skeleton to shaft for pathlength calculation if.fixedEnding is
 % present in options
 if ~isempty(skel.fixedEnding)
-    skeltrimmed=skel.getBackBone(treeIndices,skel.fixedEnding);
+    skeltrimmed = skel.getBackBone(treeIndices,skel.fixedEnding);
 else
-    skeltrimmed=skel;
+    skeltrimmed = skel;
 end
-pL=skeltrimmed.pathLength...
+pL = skeltrimmed.pathLength...
     (treeIndices);
-treeFeatures.pathLengthInMicron=pL.pathLengthInMicron;
-treeFeatures.synDensity=treeFeatures.totalSynapseNumber./...
+treeFeatures.pathLengthInMicron = pL.pathLengthInMicron;
+treeFeatures.synDensity = treeFeatures.totalSynapseNumber./...
     treeFeatures.pathLengthInMicron;
 end
 

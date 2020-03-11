@@ -2,8 +2,8 @@
 % Script to generate boxplots showing differences in the features  between
 % L5A and L5B neurons (diameter and spine density)
 util.clearAll
-returnTable=true;
-skel.dense=apicalTuft.getObjects('l2vsl3vsl5',[],returnTable);
+returnTable = true;
+skel.dense = apicalTuft.getObjects('l2vsl3vsl5',[],returnTable);
 synDensity = apicalTuft.applyMethod2ObjectArray...
     (skel.dense,'getSynDensityPerType',[], false, ...
     'mapping');
@@ -16,21 +16,21 @@ synDensity = synDensity{[3,5],:};
 % Spine density is equal to exc syn density without correction
 spineDensitySep = cellfun(@(x) x.Spine,synDensity,'UniformOutput',false);
 % Merge distalAD with the bifurcation area results
-for i=1:2
-spineDensityForPlot{i}=cat(1, spineDensitySep{i,:});
+for i = 1:2
+spineDensityForPlot{i} = cat(1, spineDensitySep{i,:});
 end
 
 %% Plot Diameter/spineDensity
-x_width=2;
-y_width=3.8;
-boxWidths=0.4655;
-outputFolder=fullfile(util.dir.getFig(5),...
+x_width = 2;
+y_width = 3.8;
+boxWidths = 0.4655;
+outputFolder = fullfile(util.dir.getFig(5),...
     'L5L5AComparison');util.mkdir(outputFolder)
-curColors={l5color,l5Acolor};
-region={'mainBifurcation','distalAD'};
+curColors = {l5color,l5Acolor};
+region = {'mainBifurcation','distalAD'};
 
-fname=['L5L5AComparison_spineDensity'];
-fh=figure('Name',fname);ax=gca;
+fname = ['L5L5AComparison_spineDensity'];
+fh = figure('Name',fname);ax = gca;
 
 util.plot.boxPlotRawOverlay(spineDensityForPlot(:),1:2,...
     'boxWidth',boxWidths,'color',curColors(:),'tickSize',10);

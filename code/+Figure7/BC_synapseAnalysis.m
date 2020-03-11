@@ -10,9 +10,9 @@ distal = dendrite.l2vsl3vsl5.getRatioDensities(distalSkel);
 distalL5A = dendrite.l2vsl3vsl5.getRatioDensities(L5ASkel);
 % Merge L5A results from the PPC2 dataset with the results fronm the L5A
 % dataset
-vars=fieldnames(distal);
-for i=1:length(vars)
-    distal.(vars{i})=[distal.(vars{i});distalL5A.(vars{i})];
+vars = fieldnames(distal);
+for i = 1:length(vars)
+    distal.(vars{i}) = [distal.(vars{i});distalL5A.(vars{i})];
 end
 %% Set the values of the L5st group to the corrected values and 
 % also keep the uncorrected values for later plotting 
@@ -20,9 +20,9 @@ results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
 % Keep only the distalAD results from L5A (L5st) group
 curResultsL5A = results.l235{end,:}{2};
 % varibales for assigning
-variableNames={'shaftRatio','shaftDensity','spineDensity'};
-tableVariableNames={'Shaft_Ratio','Shaft_Density','Spine_Density'};
-for i=1:3
+variableNames = {'shaftRatio','shaftDensity','spineDensity'};
+tableVariableNames = {'Shaft_Ratio','Shaft_Density','Spine_Density'};
+for i = 1:3
     curUncorrected = distal.(variableNames{i}){end};
     curCorrected = curResultsL5A.(tableVariableNames{i})(:,2);
     assert(isequal(curUncorrected,curResultsL5A.(tableVariableNames{i})(:,1)));
@@ -32,15 +32,15 @@ for i=1:3
     distal.(variableNames{i}){end} = curCorrected;
 end
 %% Plot inhibitory Ratios
-outputFolder=fullfile(util.dir.getFig(7),'distalvsMain');
+outputFolder = fullfile(util.dir.getFig(7),'distalvsMain');
 util.mkdir(outputFolder);
 util.setColors;
-x_width=3;
-y_width=3.8;
-colors={l2color,l3color,l5color,l5Acolor};
+x_width = 3;
+y_width = 3.8;
+colors = {l2color,l3color,l5color,l5Acolor};
 fname = 'ShaftFraction';
-fh=figure('Name',fname);ax=gca;
-noisyXValues=...
+fh = figure('Name',fname);ax = gca;
+noisyXValues = ...
     util.plot.boxPlotRawOverlay(distal.shaftRatio,1:4,'ylim',1,'boxWidth',0.5496,...
 'color',colors,'tickSize',15);
 
@@ -70,12 +70,12 @@ util.stat.ranksum(distal.shaftRatio{3},distal.shaftRatio{4},fullfile(outputFolde
     'Distal_L5ttL5stComparison_ShaftRation'))
 util.copyfiles2fileServer;
 %% Also do the densities
-x_width=2;
-y_width=2.2;
-colors=[repmat({exccolor},1,4);repmat({inhcolor},1,4)];
+x_width = 2;
+y_width = 2.2;
+colors = [repmat({exccolor},1,4);repmat({inhcolor},1,4)];
 
-allDensitites=[distal.spineDensity';distal.shaftDensity'];
-fh=figure;ax=gca;
+allDensitites = [distal.spineDensity';distal.shaftDensity'];
+fh = figure;ax = gca;
 curXLoc = ...
     util.plot.boxPlotRawOverlay(allDensitites(:),1:8,'ylim',10,'boxWidth',0.5,...
 'color',colors(:),'tickSize',10);
@@ -86,8 +86,8 @@ xticklabels([]);
 
 % Get the uncorrected values and concatenate the excitatory and inhibitory
 % synapse densities
-curXLoc=cat(2,curXLoc{end-1:end})';
-thisUnCorrected=[l5ARawData.spineDensity;l5ARawData.shaftDensity];
+curXLoc = cat(2,curXLoc{end-1:end})';
+thisUnCorrected = [l5ARawData.spineDensity;l5ARawData.shaftDensity];
 
 % Add the L5A raw data points
 dendrite.L5A.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1));
@@ -104,35 +104,35 @@ testResult_excDensity = util.stat.KW(distal.spineDensity,cellTypes, ...
     [],fullfile(outputFolder,'excDensity'));
 util.copyfiles2fileServer
 %% Do single cell type between regions comparison:
-skel=apicalTuft('PPC2_l2vsl3vsl5');
-skel=skel.sortTreesByName;
-cellTypeRatios=skel.applyMethod2ObjectArray({skel},...
+skel = apicalTuft('PPC2_l2vsl3vsl5');
+skel = skel.sortTreesByName;
+cellTypeRatios = skel.applyMethod2ObjectArray({skel},...
     'getSynRatio',[],false,'mapping');
-cellTypeDensity=skel.applyMethod2ObjectArray({skel},...
+cellTypeDensity = skel.applyMethod2ObjectArray({skel},...
     'getSynDensityPerType',[],false,'mapping');
 
-bifur.shaftRatio=cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
+bifur.shaftRatio = cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
     'UniformOutput',false);
-bifur.shaftDensity=cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
+bifur.shaftDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
     'UniformOutput',false);
-bifur.spineDensity=cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
+bifur.spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
     'UniformOutput',false);
 
 % Get the layer 2 numbers form main bifurcation annotations and add them to
 % the other layer 2 results
-bifur=dendrite.l2vsl3vsl5.concatenateSmallDatasetL2(bifur);
+bifur = dendrite.l2vsl3vsl5.concatenateSmallDatasetL2(bifur);
 % Also combine the L2MN group with the L2 group for the comparison
-f=fieldnames(bifur);
-for i=1:length(f)
-    bifur.(f{i}){1}=[bifur.(f{i}){1};bifur.(f{i}){4}];
-    bifur.(f{i})(4)=[];
+f = fieldnames(bifur);
+for i = 1:length(f)
+    bifur.(f{i}){1} = [bifur.(f{i}){1};bifur.(f{i}){4}];
+    bifur.(f{i})(4) = [];
 end
 % Only for L5st: switch to corrected value as in the distalAD case
 % previously
 curResultsL5A = results.l235{end,:}{1};
 % Table variable names in results
-tableVariableNames={'Shaft_Ratio','Shaft_Density','Spine_Density'};
-for i=1:length(f)
+tableVariableNames = {'Shaft_Ratio','Shaft_Density','Spine_Density'};
+for i = 1:length(f)
     curUncorrected = bifur.(f{i}){end};
     curCorrected = curResultsL5A.(tableVariableNames{i})(:,2);
     assert(isequal(curUncorrected,curResultsL5A.(tableVariableNames{i})(:,1)));
@@ -141,9 +141,9 @@ for i=1:length(f)
 end
 % Test for main bifurcation vs distal tuft results
 % Also get the mean and SEMs for summary plot
-for celltype=1:length(cellTypes)
+for celltype = 1:length(cellTypes)
     disp([cellTypes{celltype},': main bifurcation vs. distal tuft'])
-    testResultsRatios.(cellTypes{celltype})=...
+    testResultsRatios.(cellTypes{celltype}) = ...
         util.stat.ranksum....
         (bifur.shaftRatio{celltype},distal.shaftRatio{celltype},...
         fullfile (outputFolder, ['ranksumBifurAndDistal_',...
@@ -151,13 +151,13 @@ for celltype=1:length(cellTypes)
 end
 util.copyfiles2fileServer
 %% create the error bar for summary plot
-fh=figure;ax=gca;
-colors={l2color,l3color,l5color,l5Acolor};
+fh = figure;ax = gca;
+colors = {l2color,l3color,l5color,l5Acolor};
 hold on
-loc=-([-0.15:0.1:0.15]./8);
-for celltype=1:length(cellTypes)
-    curField=cellTypes{celltype};
-    curColor=colors{celltype};
+loc = -([-0.15:0.1:0.15]./8);
+for celltype = 1:length(cellTypes)
+    curField = cellTypes{celltype};
+    curColor = colors{celltype};
     errorbar([2,1],testResultsRatios.(curField).mean,...
         testResultsRatios.(curField).sem,....
         'Color',curColor);
@@ -167,8 +167,8 @@ ylim([0,0.4]);
 xticks(1:2);
 yticks(0:0.1:0.6)
 xticklabels([]);
-x_width=3.5;
-y_width=2.5;
+x_width = 3.5;
+y_width = 2.5;
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'summaryPlot.svg','off','on');
 %% layer 5 excitatory shaft, spine synapse density and inhibitory fraction
@@ -184,16 +184,16 @@ util.stat.ranksum(bifur.shaftRatio{2},distal.shaftRatio{2});
 util.stat.ranksum(bifur.shaftRatio{2},bifur.shaftRatio{3});
 util.stat.ranksum(distal.shaftRatio{2},distal.shaftRatio{1});
 %% Distal: Get the mean values for text
-Means=cellfun(@(x)round(mean(x).*100,2),distal.shaftRatio);
-Sems=cellfun(@(x) round(util.stat.sem(x,[],1).*100,3),distal.shaftRatio);
+Means = cellfun(@(x)round(mean(x).*100,2),distal.shaftRatio);
+Sems = cellfun(@(x) round(util.stat.sem(x,[],1).*100,3),distal.shaftRatio);
 
 disp('Means (l2vs.l3vs.l5):')
 disp(Means)
 disp('Sems (l2vs.l3vs.l5):')
 disp(Sems)
 %% Bifurcation: Get the mean values for text
-Means=cellfun(@(x)round(mean(x).*100,2),bifur.shaftRatio);
-Sems=cellfun(@(x) round(util.stat.sem(x,[],1).*100,3),bifur.shaftRatio);
+Means = cellfun(@(x)round(mean(x).*100,2),bifur.shaftRatio);
+Sems = cellfun(@(x) round(util.stat.sem(x,[],1).*100,3),bifur.shaftRatio);
 
 disp('Means (l2vs.l3vs.l5):')
 disp(Means)

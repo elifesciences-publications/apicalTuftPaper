@@ -4,7 +4,7 @@ function [totalPathLengthInMicron] = getTotalPathLength(obj,treeIndices)
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:obj.numTrees;
 end
-totalPathLengthInMicron=...
+totalPathLengthInMicron = ...
     sum(obj.pathLength.pathLengthInMicron);
 
 end

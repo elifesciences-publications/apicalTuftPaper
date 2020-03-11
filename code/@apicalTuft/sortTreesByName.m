@@ -4,5 +4,5 @@ function skel = sortTreesByName( skel )
 
 [~,idx] = sort(skel.names);
 skel = skel.reorderTrees(idx);
-skel=skel.updateGrouping;
+skel = skel.updateGrouping;
 end

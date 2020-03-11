@@ -22,11 +22,11 @@ if ~exist('returnTable','var') || isempty(returnTable)
     returnTable = false;
 end
 
-numDatasets=length(apicalTuft.nmlName.(type));
-skel=cell(1,numDatasets);
-variableNames=cell(1,numDatasets);
+numDatasets = length(apicalTuft.nmlName.(type));
+skel = cell(1,numDatasets);
+variableNames = cell(1,numDatasets);
 
-for dataset=1:length(apicalTuft.nmlName.(type))
+for dataset = 1:length(apicalTuft.nmlName.(type))
     % Object construction
     skel{dataset} = apicalTuft(apicalTuft.nmlName.(type){dataset},...
         configName);

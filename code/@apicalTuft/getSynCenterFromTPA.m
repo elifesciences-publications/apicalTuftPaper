@@ -7,11 +7,11 @@ function [synCenterIdx] = getSynCenterFromTPA( skel,treeIndices,synNodeIds)
 %   OUTPUT: synCenterIdx: the nodeId list by walking for 1 edge along the
 %   tree
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-synCenterIdx=cell(size(synNodeIds));
-trCounter=1;
-for tr=treeIndices(:)'
-    for synType=1:size(synNodeIds,2)
-        synCenterIdx{trCounter,synType}=...
+synCenterIdx = cell(size(synNodeIds));
+trCounter = 1;
+for tr = treeIndices(:)'
+    for synType = 1:size(synNodeIds,2)
+        synCenterIdx{trCounter,synType} = ...
             find(skel.reachableNodes...
             (tr,synNodeIds{trCounter,synType},1,'exact_excl'));
         
@@ -19,8 +19,8 @@ for tr=treeIndices(:)'
         % problem
         if ~(size(synCenterIdx{trCounter,synType},1) == size(synNodeIds{trCounter,synType},1))
             disp('walking for 1 node created different number of synapses.debugging...')
-            for i=1:length(synNodeIds{trCounter,synType})
-                nodeIdxNeightborsOfNodeI=find(skel.reachableNodes(tr,synNodeIds{trCounter,synType}(i),...
+            for i = 1:length(synNodeIds{trCounter,synType})
+                nodeIdxNeightborsOfNodeI = find(skel.reachableNodes(tr,synNodeIds{trCounter,synType}(i),...
                     1,'exact_excl'));
                 assert(length(nodeIdxNeightborsOfNodeI) == 1,...
                     ['Node: ',num2str(synNodeIds{trCounter,synType}(i)),', in coords: ',...
@@ -30,7 +30,7 @@ for tr=treeIndices(:)'
             end
         end
     end
-    trCounter=trCounter+1;
+    trCounter = trCounter+1;
 end
 end
 

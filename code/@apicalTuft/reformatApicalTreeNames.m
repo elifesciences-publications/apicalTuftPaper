@@ -15,31 +15,31 @@ if ~exist('newNameStrings','var') || isempty(newNameStrings)
     newNameStrings.layer2 = 'layer2ApicalDendrite';
     newNameStrings.deep = 'deepLayerApicalDendrite';
 end
-l2Counter=1;
-deepCounter=1;
+l2Counter = 1;
+deepCounter = 1;
 switch method
     case 'append'
-        for tr=treeIndices(:)'
+        for tr = treeIndices(:)'
             if ismember(tr,skel.dlIdx)
-                skel.names{tr}=sprintf('%s%0.2u_%s',...
+                skel.names{tr} = sprintf('%s%0.2u_%s',...
                     newNameStrings.deep,deepCounter,skel.names{tr});
-                deepCounter=deepCounter+1;
+                deepCounter = deepCounter+1;
             elseif ismember(tr,skel.l2Idx)
-                skel.names{tr}=sprintf('%s%0.2u_%s',...
+                skel.names{tr} = sprintf('%s%0.2u_%s',...
                     newNameStrings.layer2,l2Counter,skel.names{tr});
-                l2Counter=l2Counter+1;
+                l2Counter = l2Counter+1;
             end
         end
     case 'replace'
-        for tr=treeIndices(:)'
+        for tr = treeIndices(:)'
             if ismember(tr,skel.dlIdx)
-                skel.names{tr}=sprintf('%s%0.2u',...
+                skel.names{tr} = sprintf('%s%0.2u',...
                     newNameStrings.deep,deepCounter);
-                deepCounter=deepCounter+1;
+                deepCounter = deepCounter+1;
             elseif ismember(tr,skel.l2Idx)
-                skel.names{tr}=sprintf('%s%0.2u',...
+                skel.names{tr} = sprintf('%s%0.2u',...
                     newNameStrings.layer2,l2Counter);
-                l2Counter=l2Counter+1;
+                l2Counter = l2Counter+1;
             end
         end
     otherwise

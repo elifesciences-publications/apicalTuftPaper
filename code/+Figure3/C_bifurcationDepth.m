@@ -3,15 +3,15 @@
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 util.clearAll;
 util.setColors;
-outputDir=fullfile(util.dir.getFig(3),'BifurcationDepth');
+outputDir = fullfile(util.dir.getFig(3),'BifurcationDepth');
 util.mkdir(outputDir)
 % Get the bifurcation objects and then convert their coordinate to distance
 % relative to pia (in voxels)
-bifur=apicalTuft.getObjects('bifurcation');
-bifur=apicalTuft.applyMethod2ObjectArray(bifur,'setDatasetProperties',false,false);
-bifurCorrected=apicalTuft.applyMethod2ObjectArray(bifur,...
+bifur = apicalTuft.getObjects('bifurcation');
+bifur = apicalTuft.applyMethod2ObjectArray(bifur,'setDatasetProperties',false,false);
+bifurCorrected = apicalTuft.applyMethod2ObjectArray(bifur,...
     'convert2PiaCoord',false);
-bifurcationCoord=apicalTuft.applyMethod2ObjectArray...
+bifurcationCoord = apicalTuft.applyMethod2ObjectArray...
     (bifurCorrected,'getBifurcationCoord',true);
 % Plot the bifurcaitons with an overlay of the 
 apicalTuft.applyMethod2ObjectArray...
@@ -21,7 +21,7 @@ dendrite.bifurLocation.scatter3(bifurcationCoord.Aggregate,[1,1,1],...
 
 % Convert coordinate to micron from the nm of the getBifurcation coord
 % output
-l2dlBifurcationLocations=cellfun(@(c)c/1000,bifurcationCoord.Aggregate,...
+l2dlBifurcationLocations = cellfun(@(c)c/1000,bifurcationCoord.Aggregate,...
     'UniformOutput',false);
 fh = figure; ax = gca;
 hold on

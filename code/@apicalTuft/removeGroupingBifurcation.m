@@ -3,11 +3,11 @@ function [apTuftObj] = removeGroupingBifurcation(apTuftObj)
 % spine innervation
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~iscell(apTuftObj)
-    apTuftObj={apTuftObj};
+    apTuftObj = {apTuftObj};
 end
-for d=1:length(apTuftObj)
-    apTuftObj{d}.synGroups=[];
-    apTuftObj{d}.synLabel={'Shaft','Spine','SpineDouble','SpineNeck'};
+for d = 1:length(apTuftObj)
+    apTuftObj{d}.synGroups = [];
+    apTuftObj{d}.synLabel = {'Shaft','Spine','SpineDouble','SpineNeck'};
 end
 end
 

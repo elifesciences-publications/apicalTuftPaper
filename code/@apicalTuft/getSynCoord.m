@@ -17,24 +17,24 @@ if ~exist('toNM','var') || isempty(toNM)
     toNM = false;
 end
 if toNM
-    scale=skel.scale;
+    scale = skel.scale;
 else
-    scale=[1,1,1];
+    scale = [1,1,1];
 end
 %Get synapse Idx
-synIdx=skel.getSynIdx(treeIndices);
+synIdx = skel.getSynIdx(treeIndices);
 
 %Get Coords now
-synapseCoords=cell(size(synIdx));
-for tr=1:size(synIdx,1)
-    for synType=2:size(synIdx,2)
-        trIndex=treeIndices(tr);
+synapseCoords = cell(size(synIdx));
+for tr = 1:size(synIdx,1)
+    for synType = 2:size(synIdx,2)
+        trIndex = treeIndices(tr);
         synapseCoords{tr,synType} = ...
             skel.getNodes(trIndex,synIdx{tr,synType}).*scale;
     end
 end
 %Move over the tree Indices
-synapseCoords(:,1)=synIdx(:,1).Variables;
-synapseCoords=cell2table(synapseCoords,...
+synapseCoords(:,1) = synIdx(:,1).Variables;
+synapseCoords = cell2table(synapseCoords,...
     'VariableNames',synIdx.Properties.VariableNames);
 end
