@@ -182,7 +182,7 @@ curMappingNames = cellfun (@(x)strrep(x,'dist2soma','mapping'),skel_main.names(I
 IdxL5_mapping = skel_main.getTreeWithName(curMappingNames,'exact');
 
 % Plot scores vs. inhibitory fractions
-axonSwitchFraction = dendrite.synSwitch.getCorrected.switchFactorl235;
+axonSwitchFraction = dendrite.synIdentity.getCorrected.switchFactorl235;
 correctionFrac = axonSwitchFraction.mainBifurcation{1}{'L5A',:};
 %% Investigate the cause of the negative relationship
 theDensity = skel_main.getSynDensityPerType(IdxL5_mapping,correctionFrac);

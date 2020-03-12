@@ -10,7 +10,7 @@ outputDir = fullfile(util.dir.getFig(2),'B');
 util.mkdir(outputDir);
 
 %% Get the ratio of each postsynaptic type
-synRatio = dendrite.synSwitch.getSynapseMeasure('getSynRatio');
+synRatio = dendrite.synIdentity.getSynapseMeasure('getSynRatio');
 synRatio.L2{'L5A','Spine'}{1} = [];
 synRatio.L1{'layer5AApicalDendriteSeeded','Spine'}{1} = [];
 
@@ -53,7 +53,7 @@ end
 
 %% Get synapse number range and misclassification rate
 % Get range of axonal input number
-synCount = dendrite.synSwitch.getSynapseMeasure('getTotalSynNumber');
+synCount = dendrite.synIdentity.getSynapseMeasure('getTotalSynNumber');
 % Remove duplicate of L5tt in L5st spine annotations
 synCount.L1.Spine{end} = [];
 synCount.L2.Spine{end} = [];

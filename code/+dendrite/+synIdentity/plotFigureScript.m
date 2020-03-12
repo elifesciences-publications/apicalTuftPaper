@@ -2,7 +2,7 @@
 util.clearAll;
 outputFolder=fullfile(util.dir.getFig(3),'correctionforAxonSwitching');
 util.mkdir(outputFolder)
-results=dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
+results=dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
 %% L2 (smaller) datasets: Plotting correlation between corrected and not corrected
 % synapse density and ratios
 x_width=[2,1,1];
@@ -22,7 +22,7 @@ for v=1:length(variables)
     thisMeasure = densityRatioForPlotBifur.Aggregate.(variables{v});
     util.plot.correlation(thisMeasure,colors,[],mkrSize,...
         fullfile(outputFolder,[fname,'.txt']));
-    dendrite.synSwitch.getCorrected.correlationFigCosmetics(limits(v),ax);
+    dendrite.synIdentity.getCorrected.correlationFigCosmetics(limits(v),ax);
     util.plot.cosmeticsSave...
         (fh,ax,x_width(v),y_width(v),outputFolder,...
         [fname,'.svg'],'on','on');
@@ -32,7 +32,7 @@ for v=1:length(variables)
     fh=figure('Name',fnameKernel);ax=gca;
     hold on
 
-    dendrite.synSwitch.plotKernelDensity(thisMeasure,colors);
+    dendrite.synIdentity.plotKernelDensity(thisMeasure,colors);
     util.plot.cosmeticsSave...
         (fh,ax,3,3,outputFolder,[fnameKernel,'.svg'],...
         'on','on');
@@ -58,7 +58,7 @@ for l = 1:length(layerOrigin)
         % Rsquared
         util.plot.correlation(thisMeasure,colors,[],mkrSize,...
             fullfile(outputFolder,[fname,'.txt']));
-        dendrite.synSwitch.getCorrected.correlationFigCosmetics(curLim,ax);
+        dendrite.synIdentity.getCorrected.correlationFigCosmetics(curLim,ax);
         hold off
         % Used in text: Separate L5st and other neurons for calculation of
         % Rsquared

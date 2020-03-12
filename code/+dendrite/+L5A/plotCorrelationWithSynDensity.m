@@ -1,7 +1,7 @@
 function [fh,ax] = plotCorrelationWithSynDensity(feature,outputFolder)
 %% Also plot correlation between synaptic density/ratios and the somatic 
 % depth
-results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
+results = dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
 resultsL5 = results.l235.mainBifurcation([3,5])';
 %% Plot
 % Get corrected shaft ratio for L5tt and uncorrected shaft ratio for

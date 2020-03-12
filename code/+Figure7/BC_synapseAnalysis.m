@@ -16,7 +16,7 @@ for i = 1:length(vars)
 end
 %% Set the values of the L5st group to the corrected values and 
 % also keep the uncorrected values for later plotting 
-results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
+results = dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
 % Keep only the distalAD results from L5A (L5st) group
 curResultsL5A = results.l235{end,:}{2};
 % varibales for assigning

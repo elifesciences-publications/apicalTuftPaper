@@ -7,7 +7,7 @@ util.mkdir(outputDir)
 seedTypes={'Spine','Shaft'};
 saveMatfile=false;
 %% Get all the synapse ratios:
-synRatio=dendrite.synSwitch.getSynapseMeasure('getSynRatio');
+synRatio=dendrite.synIdentity.getSynapseMeasure('getSynRatio');
 %% Get the correction fractions
 layers={'L1','L2'};
 % Threshhold and anom function for gettting fraction of spine-seeded 
@@ -77,7 +77,7 @@ fractionOfAxonsFromTotal = summed(1)/summed(2);
 disp (fractionOfAxonsFromTotal);
 
 %% Number of synapses per axon
-synCount = dendrite.synSwitch.getSynapseMeasure('getTotalSynapseNumber');
+synCount = dendrite.synIdentity.getSynapseMeasure('getTotalSynapseNumber');
 % Remove duplicates for L5A
 synCount.L2{3,1}{1}=[];
 synCount.L1{4,1}{1}=[];

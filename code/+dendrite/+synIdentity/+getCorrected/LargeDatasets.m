@@ -7,7 +7,7 @@ if ~exist('verbose','var') || isempty(verbose)
     verbose = false;
 end
 % Load axon switching fraction
-axonSwitchFraction = dendrite.synSwitch.getCorrected.switchFactorl235;
+axonSwitchFraction = dendrite.synIdentity.getCorrected.switchFactorl235;
 layerOrigin = synDensity.uc.l235.Properties.VariableNames;
 cellType = synDensity.uc.l235.Properties.RowNames;
 synTypes = {'Spine','Shaft'};

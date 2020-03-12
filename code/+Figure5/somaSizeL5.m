@@ -51,7 +51,7 @@ util.plot.cosmeticsSave...
     [fname,'.svg'],'off','on');
 %% correlation between soma size and shaft ratio
 % Get results
-results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
+results = dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
 %% Plot
 resultsL5 = results.l235.mainBifurcation([3,5])';
 % Get corrected shaft ratio for L5tt and uncorrected shaft ratio for

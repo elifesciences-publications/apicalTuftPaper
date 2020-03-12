@@ -27,7 +27,7 @@ spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
 distance2soma = distance2somaRaw.Variables;
 %% Set the values of the L5st group to the corrected values and 
 % also keep the uncorrected values for later plotting 
-results = dendrite.synSwitch.getCorrected.getAllRatioAndDensityResult;
+results = dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
 % Keep only the main bifurcation results from L5A (L5st) group
 resultsL5A = results.l235{end,:}{1};
 % varibales for assigning
