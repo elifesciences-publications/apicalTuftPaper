@@ -6,6 +6,7 @@ util.clearAll;
 c = util.plot.getColors;
 outputFolder = fullfile(util.dir.getFig(1),'DF');
 util.mkdir(outputFolder);
+
 %% Get synapse densities per shaft path length
 apTuft = apicalTuft.getObjects('bifurcation');
 Density = apicalTuft.applyMethod2ObjectArray...
@@ -14,9 +15,11 @@ shaftDensity = cellfun(@(x) x.Shaft,Density.Variables,...
     'UniformOutput',false);
 spineDensity = cellfun(@(x) x.Spine,Density.Variables,...
     'UniformOutput',false);
+
 %% Write result table to excel sheet
 matFileName = fullfile(outputFolder,'Figure1_synapseDensity.mat');
 save(util.addDateToFileName( matFileName),'Density');
+
 %% Statistic testing (Wilcoxon ranksum test)
 % testing the aggregate
 util.stat.ranksum(shaftDensity{1,5},shaftDensity{2,5},...
@@ -57,6 +60,7 @@ set(ax,'XLim',[0.2 5.3],'YLim',[0.025 4.5],...
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'synapseDensity_DLL2AD_datasetsCombined.svg',...
     'off','on');
+
 %% results separated by dataset:
 % Parameters
 spineXLocation = num2cell([1:2.5:20]');

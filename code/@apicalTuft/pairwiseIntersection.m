@@ -1,11 +1,14 @@
 function [] = pairwiseIntersection(groups)
-%PAIRWISEINTERSECTION This is to make sure that there's no overlap between
-% groups of different kind(synapses or trees)
+% pairwiseIntersection make sure that the group IDs does not overlap for
+% the input
+% INPUT:
+%       groups: Idx of trees/synapses
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 for firstSynSet = 1:length(groups)
     for secondSynSet = firstSynSet+1:length(groups)
         assert(isempty(intersect(groups{firstSynSet},...
-            groups{secondSynSet})),'Synapse groups overlap');
+            groups{secondSynSet})),'Groups overlap');
     end
 end
 end

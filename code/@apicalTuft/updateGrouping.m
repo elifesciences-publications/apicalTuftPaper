@@ -1,8 +1,11 @@
 function [obj] = updateGrouping(obj)
-%UPDATEGROUPING creates groupingVariable table or just updates L2, DL
-% groups
+% updateGrouping updates the grouping of skeleton annotations based on the
+% tree names.
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
+% Note: Some annotations have legacy grouping (L2 vs DL) whereas others
+% have the groupingVariable table containg L2, L3, L5st and L5tt
 if obj.legacyGrouping
     obj = obj.updateL2DLIdx;
 else
@@ -14,14 +17,14 @@ else
                 {obj.getTreeWithName(obj.apicalType{i},'first')};
         end
     else
-        disp('no tags for layer 2 and deep layer defined')
+        disp('The "apicalType" property of the object is empty')
     end
     
     % Intersection, number of trees check
     obj.pairwiseIntersection(table2cell(obj.groupingVariable));
     totalNumTreesInGroups = sum(varfun(@(x)length(x{1}),...
         obj.groupingVariable,'OutputFormat','uniform'));
-    if totalNumTreesInGroups ~ = obj.numTrees
+    if totalNumTreesInGroups ~= obj.numTrees
         warning(...
             'skeleton has additional trees not detected by the apicalType strings');
     end

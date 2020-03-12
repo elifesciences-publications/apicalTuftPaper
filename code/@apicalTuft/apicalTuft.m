@@ -32,14 +32,22 @@ classdef apicalTuft < skeleton
         % Comment string to exclude the synapse. This is used to exclude
         % synapses which are not clear (unsure decision by the annotator)
         synExclusion = [];
+        % Grouping tree name groups into one common group
         synGroups = {};
+        % remove synapses from a mother tree group (see getSynIdx method)
         synGroups2remove = {};
+        % The label of groups, the size should match the final number of
+        % syn groups
         synLabel = {};
         synCenterTPA = false;
+        % The seed string
         seed = [];
+        % comment strings for bifurcation, soma and the start of the
+        % bifurcation annotation
         bifurcation = 'bifurcation';
         soma = 'soma';
         start = 'start';
+        % See setDatasetProperties: used for the Suppl. Fig. 7
         datasetProperties = struct( 'dimPiaWM', [],...
             'correction', [],'highResBorder',[],'L1BorderInPixel',...
             [],'bbox',[]);
@@ -56,6 +64,7 @@ classdef apicalTuft < skeleton
     end
     
     methods
+        % Constructor
         function obj = apicalTuft(nmlName,configName)
             % APICALTUFT Construct an instance of the apical tuft class
             annotationDir = util.dir.getAnnotation;
@@ -72,7 +81,7 @@ classdef apicalTuft < skeleton
             if ~exist('configName','var') || isempty(configName)
                 configName = nmlNameData.tracingType;
             end
-            % Try reading the configuration file
+            % Try getting the configuration from +config package
             try
                 properties = config.(configName);
             catch
@@ -83,24 +92,27 @@ classdef apicalTuft < skeleton
             % Construct the skeleton object
             annotationDir = fullfile(annotationDir,nameSplit{2});
             nmlName = fullfile(annotationDir,nmlName);
+            % Skeleton object construction
             obj@skeleton(nmlName);
             
             obj.dataset = nmlNameData.datasetName;
             obj.tracingType = nmlNameData.tracingType;
             obj = obj.readProperties(properties);
             
-            % Get tree indices of the layer 2 and deep layer apical dendrites
+            % update the tree groupings
             obj = obj.updateGrouping;
             % Set dataset properties if available
             obj = obj.setDatasetProperties;
             % Sort trees by name
             obj = obj.sortTreesByName;
         end
-        % Set the properties from the configuration file
+        
+        % Set the properties of the apicalTuft object from structure output
+        % of +config
         function obj = readProperties(obj,properties)
             if ~isempty(properties)
                 for fn = fieldnames(properties)'
-                    if~iscell(properties.(fn{1}))
+                    if ~iscell(properties.(fn{1}))
                         obj.(fn{1}) = properties.(fn{1});
                     else
                         obj.(fn{1}) = properties.(fn{1})';
@@ -109,7 +121,7 @@ classdef apicalTuft < skeleton
             end
         end
         
-        % Returns the uniqueTableID
+        % Returns the a unique TableID (TODO: delete)
         function strings = treeUniqueString(obj,treeIndices)
             if ~exist('treeIndices','var') || isempty(treeIndices)
                 treeIndices = 1:obj.numTrees;
@@ -122,6 +134,7 @@ classdef apicalTuft < skeleton
                 cc = cc+1;
             end
         end
+        
         % Method definitions for methods in separate files
         obj = appendString2Syn(obj,treeIndices,strings)
         [skel] = reformatApicalTreeNames(skel, treeIndices,newNameStrings,method)
