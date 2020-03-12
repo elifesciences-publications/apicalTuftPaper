@@ -66,9 +66,7 @@ disp(['Total synapse range per axon:', ...
 % Current total misclassification rate: 3.7973%
 % see below
 % Load axon switching fraction
-m = matfile(fullfile(util.dir.getAnnotation,'matfiles',...
-    'axonSwitchFraction.mat'));
-axonSwitchFraction = m.axonSwitchFraction;
+axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
 
 for l = 1:2
     curNum = tableOFNumberOFAxons.(layers{l});

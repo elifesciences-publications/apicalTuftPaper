@@ -4,10 +4,10 @@ function [results] = generateDiameterTable...
 anotType={'bifur','l235'};
 % correct the L5A synapse count and create an uncorrected variable for
 % this surface densities
+
 % Load axon switching fraction
-m=matfile(fullfile(util.dir.getAnnotation,'matfiles',...
-    'axonSwitchFraction.mat'));
-axonSwitchFraction = m.axonSwitchFraction;
+axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
+
 % Mimick the shape of the L5A entries in the other variables (LPtA empty entry)
 L5stswitchFraction = ...
     {axonSwitchFraction.L2{'L5A',:},{},...

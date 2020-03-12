@@ -79,9 +79,8 @@ g.l5 = cellfun(@(depth)depth{'layer5ApicalDendrite_mapping','Aggregate'},...
 %% Correct the synapse counts for the L5A group
 l5ARaw = cellfun(@(depth)depth{'layer5AApicalDendrite_mapping','Aggregate'},...
     allInfo.l235);
-m = matfile(fullfile(util.dir.getAnnotation,'matfiles',...
-    'axonSwitchFraction.mat'));
-axonSwitchFraction = m.axonSwitchFraction;
+% Load switch fraction
+axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
 l = {'L1','L2'};
 % Use L1 for the first bin and L2 correction for the second bin
 for i = 1:2

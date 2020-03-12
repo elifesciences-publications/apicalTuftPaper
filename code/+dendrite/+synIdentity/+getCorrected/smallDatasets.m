@@ -6,9 +6,7 @@ function [results] = smallDatasets(skel,...
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 % Load axon switching fraction
-m=matfile(fullfile(util.dir.getAnnotation,'matfiles',...
-    'axonSwitchFraction.mat'));
-axonSwitchFraction=m.axonSwitchFraction;
+axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
 
 apType={'l2Idx','dlIdx'};correctionName={'L2','Deep'};
 synTypes={'Spine','Shaft'};

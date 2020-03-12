@@ -1,9 +1,6 @@
 % Load axon switching fraction
 outputFolder = fullfile(util.dir.getFig(3),'correctionforAxonSwitching');
-
-m = matfile(fullfile(util.dir.getAnnotation,'matfiles',...
-    'axonSwitchFraction.mat'));
-axonSwitchFraction = m.axonSwitchFraction;
+axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
 
 %% Plot
 util.setColors;
