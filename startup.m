@@ -15,3 +15,6 @@ end
 clear mainDirectory fid;
 % Painter renderer is necessary for saving large SVG files apporpriately
 set(0, 'DefaultFigureRenderer', 'painters');
+
+% Turn off excel writing warning
+warning('off','MATLAB:xlswrite:AddSheet');
