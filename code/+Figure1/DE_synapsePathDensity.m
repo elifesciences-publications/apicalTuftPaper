@@ -1,10 +1,14 @@
 % Fig.1D and Fig.1E: The density of synapses normalized to the path length
 % of the shaft of the apical dendrite
 
+% Important Note: Putative inhibitory/excitatory and shaft/spine names are
+% used interchangeably in the code. For proper definitions, see the
+% Materials and methods in the manuscript.
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll;
 c = util.plot.getColors;
-outputFolder = fullfile(util.dir.getFig(1),'DF');
+outputFolder = fullfile(util.dir.getFig(1),'DE');
 util.mkdir(outputFolder);
 
 %% Get synapse densities per shaft path length
@@ -17,8 +21,8 @@ spineDensity = cellfun(@(x) x.Spine,Density.Variables,...
     'UniformOutput',false);
 
 %% Write result table to excel sheet
-matFileName = fullfile(outputFolder,'Figure1_synapseDensity.mat');
-save(util.addDateToFileName( matFileName),'Density');
+excelFileName = fullfile(util.dir.getExcelDir(1),'Fig1DE.xlsx');
+util.table.write(Density,excelFileName);
 
 %% Statistic testing (Wilcoxon ranksum test)
 % testing the aggregate
@@ -30,8 +34,7 @@ filename2Save = fullfile(outputFolder,'raksumTestResults.txt');
 util.stat.ranksum.synapseDensity(shaftDensity,spineDensity,...
     Density.Properties.VariableNames,filename2Save);
 
-%% Separate Aggregate Data 
-% The densities
+%% Data separated by the cortical region or aggregated
 densities_Agg = [spineDensity(:,5),shaftDensity(:,5)];
 densities_Agg = densities_Agg(:);
 spineDensitySep = spineDensity(:,1:4);
@@ -62,11 +65,12 @@ util.plot.cosmeticsSave...
     'off','on');
 
 %% results separated by dataset:
+
 % Parameters
 spineXLocation = num2cell([1:2.5:20]');
 shaftXLocation = num2cell([2:2.5:20]');
 fh = figure;ax = gca;
-% Horizontal locations
+% x locations
 horizontalLocation = [spineXLocation,shaftXLocation];
 horizontalLocation = horizontalLocation(:);
 % the colors

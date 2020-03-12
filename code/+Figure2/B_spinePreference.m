@@ -1,14 +1,15 @@
-% Spine fraction in layer 1 and 2 datasets
-% Number of axons for text
+% Fig. 2B: Innervation preference for spine and shaft of axons targeting apical
+% dendrites
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 %% set-up
 util.clearAll;
 util.setColors;
-outputDir = fullfile(util.dir.getFig(2),'SpineInnervationFraction');
+outputDir = fullfile(util.dir.getFig(2),'B');
 util.mkdir(outputDir);
 
-%% fetch the ratio of each postsynaptic type
+%% Get the ratio of each postsynaptic type
 synRatio = dendrite.synSwitch.getSynapseMeasure('getSynRatio');
 synRatio.L2{'L5A','Spine'}{1} = [];
 synRatio.L1{'layer5AApicalDendriteSeeded','Spine'}{1} = [];
@@ -22,7 +23,7 @@ for l = 1:2
     layerRatios = synRatio.(layers{l});
     curColor = colors{l};
     for sType = 1:2
-        fname = strjoin({layers{l},seedTypes{sType}},'_');
+        fname = strjoin({layers{l},[seedTypes{sType},'.svg']},'_');
         fh = figure('Name',fname); ax = gca;
         hold on
         for cType = 1:height(layerRatios)

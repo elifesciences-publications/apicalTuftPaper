@@ -1,7 +1,13 @@
+% Fig. 1F and Fig. 1G: The fraction of putative inhibitory 
+% (mainly shaft and double innervation of spines)
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 util.clearAll;
-outputFolder = fullfile(util.dir.getFig(1),'EG');
+outputFolder = fullfile(util.dir.getFig(1),'FG');
+c = util.plot.getColors;
 util.mkdir(outputFolder);
+
 %% Get synapse ratios
 apTuft = apicalTuft.getObjects('bifurcation');
 ratios = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
@@ -12,9 +18,11 @@ func = @(array,position)...
     util.plot.addHorizontalNoise(array,position,noiseLevel);
 shaftRatiowithNoisyX = cellfun(func,shaftRatio(:),horizontalLocation,...
     'UniformOutput',false);
+
 %% Write result table to excel sheet
-matFileName = fullfile(outputFolder,'Figure1_InhibitoryRatios.mat');
-save(util.addDateToFileName( matFileName),'ratios');
+excelFileName = fullfile(util.dir.getExcelDir(1),'Fig1FG.xlsx');
+util.table.write(ratios,excelFileName);
+
 %% The statistical testing
 % ratio aggregate comparison
 util.stat.ranksum(shaftRatio{1,5},shaftRatio{2,5})
@@ -22,9 +30,9 @@ fileName2Save = fullfile(outputFolder,...
     'ranksumTestResults.txt');
 util.stat.ranksum.shaftRatio...
     (shaftRatio,ratios.Properties.VariableNames,fileName2Save)
-
 util.stat.ranksum...
     (shaftRatio{1,5},shaftRatio{2,5},fileName2Save)
+
 %% Plot: Separate aggregate data
 aggRatio = shaftRatio(:,5);
 sepRatio = shaftRatio(:,1:4);
@@ -33,8 +41,7 @@ tickSize = 10;
 x_width = 3.1;
 y_width = 2.8;
 fh = figure;ax = gca;
-util.setColors;
-colors = repmat([{l2color};{dlcolor}],4,1);
+colors = repmat([{c.l2color};{c.dlcolor}],4,1);
 horizontalLocation = num2cell((1.5:2:17)');
 % plotting
 util.plot.boxPlotRawOverlay(sepRatio(:),horizontalLocation,...
@@ -54,6 +61,7 @@ util.plot.boxPlotRawOverlay(aggRatio(:),horizontalLocation,...
 set(ax,'YTickLabel',[],'YTick',0:0.2:1,'XLim',[0.2 5.3]);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'ShaftFraction_Aggregate.svg');
+
 %% Main text ratio
 text.ratioMeans = cellfun(@mean,shaftRatio);
 text.ratioSems = cellfun(@util.stat.sem,shaftRatio);
