@@ -1,6 +1,6 @@
 function [prop] = inhibitoryAxon()
-%INHIBITORYAXONS properties used by the apical tuft class for the
-%inhibitory Axon annotations used mainly in Figure 2
+% INHIBITORYAXONS properties used by the apical tuft class for the
+% inhibitory axon annotations of axons targeting ADs
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 prop.outputDir = util.dir.getInhibitoryAxon;

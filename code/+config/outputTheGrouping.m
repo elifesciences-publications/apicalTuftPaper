@@ -16,7 +16,7 @@ if isempty(prop.synGroups)
 end
 % Get the grouped strings
 groupedStrings = cell(length(prop.synGroups),1);
-for i=1:length(prop.synGroups)
+for i = 1:length(prop.synGroups)
     groupedStrings{i} = prop.syn(cell2mat(prop.synGroups{i}));
 end
 % Get single groups

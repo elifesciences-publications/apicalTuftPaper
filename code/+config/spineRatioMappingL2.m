@@ -1,7 +1,8 @@
 function [prop] = spineRatioMappingL2()
-%spineRationMapping properties used by the apical tuft class for the
-% annotation of output synapse to classify the axon type (spine targeting: 
-% excitatory, shaft targeting : inhibitory)
+% spineRationMappingL2 outputs properties used by the apical tuft class for the
+% annotations of output synapses of axons seeded from spines of ADs in L2
+% datasets. The shaft-seeded axons are the same as inhibitory axons used in
+% specificity analysis. See config. singleSpinesLumped
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
