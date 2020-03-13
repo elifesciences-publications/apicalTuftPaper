@@ -2,5 +2,5 @@
 % annotations
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll
-apTuft=apicalTuft.getObjects('bifurcation');
+apTuft = apicalTuft.getObjects('bifurcation');
 dendrite.getSynapseNumbers(apTuft);

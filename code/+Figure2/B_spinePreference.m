@@ -5,7 +5,7 @@
 
 %% set-up
 util.clearAll;
-util.setColors;
+c = util.plot.getColors();
 outputDir = fullfile(util.dir.getFig(2),'B');
 util.mkdir(outputDir);
 
@@ -17,7 +17,8 @@ synRatio.L1{'layer5AApicalDendriteSeeded','Spine'}{1} = [];
 %% Plot the fraction of single spine innervation
 layers = fieldnames(synRatio);
 seedTypes = synRatio.L1.Properties.VariableNames;
-colors = {util.plot.getColors().l2vsl3vsl5([1:3,5]),{l2color,dlcolor,l5Acolor}};
+colors = {util.plot.getColors().l2vsl3vsl5([1:3,5]),...
+    {c.l2color,c.dlcolor,c.l5Acolor}};
 ylimitsKS = [0,15];
 for l = 1:2
     layerRatios = synRatio.(layers{l});
