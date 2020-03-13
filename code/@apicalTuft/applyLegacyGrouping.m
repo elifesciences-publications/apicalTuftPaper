@@ -1,5 +1,7 @@
 function  outputOfMethod = applyLegacyGrouping...
-    (apTuftArray,method, separategroups, createAggregate,varargin)
+    (apTuftArray, method, separategroups, createAggregate,varargin)
+% applyLegacyGrouping: Apply method to object array which has the legacy
+% format of tree grouping (L2 vs DL)
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('separategroups','var') || isempty (separategroups)

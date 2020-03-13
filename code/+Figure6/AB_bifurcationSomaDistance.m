@@ -4,10 +4,11 @@
 % synapse densities around the main bifurcation and distal AD
 
 util.clearAll;
-outputFolder = fullfile(util.dir.getFig(5),...
+outputFolder = fullfile(util.dir.getFig(6),...
     'cellType_SynapticDensity_Comparison_Correlation');
+c = util.plot.getColors();
 util.mkdir(outputFolder);
-
+%% Load the annotations from PPC-2 dataset
 skel = apicalTuft('PPC2_l2vsl3vsl5');
 skel = skel.sortTreesByName;
 cellTypeRatios = skel.applyMethod2ObjectArray({skel},...
@@ -44,7 +45,6 @@ for i = 1:3
 end
 %% Plotting for Figure 5: inhibitoy ratio
 util.mkdir (outputFolder)
-util.setColors
 x_width = 3;
 y_width = 3.8;
 colors = util.plot.getColors().l2vsl3vsl5;
@@ -94,7 +94,7 @@ util.copyfiles2fileServer;
 util.mkdir(outputFolder)
 x_width = 2;
 y_width = 2.2;
-colors = [repmat({exccolor},1,5);repmat({inhcolor},1,5)];
+colors = [repmat({c.exccolor},1,5);repmat({c.inhcolor},1,5)];
 allDensitites = [spineDensity';shaftDensity'];
 % Merge L2 with L2MN
 densityIndices = 1:10;
