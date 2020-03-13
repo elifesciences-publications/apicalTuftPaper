@@ -1,5 +1,5 @@
 function [prop] = dist2Soma()
-%apicalDiameter 
+%dist2Soma 
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 prop.outputDir = fullfile(util.dir.getAnnotation,'dist2Soma');
