@@ -9,12 +9,13 @@ function [prop] = spineRatioMappingL2()
 prop.outputDir = util.dir.getSpineFractionMapping;
 prop.apicalType = { 'layer2ApicalDendriteSeeded',...
     'deepLayerApicalDendriteSeeded'};
-prop.syn = {'spine_singleInnervaterd','shaft','spine_DoubleInnervaterd','spine_neck','cellBody'}';
+prop.syn = {'spine_singleInnervaterd','shaft',...
+    'spine_DoubleInnervaterd','spine_neck','cellBody'}';
 prop.synExclusion = 'unsureSynapse';
 prop.synGroups = {{2,3,4,5}'}';
 prop.synLabel = {'Spine','Shaft'}';
 prop.seed = 'seed';
-% Just added for the amira representation of L2_25 axon
+% Just added for the backbone extraction from L2_25 axon used in Fig. 2A
 prop.fixedEnding = {'exit','dead end'}';
 end
 
