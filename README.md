@@ -36,6 +36,10 @@ In addition to the basic matlab installation, specific segments of the code migh
 * 'Parallel Computing Toolbox'
 * 'MATLAB Distributed Computing Server'
 
+## General purpose
+The purpose of this repository is to provide an easily accessible MATLAB interface for generation of the figures used in the manuscript.  
+In addition, this repository contains utility functionality for reading and analyzing skeleton reconstruction of neurons. These reconstructions were generated using [webKnossos](https://webknossos.org/). All 6 electron microscopy datasets are available publicly.
+
 ## Contents
 This code repository is organized into [MATLAB packages](https://www.mathworks.com/help/matlab/matlab_oop/scoping-classes-with-packages.html) (folders starting with "+")
 To access the methods/scripts of within each package folder you need to use dot notation. Here's some examples:
@@ -58,6 +62,16 @@ Here's a list of the contents:
 * **/data**
 * **skeletonReconstruction**: contains all the skeleton reconstructions used for the analysis.
 * **Other**: contains other data files such as volume annotations (wkw format), .mat and excel data files.
+
+## Structure of scripts in /code/+FigureN/
+These scripts generally implement the following structure (with exceptions):  
+1. Data is read from the NML files (XML-based format) into objects of type **apicalTuft** (see "/code/@apicalTuft/apicalTuft.m" for more details). This is a subclass of **skeleton class** ("/code/auxiliaryMethods/@skeleton") that represents skeleton reconstruction as a Graph (nodes and edges connecting them). Each node also contains comments (strings) added by annotator to note various features such as synapse type.  
+2. Features of annotations (dendrite or axons) such as synapse count, location, path length of dendrite, diameter measurements are extracted using methods of apicalTuft object and other utility functions in **+util**, **+dendrite** and **+axon** matlab packages. 
+3. Then some combination of the following steps happen:  
+    * Data is processed and passed to matlab graphing functionality to generate the figure panel/s. Figures are then usually saved as SVG files (vector graphics) to be imported into illustrator.
+    * Specific measures (e.g. synaptic density, total dendritic/axonal path length) are extracted to be reported in the manuscript. This results are saved to excel/text files.
+    * 3D shapes are written for use in 3D visualizations in Amira (Surface meshes, tubes and spheres, i.e. Figs. 1b,c, 2a)
+
 ## Authors
 
 The Apical Tuft Paper code repository was developed by
