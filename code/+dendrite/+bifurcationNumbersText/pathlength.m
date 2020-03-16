@@ -1,6 +1,7 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 % Pathlength of annotations around the main bifurcation of apical dendrites
 % used in Results text
+
 util.clearAll
 apTuft = apicalTuft.getObjects('bifurcation');
 pathlengthAll = apicalTuft.applyMethod2ObjectArray...

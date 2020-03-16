@@ -1,5 +1,8 @@
 function [pathLengthInMicron] = getBackBonePathLength(obj,treeIndices)
-%GETBACKBONEPATHLENGTH Get the pathlenth (in microns) of the backbone of a tree
+% GETBACKBONEPATHLENGTH Get the pathlenth (in microns) of the 
+% the backbone of a tree. The backbone excludes spine necks and the nodes
+% used for annotation of synapses. See obj.fixedEnding
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist('treeIndices','var') || isempty(treeIndices)

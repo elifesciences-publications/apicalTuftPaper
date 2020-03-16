@@ -1,5 +1,5 @@
 function [synCount] = getSynapseNumbers(apTuft)
-%GETSYNAPSENUMBERS Gets synapse number of dendrites for text
+% GETSYNAPSENUMBERS Gets synapse number of dendrites for text
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if apTuft{1,1}.legacyGrouping
