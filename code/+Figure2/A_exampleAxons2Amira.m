@@ -4,7 +4,7 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 %% Set-up
 util.clearAll
-outputFolder = fullfile(util.dir.getFig(2),'AmiraForSpineTargetingRatio');
+outputFolder = fullfile(util.dir.getFig(2),'A','AmiraForSpineTargetingRatio');
 util.mkdir(outputFolder);
 c = util.plot.getColors();
 

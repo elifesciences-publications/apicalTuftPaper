@@ -1,5 +1,6 @@
 function [synapseMeasure] = getSynapseMeasure(func)
-% getSynapseMeasure returns the synapse property described by the function
+% getSynapseMeasure returns the result of the application of func to the
+% axon synapse preference annotations (shaft vs. spine)
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 % Defaults
