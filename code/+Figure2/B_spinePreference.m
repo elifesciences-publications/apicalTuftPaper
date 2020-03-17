@@ -8,8 +8,10 @@ util.clearAll;
 c = util.plot.getColors();
 outputDir = fullfile(util.dir.getFig(2),'B');
 util.mkdir(outputDir);
+
 %% Write excel sheet of result (independent function)
 dendrite.synIdentity.writeSpinePreferenceExcelSheet;
+
 %% Get the ratio of each postsynaptic type
 synRatio = dendrite.synIdentity.getSynapseMeasure('getSynRatio');
 synRatio.L2{'L5A','Spine'}{1} = [];
@@ -65,7 +67,7 @@ assert(height(allSynCount) == 430);
 disp(['Total synapse range per axon:', ...
     num2str([min(allSynCount.totalSynapseNumber),...
     max(allSynCount.totalSynapseNumber)])]);
-% Current total misclassification rate: 3.7973%
+% Current total misclassification rate (checked with excel sheets): 6.28%
 % see below
 % Load axon switching fraction
 axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
@@ -75,13 +77,20 @@ for l = 1:2
     curNum = tableOFNumberOFAxons.(layers{l});
     curCorrection = axonSwitchFraction.(layers{l});
     % Shaft and spine columns switched along for number and fractions
-    curMisclassified = curNum.Variables .* fliplr(curCorrection.Variables);
+    curMisclassified = curNum.Variables .* curCorrection.Variables;
     total(l) = sum(curNum.Variables,'all');
     misclassified(l) = sum(curMisclassified,'all');
 end
+% Total number of synapses per layer
+disp ('Total number of synapses with axons investigated:')
+disp(['L1: ', num2str(total(1))]);
+disp(['L2: ', num2str(total(2))]);
+
 % Percent of misclassified axons
 percentMisclassified = (sum(misclassified)./sum(total))*100;
+disp (['Percent misclassified: ',num2str(percentMisclassified)])
 %% L2 and DL 90% and 80% minimum fraction percentiles in L2
+
 seedTypes = {'Spine','Shaft'};
 adTypes = {'L2','DL'};
 for seedT = 1:2

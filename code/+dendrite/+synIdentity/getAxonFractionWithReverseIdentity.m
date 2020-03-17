@@ -1,13 +1,13 @@
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 %% set-up
 util.clearAll;
-util.setColors;
-outputDir = fullfile(util.dir.getFig(1),'AxonReversing');
+outputDir = fullfile(util.dir.getFig(2),'B');
 util.mkdir(outputDir)
 seedTypes = {'Spine','Shaft'};
-saveMatfile = false;
+
 %% Get all the synapse ratios:
 synRatio = dendrite.synIdentity.getSynapseMeasure('getSynRatio');
+
 %% Get the correction fractions
 layers = {'L1','L2'};
 % Threshhold and anom function for gettting fraction of spine-seeded 
@@ -41,12 +41,14 @@ for l = 1:2
 end
 axonSwitchFraction = structfun(@(x)fliplr(x),axonSwitchFraction,...
     'UniformOutput',false);
+
 %% Save the output for later retrieval
+saveMatfile = false;
 if saveMatfile
-    save(fullfile(util.dir.getAnnotation,'matfiles','axonSwitchFraction'),...
+    save(fullfile(util.dir.getMatfile,'axonSwitchFraction'),...
         'axonSwitchFraction');
 end
-textFileName = fullfile(util.dir.getFig(3),'correctionforAxonSwitching',...
+textFileName = fullfile(outputDir,...
     'axonSwitchFraction');
 f = fieldnames(axonSwitchFraction);
 for i = 1:length(f)
@@ -55,29 +57,3 @@ for i = 1:length(f)
     writetable(axonSwitchFraction.(f{i}),...
         [textFileName,'_',f{i},'.xlsx'],'WriteRowNames',true);
 end
-
-%% Total number of axons involved for the text
-% Use this section to get the total number of axons involved in the identity 
-% correction fractions. Number used in methods, figure legends
-synRatioNoL5ASpine  =  synRatio;
-for i = 1:2
-    synRatioNoL5ASpine.(layers{i}){end,'Spine'} = {table()};
-    totalSynNumbers  =  cellfun(@height,...
-        synRatioNoL5ASpine.(layers{i}).Variables);
-    disp(sum(totalSynNumbers,'all'))
-end
-
-%% Report the total error rate by combining all the data 
-% (reviewer response letter)
-
-numForReport([4,11],:)  =  [];
-summed  =  sum(numForReport,1);
-fractionOfAxonsFromTotal  =  summed(1)/summed(2);
-disp (fractionOfAxonsFromTotal);
-
-%% Number of synapses per axon
-synCount  =  dendrite.synIdentity.getSynapseMeasure('getTotalSynapseNumber');
-% Remove duplicates for L5A
-synCount.L2{3,1}{1} = [];
-synCount.L1{4,1}{1} = [];
-
