@@ -22,7 +22,7 @@ spineDensity = cellfun(@(x) x.Spine,Density.Variables,...
 
 %% Write result table to excel sheet
 excelFileName = fullfile(util.dir.getExcelDir(1),'Fig1DE.xlsx');
-util.table.write(Density,excelFileName);
+util.table.write(Density, excelFileName);
 
 %% Statistic testing (Wilcoxon ranksum test)
 % testing the aggregate
