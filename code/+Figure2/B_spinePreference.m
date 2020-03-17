@@ -8,7 +8,8 @@ util.clearAll;
 c = util.plot.getColors();
 outputDir = fullfile(util.dir.getFig(2),'B');
 util.mkdir(outputDir);
-
+%% Write excel sheet of result (independent function)
+dendrite.synIdentity.writeSpinePreferenceExcelSheet;
 %% Get the ratio of each postsynaptic type
 synRatio = dendrite.synIdentity.getSynapseMeasure('getSynRatio');
 synRatio.L2{'L5A','Spine'}{1} = [];
@@ -68,7 +69,8 @@ disp(['Total synapse range per axon:', ...
 % see below
 % Load axon switching fraction
 axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
-
+total = zeros(2,1);
+misclassified = zeros(2,1);
 for l = 1:2
     curNum = tableOFNumberOFAxons.(layers{l});
     curCorrection = axonSwitchFraction.(layers{l});
