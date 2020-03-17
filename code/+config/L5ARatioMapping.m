@@ -3,10 +3,10 @@ function [prop] = L5ARatioMapping()
 
 prop.outputDir = fullfile(util.dir.getAnnotation,'L5ARatioMapping');
 prop.apicalType = {'axon'};
-prop.syn = {'spineSingle','shaft','spineDouble','spineNeck'}';
+prop.syn = {'shaft','spineDouble','spineNeck','spineSingle'}';
 prop.synExclusion = 'unsure';
-prop.synGroups = {{2,3,4}'}';
-prop.synLabel = {'Spine','Shaft'}';
+prop.synGroups = {{1:3}'}';
+prop.synLabel = {'Shaft','Spine'}';
 prop.seed = 'seed';
 prop.legacyGrouping = false;
 

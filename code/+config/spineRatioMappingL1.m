@@ -9,11 +9,11 @@ prop.outputDir = util.dir.getSpineFractionMapping;
 prop.apicalType = { 'layer2ApicalDendriteSeeded',...
     'layer3ApicalDendriteSeeded',...
     'deepLayerApicalDendriteSeeded'};
-prop.syn = {'spine_singleInnervaterd','shaft',...
-    'spine_DoubleInnervaterd','spine_neck','cellBody'}';
+prop.syn = {'shaft', 'spine_DoubleInnervaterd', 'spine_neck'...
+    , 'cellBody', 'spine_singleInnervaterd'}';
 prop.synExclusion = 'unsureSynapse';
-prop.synGroups = {{2,3,4,5}'}';
-prop.synLabel = {'Spine','Shaft'}';
+prop.synGroups = {{1:4}'}';
+prop.synLabel = {'Shaft','Spine'}';
 prop.seed = 'seed';
 prop.legacyGrouping = false;
 
