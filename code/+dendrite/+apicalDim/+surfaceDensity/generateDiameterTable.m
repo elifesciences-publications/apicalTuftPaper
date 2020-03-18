@@ -1,6 +1,13 @@
 function [results] = generateDiameterTable...
     (synCount, dim, pL, skel)
-%GENERATEDIAMETERTABLE
+% generateDiameterTable combine data from diameter measurement and
+% pathlength of axons. Combine the results into a table of complete
+% synaptic densities per unit path length and area of apical dendrite.
+% Note: L5st synapse count/density is corrected by the identity prediction
+% accuracy (see Fig. 2C).
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 anotType={'bifur','l235'};
 % correct the L5A synapse count and create an uncorrected variable for
 % this surface densities
@@ -14,13 +21,13 @@ L5stswitchFraction = ...
     axonSwitchFraction.L1{'layer5AApicalDendriteSeeded',:}};
 for i=1:2
     % Use thisT for the sizes and initializing the result
-    thisT=dim.(anotType{i});
-    results.(anotType{i})=cell2table(cell(size(thisT)),...
+    thisT = dim.(anotType{i});
+    results.(anotType{i}) = cell2table(cell(size(thisT)),...
         'VariableNames',thisT.Properties.VariableNames,'RowNames',...
         thisT.Properties.RowNames);
     % Annotated over cell type and region
     for d=1:width(thisT)
-        for cellType=1:height(thisT)
+        for cellType = 1:height(thisT)
             
             % Avoid empty entries in the table
             if ~isempty(dim.(anotType{i}){cellType,d}{1})
@@ -44,7 +51,7 @@ for i=1:2
                     
                     curCorrected = ...
                         skel{1,d}.getSynCount(L5Atrees,L5stswitchFraction{d});
-                    curCorrected.Properties.VariableNames (2:3)= ...
+                    curCorrected.Properties.VariableNames (2:3) = ...
                         cellfun(@(x) strrep(x,'_corrected',''),...
                         curCorrected.Properties.VariableNames(2:3),'uni',0);
                     curSynCount=join(curCorrected,curUncorrected,'Keys',...
@@ -52,7 +59,7 @@ for i=1:2
                 end
                 % Get the table of all the densities for the current
                 % annotations
-                curTable=join(join(curDiam,curpL),curSynCount);
+                curTable = join(join(curDiam,curpL),curSynCount);
                 % Lateral cylinder area= pi*avg diameter*Height
                 curTable.area = pi*(curTable.apicalDiameter.*...
                     curTable.pathLengthInMicron);
