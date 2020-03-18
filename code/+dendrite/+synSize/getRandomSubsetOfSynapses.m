@@ -1,7 +1,9 @@
+% Outdated script for getting a random sample of synapses from tree
+% Only kept for back reference
 %% Creating the nml for random synapese location, spine and shaft
 clear all
 config(false)
-outputDir=fullfile(bifur.dir,'synapseSizeComparison');
+outputDir = fullfile(bifur.dir,'synapseSizeComparison');
 synapseCoord=bifur.datasetFun(info,names,'getSynCoordComment');
 
 newIteration=true;

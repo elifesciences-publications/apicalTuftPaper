@@ -1,4 +1,7 @@
 function writeSynLocationAsTree(skel,randomSynapses,names,outputDir)
+% Outdated function for getting a random sample of synapses from main
+% bifurcation annotations in S1, V2, PPC and ACC datsets
+% Only kept for back reference
 %Author: Ali Karimi<ali.karimi@brain.mpg.de>
 apicalTypeString={'layer2','deep'};
 for dataset=1:4

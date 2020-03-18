@@ -20,7 +20,7 @@ if ~isempty(obj.apicalType)
     assert(isempty(intersect(obj.l2Idx,obj.dlIdx)),...
         'Overlap check between l2 and deep');
 else
-    disp('no tags for layer 2 and deep layer defined')
+    disp('Apical tuft object does not have a defined Grouping of trees')
 end
 
 

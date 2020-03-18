@@ -1,5 +1,9 @@
 function [randomSynapses] = getRandomSynapses(synapseCoord,synPerTree)
-%Author: Ali Karimi <ali.karimi@brain.mpg.de>
+% Outdated function for getting a random sample of synapses from main
+% bifurcation annotations in S1, V2, PPC and ACC datsets
+% Only kept for back reference
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 randomSynapses=synapseCoord(:,1:4);
 for dataset=1:4
