@@ -12,12 +12,12 @@ shiftFactorDeep = 0;
 shiftFactorL2 = 0;
 shiftFactorL3 = 0;
 shiftFactorL5 = 0;
-Figure3.SupplA.plotDense(allDendConverted.S1);
-Figure3.SupplA.plotDense(allDendConverted.V2);
-Figure3.SupplA.plotDense(allDendConverted.PPC);
-Figure3.SupplA.plotDense(allDendConverted.ACC);
-Figure3.SupplA.plotDense2(l235Converted.LPtA);
-Figure3.SupplA.plotDense2(l235Converted.PPC2);
+Figure7.SupplA.plotDense(allDendConverted.S1);
+Figure7.SupplA.plotDense(allDendConverted.V2);
+Figure7.SupplA.plotDense(allDendConverted.PPC);
+Figure7.SupplA.plotDense(allDendConverted.ACC);
+Figure7.SupplA.plotDense2(l235Converted.LPtA);
+Figure7.SupplA.plotDense2(l235Converted.PPC2);
 
 disp('Save the plots as .svg and manually arrange them in an editing software (e.g. in Adobe Illustrator)');
 

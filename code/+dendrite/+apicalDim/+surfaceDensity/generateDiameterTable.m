@@ -31,36 +31,47 @@ for i=1:2
             
             % Avoid empty entries in the table
             if ~isempty(dim.(anotType{i}){cellType,d}{1})
-                % Get the current variables
+                % Get the current diameter
                 curDiam = dim.(anotType{i}){cellType,d}{1};
+                % Diameters are all the individual measurements. Have to
+                % average it
                 curDiam.apicalDiameter = ...
                     cellfun(@mean,curDiam.apicalDiameter);
+                % Get path length of annotation
                 curpL = pL.(anotType{i}){cellType,d}{1};
-                isL5st = strcmp(synCount.(anotType{i}).Properties.RowNames{cellType},...
+
+                isL5st = strcmp(synCount.(anotType{i}). ...
+                    Properties.RowNames{cellType},...
                     'layer5AApicalDendrite_mapping');
-                % for L5st
                 if ~isL5st
+                    % Get the synapse count
                     curSynCount = synCount.(anotType{i}){cellType,d}{1};
                 else
+                    % Correct the L5st synapse count with the correction
+                    % factors (see Fig. 1C)
                     curUncorrected = synCount.(anotType{i}){cellType,d}{1};
+                    % Add "_uncorrected"
                     curUncorrected.Properties.VariableNames (2:3)= ...
                         cellfun(@(x) [x,'_','uncorrected'],...
                         curUncorrected.Properties.VariableNames(2:3),'uni',0);
                     L5Atrees = ...
                         skel{1,d}.groupingVariable.layer5AApicalDendrite_mapping{1};
-                    
+                    % Get the corrected fraction and use this as the main
+                    % count for L5st neurons
                     curCorrected = ...
                         skel{1,d}.getSynCount(L5Atrees,L5stswitchFraction{d});
+                    % remove "_corrected"
                     curCorrected.Properties.VariableNames (2:3) = ...
                         cellfun(@(x) strrep(x,'_corrected',''),...
                         curCorrected.Properties.VariableNames(2:3),'uni',0);
-                    curSynCount=join(curCorrected,curUncorrected,'Keys',...
+                    curSynCount = join(curCorrected,curUncorrected,'Keys',...
                         'treeIndex');
                 end
                 % Get the table of all the densities for the current
                 % annotations
-                curTable = join(join(curDiam,curpL),curSynCount);
-                % Lateral cylinder area= pi*avg diameter*Height
+                curTable = join(join(curDiam,curpL,'Keys','treeIndex'),...
+                    curSynCount,'Keys','treeIndex');
+                % Lateral cylinder area = pi * avg diameter * path length
                 curTable.area = pi*(curTable.apicalDiameter.*...
                     curTable.pathLengthInMicron);
                 curTable.inhDensity = curTable.Shaft./ ...

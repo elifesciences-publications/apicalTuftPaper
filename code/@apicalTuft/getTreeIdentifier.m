@@ -1,6 +1,5 @@
 function [identifier] = getTreeIdentifier(obj,treeIndices)
-% GETTREEIDENTIFIER Generate unique identifier in the format:
-% filename_treename_treeIndex
+% GETTREEIDENTIFIER Simply return the tree names
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist('treeIndices','var') || isempty(treeIndices)

@@ -1,6 +1,13 @@
 function [LM] = addLinearFit(array,plotLine,fname,tickFormat)
-%ADDLINEARFIT Summary of this function goes here
-%   Detailed explanation goes here
+%ADDLINEARFIT Adds a linear fit to the combined data in array
+% INPUT:
+%       array: Cell array of data vectors from different sources. The data is
+%       combined into an array
+%       plotline: flag for adding the line
+%       fname: name of text file to save the model summary and gof measures
+%       tickformat: line format for the line plotted
+
+% Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
 if ~exist('plotLine','var') || isempty(plotLine)
     plotLine = true;
@@ -29,8 +36,10 @@ if write2file
     fprintf(fid,'------Output from addLinearFit------\n');
     fprintf(fid,['Linear model: ',num2str(p(2)),'*x',num2str(p(1)),'\n']);
     fprintf(fid,['P-value: ',num2str(coefTest (LM)),'\n']);
-    fprintf(fid,['Model Fit Rsquared: ',num2str(LM.Rsquared.Ordinary),'\n']);
-    fprintf(fid,['Model Fit Rsquared adjusted to DOF: ',num2str(LM.Rsquared.Adjusted),'\n']);
+    fprintf(fid,['Model Fit Rsquared: ',...
+        num2str(LM.Rsquared.Ordinary),'\n']);
+    fprintf(fid,['Model Fit Rsquared adjusted to DOF: ',...
+        num2str(LM.Rsquared.Adjusted),'\n']);
     testSummary = evalc('disp(LM)');
     fprintf(fid,'------test Summary------\n');
     fprintf(fid,[testSummary,'\n']);

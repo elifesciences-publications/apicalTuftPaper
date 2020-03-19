@@ -27,6 +27,19 @@ spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
 distance2soma = distance2somaRaw.Variables;
 %% Set the values of the L5st group to the corrected values and 
 % also keep the uncorrected values for later plotting 
+
+% TODO: remove this time consuming function with a call to getSynCount with
+% the correction fraction like the following:
+% curCorrected = ...
+% skel{1,d}.getSynCount(L5Atrees,L5stswitchFraction{d});
+% % Load axon switching fraction
+% axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
+% 
+% % Mimick the shape of the L5A entries in the other variables (LPtA empty entry)
+% L5stswitchFraction = ...
+%     {axonSwitchFraction.L2{'L5A',:},{},...
+%     axonSwitchFraction.L1{'layer5AApicalDendriteSeeded',:}};
+
 results = dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
 % Keep only the main bifurcation results from L5A (L5st) group
 resultsL5A = results.l235{end,:}{1};
