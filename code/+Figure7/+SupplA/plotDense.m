@@ -6,7 +6,7 @@ allTrees=Dataset.l2Idx;
 figure();
 hold on
     for tr=allTrees
-        Figure3.SupplA.plotStretched(Dataset, tr, 'L2', allTrees);
+        Figure7.SupplA.plotStretched(Dataset, tr, 'L2', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)
     set(gca, 'Ydir', 'reverse')
@@ -28,7 +28,7 @@ allTrees=Dataset.dlIdx;
 figure();
 hold on
     for tr=allTrees
-        Figure3.SupplA.plotStretched(Dataset, tr, 'Deep', allTrees);
+        Figure7.SupplA.plotStretched(Dataset, tr, 'Deep', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)
     set(gca, 'Ydir', 'reverse')

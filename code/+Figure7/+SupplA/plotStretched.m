@@ -23,8 +23,8 @@ switch groupString
         assignin('base', 'shiftFactorL2', shiftFactor+1);
 end
 
-shCoords=Figure3.SupplA.synapseCoordinates(Dataset, tr, {'Shaft', 'spineDoubleInnervated', 'spineNeck'});
-spCoords=Figure3.SupplA.synapseCoordinates(Dataset, tr, {'spineSingleInnervated'});
+shCoords=Figure7.SupplA.synapseCoordinates(Dataset, tr, {'Shaft', 'spineDoubleInnervated', 'spineNeck'});
+spCoords=Figure7.SupplA.synapseCoordinates(Dataset, tr, {'spineSingleInnervated'});
 
 %We also use the smallest x-Coordinate of all Synapses to normalize the
 %position of the tree. Figuratively speaking, we shift the tree to the left

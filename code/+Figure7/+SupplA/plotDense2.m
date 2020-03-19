@@ -5,7 +5,7 @@ allTrees=Dataset.groupingVariable.layer2ApicalDendrite_mapping{1};
 figure();
 hold on
     for tr=allTrees'
-        Figure3.SupplA.plotStretched(Dataset, tr, 'L2', allTrees);
+        Figure7.SupplA.plotStretched(Dataset, tr, 'L2', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)
     set(gca, 'Ydir', 'reverse')
@@ -24,7 +24,7 @@ allTrees=Dataset.groupingVariable.layer3ApicalDendrite_mapping{1};
 figure();
 hold on
     for tr=allTrees'
-         Figure3.SupplA.plotStretched(Dataset, tr, 'L3', allTrees);
+         Figure7.SupplA.plotStretched(Dataset, tr, 'L3', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)
     set(gca, 'Ydir', 'reverse')
@@ -43,7 +43,7 @@ allTrees=Dataset.groupingVariable.layer5ApicalDendrite_mapping{1};
 figure();
 hold on
     for tr=allTrees'
-        Figure3.SupplA.plotStretched(Dataset, tr, 'L5', allTrees);
+        Figure7.SupplA.plotStretched(Dataset, tr, 'L5', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)
     set(gca, 'Ydir', 'reverse')
