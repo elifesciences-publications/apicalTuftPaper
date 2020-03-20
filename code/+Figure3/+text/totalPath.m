@@ -11,4 +11,4 @@ totalPathLength =...
 
 totalPathLength.Properties.VariableNames={'TotalPathLength'};
 writetable(totalPathLength,fullfile(outputDir,'TotalPathLength.xlsx'));
-util.copyfiles2fileServer;
+;

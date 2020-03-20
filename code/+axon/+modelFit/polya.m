@@ -55,4 +55,3 @@ fnames= {fullfile(outputDir,'probTable.xlsx'),fullfile(outputDir,'probOnlyAD.xls
 for i=1:2
     writetable(probTable{i},fnames{i});
 end
-util.copyfiles2fileServer

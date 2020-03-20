@@ -102,7 +102,7 @@ testResult.Exc = util.stat.KW(spineDensity,curLabels,mergeGroups,...
     fullfile(outputFolder,'excDensity'));
 testResult.Inh = util.stat.KW(shaftDensity,curLabels,mergeGroups,...
     fullfile(outputFolder,'inhDensity'));
-util.copyfiles2fileServer;
+;
 %% Plotting for Figure 5: synapse density
 util.mkdir(outputFolder)
 x_width = 2;

@@ -29,7 +29,7 @@ count.deepSeeded =  cat(1,targetCount{:,2});
 count.l2Seeded(isnan(count.l2Seeded(:,1)),:) = []; 
 count.deepSeeded(isnan(count.deepSeeded(:,1)),:) = [];
 util.stat.ranksum(count.l2Seeded(:,1),count.deepSeeded(:,1),filename);
-util.copyfiles2fileServer
+
 
 fractionAvgOverAxon = ...
     reshape(struct2array(structfun(...

@@ -68,7 +68,7 @@ testResult = util.stat.KW(distal.shaftRatio,cellTypes, ...
 
 util.stat.ranksum(distal.shaftRatio{3},distal.shaftRatio{4},fullfile(outputFolder,...
     'Distal_L5ttL5stComparison_ShaftRation'))
-util.copyfiles2fileServer;
+;
 %% Also do the densities
 x_width = 2;
 y_width = 2.2;
@@ -102,7 +102,7 @@ testResult_inhDensity = util.stat.KW(distal.shaftDensity,cellTypes, ...
     [],fullfile(outputFolder,'InhDensity'));
 testResult_excDensity = util.stat.KW(distal.spineDensity,cellTypes, ...
     [],fullfile(outputFolder,'excDensity'));
-util.copyfiles2fileServer
+
 %% Do single cell type between regions comparison:
 skel = apicalTuft('PPC2_l2vsl3vsl5');
 skel = skel.sortTreesByName;
@@ -149,7 +149,7 @@ for celltype = 1:length(cellTypes)
         fullfile (outputFolder, ['ranksumBifurAndDistal_',...
         cellTypes{celltype},'.txt']));
 end
-util.copyfiles2fileServer
+
 %% create the error bar for summary plot
 fh = figure;ax = gca;
 colors = {l2color,l3color,l5color,l5Acolor};

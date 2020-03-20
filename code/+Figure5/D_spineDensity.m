@@ -43,7 +43,7 @@ util.plot.cosmeticsSave...
 
 util.stat.ranksum(cat(1,forPlot.spineDensity{1}),cat(1,forPlot.spineDensity{2}),...
     fullfile(outputFolder,'spineDensityCombined'));
-util.copyfiles2fileServer
+
 
 %% Save the AD diameter and spine density information
 spineDensityBifurcation = forPlotSep.spineDensity(:,1)';

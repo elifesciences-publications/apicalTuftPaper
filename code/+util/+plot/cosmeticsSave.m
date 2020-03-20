@@ -29,12 +29,10 @@ if ~exist('removeDashedLinesForBoxplot','var') || ...
         isempty(removeDashedLinesForBoxplot)
     removeDashedLinesForBoxplot = true;
 end
-% Correct for the screen size issue on Linux OS
-% TODO: test see if this is necessary on windows
-screenSizeCorrection=1.3333;
+
 % set figure handle properties
-fh = util.plot.setFigureHandle(fh,'height',y_width*(2/screenSizeCorrection),...
-    'width',x_width*(2/screenSizeCorrection));
+fh = util.plot.setFigureHandle(fh,'height',y_width*2,...
+    'width',x_width*2);
 % Remove dashed lines
 if removeDashedLinesForBoxplot
     set(findobj(fh,'LineStyle','--'),'LineStyle','-');

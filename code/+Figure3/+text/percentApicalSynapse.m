@@ -1,8 +1,13 @@
+
+% Numbers used in section: Preference of presynaptic axons for types of 
+% apical dendrites
+% Includes total, L2, DL AD innervation fractions for axons seeded from L2,
+% DL ADs
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-% Get apical targeting percent used in the result text
 util.clearAll
-outputDir=fullfile(util.dir.getFig(3),'forText_inhibitoryAxon');
+outputDir=fullfile(util.dir.getFig(3),'B','forText');
 util.mkdir(outputDir)
+
 %% Numbers averaged over axons
 apTuft = apicalTuft.getObjects('inhibitoryAxon');
 synRatios=apicalTuft.applyMethod2ObjectArray...
@@ -33,7 +38,7 @@ percentTotal.mean=round(mean(totalApicalTargeting)*100,1);
 percentTotal.sem=round(util.stat.sem(totalApicalTargeting,[],1)*100,1);
 writetable(struct2table(percentTotal),...
     fullfile(outputDir,'percentTotal.xlsx'));
-util.copyfiles2fileServer;
+
 %% numbers pooled over all synapses
 % Fraction of spine synapses which are single
 
@@ -76,4 +81,4 @@ fprintf(fid, ['Total fraction of synapses', ...
     num2str((l2SynNum+dlSynNum)./TotalSynNum),'\n']);
 fclose(fid);
 
-util.copyfiles2fileServer;
+;

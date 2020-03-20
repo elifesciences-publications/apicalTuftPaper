@@ -15,4 +15,3 @@ CV.l2 = util.stat.coeffVar(L2Means,1)';
 CV.Deep = util.stat.coeffVar(deepMeans,1)';
 writetable(struct2table(CV), fullfile(outputFolder, ...
     'CoefficientOfVariation.txt'));
-util.copyfiles2fileServer
