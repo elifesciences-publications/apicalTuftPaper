@@ -1,4 +1,4 @@
-function [arrayWithNoisyX]=boxPlotRawOverlay(array,xlocationRaw,varargin)
+function [arrayWithNoisyX] = boxPlotRawOverlay(array,xlocationRaw,varargin)
 % boxPlotRawOverlay creates an overlay of raw data  over a boxplot for a cell
 % array
 % INPUT:
@@ -15,41 +15,44 @@ function [arrayWithNoisyX]=boxPlotRawOverlay(array,xlocationRaw,varargin)
 %           ylim: the y limit
 %           tickSize: the size of the scatter tick marks
 % The locations and data should be of the same size and shape
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 if ~exist('xlocationRaw','var') || isempty(xlocationRaw)
-    xlocationRaw=1:length(array);
+    xlocationRaw = 1:length(array);
 end
 % Make sure that xlocationRaw is a double array and the xLocation is a cell
 % array
 if ~iscell(xlocationRaw)
-    xLocation=num2cell(xlocationRaw);
+    xLocation = num2cell(xlocationRaw);
 else
-    xLocation=xlocationRaw;
-    xlocationRaw=cell2mat(xlocationRaw);
+    xLocation = xlocationRaw;
+    xlocationRaw = cell2mat(xlocationRaw);
 end
-xLocation=xLocation(:);
-array=array(:);
+xLocation = xLocation(:);
+array = array(:);
 
 % set defaults
-optIn.ylim=max(cellfun(@max,array(:)))+0.1;
-optIn.boxWidth=1;
-optIn.xlim=[min(cell2mat(xLocation))-optIn.boxWidth,...
+optIn.ylim = max(cellfun(@max,array(:)))+0.1;
+optIn.boxWidth = 1;
+optIn.xlim = [min(cell2mat(xLocation))-optIn.boxWidth,...
     max(cell2mat(xLocation))+optIn.boxWidth];
-optIn.color=[1 0 0];
-optIn.tickSize=10;
-optIn.boxplot=true;
-optIn.marker='x';
-optIn=Util.modifyStruct(optIn,varargin{:});
-optIn.xlim=[min(cell2mat(xLocation))-optIn.boxWidth,...
+optIn.color = [1 0 0];
+optIn.tickSize = 10;
+optIn.boxplot = true;
+optIn.marker = 'x';
+optIn = Util.modifyStruct(optIn,varargin{:});
+optIn.xlim = [min(cell2mat(xLocation))-optIn.boxWidth,...
     max(cell2mat(xLocation))+optIn.boxWidth];
 % repeat if you have a single RGB
 if ~iscell(optIn.color)
-    optIn.color=repmat({optIn.color},size(array(:)));
+    optIn.color = repmat({optIn.color},size(array(:)));
 end
 
 % Different group with different color but plotted on the same location 
 % (Used) first time to add L2MN cells to L2 cells
-[~,ind] = unique(xlocationRaw);
-dupIdx = setdiff(1:length(xlocationRaw),ind);
+[~,ind]  =  unique(xlocationRaw);
+dupIdx  =  setdiff(1:length(xlocationRaw),ind);
 if ~isempty(dupIdx)
     for i = 1:length(dupIdx)
         curDup = dupIdx(i);
