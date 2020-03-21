@@ -14,8 +14,11 @@ function [obj] = setDatasetProperties(obj)
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
+% Keeps the coordinate system the same when matrix multiplied (V2, PPC,PPC-2)
 I = eye(3);
+% Reverses the directiom of the Y-axis (S1, ACC)
 I_yNeg = bsxfun(@times,[1,-1,1],I);
+% Replace Y and Z axes (LPtA dataset)
 I_ZReplacedWithY = I([1,3,2]',:);
 countNrofDatasets = 0;
 if contains(obj.dataset,'S1')
@@ -36,6 +39,8 @@ elseif contains(obj.dataset,'PPC') && ~contains(obj.dataset,'PPC2')
             'correction',[0 156 0;I],... 
             'highResBorder',[],...
             'L1BorderInPixel',-1333,'bbox',[1,12032;1,12032;1,4864]);
+        % Note for PPC-2: Surfaces for pia and layer 1/2 border was extracted
+        % and used in some cases instead of this estimate 
 elseif contains(obj.dataset,'PPC2')
         countNrofDatasets = countNrofDatasets+1;
         obj.datasetProperties = struct('dimPiaWM', 2,...

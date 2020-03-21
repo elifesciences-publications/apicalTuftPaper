@@ -23,7 +23,8 @@ bifurcationCoord = obj.getNodes(treeIndices,idx,toNm);
 % bifurcation
 if returnTable
     bifurcationCoord = ...
-        table(bifurcationCoord,'RowNames', obj.names(treeIndices));
+        table(obj.names(treeIndices),bifurcationCoord,'VariableNames', ...
+        {'treeIndex','bifurcationCoord'});
 end
 end
 
