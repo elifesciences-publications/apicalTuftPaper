@@ -17,7 +17,7 @@ set(h,'Units','normalized', 'Position',[0.25 0.25 0.5 0.5]);
 set(h,'FontName','Arial')
 set(h,'FontSize',8)
 set(h,'Box','off')
-set(h,'LineWidth',0.75)
+set(h,'LineWidth',0.5)
 set(h,'TickDir','out')
 set(h,'XMinorTick',xtickMinor)
 set(h,'YMinorTick',ytickMinor)
