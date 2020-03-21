@@ -1,7 +1,10 @@
-% I think we reoported this in the reviewer response letter. The number we 
+% We reoported this in the reviewer response letter. The number we 
 % are calculating is the fraction of double-innervated postsynaptic spine 
-% targets of the inhibitory axons
+% targets of the inhibitory axons. Note that the spine targets of 
+% inhibitory axons were either single- or double-innervated. 
+
 util.clearAll
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 % Get the apicalSpecificity
