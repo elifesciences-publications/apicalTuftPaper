@@ -13,7 +13,12 @@ noiseLevel = 1.3;
 %% Get the apicalSpecificity
 apTuft= apicalTuft.getObjects('inhibitoryAxon');
 synRatio = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
-% Order is the following in spec variable:
+
+%% Write result table to excel sheet
+excelFileName = fullfile(util.dir.getExcelDir(3),'Fig3BD.xlsx');
+util.table.write(synRatio, excelFileName);
+
+%% Order is the following in spec variable:
 % 1. L2 specificity of L2-seeded axons, 2. L2 specificity of DL-seeded axon
 % 3. DL specificity of L2-seeded axons, 4. DL specificity of DL-seeded axon
 spec{1} = synRatio.Aggregate{1}.L2Apical;
@@ -39,3 +44,5 @@ yticks(0:0.1:0.7);
 set(ax,'XLim',[0.2 8.3],'Ylim',[0 .7])
 util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,...
     'Boxplot_ConditionalInnervationRatio.svg');
+
+%% TODO add the matrix plotting here
