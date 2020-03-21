@@ -149,7 +149,8 @@ classdef apicalTuft < skeleton
         [skel] = replaceCommentWithIdx...
             (skel,treeIndices,nodeIdx,rep, comment, repMode)
         [ branchNodes ] = getBranchNodesToDel( skel,tr,realTreeEndings);
-        [bifurcationCoord] = getBifurcationCoord(obj,treeIndices,toNM);
+        [bifurcationCoord] = getBifurcationCoord(obj,treeIndices,...
+            toNm, returnTable)
         [bifurcationComments] = getBifurcationIdx(obj,treeIndices);
         [obj] = convert2PiaCoord(obj,treeIndices);
         [objCommentsAdded,randomIdx] = synRandomSample...
