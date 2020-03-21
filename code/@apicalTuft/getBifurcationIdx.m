@@ -1,5 +1,6 @@
 function [bifurcationComments] = getBifurcationIdx(obj,treeIndices)
-%GETBIFURCATIONIDX Get the linear index of the main bifurcation
+% GETBIFURCATIONIDX Get the linear index of the node indicated as  main
+% bifurcation with comment string 'bifurcation'
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
