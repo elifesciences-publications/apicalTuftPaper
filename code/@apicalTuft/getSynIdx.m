@@ -1,4 +1,4 @@
-function [ synapseIdx] =getSynIdx( skel, treeIndices,verbose)
+function [synapseIdx] = getSynIdx(skel, treeIndices,verbose)
 % getSynIdx gets the synapse Ids based on the synapse
 % flags passsed to it. This is done by excluding the comments having the
 % exclusion flag
@@ -41,21 +41,22 @@ synapseIdx = {};
 skel.checkSeedUniqueness(treeIndices)
 
 for tr = treeIndices(:)'
-    % Get synapse Ids
+    % Get synapse Idx function
     getPartialComment = @(comment)skel.getNodesWithComment...
         (comment,tr,'partial');
-    
+    % Get the Idx to exclude
     exclude = cellfun(getPartialComment...
         ,skel.synExclusion,'UniformOutput',false);
     excludeIdx = util.convertCell2Array(exclude);
     synIdx = cellfun(getPartialComment...
         ,skel.syn,'UniformOutput',false);
     removeUnsure = @(synGroup)setdiff(synGroup,excludeIdx);
+    % remove synapses to exclude (unsure, seed synapse in axon annotations)
     thisTreeSyn = cellfun(removeUnsure,synIdx,...
         'UniformOutput',false);
     thisTreeSyn = cellfun(@(x) x(:),thisTreeSyn,'UniformOutput',false);
     
-    % Merge synapses from multiple comment string into 1
+    % Merge synapses from multiple comment strings into one synapse group 
     if ~isempty(skel.synGroups)
         IdsToDelete = [];
         for synGroup = 1:length(skel.synGroups)
@@ -69,7 +70,7 @@ for tr = treeIndices(:)'
         IdxToKeep = setdiff(1:length(thisTreeSyn),IdsToDelete);
     end
     
-    % Remove synapses from a mother string group which do not belong to it
+    % Deprecated: Remove synapses from a mother string group which do not belong to it
     if ~isempty(skel.synGroups2remove)
         for synGroup = 1:length(skel.synGroups2remove)
             curIds = cell2mat(skel.synGroups2remove{synGroup})';
@@ -85,10 +86,11 @@ for tr = treeIndices(:)'
             end
         end
     end
-    
+    % Keep the groups that are not merged into other groups
     thisTreeSynAdditionalGroupsDeleted = thisTreeSyn(IdxToKeep);
+    % Make sure groups don't overlap
     apicalTuft.pairwiseIntersection(thisTreeSynAdditionalGroupsDeleted);
-    %filename_treename_treeIndex
+    % Add row for current tree
     synapseIdx = [synapseIdx;[skel.getTreeIdentifier(tr),...
         thisTreeSynAdditionalGroupsDeleted]]; %#ok<*AGROW>
 end

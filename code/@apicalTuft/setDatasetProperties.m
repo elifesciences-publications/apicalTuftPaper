@@ -1,8 +1,9 @@
 function [obj] = setDatasetProperties(obj)
 % Adjust the dataset setting invloving the distance from pia and L1 border
 % location
-% Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
+% Author: Ali Karimi<ali.karimi@brain.mpg.de>
+% Used in: Figure 3C
 % correction(1,:)= distance from pia as dimPiaWM = 0 in microns, correction(2,:)=
 % multiply the coord with this, sets the increasing(positive) or decreasing
 % (negative) coordinate direction
@@ -10,6 +11,7 @@ function [obj] = setDatasetProperties(obj)
 % Not: distnace to pia was adjusted for each dataset to minimize the effect
 % of binning the data for Fig.3. 
 % rigid transformation to make the y axis equal to distance from soma
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 I = eye(3);

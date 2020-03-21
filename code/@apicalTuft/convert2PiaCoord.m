@@ -1,6 +1,7 @@
 function [obj] = convert2PiaCoord(obj,treeIndices)
-%CONVERT2PIACOORD This function converts the coordinates to rounded NM
-%values; In addition, the y axis corresponds to distance from pia
+% CONVERT2PIACOORD This function converts the coordinates to rounded NM
+% values; In addition, the y axis corresponds to distance from pia
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 % OUTPUT:
@@ -31,7 +32,9 @@ end
 % axes in NM
 obj.scale = [1,1,1];
 obj.datasetProperties.dimPiaWM = 2;
-
+    % Local function to convert the coordinates into a common system with
+    % Y-axis being equivalent to Pia-WM direction with Pia = 0. All coords
+    % also converted to nanometer using the scale property
     function coordCorrected = convertCoord(obj,coord)
         % Convert 2 nanometer
         coordInNM = ...

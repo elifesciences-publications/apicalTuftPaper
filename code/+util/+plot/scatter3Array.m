@@ -1,6 +1,8 @@
 function [] = scatter3Array(array,color)
-%SCATTER3ARRAY Summary of this function goes here
-%   Detailed explanation goes here
+% SCATTER3ARRAY Plot scatter plot of 3D points using the scatter3 matlab
+% function
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 if nargin<2
     color=[0,1,1];
 end
