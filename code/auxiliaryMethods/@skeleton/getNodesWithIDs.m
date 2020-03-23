@@ -1,5 +1,5 @@
 function [treeIdx, nodeIdx] = getNodesWithIDs(skel, ids, treeIndices)
-%Get the trees and linear node indices of nodes ids.
+% Get the trees and linear node indices of nodes ids.
 % INPUT ids: Integer vector of node IDs.
 %       treeIndices: (Optional) [Nx1] vector of linear indices
 %                of trees to check for.
