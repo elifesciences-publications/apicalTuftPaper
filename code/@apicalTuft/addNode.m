@@ -1,7 +1,7 @@
 function [obj, addedEdges]  = addNode(obj, tree_index, coords, ...
     connect_to_ID, varargin)
-% addNode 
-% difference with skeleton.addNode: This function addes the node to another 
+% addNode wrapper function for skeleton.addNode
+% difference: This function addes the node to another 
 % Node with specific ID
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 

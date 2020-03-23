@@ -1,4 +1,4 @@
-function bbox = getBbox(skel, treeIndices,positiveBounds)
+function bbox = getBbox(skel, treeIndices, positiveBounds)
 %GETBBOX Get the bounding box for the skeleton.
 % INPUT treeIndices: (Optional) [Nx1] int or logical
 %           Linear or logical indices of the trees of interest.
