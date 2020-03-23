@@ -1,4 +1,4 @@
-%% Figure 3d: 
+%% Fig. 3D: 
 % postsynaptic innervation fraction map for axons seeded from L2 and DL 
 % apical dendrites.
 

@@ -8,7 +8,7 @@
 % double-innervated spine of deep apical dendrite
 util.clearAll;
 skel = apicalTuft.getObjects('inhibitoryAxon');
-outputDir = fullfile(util.dir.getFig(3),'TheMultiInnervation');
+outputDir = fullfile(util.dir.getFig(3),'FG');
 util.mkdir(outputDir);
 %% Most important: find the number of targeting per target group
 % results dims: cell: dataset, array: number of syn on target,target

@@ -34,8 +34,6 @@ else
     error('problem with the crossing')
 end
 if ismember(limit2Choose, nodesAlongDim)
-    disp(['interpolation gives the same result as ',...
-        'one of the data points'])
     interpolatedNodeValid = false;
 end
 end
