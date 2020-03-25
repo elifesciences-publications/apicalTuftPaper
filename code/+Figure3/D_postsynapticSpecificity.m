@@ -15,8 +15,8 @@ synRatio = synRatio.Variables;
 
 %% Plot Fig. 3d
 fh = figure;ax = gca;
-x_width = 10;
-y_width = 7;
+x_width = 5.68499;
+y_width = 3.08503;
 % Plotting
 c = util.plot.getColors();
 hold on
@@ -26,7 +26,6 @@ util.plot.errorbarSpecificity(synRatio(:,5),[],...
 util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,'Fig3D.svg');
 
 %% Bootstrap test to compare L2 and DL innervation fraction
-
 TestResults = util.stat.bootStrapTest(synRatio{1,5},synRatio{2,5},false);
 writetable(TestResults,fullfile(outputDir,...
     'Fig3D_bootStrapTestResults.txt'));

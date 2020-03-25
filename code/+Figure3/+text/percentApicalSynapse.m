@@ -1,11 +1,11 @@
-
 % Numbers used in section: Preference of presynaptic axons for types of 
-% apical dendrites
-% Includes total, L2, DL AD innervation fractions for axons seeded from L2,
-% DL ADs
+% apical dendrites includes total, L2, DL AD innervation fractions for axons
+% seeded from L2, DL ADs
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 util.clearAll
-outputDir=fullfile(util.dir.getFig(3),'B','forText');
+outputDir=fullfile(util.dir.getFig(3),'C');
 util.mkdir(outputDir)
 
 %% Numbers averaged over axons
@@ -80,5 +80,3 @@ fprintf(fid, ['L2 syn number: ', num2str(l2SynNum),....
 fprintf(fid, ['Total fraction of synapses', ...
     num2str((l2SynNum+dlSynNum)./TotalSynNum),'\n']);
 fclose(fid);
-
-;

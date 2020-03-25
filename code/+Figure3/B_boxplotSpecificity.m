@@ -15,7 +15,7 @@ apTuft= apicalTuft.getObjects('inhibitoryAxon');
 synRatio = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
 
 %% Write result table to excel sheet
-excelFileName = fullfile(util.dir.getExcelDir(3),'Fig3BD.xlsx');
+excelFileName = fullfile(util.dir.getExcelDir(3),'Fig3BD_4BC.xlsx');
 util.table.write(synRatio, excelFileName);
 
 %% Order is the following in spec variable:
