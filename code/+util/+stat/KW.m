@@ -4,17 +4,17 @@ function [testResult] = KW(array,labels,mergeGroups,fname)
 % Merge groups specified
 if  ~exist('mergeGroups','var') || isempty(mergeGroups)
 else
-    for i=1:length(mergeGroups)
-        curIdx=mergeGroups{i};
-        array{curIdx(1)}=[array{curIdx(1)};array{curIdx(2)}];
-        labels(curIdx(2))=[];
-        array(curIdx(2))=[];
+    for i = 1:length(mergeGroups)
+        curIdx = mergeGroups{i};
+        array{curIdx(1)} = [array{curIdx(1)};array{curIdx(2)}];
+        labels(curIdx(2)) = [];
+        array(curIdx(2)) = [];
     end
 end
 if ~exist('fname','var') || isempty(fname)
-    writeResult=false;
+    writeResult = false;
 else
-    writeResult=true;
+    writeResult = true;
 end
 
 array = array(:)';

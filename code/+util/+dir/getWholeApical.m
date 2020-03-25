@@ -3,7 +3,7 @@ function [wholeApicalDir] = getWholeApical()
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-wholeApicalDir=fullfile(util.dir.getAnnotation,'wholeApical');
+wholeApicalDir = fullfile(util.dir.getAnnotation,'wholeApical');
 
 end
 

@@ -41,9 +41,9 @@ if isfield(bifur,'distance2soma')
     [~,index.inh,index.SomaLoc] = intersect(bifurCoordinates.inh,...
         bifurCoordinates.SomaLoc,'rows');
     % Correct the order of density/Ratios
-    variables=fieldnames(b);
-    for i=1:length(variables)
-        b.(variables{i})=b.(variables{i})(index.inh);
+    variables = fieldnames(b);
+    for i = 1:length(variables)
+        b.(variables{i}) = b.(variables{i})(index.inh);
     end
     % Get the distance to soma
     smallDatasetDistance2Soma = apicalTuft. ...
@@ -61,7 +61,7 @@ end
 % in smaller datasets
 variables = fieldnames(bifur);
 for i = 1:length(variables)
-    bifur.(variables{i}){1}=[bifur.(variables{i}){1};...
+    bifur.(variables{i}){1} = [bifur.(variables{i}){1};...
         b.(variables{i})];
 end
 

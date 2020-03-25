@@ -1,9 +1,9 @@
 function [] = checkTotalSynapseNumber(skel,MultiPerDataset,results)
 % check that the total number of synapse in the apical dendrite groups
 % match with what we get from syncount
-seedTag={'l2Idx','dlIdx'};
-for d=1:length(skel)
-    for seedT=1:2
+seedTag = {'l2Idx','dlIdx'};
+for d = 1:length(skel)
+    for seedT = 1:2
         trIndices = skel{d}.(seedTag{seedT});
         synCount = skel{d}.getSynCount(trIndices);
         curSynCountSum = sum(synCount{:,2:3});

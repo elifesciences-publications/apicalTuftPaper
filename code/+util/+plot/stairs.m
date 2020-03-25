@@ -3,8 +3,8 @@ function [] = stairs(stairLocations,Y,varargin)
 %that last data point when used as a histogram like in Fig 3
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-stairLocations=stairLocations(:)';
-stairLocations=[stairLocations, stairLocations(end)+...
+stairLocations = stairLocations(:)';
+stairLocations = [stairLocations, stairLocations(end)+...
     mean(diff(stairLocations(:)'))];
 stairs(stairLocations,[Y(:)',0],varargin{:});
 

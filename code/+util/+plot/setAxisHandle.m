@@ -22,7 +22,7 @@ set(h,'TickDir','out')
 set(h,'XMinorTick',xtickMinor)
 set(h,'YMinorTick',ytickMinor)
 % For doubleY axis as in yyaxis
-if length(h.YAxis)==2
+if length(h.YAxis) == 2
     yyaxis left
     set(h,'YMinorTick',ytickMinor)
     yyaxis right
@@ -35,9 +35,9 @@ if colorToBlack
     set(h,'XColor',[0 0 0])
     set(h,'YColor',[0 0 0])
     % For doubleY axis as in yyaxis
-    if length(h.YAxis)==2
-        h.YAxis(2).Color=[0,0,0];
-        h.YAxis(1).Color=[0,0,0];
+    if length(h.YAxis) == 2
+        h.YAxis(2).Color = [0,0,0];
+        h.YAxis(1).Color = [0,0,0];
     end
 end
 

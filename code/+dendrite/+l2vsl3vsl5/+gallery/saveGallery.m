@@ -4,12 +4,12 @@ function [] = saveGallery(apTuft,trIndices,...
 % Note: the annotation should be so that the Z-axis is the radial cortical
 % axis
     if p.correctionLowRes
-        apTuft=apTuft.correctionLowresLPtA;
+        apTuft = apTuft.correctionLowresLPtA;
     end
-fh=figure;ax=gca;
-for i=1:length(trIndices)
+fh = figure;ax = gca;
+for i = 1:length(trIndices)
     clf
-    tr=trIndices(i);
+    tr = trIndices(i);
     hold on
     apTuft.plot(tr,color,[],[],[],[],p.somaSize,[],p.RotMatrix);
     daspect([1,1,1]);
@@ -21,7 +21,7 @@ for i=1:length(trIndices)
     axis off;
     % Draw box around bifurcation
     if p.drawMainBifurcationBbox
-        bifurCenter=p.RotMatrix*[apTuft.getBifurcationCoord(tr)]';
+        bifurCenter = p.RotMatrix*[apTuft.getBifurcationCoord(tr)]';
         dendrite.l2vsl3vsl5.gallery.drawSquareAroundPoint(bifurCenter);
     end
     if p.plotHighResBorder

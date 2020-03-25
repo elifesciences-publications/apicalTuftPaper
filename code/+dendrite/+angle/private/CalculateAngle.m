@@ -3,14 +3,14 @@ function [ Angles ] = CalculateAngle( o, p, skeleton, tree, BranchPoints, Neighb
 
 %   for a given branch point p and prior point o this function
 %   computes the branching angle and appends it to the array Angles
-if bifurcationNode==p
-    keepAngle=true;
+if bifurcationNode == p
+    keepAngle = true;
 else
-    keepAngle=false;
+    keepAngle = false;
 end
 [ xscale, yscale, zscale ] = getscales( skeleton );
 radius = 2;       % set the radius of the sphere here
-nod=[];
+nod = [];
 BranchPoint = p;
 ThisBranchPointNeighbours = Neighbours{ismember(BranchPoints, p)};
 [~, IndexWithouto] = setdiff(ThisBranchPointNeighbours(:,1),[o, p]);

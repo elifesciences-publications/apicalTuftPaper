@@ -5,10 +5,10 @@
 % .ply files and this is unnecessary.
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-dataset={'ppc','s1'};
-for datasetIdx=1:2
-    thisdataset=dataset{datasetIdx};
-    param=surface.configIsoSurface(thisdataset);
+dataset = {'ppc','s1'};
+for datasetIdx = 1:2
+    thisdataset = dataset{datasetIdx};
+    param = surface.configIsoSurface(thisdataset);
     surface.genIsosurface.fromMergerMode...
         ( param.(thisdataset).p,param.(thisdataset).MergerNml,...
         param.(thisdataset).bifurcationCenter,...

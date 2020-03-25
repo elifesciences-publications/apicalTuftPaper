@@ -8,30 +8,30 @@ if ~exist('markers','var') || isempty(markers)
     markers = repmat({'x'},size(array));
 end
 if ~exist('crossSize','var') || isempty(crossSize)
-    crossSize=36;
+    crossSize = 36;
 end
 if ~exist('fname','var') || isempty(fname)
-    write2file=false;
-    fname=[];
+    write2file = false;
+    fname = [];
 else
-    write2file=true;
+    write2file = true;
 end
 % Remove empty cell array entries
-nonEmpty=~cellfun(@isempty,array);
-array=array(nonEmpty);
-colors=colors(nonEmpty);
-markers=markers(nonEmpty);
+nonEmpty = ~cellfun(@isempty,array);
+array = array(nonEmpty);
+colors = colors(nonEmpty);
+markers = markers(nonEmpty);
 % Merge all the cell array elements for the correlation plot
-totalX=[];totalY=[];
+totalX = [];totalY = [];
 hold on
-for d=1:length(array)
-    curX=array{d}(:,1);
-    curY=array{d}(:,2);
+for d = 1:length(array)
+    curX = array{d}(:,1);
+    curY = array{d}(:,2);
     scatter(curX,curY,crossSize,colors{d},markers{d});
-    totalX=[totalX;curX];
-    totalY=[totalY;curY];
+    totalX = [totalX;curX];
+    totalY = [totalY;curY];
 end
-modelUnity=@(x) x;
+modelUnity = @(x) x;
 out = util.stat.correlationStatFileWriter(totalX,totalY,fname,modelUnity);
 
 end

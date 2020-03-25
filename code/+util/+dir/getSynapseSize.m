@@ -3,7 +3,7 @@ function [synapseSizeComparisonDir] = getSynapseSize()
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-synapseSizeComparisonDir=fullfile(util.dir.getAnnotation,'synapseSize');
+synapseSizeComparisonDir = fullfile(util.dir.getAnnotation,'synapseSize');
 
 end
 

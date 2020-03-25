@@ -17,14 +17,14 @@ somaDepth = cell(size(treeIndices));
 for cellT = 1:length(treeIndices)
     curTr = treeIndices{cellT};
     curNodes = skel.getNodesWithComment('soma',curTr,'insensitive');
-    assert(length(curNodes)==length(curTr));
+    assert(length(curNodes) == length(curTr));
     curSomaCoords = skel.getNodes(curTr,curNodes);
     % convert to NM for plotting and distance to pia measurement and make
     % the first dimension XYZ
     curSomaCoordsInNM = round(curSomaCoords.*skel.scale)';
     % Measurement of distance to pia
     if measureRel2Pia
-        somaDepth{cellT}=...
+        somaDepth{cellT} = ...
             dendrite.L5A.somaDepth.dist2plane...
             (l1.fitSurfaceNM,curSomaCoordsInNM)./1000;
     else

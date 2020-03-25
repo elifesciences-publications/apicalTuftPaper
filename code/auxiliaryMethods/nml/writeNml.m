@@ -218,7 +218,7 @@ for kl_thingC = 1 : numel( ksw_skeleton)
         
         ksw_nodeList = ksw_skeleton{kl_thingC}.nodesNumDataAll;
         
-        if any(any(round(ksw_nodeList(:,3:5))~=ksw_nodeList(:,3:5)))
+        if any(any(round(ksw_nodeList(:,3:5)) ~= ksw_nodeList(:,3:5)))
             ksw_nodeList(:,3:5) = round(ksw_nodeList(:,3:5));
             warning('Coordinate list of skeleton %d was not in whole numbers. Values were rounded!',kl_thingC)
         end
@@ -267,7 +267,7 @@ for kl_thingC = 1 : numel( ksw_skeleton)
         
         ksw_nodeList = ksw_skeleton{kl_thingC}.nodes;
         
-        if any(any(round(ksw_nodeList(:,1:3))~=ksw_nodeList(:,1:3)))
+        if any(any(round(ksw_nodeList(:,1:3)) ~= ksw_nodeList(:,1:3)))
             ksw_nodeList(:,1:3) = round(ksw_nodeList(:,1:3));
             warning('Coordinate list of skeleton %d was not in whole numbers. Values were rounded!',kl_thingC)
         end

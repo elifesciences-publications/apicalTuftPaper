@@ -3,7 +3,7 @@ function [inhibitoryAxonDir] = getInhibitoryAxon()
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-inhibitoryAxonDir=fullfile(util.dir.getAnnotation,'inihibitoryAxon');
+inhibitoryAxonDir = fullfile(util.dir.getAnnotation,'inihibitoryAxon');
 
 end
 

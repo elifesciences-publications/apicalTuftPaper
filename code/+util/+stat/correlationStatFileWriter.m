@@ -3,12 +3,12 @@ function [out] = correlationStatFileWriter(X,Y,...
 %CORRELATIONSTATFILEWRITER Writes the correlation coefficient and R squared
 %for the X and Y
 if ~exist('model','var') || isempty(model)
-    model=@(x) x;
+    model = @(x) x;
 end
 if ~exist('fname','var') || isempty(fname)
-    write2file=false;
+    write2file = false;
 else
-    write2file=true;
+    write2file = true;
 end
 [out.Rho,out.pval] = corr(X,Y);
 out.Rsquared = util.stat.coeffDetermination(model, [X,Y],2);

@@ -5,17 +5,17 @@ function [diameter] = getSomaSize(skel,treeNames)
 
 diameter = table(zeros(size(treeNames(:))),...
     'RowNames',treeNames, 'VariableNames',{'somaDiameter'});
-for i=1:length(treeNames)
-    curTreeNames=...
+for i = 1:length(treeNames)
+    curTreeNames = ...
         arrayfun(@(x)  sprintf([treeNames{i},'_%0.2u'],x),1:3,...
         'UniformOutput',false);
     % Get all the diameters for a tree
-    curDiameter=...
+    curDiameter = ...
         skel.pathLength(skel.getTreeWithName(curTreeNames))./1000;
     assert (length(curDiameter) == 3);
     % Get the diameter of sphere with equal volume to the ellipsoid
     curAvgDiameter= nthroot(prod(curDiameter),3);
-    diameter{i,1}=curAvgDiameter;
+    diameter{i,1} = curAvgDiameter;
     
 end
 end

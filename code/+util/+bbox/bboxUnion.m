@@ -2,17 +2,17 @@ function [unionBbox] = bboxUnion...
     (bboxArray,minSideOne)
 %BBOXUNION The largest bbox encompassing all bounding boxes
 if  ~exist('minSideOne','var') || isempty(minSideOne)
-    minSideOne=false;
+    minSideOne = false;
 end
 if isstruct(bboxArray)
     % Specific for fixing the bounding boxes of ceonnected component output
-    bboxArray=struct2cell(bboxArray);
-    bboxArray=cellfun(@(x) reshape(x',3,2),bboxArray,...
+    bboxArray = struct2cell(bboxArray);
+    bboxArray = cellfun(@(x) reshape(x',3,2),bboxArray,...
         'UniformOutput',false);
-    bboxArray=cellfun(@(x) [ceil(x(:,1)) floor(x(:,1)+x(:,2))],...
+    bboxArray = cellfun(@(x) [ceil(x(:,1)) floor(x(:,1)+x(:,2))],...
         bboxArray,'UniformOutput',false);
 end
-bboxArray=cat(1,bboxArray{:});
+bboxArray = cat(1,bboxArray{:});
 assert(all(bboxArray(:)>0),'Bboxes have negative nodes');
 
 if minSideOne

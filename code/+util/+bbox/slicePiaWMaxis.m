@@ -6,8 +6,8 @@ if ~exist('sliceThickness','var') || isempty(sliceThickness)
     sliceThickness = 20000;
 end
 assert(...
-    all(cellfun(@(x) x.datasetProperties.dimPiaWM==2,tuftArray)));
-dimPiaWM=2;
+    all(cellfun(@(x) x.datasetProperties.dimPiaWM == 2,tuftArray)));
+dimPiaWM = 2;
 % max+100 along the pia WM direction
 bboxesOfDatasets = cellfun(@(x) x.getBbox([],false), tuftArray,...
     'UniformOutput',false);

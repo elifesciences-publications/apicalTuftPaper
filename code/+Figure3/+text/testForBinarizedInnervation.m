@@ -1,6 +1,6 @@
 util.clearAll;
-skel=apicalTuft.getObjects('inhibitoryAxon');
-outputDir=fullfile(util.dir.getFig(3),'FG');
+skel = apicalTuft.getObjects('inhibitoryAxon');
+outputDir = fullfile(util.dir.getFig(3),'FG');
 util.mkdir(outputDir);
 
 %% Most important: find the number of targeting per target group
@@ -10,7 +10,7 @@ targetCount = cell(4,1);
 seedType = {'l2Idx','dlIdx'};
 MultiPerDataset = cellfun(@axon.multipleTargeting.extractMultipleTargeting, ...
     skel,'UniformOutput',false);
-for d=1:length(skel)
+for d = 1:length(skel)
     for s = 1:2
         curTotal = [sum(MultiPerDataset{d}{skel{d}.(seedType{s}),'L2Apical'},2)+...
             sum(MultiPerDataset{d}{skel{d}.(seedType{s}),'DeepApical'},2)];
@@ -18,7 +18,7 @@ for d=1:length(skel)
         curDL = sum(MultiPerDataset{d}{skel{d}.(seedType{s}),'DeepApical'},2);
         targetCount{d,s} = [curL2 ./ curTotal,curDL ./ curTotal];
         curSum = sum(targetCount{d,s},2);
-        assert(all(curSum(~isnan(curSum))==1))
+        assert(all(curSum(~isnan(curSum)) == 1))
     end
 end
 

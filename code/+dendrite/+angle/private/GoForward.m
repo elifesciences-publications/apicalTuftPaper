@@ -6,7 +6,7 @@ function [ o_new, p_new, NodesTaken_new ] = GoForward( o, p, skeleton, tree, Nod
 %   skeleton is a skeleton type structure
 %   tree is the tree id you are currently analysing 
 
-[row, col] = find(skeleton.edges{tree}==p);
+[row, col] = find(skeleton.edges{tree} == p);
 othercol = FindOppositeCol(col);
     for k = 1:length(row)
         if o ~= skeleton.edges{tree}(row(k),othercol(k))

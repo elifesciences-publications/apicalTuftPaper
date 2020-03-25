@@ -7,9 +7,9 @@ cellTypeRatios = skel.applyMethod2ObjectArray({skel},...
 cellTypeDensity = skel.applyMethod2ObjectArray({skel},...
     'getSynDensityPerType',[],false,'mapping');
 % Remove empty cell type groups
-index=~cellfun(@isempty,cellTypeRatios.Variables);
-cellTypeRatios=cellTypeRatios(index,:);
-cellTypeDensity=cellTypeDensity(index,:);
+index = ~cellfun(@isempty,cellTypeRatios.Variables);
+cellTypeRatios = cellTypeRatios(index,:);
+cellTypeDensity = cellTypeDensity(index,:);
 
 % Create cell arrays used for plotting
 out.shaftRatio = cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...

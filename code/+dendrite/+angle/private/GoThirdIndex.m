@@ -5,7 +5,7 @@ function [ o_new, p_new, NodesTaken_new ] = GoThirdIndex( o, p, skeleton, tree, 
 %   skeleton is a skeleton type structure
 %   tree is the tree id you are currently analysing 
 
-[row, col] = find(skeleton.edges{tree}==p);
+[row, col] = find(skeleton.edges{tree} == p);
 othercol = FindOppositeCol(col);
 counter = 0;
 

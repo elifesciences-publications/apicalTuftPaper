@@ -2,18 +2,18 @@ function [] = saveGallery_PPC2(apTuft,trIndices,...
     color)
 % SAVEGALLERY This function prints the gallery of full dendrite annotations
 % within the PPC2 dataset
-Zdepth.L1=165000;
-Zdepth.Pia=-22500;
-ylims=[-3e5,0.5e5];
-somaSize=1.5e4;
-outputDir=fullfile(util.dir.getFig(3),'Gallery_fullApicals_PPC2');
-fh=figure;ax=gca;x_width=10;y_width=20;
-RotMatrix=dendrite.l2vsl3vsl5.gallery. ...
+Zdepth.L1 = 165000;
+Zdepth.Pia = -22500;
+ylims = [-3e5,0.5e5];
+somaSize = 1.5e4;
+outputDir = fullfile(util.dir.getFig(3),'Gallery_fullApicals_PPC2');
+fh = figure;ax = gca;x_width = 10;y_width = 20;
+RotMatrix = dendrite.l2vsl3vsl5.gallery. ...
     getRotationMatrixPPC2('l1');
 
-for i=1:length(trIndices)
+for i = 1:length(trIndices)
     clf
-    tr=trIndices(i);
+    tr = trIndices(i);
     hold on
     apTuft.plot(tr,color,[],[],[],[],somaSize,[],RotMatrix);
     daspect([1,1,1]);

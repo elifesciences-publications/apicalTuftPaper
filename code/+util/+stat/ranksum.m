@@ -4,21 +4,21 @@ function [testResult] = ranksum(array1,array2,fname)
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('fname','var') || isempty(fname)
-    writeResult=false;
+    writeResult = false;
 else
-    writeResult=true;
+    writeResult = true;
 end
-[testResult.p,testResult.h,~]=ranksum(array1,array2);
-testResult.mean(1)=mean(array1);
-testResult.mean(2)=mean(array2);
-testResult.ratio1over2=mean(array1)./mean(array2);
-testResult.ratio2over1=mean(array2)./mean(array1);
-testResult.percent1over2=(mean(array1)./mean(array2))*100;
-testResult.percent2over1=(mean(array2)./mean(array1))*100;
-testResult.sem(1)=util.stat.sem(array1);
-testResult.sem(2)=util.stat.sem(array2);
-testResult.string=sprintf(...
-    'Wilcoxon ranksum - H=%f - P=%d \nMeans: %f, %f \nSEM: %f, %f\n',...
+[testResult.p,testResult.h,~] = ranksum(array1,array2);
+testResult.mean(1) = mean(array1);
+testResult.mean(2) = mean(array2);
+testResult.ratio1over2 = mean(array1)./mean(array2);
+testResult.ratio2over1 = mean(array2)./mean(array1);
+testResult.percent1over2 = (mean(array1)./mean(array2))*100;
+testResult.percent2over1 = (mean(array2)./mean(array1))*100;
+testResult.sem(1) = util.stat.sem(array1);
+testResult.sem(2) = util.stat.sem(array2);
+testResult.string = sprintf(...
+    'Wilcoxon ranksum - H = %f - P = %d \nMeans: %f, %f \nSEM: %f, %f\n',...
     testResult.h,testResult.p,testResult.mean, testResult.sem);
 testResult.N1= length(array1);
 testResult.N2 = length(array2);

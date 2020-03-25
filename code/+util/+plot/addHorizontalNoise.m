@@ -10,11 +10,11 @@ function [dataWithHorizontalNoise] = addHorizontalNoise(data,horizontalLocation,
 %       location
 %Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if nargin<3
-    noiseLevel=0.4;
+    noiseLevel = 0.4;
 end
-data=data(:);
-noiselessLocation=repmat(horizontalLocation,length(data),1);
-noisyLocation=noiselessLocation+(rand(size(noiselessLocation))-0.5)*noiseLevel;
-dataWithHorizontalNoise=cat(2,noisyLocation,data)';
+data = data(:);
+noiselessLocation = repmat(horizontalLocation,length(data),1);
+noisyLocation = noiselessLocation+(rand(size(noiselessLocation))-0.5)*noiseLevel;
+dataWithHorizontalNoise = cat(2,noisyLocation,data)';
 end
 

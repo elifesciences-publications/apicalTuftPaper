@@ -6,20 +6,20 @@
 % and then uses bootstrap sampling from that MLE to get a estimate of variab
 % Get the axonal counts
 util.clearAll;
-outputDir=fullfile(util.dir.getFig(2),'A');
+outputDir = fullfile(util.dir.getFig(2),'A');
 util.mkdir(outputDir);
-count=axon.modelFit.getSynapseCountInh;
+count = axon.modelFit.getSynapseCountInh;
 
-apTuft=apicalTuft.getObjects('inhibitoryAxon');
-synCount=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynCount');
-count.layer2=synCount{1,5}{1}{:,2:end};
-count.deep=synCount{2,5}{1}{:,2:end};
+apTuft = apicalTuft.getObjects('inhibitoryAxon');
+synCount = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynCount');
+count.layer2 = synCount{1,5}{1}{:,2:end};
+count.deep = synCount{2,5}{1}{:,2:end};
 %% multinomial MLE = fractions
-sumOverAxons.layer2=sum(count.layer2,1);
-sumOverAxons.deep=sum(count.deep,1);
-mleP.layer2=sumOverAxons.layer2./sum(sumOverAxons.layer2);
-mleP.deep=sumOverAxons.deep./sum(sumOverAxons.deep);
-probabilityMatrixForApicals=[mleP.layer2(1:2);mleP.deep(1:2)];
+sumOverAxons.layer2 = sum(count.layer2,1);
+sumOverAxons.deep = sum(count.deep,1);
+mleP.layer2 = sumOverAxons.layer2./sum(sumOverAxons.layer2);
+mleP.deep = sumOverAxons.deep./sum(sumOverAxons.deep);
+probabilityMatrixForApicals = [mleP.layer2(1:2);mleP.deep(1:2)];
 
 % Plot probability matrix
 util.plot.probabilityMatrix(probabilityMatrixForApicals,...
@@ -27,21 +27,21 @@ fullfile(outputDir,'multinomialFit.svg'))
 
 
 %% Getting the error bars for MLE estimation
-numberOfSamples=10000;
-bootStrapSampleL2=mnrnd(sum(sumLayer2),mle.layer2,numberOfSamples);
-mleBootStrapL2=bootStrapSampleL2./sum(bootStrapSampleL2,2);
-meansL2=mean(mleBootStrapL2,1);
-errorL2=diff(prctile(mleBootStrapL2,[0.05 0.95],1),1)./2;
+numberOfSamples = 10000;
+bootStrapSampleL2 = mnrnd(sum(sumLayer2),mle.layer2,numberOfSamples);
+mleBootStrapL2 = bootStrapSampleL2./sum(bootStrapSampleL2,2);
+meansL2 = mean(mleBootStrapL2,1);
+errorL2 = diff(prctile(mleBootStrapL2,[0.05 0.95],1),1)./2;
 
-bootStrapSampleDL=mnrnd(sum(sumDeep),mle.deep,numberOfSamples);
-mleBootStrapDL=bootStrapSampleDL./sum(bootStrapSampleDL,2);
-meansDL=mean(mleBootStrapDL,1);
-errorDL=diff(prctile(mleBootStrapDL,[0.05 0.95],1),1)./2;
+bootStrapSampleDL = mnrnd(sum(sumDeep),mle.deep,numberOfSamples);
+mleBootStrapDL = bootStrapSampleDL./sum(bootStrapSampleDL,2);
+meansDL = mean(mleBootStrapDL,1);
+errorDL = diff(prctile(mleBootStrapDL,[0.05 0.95],1),1)./2;
 
 
-fh=figure;ax=gca;
-x_width=20;
-y_width=20;
+fh = figure;ax = gca;
+x_width = 20;
+y_width = 20;
 hold on
 errorbar(meansL2,errorL2,'Color',l2color);
 errorbar(meansDL,errorDL,'Color',dlcolor);

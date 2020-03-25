@@ -69,7 +69,7 @@ for i = 1:length(treeIndices)
     nodesIdx{i} = find(cellfun(modeFun, commentCell))';
 
     % take only nodes of given degree
-    toDel = nodesDegrees{i}(nodesIdx{i})~=degree;
+    toDel = nodesDegrees{i}(nodesIdx{i}) ~= degree;
     nodesIdx{i}(toDel) = [];
 
 end

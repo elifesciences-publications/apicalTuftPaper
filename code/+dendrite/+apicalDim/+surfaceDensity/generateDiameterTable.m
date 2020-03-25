@@ -8,7 +8,7 @@ function [results] = generateDiameterTable...
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
-anotType={'bifur','l235'};
+anotType = {'bifur','l235'};
 % correct the L5A synapse count and create an uncorrected variable for
 % this surface densities
 
@@ -19,14 +19,14 @@ axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
 L5stswitchFraction = ...
     {axonSwitchFraction.L2{'L5A',:},{},...
     axonSwitchFraction.L1{'layer5AApicalDendriteSeeded',:}};
-for i=1:2
+for i = 1:2
     % Use thisT for the sizes and initializing the result
     thisT = dim.(anotType{i});
     results.(anotType{i}) = cell2table(cell(size(thisT)),...
         'VariableNames',thisT.Properties.VariableNames,'RowNames',...
         thisT.Properties.RowNames);
     % Annotated over cell type and region
-    for d=1:width(thisT)
+    for d = 1:width(thisT)
         for cellType = 1:height(thisT)
             
             % Avoid empty entries in the table

@@ -64,12 +64,12 @@ if ~isempty(dupIdx)
         optIn.color{curXLoc} = [repmat(optIn.color{curXLoc},lengthOriginal,1);...
             repmat(optIn.color{curDup},lengthDup,1)];
     end
-    array(dupIdx)=[];
-    optIn.color(dupIdx)=[];
-    xLocation(dupIdx)=[];
+    array(dupIdx) = [];
+    optIn.color(dupIdx) = [];
+    xLocation(dupIdx) = [];
 end
 %% Add noisy x for scatter plot
-arrayWithNoisyX=cellfun(@(array,position)util.plot.addHorizontalNoise...
+arrayWithNoisyX = cellfun(@(array,position)util.plot.addHorizontalNoise...
     (array,position,optIn.boxWidth-0.1),...
     array(:),xLocation,'UniformOutput',false);
 

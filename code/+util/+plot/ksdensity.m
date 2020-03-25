@@ -1,7 +1,7 @@
 function [] = ksdensity(data,color,bandwidth,bounds)
 %KSDENSITY Plot the ksdensity
 if ~exist('bandwidth','var') || isempty(bandwidth)
-    bandwidth=[];
+    bandwidth = [];
 end
 if ~exist('bounds','var') || isempty(bounds)
     allData = cat(1,data{:});
@@ -15,7 +15,7 @@ if ~iscell(color)
 end
 range = diff(bounds);
 hold on
-for i=1:length(data)
+for i = 1:length(data)
     curData = data{i};
     % The data should be contained within the Support range so we have to add
     % 1e-5 to the bounds to make sure they contain the data

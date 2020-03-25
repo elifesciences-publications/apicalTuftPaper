@@ -9,7 +9,7 @@ function [variablesForPlot] = rearrangeArrayForPlot(results,...
 
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
-aggregateDatasetResults=false;
+aggregateDatasetResults = false;
 if  ~exist('layerOriginOrDataset','var') || isempty(layerOriginOrDataset)
     layerOriginOrDataset = results.Properties.VariableNames;
 else

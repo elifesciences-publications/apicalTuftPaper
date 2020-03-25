@@ -11,7 +11,7 @@ function G=showNetwork(obj,tree_index)
                 disp('circle found');
                 continue;
             end
-            if i~=referer
+            if i ~= referer
                 networkwalker(i,depth+1, node);
             end
         end

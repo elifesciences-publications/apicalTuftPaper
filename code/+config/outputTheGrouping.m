@@ -21,7 +21,7 @@ for i = 1:length(prop.synGroups)
 end
 % Get single groups
 allGrouped = cat(1,groupedStrings{:});
-assert(length(unique(allGrouped))==length(allGrouped),'Non-unique strings');
+assert(length(unique(allGrouped)) == length(allGrouped),'Non-unique strings');
 singleSynapticGroups = setdiff(prop.syn,allGrouped,'stable');
 % combine
 groupedStrings = [groupedStrings;singleSynapticGroups];
@@ -36,7 +36,7 @@ minIdxGroup = cellfun(@(x) min(cell2mat(x)),prop.synGroups);
 allGroupIdx = cellfun(@cell2mat,prop.synGroups,'uni',0);
 singleIdx = setdiff([1:length(prop.syn)]',cat(1,allGroupIdx{:}),'stable');
 allIdx = [minIdxGroup;singleIdx];
-[~,synapseStringOrder]=sort(allIdx);
+[~,synapseStringOrder] = sort(allIdx);
 
 groupedStrings = table(groupedStrings(synapseStringOrder), ...
     'VariableNames', {'TheSynapseGroups'}, ...

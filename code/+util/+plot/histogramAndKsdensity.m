@@ -2,12 +2,12 @@ function histogramAndKsdensity(data,color,ylimitsKS)
 % Function used for plotting the histogram and KernelDensity for figure 1H
 
 if ~exist('ylimitsKS','var') || isempty(ylimitsKS)
-    ylimitsKS=[0,15];
+    ylimitsKS = [0,15];
 end
 hold on
-ax=gca;
+ax = gca;
 yyaxis(ax,'left');
-ax.YColor=[0,0,0];
+ax.YColor = [0,0,0];
 histogram(data,...
     0:0.1:1,'FaceColor',[1,1,1],'FaceAlpha',0,'EdgeColor',color);
 yyaxis(ax,'right')

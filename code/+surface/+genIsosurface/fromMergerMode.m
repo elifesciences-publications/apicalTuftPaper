@@ -10,51 +10,51 @@ function fromMergerMode( param,nmlMergerModeName,...
 %           files
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 %           Alessandro Motta <Alessandro.motta@brain.mpg.de>
-skel=skeleton(nmlMergerModeName);
+skel = skeleton(nmlMergerModeName);
 % Load segIds from output Directory or acquire them if necessary
 if ~exist(fullfile(outputDirectory,'segIds.mat'),'file')
-    segIds=Skeleton.getSegmentIdsOfSkel(param,skel);
+    segIds = Skeleton.getSegmentIdsOfSkel(param,skel);
     save(fullfile(outputDirectory,'segIds.mat'),'segIds')
 else
     disp('load segIds from matfile...')
     load(fullfile(outputDirectory,'segIds.mat'))
 end
 if ~exist ('reduceFactor','var') || isempty(reduceFactor)
-    reduceFactor=1;
+    reduceFactor = 1;
 end
 % Bounding boxes from tracings
-bboxFromTracingFunc=@(center)util.getBoxFromCenSize(center,20,...
+bboxFromTracingFunc = @(center)util.getBoxFromCenSize(center,20,...
     param.raw.voxelSize).matlab;
-bboxesFromTracing=cellfun(bboxFromTracingFunc,bifurcationSite,...
+bboxesFromTracing = cellfun(bboxFromTracingFunc,bifurcationSite,...
     'UniformOutput',false);
 try
     % Get bounding boxes that should be loaded from all datasets
     % bounding boxes from mergermode tracings
-    allBboxes=Seg.Global.getSegToBoxMap(param);
-    func=@(segIds)Seg.Global.getSegIdListBbox(param,segIds,allBboxes);
-    boxPerTreeSeg=cellfun(func,segIds,'UniformOutput',false);
+    allBboxes = Seg.Global.getSegToBoxMap(param);
+    func = @(segIds)Seg.Global.getSegIdListBbox(param,segIds,allBboxes);
+    boxPerTreeSeg = cellfun(func,segIds,'UniformOutput',false);
 catch
     disp('Error in getting bboxes from the segmentIds')
-    boxPerTreeSeg=bboxesFromTracing';
+    boxPerTreeSeg = bboxesFromTracing';
 end
 % Intersection of the two to get the intersection bounding box
-intersectsBbox=cellfun(@util.bbox.intersectBbox,bboxesFromTracing',...
+intersectsBbox = cellfun(@util.bbox.intersectBbox,bboxesFromTracing',...
     boxPerTreeSeg,'UniformOutput',false);
 
 % Load the segmentation data, Alessandro snippet:
 
-for tr=1:skel.numTrees
+for tr = 1:skel.numTrees
     util.mkdir(fullfile(outputDirectory,skel.names{tr}));
     % create the binary file
-    segData=loadSegDataGlobal(param.seg,intersectsBbox{tr});
-    segDataBin=ismember(segData,segIds{tr});
+    segData = loadSegDataGlobal(param.seg,intersectsBbox{tr});
+    segDataBin = ismember(segData,segIds{tr});
     clear segData
     % smooth size and std from sahil
-    smoothingFunc=@(vol) smooth3(vol,'gaussian',9,8);
-    segDataSmooth=smoothingFunc(segDataBin);
+    smoothingFunc = @(vol) smooth3(vol,'gaussian',9,8);
+    segDataSmooth = smoothingFunc(segDataBin);
     clear segDataBin
     %create the isosurface
-    isoSurf=isosurface(segDataSmooth,0.2);
+    isoSurf = isosurface(segDataSmooth,0.2);
     
     % fix order of coordinates
     % dammit MATLAB!

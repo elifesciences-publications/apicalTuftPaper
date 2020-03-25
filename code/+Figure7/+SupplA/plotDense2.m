@@ -1,10 +1,10 @@
-function h=plotDense2(Dataset)
+function h = plotDense2(Dataset)
 % Author: Jan Odenthal <jan.odenthal@brain.mpg.de>
 %L2
-allTrees=Dataset.groupingVariable.layer2ApicalDendrite_mapping{1};
+allTrees = Dataset.groupingVariable.layer2ApicalDendrite_mapping{1};
 figure();
 hold on
-    for tr=allTrees'
+    for tr = allTrees'
         Figure7.SupplA.plotStretched(Dataset, tr, 'L2', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)
@@ -20,10 +20,10 @@ hold on
 hold off 
 
 %L3
-allTrees=Dataset.groupingVariable.layer3ApicalDendrite_mapping{1};
+allTrees = Dataset.groupingVariable.layer3ApicalDendrite_mapping{1};
 figure();
 hold on
-    for tr=allTrees'
+    for tr = allTrees'
          Figure7.SupplA.plotStretched(Dataset, tr, 'L3', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)
@@ -39,10 +39,10 @@ hold on
 hold off 
 
 %L5
-allTrees=Dataset.groupingVariable.layer5ApicalDendrite_mapping{1};
+allTrees = Dataset.groupingVariable.layer5ApicalDendrite_mapping{1};
 figure();
 hold on
-    for tr=allTrees'
+    for tr = allTrees'
         Figure7.SupplA.plotStretched(Dataset, tr, 'L5', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)

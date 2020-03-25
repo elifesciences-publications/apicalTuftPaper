@@ -26,7 +26,7 @@ while 1
             if~BranchPointsTaken(checkBranchPoints,2)
                ThisBranchPointsNeighbours = Neighbours{ismember(BranchPoints, ...
                BranchPointsTaken(checkBranchPoints,1))}(2:4,1);
-               for i=1:length(NodesTaken)
+               for i = 1:length(NodesTaken)
                    if ~isempty(intersect(NodesTaken(i),ThisBranchPointsNeighbours))
                       First = NodesTaken(i);
                       break

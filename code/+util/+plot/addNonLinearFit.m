@@ -13,22 +13,22 @@ if ~exist('beta0','var') || isempty(beta0)
     beta0 = [];
 end
 if ~exist('fname','var') || isempty(fname)
-    write2file=false;
+    write2file = false;
 else
-    write2file=true;
+    write2file = true;
 end
 if ~exist('tickFormat','var') || isempty(tickFormat)
     tickFormat = '-';
 end
-allX=[];allY=[];
+allX = [];allY = [];
 % Get data in vector form
-for d=1:length(array)
-    allX=[allX;array{d}(:,1)];
-    allY=[allY;array{d}(:,2)];
+for d = 1:length(array)
+    allX = [allX;array{d}(:,1)];
+    allY = [allY;array{d}(:,2)];
 end
 
 % Linear model fitting
-nLM=fitnlm(allX,allY,model,beta0);
+nLM = fitnlm(allX,allY,model,beta0);
 p = nLM.Coefficients.Estimate;
 if write2file
     fid = fopen(fname,'a');
@@ -44,7 +44,7 @@ if write2file
     fclose(fid);
 end
 if plotLine
-    lineX=linspace(min(allX),max(allX));
+    lineX = linspace(min(allX),max(allX));
     plot(lineX,nLM.feval(lineX),tickFormat,'Color','k');
 end
 end

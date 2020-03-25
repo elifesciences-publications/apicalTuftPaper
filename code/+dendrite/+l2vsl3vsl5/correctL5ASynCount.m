@@ -7,10 +7,10 @@ function [synInfo] = correctL5ASynCount(synInfo,...
 % synapses are very low
 
 
-variables={'Shaft_Count','Spine_Count'};
-totalRawSynNumber=sum(synInfo{:,variables},2);
+variables = {'Shaft_Count','Spine_Count'};
+totalRawSynNumber = sum(synInfo{:,variables},2);
 
-switchCount=synInfo{:,variables}.*switchCorrectionFactor;
+switchCount = synInfo{:,variables}.*switchCorrectionFactor;
 % the count of switched spine synapses is moved to the shaft group
 % and vice versa
 synInfo{:,variables} = synInfo{:,variables}-switchCount+...

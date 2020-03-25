@@ -3,18 +3,18 @@ function [] = fromVolumeTracing(p,...
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist ('reduceFactor','var') || isempty(reduceFactor)
-    reduceFactor=1;
+    reduceFactor = 1;
 end
 
-processData.flag=true;
-for tr=1:length(p.treeNames)
+processData.flag = true;
+for tr = 1:length(p.treeNames)
     % Read the data
-    processData.cellID=tr;
-    segDataSmooth=surface.genIsosurface.readVolume(p.volAnnotationDir,...
+    processData.cellID = tr;
+    segDataSmooth = surface.genIsosurface.readVolume(p.volAnnotationDir,...
         p.volAnnotationName,p.bbox{tr}, processData);
 
     % create the isosurface
-    isoSurf=isosurface(segDataSmooth,0.2);
+    isoSurf = isosurface(segDataSmooth,0.2);
     
     % fix order of coordinates
     % dammit MATLAB!

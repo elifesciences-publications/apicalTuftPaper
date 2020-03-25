@@ -1,11 +1,11 @@
 function [] = probabilityMatrix(prob,filename)
 
 if ~exist('filename','var') || isempty(filename)
-    thisPlot=false;
+    thisPlot = false;
 else
-    thisPlot=true;
+    thisPlot = true;
 end
-fh = figure();ax=gca;
+fh = figure();ax = gca;
 % Plot probability matrix
 imagesc(prob);colormap(flipud(gray));caxis([0 1]);
 % Image properties

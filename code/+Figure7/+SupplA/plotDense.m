@@ -2,10 +2,10 @@ function plotDense(Dataset)
 % Author: Jan Odenthal <jan.odenthal@brain.mpg.de>
 
 %L2
-allTrees=Dataset.l2Idx;
+allTrees = Dataset.l2Idx;
 figure();
 hold on
-    for tr=allTrees
+    for tr = allTrees
         Figure7.SupplA.plotStretched(Dataset, tr, 'L2', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)
@@ -24,10 +24,10 @@ hold on
 hold off 
 
 %L5
-allTrees=Dataset.dlIdx;
+allTrees = Dataset.dlIdx;
 figure();
 hold on
-    for tr=allTrees
+    for tr = allTrees
         Figure7.SupplA.plotStretched(Dataset, tr, 'Deep', allTrees);
     end
     util.plot.setFigureHandle(gcf,'width',24,'height',7)

@@ -37,7 +37,7 @@ synapseMeasure.L1.Properties.VariableNames = seedTypes;
 apTuft.L2.(seedTypes{2}) = apicalTuft.getObjects('spineRatioMappingL2');
 apTuft.L2.(seedTypes{1}) = apicalTuft.getObjects('inhibitoryAxon',...
     'singleSpineLumped');
-for i=1:2
+for i = 1:2
     synapseMeasure.L2.(seedTypes{i}) = apicalTuft. ...
         applyMethod2ObjectArray...
         (apTuft.L2.(seedTypes{i}),func,true,true).Aggregate;
@@ -53,7 +53,7 @@ l5ARatio = cellfun(@(x) x.(func),apTuft.L5A,'UniformOutput',false);
 % L5tt fractions
 synapseMeasure.L1 = [synapseMeasure.L1;...
     {l5ARatio{1},synapseMeasure.L1{'deepLayerApicalDendriteSeeded',2}}];
-synapseMeasure.L1.Properties.RowNames{end}='layer5AApicalDendriteSeeded';
+synapseMeasure.L1.Properties.RowNames{end} = 'layer5AApicalDendriteSeeded';
 % In Bifurcation annotations. Use Deep annotations for the spine switch
 % fraction
 synapseMeasure.L2 = [synapseMeasure.L2;...
@@ -62,8 +62,8 @@ synapseMeasure.L2.Properties.RowNames{end} = 'L5A';
 
 %% Fix the shaft seeded axons in L2
 if fixRatioValues
-    for i=1:2
-        synapseMeasure.L2.Shaft{i}=...
+    for i = 1:2
+        synapseMeasure.L2.Shaft{i} = ...
             dendrite.synIdentity.collapse2ShaftSpine...
             (synapseMeasure.L2.Shaft{i});
     end

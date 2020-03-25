@@ -4,12 +4,12 @@
 
 util.clearAll
 
-S1V2PPCACC_allDendrites=dendrite.wholeApical.mergeBifurcation_WholeApical(4);
-LPtAPPC2=apicalTuft.getObjects('l2vsl3vsl5');
+S1V2PPCACC_allDendrites = dendrite.wholeApical.mergeBifurcation_WholeApical(4);
+LPtAPPC2 = apicalTuft.getObjects('l2vsl3vsl5');
 
-synCount{1}=dendrite.getSynapseNumbers(S1V2PPCACC_allDendrites);
-synCount{2}=dendrite.getSynapseNumbers(LPtAPPC2);
-%synCount{1}.Variables=synCount.Aggregate.Variables+synCount{2}.Variables;
+synCount{1} = dendrite.getSynapseNumbers(S1V2PPCACC_allDendrites);
+synCount{2} = dendrite.getSynapseNumbers(LPtAPPC2);
+%synCount{1}.Variables = synCount.Aggregate.Variables+synCount{2}.Variables;
 %disp(synCount{1})
 disp(synCount{1}.Properties.VariableNames)
 disp(synCount{1}('Aggregate',:).Variables+...
