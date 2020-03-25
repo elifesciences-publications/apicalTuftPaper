@@ -1,15 +1,17 @@
-% Author: Ali Karimi <ali.karimi@brain.mpg.de>
-% This script deos the following:
-% First, an manova test is applied to the specificity of axons seeded from
+%% Fig. 4: MANOVA test for cortical region comparison
+% First, a MANOVA test is applied to the specificity of axons seeded from
 % L2 and Deep apical dendrites. This test finds if any mean is different
-% from any other (dim==0 means to significant difference).
+% from any other. The output represents dime
 % Next, we apply the bonferroni corrected onw-way anova to each specificity
 % to find the significant differences (Only soma in the L2 group)
-apTuft= apicalTuft.getObjects('inhibitoryAxon');
-synRatio=apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
-synRatio=synRatio.Variables;
 
-%% Manova test for the cortical area cortical areas
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
+apTuft = apicalTuft.getObjects('inhibitoryAxon');
+synRatio = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
+synRatio = synRatio.Variables;
+
+%% MANOVA test for the cortical area cortical areas
 nrAxons=cellfun(@height,synRatio(:,1:4));
 aggRatios=synRatio(:,5);
 seedT={'L2','Deep'};
@@ -17,7 +19,8 @@ stat=cell(6,2);p=zeros(6,2);MC=cell(6,2);
 for i=1:2
     % Note:
     % The L2 groups within-group sum of squares and cross products matrix
-    % is singular. Therefore, we removed the AIS and Glia groups
+    % is singular. Therefore, we removed the AIS and Glia groups (mostly
+    % zeros)
     curRatio=aggRatios{i}{:,[2:7]};
     gIDs=repelem([1,2,3,4],nrAxons(i,:));
     gNames={'S1','V2','PPC','ACC'}';

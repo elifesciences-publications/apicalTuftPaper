@@ -1,5 +1,8 @@
+%% Fig. 4: Coefficient of Variation (CV) for average axonal innervation between cortical region
+% These numbers are reported for reinnervation L2, DL AD and L2 somas
+%% Setup
 util.clearAll;
-outputFolder = fullfile(util.dir.getFig(4),'CV');
+outputFolder = fullfile(util.dir.getFig(4),'BC');
 util.mkdir(outputFolder);
 apTuft = apicalTuft.getObjects('inhibitoryAxon');
 synRatio = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
