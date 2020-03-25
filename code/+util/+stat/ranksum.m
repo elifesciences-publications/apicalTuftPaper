@@ -1,6 +1,7 @@
 function [testResult] = ranksum(array1,array2,fname)
-%RANKSUM This function the results of the Wilcoxon ranksum test plus the
+% RANKSUM This function the results of the Wilcoxon ranksum test plus the
 % mean and standard error of the mean (sem) for each group
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('fname','var') || isempty(fname)
     writeResult=false;
@@ -23,7 +24,6 @@ testResult.N1= length(array1);
 testResult.N2 = length(array2);
 testResult.sd(1)= std(array1);
 testResult.sd(2) = std(array2);
-disp(testResult.string);
 % Write as a table
 if writeResult
 writetable(struct2table(testResult),[fname,'.xlsx']);
