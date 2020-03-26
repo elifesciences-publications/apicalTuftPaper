@@ -1,5 +1,6 @@
 function []  =  axonSpec(spec,file)
-% axonSpec processes ranksum for Fig. 2b
+% axonSpec processes ranksum for Fig. 3b
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 fileID = fopen(file,'w+');
