@@ -4,7 +4,7 @@ function [ pValues ] = bootStrapTest( groupul,groupdl,...
 % groupul and group dl. Calculates the fraction of times the bootstrap
 % sample has a more extreme value (in two-sided case) as the p-value
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-bootN = 100000;
+bootN = 10000;
 ulLength = size(groupul,1);
 dlLength = size(groupdl,1);
 if ~exist('testTypeOneSided','var') || isempty(testTypeOneSided)
