@@ -1,7 +1,18 @@
 function [emptyTable] = createEmptyTable(obj,treeIndices,...
     VariableNames,dataType)
 % CREATEEMPTYTABLE create an empty table used for outputs in various
-% methods
+% methods. The initial variable of the table is an identifier (tree name in
+% nml). The rest of the table is empty used for your variables of interest
+% INPUT:
+%       obj: The apical tuft object
+%       treeIndices: 
+%           the indices of trees
+%       VariableNames: 
+%           The strings used for variable names (initial is always treeIndex)
+%       dataType: 'cell' or 'double'
+% OUTPUT:
+%       emptyTable: The resulting table with the table Index and empty
+%       variables
 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 if ~exist('treeIndices', 'var') || isempty(treeIndices)

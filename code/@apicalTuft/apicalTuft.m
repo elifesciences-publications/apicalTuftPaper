@@ -120,21 +120,6 @@ classdef apicalTuft < skeleton
                 end
             end
         end
-        
-        % Returns the a unique TableID (TODO: delete)
-        function strings = treeUniqueString(obj,treeIndices)
-            if ~exist('treeIndices','var') || isempty(treeIndices)
-                treeIndices = 1:obj.numTrees;
-            end
-            
-            strings = cell(length(treeIndices),1);
-            cc = 1;
-            for tr = treeIndices(:)'
-                strings{cc} = [obj.filename,'_',obj.names{tr},'_',num2str(tr,'%0.3u')];
-                cc = cc+1;
-            end
-        end
-        
         % Method definitions for methods in separate files
         obj = appendString2Syn(obj,treeIndices,strings)
         [skel] = reformatApicalTreeNames(skel, treeIndices,newNameStrings,method)
@@ -195,7 +180,8 @@ classdef apicalTuft < skeleton
         [ dist2soma ] = getDistanceBWPoints( skel,treeIndices,pointNames );
         [totalPathLengthInMicron] = getTotalPathLength(obj, treeIndices);
         [NrOfObliques, ListOfCoords] = ...
-            getNumberOfObliques(skel,treeIndices)
+            getNumberOfObliques(skel,treeIndices);
+        strings = treeUniqueString(obj,treeIndices);
     end
     
     methods (Static)
