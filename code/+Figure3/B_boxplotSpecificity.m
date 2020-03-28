@@ -11,7 +11,7 @@ horizontalLocation = num2cell(1.5:2:8)';
 noiseLevel = 1.3;
 
 %% Get the apicalSpecificity
-apTuft= apicalTuft.getObjects('inhibitoryAxon');
+apTuft = apicalTuft.getObjects('inhibitoryAxon');
 synRatio = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
 
 %% Write result table to excel sheet
@@ -43,7 +43,7 @@ yticks(0:0.1:0.7);
 % Figure properties
 set(ax,'XLim',[0.2 8.3],'Ylim',[0 .7])
 util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,...
-    'Boxplot_ConditionalInnervationRatio.svg');
+    'Fig3B_Boxplot_ConditionalInnervationRatio.svg');
 
 %% Fig. 3b, left panel: The probability matrix (average over axons)
 % Get the number of synapses in each group
@@ -62,4 +62,5 @@ ADInnervation {:,2} = ...
     cellfun(@(x) nanmean(x.DeepApical./(x.L2Apical+x.DeepApical)),allCount);
 disp ('Numbers in matrix (Innervation fraction, avexraged over axons):');
 disp(ADInnervation);
-util.plot.probabilityMatrix(ADInnervation.Variables,[fname{3},'.svg']);
+fname = fullfile(outputDir,'Fig3B_innervationMatrix');
+util.plot.probabilityMatrix(ADInnervation.Variables,[fname,'.svg']);

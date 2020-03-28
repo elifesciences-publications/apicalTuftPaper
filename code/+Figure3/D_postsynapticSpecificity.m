@@ -9,7 +9,7 @@ util.clearAll;
 outputDir = fullfile(util.dir.getFig(3),'D');
 util.mkdir(outputDir)
 
-apTuft= apicalTuft.getObjects('inhibitoryAxon');
+apTuft = apicalTuft.getObjects('inhibitoryAxon');
 synRatio = apicalTuft.applyMethod2ObjectArray(apTuft,'getSynRatio');
 synRatio = synRatio.Variables;
 
