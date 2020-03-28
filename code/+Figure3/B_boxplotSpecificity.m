@@ -45,4 +45,21 @@ set(ax,'XLim',[0.2 8.3],'Ylim',[0 .7])
 util.plot.cosmeticsSave(fh,ax,x_width,y_width,outputDir,...
     'Boxplot_ConditionalInnervationRatio.svg');
 
-%% TODO add the matrix plotting here
+%% Fig. 3b, left panel: The probability matrix (average over axons)
+% Get the number of synapses in each group
+allCount = apicalTuft.applyMethod2ObjectArray...
+    (apTuft,'getSynCount');
+% Only keep aggregate
+allCount = allCount{:,5};
+% Initialize
+ADInnervation = ...
+    array2table(zeros(2,2),'VariableNames',...
+    {'L2Target','DeepTarget'},'RowNames',{'L2SeededAxons','DeepSeededAxons'});
+% Get AD ratios
+ADInnervation {:,1} = ...
+    cellfun(@(x) nanmean(x.L2Apical./(x.L2Apical+x.DeepApical)),allCount);
+ADInnervation {:,2} = ...
+    cellfun(@(x) nanmean(x.DeepApical./(x.L2Apical+x.DeepApical)),allCount);
+disp ('Numbers in matrix (Innervation fraction, avexraged over axons):');
+disp(ADInnervation);
+util.plot.probabilityMatrix(ADInnervation.Variables,[fname{3},'.svg']);
