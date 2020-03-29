@@ -66,6 +66,8 @@ for seedT = 1:2
     % Fill out the table
     percentOnlyAD.L2PercentMean(seedT) = round(nanmean(curL2Ratio),2);
     percentOnlyAD.DeepPercentMean(seedT) = round(nanmean(curDLRatio),2);
+    % Note that variance is not dependant on scalar additions so 1-array,
+    % therfore for the same seed group the SEM is the same
     percentOnlyAD.L2PercentSEM(seedT) = round(util.stat.sem(curL2Ratio),2);
     percentOnlyAD.DeepPercentSEM(seedT) = round(util.stat.sem(curDLRatio),2);
 end
