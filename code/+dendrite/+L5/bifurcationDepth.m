@@ -1,8 +1,12 @@
 function [bifurDepth] = bifurcationDepth(skel,treeNames)
-%BIFURCATIONDEPTH Get the depth of the bifurcaiton of L5 neurons relative
-%to L1 +145
+% BIFURCATIONDEPTH Get the depth of the bifurcaiton of L5 neurons relative
+% to pia
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-% Taken based on the average visual estimate
+
+% Note: This is done via calculating the depth relative to L1 and adding
+% 145 um (distance from pia to L1 border). We did this since the Pia border
+
 distL1Pia = 145;
 l1 = util.plot.loadl1;
 bifurDepth = table(zeros(size(treeNames(:))),...
@@ -14,8 +18,9 @@ for i = 1:length(treeNames)
     assert(length(curNode) == 1);
     curbifurCoords= skel.getNodes(curTr,curNode);
     % convert to NM for distance measurement
-    curbifurCoordsInNM = round(curbifurCoords.*skel.scale)';
-    % Measurement of distance to pia
+    curbifurCoordsInNM = round(curbifurCoords .* skel.scale)';
+    % Measurement of distance to pia. Use signed distance since some
+    % bifurcations are within L1 (especially for L5st neurons)
     bifurDepth{i,1} = distL1Pia-...
         (dendrite.L5.somaDepth.dist2plane...
         (l1.fitSurfaceNM,curbifurCoordsInNM,true)./1000);

@@ -1,6 +1,7 @@
 function [diameter] = getSomaSize(skel,treeNames)
 % GETSOMASIZE Get the diameter of trees with name starting from the tree
 % tags(cell array 1xN) and numTrees (1xN)
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 diameter = table(zeros(size(treeNames(:))),...
