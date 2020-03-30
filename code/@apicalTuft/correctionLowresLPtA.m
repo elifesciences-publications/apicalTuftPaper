@@ -1,6 +1,8 @@
 function [skel] = correctionLowresLPtA(skel)
-%CORRECTIONLOWRESLPTA correct the lowres voxel size by a correction factor
-%of ~ 1.5
+% CORRECTIONLOWRESLPTA correct the lowres voxel size by a correction factor
+% of 1.4896 extracted from the soma shape
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 % Assert dataset identity to LPtA
 assert(contains(skel.parameters.experiment.name,...
@@ -11,10 +13,10 @@ correctionFactor = 1.4896;
 LowresBorder = 2768;
 for i = 1:length(skel.nodes)
     % Correction factor
-    indices = skel.nodes{i}(:,3)>LowresBorder;
-    skel.nodes{i}(indices,3) = round(...
-        ((skel.nodes{i}(indices,3)-LowresBorder).*correctionFactor)+...
-        LowresBorder);
+    indices = skel.nodes{i}(:,3) > LowresBorder;
+    ZPortionInLowRes = (skel.nodes{i}(indices,3) - LowresBorder);
+    skel.nodes{i}(indices,3) = ...
+        round((ZPortionInLowRes.*correctionFactor) + LowresBorder);
 end
 end
 

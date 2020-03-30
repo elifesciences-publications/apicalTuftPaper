@@ -1,6 +1,9 @@
 function [fourPoints] = drawSquareAroundPoint(coord)
-%DRAWSQUAREAROUNDPOINT draws a square with a specific size around a central
-%coordinate
+% DRAWSQUAREAROUNDPOINT draws a square with edge length of 20 um around a
+% central coordinate (main bifurcation)
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 halfSizeSquare = 10000;
 coord = coord(:);
 fourPoints(:,1) = coord + [0,-halfSizeSquare,-halfSizeSquare]';
