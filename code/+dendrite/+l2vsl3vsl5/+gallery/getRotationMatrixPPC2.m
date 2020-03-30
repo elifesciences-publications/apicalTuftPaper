@@ -3,10 +3,10 @@ function [RotMatrix] = getRotationMatrixPPC2(theSurfSwitch)
 % that makes the dataset vertical
 switch theSurfSwitch
     case 'l1'
-        m = load(fullfile(util.dir.getAnnotation,'matfiles','l1.mat'));
+        m = load(fullfile(util.dir.getMatfile,'l1.mat'));
         theSurf = m.l1;
     case 'pia'
-        m = load(fullfile(util.dir.getAnnotation,'matfiles','pia.mat'));
+        m = load(fullfile(util.dir.getMatfile,'matfiles','pia.mat'));
         theSurf = m.pia;
     otherwise
         error('You need to choose eithr "pia" or "l1" surface')

@@ -80,7 +80,7 @@ for i = 1:3
         [fname,'.svg'],'on','on');
 end
 %% Save the soma depth information
-matfolder = fullfile(util.dir.getAnnotation,'matfiles',...
+matfolder = fullfile(util.dir.getMatfile,...
     'L5stL5ttFeatures');
 util.mkdir (matfolder)
 save(fullfile(matfolder,'somaDiameter.mat'),'diameter');

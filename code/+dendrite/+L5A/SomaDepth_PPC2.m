@@ -3,6 +3,7 @@ util.clearAll;
 %% Load skeleton an pia surface
 l1 = util.plot.loadl1;
 skel = apicalTuft('PPC2_l2vsl3vsl5');
+
 %% Get tree Indices of L5 and L5A neurons
 dist2somaTreeIdx = skel.groupingVariable(:,...
     contains(skel.groupingVariable.Properties.VariableNames,'dist2soma'));
@@ -37,7 +38,7 @@ outputFolderRanges = fullfile(util.dir.getFig(5),...
     'somaDepthRanges');util.mkdir(outputFolderRanges);
 writetable(allRangeT,fullfile(outputFolderRanges,'somaDepthRanges_PPC2.txt'),...
     'WriteRowNames',true);
-;
+
 %% Plot their histgrams
 outputFolder = fullfile(util.dir.getFig(5),...
     'somaDepthL5ttL5st');util.mkdir(outputFolder);
@@ -94,7 +95,7 @@ for i = 1:3
         [fname,'.svg'],'on','on');
 end
 %% Save the soma depth information
-matfolder = fullfile(util.dir.getAnnotation,'matfiles',...
+matfolder = fullfile(util.dir.getMatfile,...
     'L5stL5ttFeatures');
 util.mkdir (matfolder)
 save(fullfile(matfolder,'somaDepth.mat'),'somaDepth');

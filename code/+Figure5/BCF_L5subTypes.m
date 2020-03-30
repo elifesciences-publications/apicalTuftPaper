@@ -173,7 +173,7 @@ if saveResults
     skel_main = skel_main.updateGrouping;
     skel_main.write ('PPC2_l2vsl3vsl5_L5newGrouping')
     % Save clustering treeNames
-    save(fullfile(util.dir.getAnnotation,'matfiles','clusteringTreeNames.mat'),...
+    save(fullfile(util.dir.getMatfile,'clusteringTreeNames.mat'),...
         'names');
 end
 %%  Get the correction fraction and treeIndices for synapse densities

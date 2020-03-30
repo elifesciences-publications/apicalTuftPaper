@@ -1,11 +1,14 @@
 function [] = saveGallery(apTuft,trIndices,...
     color,p)
-%SAVEGALLERY This function prints the gallery of full dendrite annotations.
+% SAVEGALLERY This function prints the gallery of full dendrite annotations.
 % Note: the annotation should be so that the Z-axis is the radial cortical
 % axis
-    if p.correctionLowRes
-        apTuft = apTuft.correctionLowresLPtA;
-    end
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
+if p.correctionLowRes
+    apTuft = apTuft.correctionLowresLPtA;
+end
 fh = figure;ax = gca;
 for i = 1:length(trIndices)
     clf
@@ -21,14 +24,14 @@ for i = 1:length(trIndices)
     axis off;
     % Draw box around bifurcation
     if p.drawMainBifurcationBbox
-        bifurCenter = p.RotMatrix*[apTuft.getBifurcationCoord(tr)]';
+        bifurCenter = p.RotMatrix * (apTuft.getBifurcationCoord(tr))';
         dendrite.l2vsl3vsl5.gallery.drawSquareAroundPoint(bifurCenter);
     end
     if p.plotHighResBorder
         % High resolution y-extent[191080,303480]
-        plot3([0,0],p.ylims,[83040,83040],':','Color','k') 
+        plot3([0,0],p.ylims,[83040,83040],':','Color','k')
     end
-
+    
     drawnow;pause(.5)
     hold off
     util.plot.cosmeticsSave(fh,ax,p.x_width,p.y_width,...
