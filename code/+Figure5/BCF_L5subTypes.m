@@ -1,26 +1,35 @@
-% This script extract features and tries to apply a clustering method to
-% classification of L5 pyramidal neurons
+%% Fig. 5B, C, F: Classification of L5 neurons into slender- and thick-tufted subtypes
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
+%% Set-up
 util.clearAll;
 saveResults = false;
 outputFolder = fullfile(util.dir.getFig(5),...
-    'ClassificationCriteriaForL5');
+    'BCF');
 util.mkdir(outputFolder);
-
+c = util.plot.getColors();
 %% Get number of oblique dendrites per AD
+% Note: The L5 neurons were first only classified based on only the Soma
+% diameter resulting in 12 L5tt and 6 L5st neurons. Using this script we
+% then classified them using the 4 features you see in the following
+% sections. To start, we first load the annotation with the previous (old)
+% classification
 skel_main = apicalTuft('PPC2_l2vsl3vsl5_oldL5Grouping');
 IdxL5 = [skel_main.groupingVariable.layer5ApicalDendrite_dist2soma{1};...
     skel_main.groupingVariable.layer5AApicalDendrite_dist2soma{1}];
+% Initial classification
 curG = categorical([repmat({'L5tt'},12,1);repmat({'L5st'},6,1)]);
+% Get the number of oblique dendrites
 [numObliques,Coords] = skel_main.getNumberOfObliques(IdxL5);
 
-%% GetDiameter of the AD trunks
+%% Get Diameter of the AD trunks
 fileName = fullfile(util.dir.getAnnotation,...
     'otherAnnotations','PPC2_ApicalTrunkDiameter.nml');
 skel_ADDiameter = skeleton(fileName);
 treeNamesL5 = skel_main.names(IdxL5);
+% Get the diameter
 ADTrunkD = dendrite.L5A.getADTrunkDiameter(skel_ADDiameter,treeNamesL5);
-curFeat = join(numObliques,ADTrunkD,'Keys','RowNames');
+% Combine diameter and number of obliques
+L5features = join(numObliques,ADTrunkD,'Keys','RowNames');
 
 %% Get the diameter of the soma
 fileName = fullfile(util.dir.getAnnotation,...
@@ -29,19 +38,19 @@ skel_SomaD = skeleton(fileName);
 % Get the volume and diameter from measurements of format:
 % treename_01,02,03: the three diameters
 [somaDiameter] = dendrite.L5A.getSomaSize(skel_SomaD,treeNamesL5);
-curFeat = join(somaDiameter,curFeat,'Keys','RowNames',...
+L5features = join(somaDiameter,L5features,'Keys','RowNames',...
     'KeepOneCopy','somaDiameter');
 
 %% main bifurcaiton depth
 bifurcationDepth = dendrite.L5A.bifurcationDepth(skel_main,treeNamesL5);
-curFeat = join(bifurcationDepth,curFeat,'Keys','RowNames',...
+L5features = join(bifurcationDepth,L5features,'Keys','RowNames',...
     'KeepOneCopy','bifurcationDepth');
 
 %% Clustering
-%% Normalize data
-curFeatNormalized = curFeat;
+% Normalize data
+curFeatNormalized = L5features;
 curFeatNormalized.Variables = ...
-    zscore(curFeat.Variables,[],1);
+    zscore(L5features.Variables,[],1);
 % K-means
 [cidx2,cmeans2] = ...
     kmeans(curFeatNormalized.Variables,2,'dist','sqeuclidean');
@@ -76,14 +85,16 @@ disp(['Best metric is: ',distMetricNames{I_metric}]);
 k = 2;
 Dist = pdist(X,'cosine');
 clusterTree = linkage(Dist,'average');
-fname = 'dendrogram';
+fname = 'C_dendrogram';
 fh = figure ('Name',fname);ax = gca;
 x_width = 2;
 y_width = 2;
 H = dendrogram(clusterTree,'Labels',...
-    cellfun(@(x) x(end-1:end),curFeat.Properties.RowNames,'uni',0),...
+    cellfun(@(x) x(end-1:end),L5features.Properties.RowNames,'uni',0),...
     'ColorThreshold','default');
 xtickangle(-45)
+% Note: The colors of the dendrogram are manually corrected in illustrator
+% so the appearance is different from the panel Fig. 5c
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,[fname,'.svg'],'off','on');
 disp(['Cophenet CC: ',num2str(cophenet(clusterTree, Dist))]);
@@ -91,22 +102,22 @@ disp(['Cophenet CC: ',num2str(cophenet(clusterTree, Dist))]);
 clusters = cluster(clusterTree,'maxclust',k);
 % Correct cluster IDs so that the L5tt group has ID 1 always
 % Note: only works with k = 2
-[~,Itt] = max(curFeat.numObliques);
+[~,Itt] = max(L5features.numObliques);
 if clusters(Itt) ~= 1
     clusters(clusters == 1)= 2;
     clusters (clusters == 2) = 1;
 end
 % summary stat of clusters
-curFeat.clusters = clusters;
+L5features.clusters = clusters;
 
-statsSummary = grpstats(curFeat,'clusters',{'mean','sem'});
+statsSummary = grpstats(L5features,'clusters',{'mean','sem'});
 
 %% do PCA on the features and make a plot
-fname = 'PCA';
+fname = 'C_PCA';
 fh = figure ('Name',fname);ax = gca;
 x_width = 2;
 y_width = 2;
-colors = {l5color,l5Acolor};
+colors = {c.l5color,c.l5Acolor};
 [~,scores] = pca(X);
 hold on
 for i = 1:length(unique(clusters))
@@ -118,17 +129,16 @@ util.plot.cosmeticsSave...
 
 %% Plot feature histograms
 BinEdges = {[80:20:200],[0:1:20],[0:1:17],[0:0.4:3.4]};
-curColors ={l5color,l5Acolor};
 for f = 1:4
-    curFeatName = curFeat.Properties.VariableNames{f};
+    curFeatName = ['B_',L5features.Properties.VariableNames{f}];
     fh = figure ('Name',curFeatName);ax = gca;
     x_width = 1.5;
     y_width = 1;
     hold on
-    for c = 1:2
-        indices = (curFeat.clusters == c);
-        histogram(curFeat{indices,f},'BinEdges',BinEdges{f},...
-            'DisplayStyle','stairs','EdgeColor', curColors{c});
+    for cl = 1:2
+        indices = (L5features.clusters == cl);
+        histogram(L5features{indices,f},'BinEdges',BinEdges{f},...
+            'DisplayStyle','stairs','EdgeColor', colors{cl});
     end
     hold off
     xlim([0,max(BinEdges{f})+.5]);
@@ -144,32 +154,31 @@ annotationTypes = {'dist2soma','mapping'};
 L5nameStubs= {'layer5ApicalDendrite','layer5AApicalDendrite'};
 trIndices = cell(2,2);
 newTrNames = cell(2,2);
-for c = 1:2
+for cl = 1:2
     % Get cluster trees sorted by the number of obliques
-    linearIndices = find(clusters == c);
-    [~,Isort] = sort(curFeat.numObliques(linearIndices),'descend');
+    linearIndices = find(clusters == cl);
+    [~,Isort] = sort(L5features.numObliques(linearIndices),'descend');
     linearIndices = linearIndices(Isort);
     % Get name of trees
-    trNames {1} = curFeat.Properties.RowNames(linearIndices);
+    trNames {1} = L5features.Properties.RowNames(linearIndices);
     trNames {2} = cellfun(...
         @(x) strrep (x,annotationTypes{1},annotationTypes{2}),...
         trNames{1},'UniformOutput',false);
     assert (length(trNames{1}) == length(trNames{2}));
     for i = 1:length(trNames)
         % Get their indices
-        trIndices{i,c} = skel_main.getTreeWithName(trNames{i},'exact');
+        trIndices{i,cl} = skel_main.getTreeWithName(trNames{i},'exact');
         % generate new tree names
-        newTrNames{i,c} = arrayfun(...
-            @(x) strjoin({L5nameStubs{c},[annotationTypes{i},num2str(x,'%0.2u')]},'_'),...
-            1:length(trIndices{i,c}),'UniformOutput',false);
+        newTrNames{i,cl} = arrayfun(...
+            @(x) strjoin({L5nameStubs{cl},[annotationTypes{i},num2str(x,'%0.2u')]},'_'),...
+            1:length(trIndices{i,cl}),'UniformOutput',false);
     end
 end
-%% correct tree names and save
+% correct tree names and save
 names = cell2table([skel_main.names(cat (1,trIndices{:})), cat(2,newTrNames{:})'],...
     'VariableNames',{'OldName','NewName'});
 if saveResults
-    
-    skel_main.names(cat (1,trIndices{:})) = cat (2,newTrNames{:})';
+    skel_main.names(cat (1,trIndices{:})) = cat(2,newTrNames{:})'; %#ok<UNRCH>
     skel_main = skel_main.updateGrouping;
     skel_main.write ('PPC2_l2vsl3vsl5_L5newGrouping')
     % Save clustering treeNames
@@ -188,7 +197,7 @@ correctionFrac = axonSwitchFraction.mainBifurcation{1}{'L5A',:};
 theDensity = skel_main.getSynDensityPerType(IdxL5_mapping,correctionFrac);
 ylimit = [0,0.3,4];
 for g = 2:3
-    fname = theDensity.Properties.VariableNames{g};
+    fname = ['F_',theDensity.Properties.VariableNames{g}];
     fh = figure('Name', fname);ax = gca;
     x_width = 1.5;
     y_width = 1.5;
@@ -267,4 +276,4 @@ combinedRsquared.Inh = util.stat.coeffDetermination(modelOnlyInh,[allX,allY],num
 combinedRsquared.Exc = util.stat.coeffDetermination(modelOnlyExc,[allX,allY],numParams);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
-    ['InhFrac_PC1.svg'],'on','on',false);
+    'F_InhFrac_PC1.svg','on','on',false);
