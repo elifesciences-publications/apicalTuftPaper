@@ -50,7 +50,7 @@ assert( isequal(noisyXValues{end}(2,:)', curResultsL5A.Shaft_Ratio(:,2)) );
 
 % Plot the uncorrected L5A values as grey crosses and connect them with a
 % line
-dendrite.L5A.plotUncorrected(l5ARawData.shaftRatio,distal.shaftRatio{end},...
+dendrite.L5.plotUncorrected(l5ARawData.shaftRatio,distal.shaftRatio{end},...
     L5Ahorizontal);
 
 xticklabels([]);
@@ -90,7 +90,7 @@ curXLoc = cat(2,curXLoc{end-1:end})';
 thisUnCorrected = [l5ARawData.spineDensity;l5ARawData.shaftDensity];
 
 % Add the L5A raw data points
-dendrite.L5A.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1));
+dendrite.L5.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1));
 
 xlim([0.5,8.5])
 ylim([0.05,10])

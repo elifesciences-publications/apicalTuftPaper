@@ -27,7 +27,7 @@ fileName = fullfile(util.dir.getAnnotation,...
 skel_ADDiameter = skeleton(fileName);
 treeNamesL5 = skel_main.names(IdxL5);
 % Get the diameter
-ADTrunkD = dendrite.L5A.getADTrunkDiameter(skel_ADDiameter,treeNamesL5);
+ADTrunkD = dendrite.L5.getADTrunkDiameter(skel_ADDiameter,treeNamesL5);
 % Combine diameter and number of obliques
 L5features = join(numObliques,ADTrunkD,'Keys','RowNames');
 
@@ -37,12 +37,12 @@ fileName = fullfile(util.dir.getAnnotation,...
 skel_SomaD = skeleton(fileName);
 % Get the volume and diameter from measurements of format:
 % treename_01,02,03: the three diameters
-[somaDiameter] = dendrite.L5A.getSomaSize(skel_SomaD,treeNamesL5);
+[somaDiameter] = dendrite.L5.getSomaSize(skel_SomaD,treeNamesL5);
 L5features = join(somaDiameter,L5features,'Keys','RowNames',...
     'KeepOneCopy','somaDiameter');
 
 %% main bifurcaiton depth
-bifurcationDepth = dendrite.L5A.bifurcationDepth(skel_main,treeNamesL5);
+bifurcationDepth = dendrite.L5.bifurcationDepth(skel_main,treeNamesL5);
 L5features = join(bifurcationDepth,L5features,'Keys','RowNames',...
     'KeepOneCopy','bifurcationDepth');
 

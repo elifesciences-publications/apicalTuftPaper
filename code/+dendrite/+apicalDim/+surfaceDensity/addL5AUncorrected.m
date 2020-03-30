@@ -10,7 +10,7 @@ L5Acorrected = [results.l235.(location){end}.excSurfDensity,
 assert( isequal(xLoc(:,2),L5Acorrected) );
 % Plot the uncorrected L5A values as grey crosses and connect them with a
 % line
-dendrite.L5A.plotUncorrected(L5Auncorrected, L5Acorrected,...
+dendrite.L5.plotUncorrected(L5Auncorrected, L5Acorrected,...
     L5Ahorizontal)
 end
 

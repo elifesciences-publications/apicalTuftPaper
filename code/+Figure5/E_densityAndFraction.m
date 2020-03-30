@@ -75,7 +75,7 @@ assert( isequal(noisyXValues{end}(2,:)', resultsL5A.Shaft_Ratio(:,2)) );
 
 % Plot the uncorrected L5A values as grey crosses and connect them with a
 % line
-dendrite.L5A.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
+dendrite.L5.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
     L5Ahorizontal)
 
 xticks(1:max(indices));
@@ -124,7 +124,7 @@ curXLoc = cat(2,curXLoc{end-1:end})';
 thisUnCorrected = [l5ARawData.spineDensity;l5ARawData.shaftDensity];
 
 % Add the L5A raw data points
-dendrite.L5A.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1))
+dendrite.L5.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1))
 
 % Fig props
 set(ax,'yscale','log');
@@ -158,7 +158,7 @@ end
 [fh,ax,exponentialFit_Ratio] = dendrite.l2vsl3vsl5.plotCorrelation...
     (distance2soma,shaftRatio);
 % Add L5A uncorrected
-dendrite.L5A.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
+dendrite.L5.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
     distance2soma{end});
 x_width = 4;
 y_width = 2.6;
@@ -190,7 +190,7 @@ beta0Inh = [0.1000,0.5824, -0.0299];
 [fh,ax,exponentialFit_inh] = dendrite.l2vsl3vsl5.plotCorrelation...
     (distance2soma,shaftDensity,beta0Inh);
 % Add L5A uncorrected
-dendrite.L5A.plotUncorrected(l5ARawData.shaftDensity,shaftDensity{end},...
+dendrite.L5.plotUncorrected(l5ARawData.shaftDensity,shaftDensity{end},...
     distance2soma{end});
 x_width = 2;
 y_width = 1.3;
@@ -215,7 +215,7 @@ disp(['Single exponential fit Rsquared, Inhibitory: ',...
     (distance2soma,spineDensity);
 
 % Add L5A uncorrected
-dendrite.L5A.plotUncorrected(l5ARawData.spineDensity,spineDensity{end},...
+dendrite.L5.plotUncorrected(l5ARawData.spineDensity,spineDensity{end},...
     distance2soma{end});
 
 
