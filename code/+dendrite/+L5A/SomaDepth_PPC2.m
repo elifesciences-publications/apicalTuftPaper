@@ -1,6 +1,6 @@
-% Clear a1ll
+%% Set up
 util.clearAll;
-%% Load skeleton an pia surface
+% Load skeleton an pia surface
 l1 = util.plot.loadl1;
 skel = apicalTuft('PPC2_l2vsl3vsl5');
 
