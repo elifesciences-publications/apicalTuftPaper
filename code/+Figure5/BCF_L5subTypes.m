@@ -119,6 +119,7 @@ statsSummary = grpstats(L5features,'clusters',{'mean','sem'});
 %% PCA on the 4-D feature space
 fname = 'C_PCA';
 fh = figure ('Name',fname);ax = gca;
+mkrSize = 15;
 x_width = 2;
 y_width = 2;
 colors = {c.l5color,c.l5Acolor};
@@ -127,7 +128,7 @@ colors = {c.l5color,c.l5Acolor};
 hold on
 % Idx 1 is L5tt and 2 is L5st
 for clIdx = 1:length(unique(L5ClusterIdx))
-    util.plot.scatter(scores(L5ClusterIdx == clIdx,1:2)',colors{clIdx},10);
+    util.plot.scatter(scores(L5ClusterIdx == clIdx,1:2)',colors{clIdx},15);
 end
 xlim([-4,4]); ylim([-1.2,1.2]);
 util.plot.cosmeticsSave...
@@ -259,8 +260,8 @@ for synT = 1:2
     g = synT+1;
     fname = ['F_',synapseInfo.Properties.VariableNames{g}];
     fh = figure('Name', fname);ax = gca;
-    x_width = 1.5;
-    y_width = 1.5;
+    x_width = 1.51694;
+    y_width = 1.51694;
     hold on
     scores_Cell = cell(1,2);
     curDensity = cell(1,2);
@@ -271,7 +272,7 @@ for synT = 1:2
         curDensity{clIdx} = synapseInfo{L5ClusterIdx == clIdx,g};
         % Combine into one array and give to the scatter plotter
         combinedArray{clIdx} = [scores_Cell{clIdx},curDensity{clIdx}];
-        util.plot.scatter(combinedArray{clIdx}',colors{clIdx});
+        util.plot.scatter(combinedArray{clIdx}',colors{clIdx},mkrSize);
     end
     fullname = fullfile(outputFolder,[fname,'.txt']);
     linearModel{synT} = util.plot.addLinearFit(combinedArray,[],fullname);
@@ -286,8 +287,8 @@ end
 %% Fig.5f: Non-linear relationship  between inhibitory fraction and thick-tuftedness
 inhRatio = synapseInfo.putativeInhibitoryFraction;
 fh = figure;ax = gca;
-y_width = 4.5;
-x_width = 3;
+y_width = 4.48028;
+x_width = 2.99861;
 hold on
 inhRatio_Cell = cell(1,2);
 for i = 1:2
@@ -295,7 +296,7 @@ for i = 1:2
     scores_Cell{i} = scores(L5ClusterIdx == i,1);
     inhRatio_Cell{i} = inhRatio(L5ClusterIdx == i);
     combinedArray{i} = [scores_Cell{i},inhRatio_Cell{i}];
-    util.plot.scatter(combinedArray{i}',colors{i});
+    util.plot.scatter(combinedArray{i}',colors{i},mkrSize);
 end
 % combine L5st and tt groups
 allX = cat(1,scores_Cell{:});
@@ -356,7 +357,7 @@ Rsquared2write = structfun(@(x) struct2array(x)',combinedRsquared,'uni',0);
 writetable(struct2table(Rsquared2write),fname);
 
 %% Write clustering results to excel sheet
-excelFileName = fullfile(util.dir.getExcelDir(5),'Fig1BCF.xlsx');
+excelFileName = fullfile(util.dir.getExcelDir(5),'Fig5BCF.xlsx');
 % Update the tree names to the current version
 L5features.Row = cellfun(@(x)nameMap(x),L5features.Row,...
     'UniformOutput',false);
