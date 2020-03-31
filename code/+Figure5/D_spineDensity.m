@@ -10,18 +10,22 @@ skel.dense = apicalTuft.getObjects('l2vsl3vsl5',[],returnTable);
 synDensity = apicalTuft.applyMethod2ObjectArray...
     (skel.dense,'getSynDensityPerType',[], false, ...
     'mapping');
-% Combine L5A and LPtA data
+% Combine L5st results in LptA and PPC-2 datasets
 [synDensity] = dendrite.l2vsl3vsl5.combineL5AwithLPtATable(synDensity);
+% Keep only L5 data
 synDensity = synDensity{[3,5],:};
 
 %% Get spine density ready for plotting
-
-% Spine density is equal to exc syn density without correction
+% Spine density is equal to excitatory synapse density 
 spineDensitySep = cellfun(@(x) x.Spine,synDensity,'UniformOutput',false);
-% Merge distalAD with the bifurcation area results
+spineDensityTableSep = cellfun(@(x) x(:,[1,3]),synDensity,...
+    'UniformOutput',false);
+% Merge the results from main bifurcation and distal AD
 spineDensityForPlot = cell(1,2);
+spineDensityTable = cell(1,2);
 for i = 1:2
     spineDensityForPlot{i} = cat(1, spineDensitySep{i,:});
+    spineDensityTable{i} = cat(1, spineDensityTableSep{i,:});
 end
 
 %% Plot spineDensity
@@ -33,7 +37,7 @@ outputFolder = fullfile(util.dir.getFig(5),...
 curColors = {c.l5color,c.l5Acolor};
 region = {'mainBifurcation','distalAD'};
 
-fname = ['L5SubtypeComparison_spineDensity'];
+fname = 'L5SubtypeComparison_spineDensity';
 fh = figure('Name',fname);ax = gca;
 
 util.plot.boxPlotRawOverlay(spineDensityForPlot(:),1:2,...
@@ -43,14 +47,12 @@ util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
     [fname,'.svg'],'off','on');
 
-%% Testing for the text: combine distalAD and main bifurcaiton
+%% Ranksum test comparison of L5tt and L5st synapse densities
 util.stat.ranksum(spineDensityForPlot{1},spineDensityForPlot{2},...
     fullfile(outputFolder,'spineDensityCombined'));
 
-%% Save the AD diameter and spine density information
-spineDensityBifurcation = forPlotSep.spineDensity(:,1)';
-matfolder = fullfile(util.dir.getMatfile,...
-    'L5stL5ttFeatures');
-util.mkdir(matfolder)
-save(fullfile(matfolder,'spineDensityAtMainBifurcation.mat'),...
-    'spineDensityBifurcation');
+%% Save the spine density information
+excelFileName = fullfile(util.dir.getExcelDir(5),'Fig5D.xlsx');
+spineDensityTableOfTable = cell2table(spineDensityTable,...
+    'VariableNames',{'L5tt', 'L5st'},'RowNames',{'spineDensity'});
+util.table.write(spineDensityTableOfTable, excelFileName);
