@@ -5,6 +5,8 @@ function [synapseRatio] =...
 % INPUT: 
 %       treeIndices: (Optional:all trees) vector(colum or row)
 %           Contains indices of trees for which the synapse are extracted
+%       switchCorrectionFactor: (Default: zeros of size obj.synLabel)
+%                   See getSynCount
 % OUTPUT: 
 %       synapseRatio: table length(treeIndices)xlength(SynapseFlags)
 %                   Containing the ratio (summing to one for each tree) of

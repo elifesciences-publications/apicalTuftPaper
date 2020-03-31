@@ -1,8 +1,11 @@
+%% Fig. 5D: Comaprison of spine density between L5tt and L5st neurons
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
-% Script to generate boxplots showing differences in the features  between
-% L5A and L5B neurons (diameter and spine density)
+
 util.clearAll
+c = util.plot.getColors();
 returnTable = true;
+%% Get skeleton and spine density (equivalent to the "Spine"/Excitatory
+% synapse group)
 skel.dense = apicalTuft.getObjects('l2vsl3vsl5',[],returnTable);
 synDensity = apicalTuft.applyMethod2ObjectArray...
     (skel.dense,'getSynDensityPerType',[], false, ...
@@ -16,20 +19,21 @@ synDensity = synDensity{[3,5],:};
 % Spine density is equal to exc syn density without correction
 spineDensitySep = cellfun(@(x) x.Spine,synDensity,'UniformOutput',false);
 % Merge distalAD with the bifurcation area results
+spineDensityForPlot = cell(1,2);
 for i = 1:2
-spineDensityForPlot{i} = cat(1, spineDensitySep{i,:});
+    spineDensityForPlot{i} = cat(1, spineDensitySep{i,:});
 end
 
-%% Plot Diameter/spineDensity
+%% Plot spineDensity
 x_width = 2;
 y_width = 3.8;
 boxWidths = 0.4655;
 outputFolder = fullfile(util.dir.getFig(5),...
-    'L5L5AComparison');util.mkdir(outputFolder)
-curColors = {l5color,l5Acolor};
+    'D');util.mkdir(outputFolder)
+curColors = {c.l5color,c.l5Acolor};
 region = {'mainBifurcation','distalAD'};
 
-fname = ['L5L5AComparison_spineDensity'];
+fname = ['L5SubtypeComparison_spineDensity'];
 fh = figure('Name',fname);ax = gca;
 
 util.plot.boxPlotRawOverlay(spineDensityForPlot(:),1:2,...
@@ -40,16 +44,13 @@ util.plot.cosmeticsSave...
     [fname,'.svg'],'off','on');
 
 %% Testing for the text: combine distalAD and main bifurcaiton
-
-util.stat.ranksum(cat(1,forPlot.spineDensity{1}),cat(1,forPlot.spineDensity{2}),...
+util.stat.ranksum(spineDensityForPlot{1},spineDensityForPlot{2},...
     fullfile(outputFolder,'spineDensityCombined'));
-
 
 %% Save the AD diameter and spine density information
 spineDensityBifurcation = forPlotSep.spineDensity(:,1)';
-
 matfolder = fullfile(util.dir.getMatfile,...
     'L5stL5ttFeatures');
-util.mkdir (matfolder)
+util.mkdir(matfolder)
 save(fullfile(matfolder,'spineDensityAtMainBifurcation.mat'),...
     'spineDensityBifurcation');

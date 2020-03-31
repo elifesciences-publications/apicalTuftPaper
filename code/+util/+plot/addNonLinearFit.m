@@ -1,6 +1,6 @@
 function [nLM] = addNonLinearFit(array,model,plotLine,fname,beta0,tickFormat)
-%ADDNONLINEARFIT Summary of this function goes here
-%   Detailed explanation goes here
+% ADDNONLINEARFIT Fit non-linear model to data and plot the line
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist('plotLine','var') || isempty(plotLine)
     plotLine = true;

@@ -32,6 +32,7 @@ end
 LM = fitlm(allX,allY);
 p = LM.Coefficients.Estimate;
 if write2file
+    % Report important sanity info for text
     fid = fopen(fname,'w+');
     fprintf(fid,'------Output from addLinearFit------\n');
     fprintf(fid,['Linear model: ',num2str(p(2)),'*x',num2str(p(1)),'\n']);
@@ -40,6 +41,7 @@ if write2file
         num2str(LM.Rsquared.Ordinary),'\n']);
     fprintf(fid,['Model Fit Rsquared adjusted to DOF: ',...
         num2str(LM.Rsquared.Adjusted),'\n']);
+    % Get the result of disp into a string
     testSummary = evalc('disp(LM)');
     fprintf(fid,'------test Summary------\n');
     fprintf(fid,[testSummary,'\n']);

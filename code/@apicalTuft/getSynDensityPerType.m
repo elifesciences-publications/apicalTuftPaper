@@ -8,7 +8,7 @@ function [synDensityPerType] = getSynDensityPerType( obj,treeIndices,...
 %       treeIndices: (Default:all trees)
 %                   the indices of trees from skeleton
 %       switchCorrectionFactor: (Default: zeros of size obj.synLabel)
-%                   See getSynRatio
+%                   See getSynCount
 % OUTPUT: 
 %       synDensityPerType: table
 %       density of each synapse type 
