@@ -1,6 +1,12 @@
+%% Fig. 7BC: The density of synapses in the distal tuft of apical dendrites
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
-%% Distal tuft results from LPtA
+%% Setup
 util.clearAll;
+outputFolder = fullfile(util.dir.getFig(7),'distalvsMain');
+util.mkdir(outputFolder);
+c = util.plot.getColors;
+
+%% Get annotations and extract density/ratios of putative inhibitory and excitatory synapses
 distalSkel = apicalTuft('LPtA_l2vsl3vsl5');
 distalSkel = distalSkel.sortTreesByName;
 L5ASkel = apicalTuft('PPC2L5ADistal_l2vsl3vsl5');
@@ -14,6 +20,7 @@ vars = fieldnames(distal);
 for i = 1:length(vars)
     distal.(vars{i}) = [distal.(vars{i});distalL5A.(vars{i})];
 end
+
 %% Set the values of the L5st group to the corrected values and 
 % also keep the uncorrected values for later plotting 
 results = dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
@@ -31,10 +38,8 @@ for i = 1:3
     % Change values to corrected for plotting
     distal.(variableNames{i}){end} = curCorrected;
 end
+
 %% Plot inhibitory Ratios
-outputFolder = fullfile(util.dir.getFig(7),'distalvsMain');
-util.mkdir(outputFolder);
-util.setColors;
 x_width = 3;
 y_width = 3.8;
 colors = {l2color,l3color,l5color,l5Acolor};
@@ -68,7 +73,7 @@ testResult = util.stat.KW(distal.shaftRatio,cellTypes, ...
 
 util.stat.ranksum(distal.shaftRatio{3},distal.shaftRatio{4},fullfile(outputFolder,...
     'Distal_L5ttL5stComparison_ShaftRation'))
-;
+
 %% Also do the densities
 x_width = 2;
 y_width = 2.2;

@@ -1,5 +1,10 @@
+%% Fig. 7, Figure Supplement 1BCD: Depth analysis of synaptic composition 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll
+outputFolder = fullfile(util.dir.getFig(5),'CorticalDepthAnalysis');
+util.mkdir(outputFolder)
+c = util.plot.getColors();
+
 %% Get annotations
 original.allDend = dendrite.wholeApical.mergeBifurcation_WholeApical(4);
 original.allDend = cell2table(original.allDend,'VariableNames',...
@@ -151,8 +156,7 @@ binCenters = [50:binRange:300,310];
 stairLocations = [binCenters(1:end-1)-(binRange/2),300];
 % Groups: 1: L2, 2: Deep, 3: L3, 4: L5
 cellTypes = [1:5];
-outputDir = fullfile(util.dir.getFig(5),'CorticalDepthAnalysis');
-util.mkdir(outputDir)
+
 colors = {l2color,dlcolor,l3color,l5color,l5Acolor};
 % C: synapse densities
 fh = figure;ax = gca;
@@ -173,7 +177,7 @@ xtickangle(90);
 
 ylim([0,5]);
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputDir,'synapsDensities.svg','on','on',false);
+    (fh,ax,x_width,y_width,outputFolder,'synapsDensities.svg','on','on',false);
 hold off
 
 % B: inhibitory ratio
@@ -188,7 +192,7 @@ ytickangle(90)
 xtickangle(90)
 xlim([0 binLims(end)])
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputDir,'inhRatioControl.svg',...
+    (fh,ax,x_width,y_width,outputFolder,'inhRatioControl.svg',...
     'on','on',false);
 
 % D1: total pathlength in mm
@@ -205,7 +209,7 @@ end
 xlim([0 max(binLims)])
 ytickangle(90)
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputDir,...
+    (fh,ax,x_width,y_width,outputFolder,...
     'pathLengthHistogram.svg','on','on');
 
 % D2: total dendrite number
@@ -220,7 +224,7 @@ xlim([0 max(binLims)]);
 ytickangle(90);yticks([0:30:60]);yticklabels([0:30:60])
 ylim([0 60]);
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputDir,...
+    (fh,ax,x_width,y_width,outputFolder,...
     'dendriteNumber.svg','on','on');
 %% Number of dendrites and pathlength Control and number for text
 % rawPerTypeAndDepth comes from the g table

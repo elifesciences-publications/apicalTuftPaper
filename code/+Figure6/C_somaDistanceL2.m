@@ -1,6 +1,13 @@
+%% Fig. 6C: The inhibitory fraction on the apical dendrite of L2 neurons as a function of distance to soma
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
+%% Setup
 util.clearAll
-% Get skeletons
+outputDir = fullfile(util.dir.getFig(6),'C');
+util.mkdir(outputDir);
+c = util.plot.getColors();
+
+%% Get skeletons
 original.wholeApical = apicalTuft.getObjects('wholeApical');
 original.bifurcation = apicalTuft.getObjects('bifurcation');
 % Distance 2 soma for smaller datasets are in separate nml files
@@ -9,6 +16,7 @@ original.dist2Soma = apicalTuft.getObjects('dist2Soma');
 l235 = apicalTuft.getObjects('l2vsl3vsl5');
 % Delete the L5A distal annotation
 l235(3) = [];
+
 %% Small dataset clean up
 % Delete duplicate annotation betwen whole apical tracings and 
 % the main bifurcations
@@ -106,8 +114,7 @@ disp(['Total synapse number: ',...
 disp(['Total synapse number (from individual chopped trees): ',...
     num2str(sum(cellfun(@(x) x.distSoma.total,skel_synInhRatio)))]);
 %% Create aggregate plot
-outputDir = fullfile(util.dir.getFig(5),'dist2Soma');
-util.mkdir(outputDir);
+
 inhSyn = [];
 excSyn = [];
 fh = figure;ax = gca;

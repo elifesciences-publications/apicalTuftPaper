@@ -250,7 +250,7 @@ trName_synIdx = convert_DistName(synapseInfo.treeIndex);
 assert(isequal(L5features.Row,trName_synIdx), 'Check: Tree names match');
 L5features = [L5features,synapseInfo(:,2:4)];
 
-%% fig. 5f: Linear relationship between synapse densities and the first PC (Thick-tuftedness)
+%% Fig. 5f: Linear relationship between synapse densities and the first PC (Thick-tuftedness)
 % Set different limits for excitatory and inhibitory graphs
 ylimit = [0,0.3,4];
 linearModel = cell(1,2);

@@ -1,13 +1,13 @@
+%% Fig. 5E: Comparison of synaptic composition at the main bifurcation of L5 neurons
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
-% This script prints out multiple panels for the inhibitory fraciton and
-% synapse densities around the main bifurcation and distal AD
-
+%% initial Set-up
 util.clearAll;
-outputFolder = fullfile(util.dir.getFig(5),...
-    'cellType_SynapticDensity_Comparison_Correlation');
+outputFolder = fullfile(util.dir.getFig(5),'E');
 util.mkdir(outputFolder);
+c = util.plot.getColors();
 
+%% Get skeletons and create variables for densities and inhibitory ratio
 skel = apicalTuft('PPC2_l2vsl3vsl5');
 skel = skel.sortTreesByName;
 cellTypeRatios = skel.applyMethod2ObjectArray({skel},...
@@ -17,7 +17,7 @@ distance2somaRaw = skel.applyMethod2ObjectArray({skel},...
 cellTypeDensity = skel.applyMethod2ObjectArray({skel},...
     'getSynDensityPerType',[],false,'mapping');
 
-% Create cell arrays used for plotting
+%% Create cell arrays used for plotting
 shaftRatio = cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
     'UniformOutput',false);
 shaftDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
@@ -25,6 +25,7 @@ shaftDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
 spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
     'UniformOutput',false);
 distance2soma = distance2somaRaw.Variables;
+
 %% Set the values of the L5st group to the corrected values and 
 % also keep the uncorrected values for later plotting 
 
@@ -55,6 +56,7 @@ for i = 1:3
     % Change values to corrected for plotting
     evalin('base',[variableNames{i},'{end} = curCorrected']);
 end
+
 %% Plotting for Figure 5: inhibitoy ratio
 util.mkdir (outputFolder)
 util.setColors
@@ -133,4 +135,3 @@ yticklabels([0.1,1,10]);
 xlim([0.5,8.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,'synapseDensities.svg','off','on');
-

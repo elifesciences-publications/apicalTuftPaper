@@ -1,12 +1,18 @@
-%% Plot L5A distal soma annotation to add to old annotations
+%% Fig. 7a, L5st annotations: This script writes the skeletons of L5st neurons in Fig. 7A
+% The annotations for other cell types were cropped from Fig. 7, figure supplement 1A
+util.clearAll;
+c = util.plot.getColors();
+outputDir = fullfile(util.dir.getFig(7),'A');
+util.mkdir(outputDir)
+
+%% Get annotations
 apTuft = apicalTuft.getObjects('l2vsl3vsl5',[],true);
 apTuft= util.varfunKeepNames(@(x) x.sortTreesByName,apTuft);
 apTuftPruned = apicalTuft('PPC2L5ADist2SomaPruned_l2vsl3vsl5');
 apTuftPruned = apTuftPruned.sortTreesByName;
-%%
+
+%% Plot
 fname = 'L5A_denseDistalAD';
-outputDir = fullfile(util.dir.getFig(6),'TheL5ADistalADDense');
-util.mkdir(outputDir)
 fh = figure('Name',fname);ax = gca;
 hold on;
 p = dendrite.l2vsl3vsl5.gallery.parametersPPC2;
@@ -32,4 +38,3 @@ view([0,1,0]);camroll(p.camRoll);
 %   outputDir,[fname,'.svg'],[],[],false);
 print(fh,fullfile(outputDir,...
     fname),'-dsvg');
-system('./synPlots.sht');

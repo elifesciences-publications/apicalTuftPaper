@@ -1,13 +1,12 @@
+%% Fig. 6AB: The relationship between synaptic composition and the length of apical dendrite trunk
 % Author: Ali Karimi<ali.karimi@brain.mpg.de>
 
-% This script prints out multiple panels for the inhibitory fraciton and
-% synapse densities around the main bifurcation and distal AD
-
+%% Setup
 util.clearAll;
-outputFolder = fullfile(util.dir.getFig(6),...
-    'cellType_SynapticDensity_Comparison_Correlation');
-c = util.plot.getColors();
+outputFolder = fullfile(util.dir.getFig(6), 'AB');
 util.mkdir(outputFolder);
+c = util.plot.getColors();
+
 %% Load the annotations from PPC-2 dataset
 skel = apicalTuft('PPC2_l2vsl3vsl5');
 skel = skel.sortTreesByName;
@@ -43,85 +42,8 @@ for i = 1:3
     % Change values to corrected for plotting
     evalin('base',[variableNames{i},'{end} = curCorrected']);
 end
-%% Plotting for Figure 5: inhibitoy ratio
-util.mkdir (outputFolder)
-x_width = 3;
-y_width = 3.8;
-colors = util.plot.getColors().l2vsl3vsl5;
-indices = [1,2,3,1,4];
-% inhibitory Ratio
-fname = 'ShaftFraction_mainBifurcation';
-fh = figure('Name',fname);ax = gca;
-mkrSize = 10;
-noisyXValues = ...
-    util.plot.boxPlotRawOverlay(shaftRatio,indices,'ylim',1,'boxWidth',0.5496,...
-    'color',colors,'tickSize',mkrSize);
-% Make sure order of corrected and uncorrected values match
-L5Ahorizontal = noisyXValues{end}(1,:)';
-assert( isequal(noisyXValues{end}(2,:)', resultsL5A.Shaft_Ratio(:,2)) );
 
-% Plot the uncorrected L5A values as grey crosses and connect them with a
-% line
-dendrite.L5.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
-    L5Ahorizontal)
-
-xticks(1:max(indices));
-yticks(0:0.2:1)
-xlim([0.5, max(indices)+.5])
-util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,[fname,'.svg']);
-
-%% Do Kruskall-Wallis test for the shaft Ratios
-% Merge L2 and L2MN
-mergeGroups = {[1,4]};
-curLabels = cellTypeRatios.Properties.RowNames;
-testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups,...
-    fullfile(outputFolder,fname));
-
-% Text: Ranksum comparison L2, L2MN, L5st, L5tt
-util.stat.ranksum(shaftRatio{1},shaftRatio{4},fullfile(outputFolder,...
-    'L2L2MNComparison_ShaftRation'))
-util.stat.ranksum(shaftRatio{3},shaftRatio{5},fullfile(outputFolder,...
-    'L5ttL5stComparison_ShaftRation'));
-
-% KW test for ecitatory and inhibitory synapse density as well
-testResult.Exc = util.stat.KW(spineDensity,curLabels,mergeGroups,...
-    fullfile(outputFolder,'excDensity'));
-testResult.Inh = util.stat.KW(shaftDensity,curLabels,mergeGroups,...
-    fullfile(outputFolder,'inhDensity'));
-;
-%% Plotting for Figure 5: synapse density
-util.mkdir(outputFolder)
-x_width = 2;
-y_width = 2.2;
-colors = [repmat({c.exccolor},1,5);repmat({c.inhcolor},1,5)];
-allDensitites = [spineDensity';shaftDensity'];
-% Merge L2 with L2MN
-densityIndices = 1:10;
-densityIndices(7:8) = 1:2;
-densityIndices(9:10) = 7:8;
-% Density plot
-fh = figure;ax = gca;
-curXLoc = util.plot.boxPlotRawOverlay(allDensitites(:),densityIndices(:),...
-    'ylim',10,'boxWidth',0.5,'color',colors(:),'tickSize',10);
-
-% Get the uncorrected values and concatenate the excitatory and inhibitory
-% synapse densities
-curXLoc = cat(2,curXLoc{end-1:end})';
-thisUnCorrected = [l5ARawData.spineDensity;l5ARawData.shaftDensity];
-
-% Add the L5A raw data points
-dendrite.L5.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1))
-
-% Fig props
-set(ax,'yscale','log');
-yticks([0.1,1,10]);
-yticklabels([0.1,1,10]);
-xlim([0.5,8.5])
-util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'synapseDensities.svg','off','on');
-
-%% Get the layer 2 numbers form main bifurcation annotaitons and add them to
+%% Get the layer 2 numbers form main bifurcation annotations and add them to
 % the other layer 2 results
 % main bifurcation to soma distance vs. inhibitory fraction at the main
 % bifurcation
