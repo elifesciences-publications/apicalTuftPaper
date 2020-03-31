@@ -54,7 +54,7 @@ for i = 1:3
     % save uncorrected (raw values for plotting later)
     l5ARawData.(variableNames{i}) = curUncorrected;
     % Change values to corrected for plotting
-    evalin('base',[variableNames{i},'{end} = curCorrected']);
+    evalin('base',[variableNames{i},'{end} = curCorrected;']);
 end
 
 %% Plotting for Figure 5: inhibitoy ratio
@@ -77,7 +77,7 @@ assert( isequal(noisyXValues{end}(2,:)', resultsL5A.Shaft_Ratio(:,2)) );
 
 % Plot the uncorrected L5A values as grey crosses and connect them with a
 % line
-dendrite.L5.plotUncorrected(l5ARawData.shaftRatio,shaftRatio{end},...
+dendrite.L5.plotBeforeCorrection(l5ARawData.shaftRatio,shaftRatio{end},...
     L5Ahorizontal)
 
 xticks(1:max(indices));
@@ -95,7 +95,7 @@ testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups,...
 
 % Text: Ranksum comparison L2, L2MN, L5st, L5tt
 util.stat.ranksum(shaftRatio{1},shaftRatio{4},fullfile(outputFolder,...
-    'L2L2MNComparison_ShaftRation'))
+    'L2L2MNComparison_ShaftRation'));
 util.stat.ranksum(shaftRatio{3},shaftRatio{5},fullfile(outputFolder,...
     'L5ttL5stComparison_ShaftRation'));
 
@@ -126,7 +126,7 @@ curXLoc = cat(2,curXLoc{end-1:end})';
 thisUnCorrected = [l5ARawData.spineDensity;l5ARawData.shaftDensity];
 
 % Add the L5A raw data points
-dendrite.L5.plotUncorrected(thisUnCorrected,curXLoc(:,2),curXLoc(:,1))
+dendrite.L5.plotBeforeCorrection(thisUnCorrected,curXLoc(:,2),curXLoc(:,1))
 
 % Fig props
 set(ax,'yscale','log');
