@@ -1,6 +1,7 @@
-function [ scatterHandle ] = scatter( array,color,theSize,marker)
-%SCATTER scatter plotting utility for double arrays
-    % Author: Ali Karimi <ali.karimi@brain.mpg.de>
+function [ ] = scatter( array,color,theSize,marker)
+% SCATTER scatter plotting utility for double arrays
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist('color','var') || isempty(color)
     color = [1,0,0];

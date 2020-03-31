@@ -1,6 +1,6 @@
 function [axonSwitchFraction] = switchFactorl235()
-%SWITCHFACTORL235 loads the synapse switching fraciton for the l235
-%datasets
+% SWITCHFACTORL235 loads the misclassification rate of synapse identities
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 variableNames = {'mainBifurcation','distalAD'};
 axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;

@@ -1,6 +1,7 @@
 function [] = genericModel(model,minMax,thisColor)
-%GENERICMODEL 
+% GENERICMODEL plot a model 
 % Note: model should accept vector
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 if ~exist('thisColor','var') || isempty(thisColor)
     thisColor = 'k';
