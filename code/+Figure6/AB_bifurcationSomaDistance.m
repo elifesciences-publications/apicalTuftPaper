@@ -141,3 +141,16 @@ util.plot.cosmeticsSave...
     'coorrelationFigureSpine.svg','on','on');
 disp(['Single exponential fit Rsquared, Excitatory: ',...
     num2str(exponentialFit.excDensity.oneWithOffset.Rsquared.Ordinary)]);
+
+%% Write clustering results to excel sheet
+excelFileName = fullfile(util.dir.getExcelDir(6),'Fig6AB.xlsx');
+% Update the tree names to the current version
+bifurT = struct2table(bifur,'RowNames',util.cellTypeNames);
+bifurTcombined = table(cell(5,1),'VariableNames',{'combinedProp'},...
+    'RowNames',util.cellTypeNames);
+for i = 1:height(bifurT)
+bifurTcombined{i,1}{1} = ...
+    array2table(cat(2,bifurT{i,:}{:}),...
+    'VariableNames',bifurT.Properties.VariableNames);
+end
+util.table.write(bifurTcombined, excelFileName);
