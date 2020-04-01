@@ -17,129 +17,127 @@ distance2somaRaw = skel.applyMethod2ObjectArray({skel},...
 cellTypeDensity = skel.applyMethod2ObjectArray({skel},...
     'getSynDensityPerType',[],false,'mapping');
 
-% Create cell arrays used for plotting
-shaftRatio = cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
+%% Create cell arrays used for plotting
+inhFraction = cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
     'UniformOutput',false);
-shaftDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
+inhDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
     'UniformOutput',false);
-spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
+excDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
     'UniformOutput',false);
 distance2soma = distance2somaRaw.Variables;
-%% Set the values of the L5st group to the corrected values and 
-% also keep the uncorrected values for later plotting 
-results = dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
-% Keep only the main bifurcation results from L5A (L5st) group
-resultsL5A = results.l235{end,:}{1};
-% varibales for assigning
-variableNames = {'shaftRatio','shaftDensity','spineDensity'};
-tableVariableNames = {'Shaft_Ratio','Shaft_Density','Spine_Density'};
+%% Get the corrected values for L5st group
+% Get the correction fraction
+axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
+L5stswitchFraction = axonSwitchFraction.L2{'L5A',:};
+L5Atrees = skel.groupingVariable.layer5AApicalDendrite_mapping{1};
+
+% Get Corrected densities/fractions into a table
+densityC = skel.getSynDensityPerType(L5Atrees, L5stswitchFraction);
+ratioC = skel.getSynRatio(L5Atrees, L5stswitchFraction);
+combinedCorrected = join(densityC,ratioC,...
+    'Keys','treeIndex');
+% Varibales for assigning
+variableNames = {'inhFraction','inhDensity','excDensity'};
+tableVariableNames = {'Shaft_corrected_ratioC',...
+    'Shaft_corrected_densityC','Spine_corrected_densityC'};
+% check tree names equality
+assert(isequal(combinedCorrected.treeIndex,...
+    cellTypeDensity{end,1}{1}.treeIndex));
+assert(isequal(combinedCorrected.treeIndex,...
+    cellTypeRatios{end,1}{1}.treeIndex));
+% Note: Here I use the evalin to correct, the variables above. Not the
+% ideal method since it makes the code confusing.
 for i = 1:3
     curUncorrected = evalin('base',[variableNames{i},'{end}']);
-    curCorrected = resultsL5A.(tableVariableNames{i})(:,2);
-    assert(isequal(curUncorrected,resultsL5A.(tableVariableNames{i})(:,1)));
-    % save uncorrected (raw values for plotting later)
-    l5ARawData.(variableNames{i}) = curUncorrected;
+    curCorrected = combinedCorrected.(tableVariableNames{i});
+    % Keep track of fraction/density of synapses before correction for
+    % later plotting
+    L5stBeforeCorrection.(variableNames{i}) = curUncorrected;
     % Change values to corrected for plotting
-    evalin('base',[variableNames{i},'{end} = curCorrected']);
+    evalin('base',[variableNames{i},'{end} = curCorrected;']);
 end
-
-%% Get the layer 2 numbers form main bifurcation annotations and add them to
-% the other layer 2 results
-% main bifurcation to soma distance vs. inhibitory fraction at the main
-% bifurcation
-curVariables = {'shaftRatio','shaftDensity','spineDensity','distance2soma'};
-% Create the bifur structure as the input
+%% Add Layer 2 density fractions from S1, V2, PPC, and ACC datasets
+% Put current variables into structure bifur
+curVariables = {'inhFraction','inhDensity',...
+    'excDensity','distance2soma'};
+% Create the structure as the input
 for i = 1:length(curVariables)
     bifur.(curVariables{i}) = evalin('base',curVariables{i});
 end
 
-% Concatenation
+% Add other L2 results
 bifur = dendrite.l2vsl3vsl5.concatenateSmallDatasetL2(bifur);
 
-% Set the values to the concatenated values
+% Set the variables in the environment to the aggregate results
 for i = 1:length(curVariables)
     assignin('base',curVariables{i},...
         bifur.(curVariables{i}))
 end
 
-%% Correlation and Exponential fit
-% Inhibitory Ratio
-[fh,ax,exponentialFit_Ratio] = dendrite.l2vsl3vsl5.plotCorrelation...
-    (distance2soma,shaftRatio);
+%% Inhibitory Ratio: Correlation and Exponential fit
+[fh,ax,exponentialFit.inhFraction] = dendrite.l2vsl3vsl5.plotCorrelation...
+    (distance2soma,inhFraction);
 % Add L5A uncorrected
-dendrite.L5.plotBeforeCorrection(l5ARawData.shaftRatio,shaftRatio{end},...
+dendrite.L5.plotBeforeCorrection(L5stBeforeCorrection.inhFraction,inhFraction{end},...
     distance2soma{end});
-x_width = 4;
-y_width = 2.6;
-xLimit = 600;
+
 % plot exponential with offset
 minDist2Soma = min(cell2mat(distance2soma));
 modelfun = @(b,x)(b(1)+b(2)*exp(b(3)*x));
-distRange = linspace(minDist2Soma,xLimit,500);
-modelRatio = modelfun(exponentialFit_Ratio.oneWithOff.Coefficients.Estimate',...
+maxDistance = 600;
+distRange = linspace(minDist2Soma,maxDistance,500);
+modelRatio = modelfun(exponentialFit.inhFraction.oneWithOffset.Coefficients.Estimate',...
     distRange);
+% Figure properties
 plot(distRange,modelRatio,'k');
 legend('off')
 xlabel([]);
 ylabel([]);
 ylim([0 1]);
-xticks(0:300:xLimit);
-xlim([0,xLimit]);
+xticks(0:300:maxDistance);
+xlim([0,maxDistance]);
 yticks(0:0.2:1);
 ylim([0,1]);
+x_width = 4;
+y_width = 2.6;
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
     'coorrelationFigureRatio.svg','on','off');
-disp(['Single exponential fit Rsquared, Inh. ratio: ',...
-    num2str(exponentialFit_Ratio.oneWithOff.Rsquared.Ordinary)]);
 
-
-% shaft density
+%% Inhibitory density
 beta0Inh = [0.1000,0.5824, -0.0299];
-[fh,ax,exponentialFit_inh] = dendrite.l2vsl3vsl5.plotCorrelation...
-    (distance2soma,shaftDensity,beta0Inh);
-% Add L5A uncorrected
-dendrite.L5.plotBeforeCorrection(l5ARawData.shaftDensity,shaftDensity{end},...
+[fh,ax,exponentialFit.inhDensity] = dendrite.l2vsl3vsl5.plotCorrelation...
+    (distance2soma,inhDensity,beta0Inh);
+% Add L5st uncorrected
+dendrite.L5.plotBeforeCorrection(L5stBeforeCorrection.inhDensity,inhDensity{end},...
     distance2soma{end});
 x_width = 2;
 y_width = 1.3;
-% plot exponential with offset
-modelRatio = modelfun(exponentialFit_inh.oneWithOff.Coefficients.Estimate',...
-    distRange);
-% plot(distRange,modelRatio,'k');
-
+% figure Properties
 legend('off')
 xlabel([]);
 ylabel([]);
-xticks(0:300:xLimit);
-xlim([0,xLimit]);
+xticks(0:300:maxDistance);
+xlim([0,maxDistance]);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
     'coorrelationFigureShaft.svg','on','on');
-disp(['Single exponential fit Rsquared, Inhibitory: ',...
-    num2str(exponentialFit_inh.oneWithOff.Rsquared.Ordinary)]);
 
-% spineDensity
-[fh,ax,exponentialFit_Exc] = dendrite.l2vsl3vsl5.plotCorrelation...
-    (distance2soma,spineDensity);
-
-% Add L5A uncorrected
-dendrite.L5.plotBeforeCorrection(l5ARawData.spineDensity,spineDensity{end},...
+%% excitatory synapse density
+[fh,ax,exponentialFit.excDensity] = dendrite.l2vsl3vsl5.plotCorrelation...
+    (distance2soma,excDensity);
+% Add L5st uncorrected
+dendrite.L5.plotBeforeCorrection(L5stBeforeCorrection.excDensity,excDensity{end},...
     distance2soma{end});
-
-
-% plot exponential with offset
-modelRatio = modelfun(exponentialFit_Exc.oneWithOff.Coefficients.Estimate',...
-    distRange);
-% plot(distRange,modelRatio,'k');
+% Figure properties
 legend('off')
 xlabel([]);
 ylabel([]);
 ylim([0,6])
-xticks(0:300:xLimit);
-xlim([0,xLimit]);
+xticks(0:300:maxDistance);
+xlim([0,maxDistance]);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
     'coorrelationFigureSpine.svg','on','on');
 disp(['Single exponential fit Rsquared, Excitatory: ',...
-    num2str(exponentialFit_Exc.oneWithOff.Rsquared.Ordinary)]);
+    num2str(exponentialFit.excDensity.oneWithOffset.Rsquared.Ordinary)]);

@@ -1,6 +1,10 @@
 function [fh,ax,exp] = plotCorrelation(distance2soma,...
     Measure,beta0, colors)
-% PLOTCORRELATION
+% PLOTCORRELATION scatter plot the raw data in addition to the exponential
+% fit. Used in Fig.6A.
+
+% Author: Ali Karimi<ali.karimi@brain.mpg.de>
+
 if ~exist('beta0','var') || isempty (beta0)
     beta0 = [];
 end
@@ -21,7 +25,7 @@ ratioArray = cat(1,Measure{:});
 [exp.one.f,exp.one.gof] = fit(distArray,ratioArray,'exp1');
 [exp.two.f,exp.two.gof] = fit(distArray,ratioArray,'exp2');
 % Fit single exponential with offset
-[exp.oneWithOff] = ...
+[exp.oneWithOffset] = ...
     dendrite.l2vsl3vsl5.exponentialFitWithOffset...
     (distArray,ratioArray,beta0);
 

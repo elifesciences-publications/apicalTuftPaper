@@ -12,8 +12,6 @@ skel = apicalTuft('PPC2_l2vsl3vsl5');
 skel = skel.sortTreesByName;
 cellTypeRatios = skel.applyMethod2ObjectArray({skel},...
     'getSynRatio',[],false,'mapping');
-distance2somaRaw = skel.applyMethod2ObjectArray({skel},...
-    'getDistanceBWPoints',[],false,'dist2soma');
 cellTypeDensity = skel.applyMethod2ObjectArray({skel},...
     'getSynDensityPerType',[],false,'mapping');
 
@@ -24,7 +22,6 @@ inhDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
     'UniformOutput',false);
 excDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
     'UniformOutput',false);
-distance2soma = distance2somaRaw.Variables;
 
 %% Get the corrected values for L5st group
 % Get the correction fraction
