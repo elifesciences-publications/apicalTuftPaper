@@ -18,99 +18,77 @@ cellTypeDensity = skel.applyMethod2ObjectArray({skel},...
     'getSynDensityPerType',[],false,'mapping');
 
 %% Create cell arrays used for plotting
-shaftRatio = cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
+inhFraction = cellfun(@(x) x.Shaft,cellTypeRatios.Variables,...
     'UniformOutput',false);
-shaftDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
+inhDensity = cellfun(@(x) x.Shaft,cellTypeDensity.Variables,...
     'UniformOutput',false);
-spineDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
+excDensity = cellfun(@(x) x.Spine,cellTypeDensity.Variables,...
     'UniformOutput',false);
 distance2soma = distance2somaRaw.Variables;
 
-%% Set the values of the L5st group to the corrected values and 
-% also keep the uncorrected values for later plotting 
+%% Get the corrected values for L5st group
+% Get the correction fraction
+axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
+L5stswitchFraction = axonSwitchFraction.L2{'L5A',:};
+L5Atrees = skel.groupingVariable.layer5AApicalDendrite_mapping{1};
 
-% TODO: remove this time consuming function with a call to getSynCount with
-% the correction fraction like the following:
-% curCorrected = ...
-% skel{1,d}.getSynCount(L5Atrees,L5stswitchFraction{d});
-% % Load axon switching fraction
-% axonSwitchFraction = dendrite.synIdentity.loadSwitchFraction;
-% 
-% % Mimick the shape of the L5A entries in the other variables (LPtA empty entry)
-% L5stswitchFraction = ...
-%     {axonSwitchFraction.L2{'L5A',:},{},...
-%     axonSwitchFraction.L1{'layer5AApicalDendriteSeeded',:}};
-
-results = dendrite.synIdentity.getCorrected.getAllRatioAndDensityResult;
-% Keep only the main bifurcation results from L5A (L5st) group
-resultsL5A = results.l235{end,:}{1};
-% varibales for assigning
-variableNames = {'shaftRatio','shaftDensity','spineDensity'};
-tableVariableNames = {'Shaft_Ratio','Shaft_Density','Spine_Density'};
+% Get Corrected densities/fractions into a table
+densityC = skel.getSynDensityPerType(L5Atrees, L5stswitchFraction);
+ratioC = skel.getSynRatio(L5Atrees, L5stswitchFraction);
+combinedCorrected = join(densityC,ratioC,...
+    'Keys','treeIndex');
+% Varibales for assigning
+variableNames = {'inhFraction','inhDensity','excDensity'};
+tableVariableNames = {'Shaft_corrected_ratioC',...
+    'Shaft_corrected_densityC','Spine_corrected_densityC'};
+% check tree names equality
+assert(isequal(combinedCorrected.treeIndex,...
+    cellTypeDensity{end,1}{1}.treeIndex));
+assert(isequal(combinedCorrected.treeIndex,...
+    cellTypeRatios{end,1}{1}.treeIndex));
+% Note: Here I use the evalin to correct, the variables above. Not the
+% ideal method since it makes the code confusing.
 for i = 1:3
     curUncorrected = evalin('base',[variableNames{i},'{end}']);
-    curCorrected = resultsL5A.(tableVariableNames{i})(:,2);
-    assert(isequal(curUncorrected,resultsL5A.(tableVariableNames{i})(:,1)));
-    % save uncorrected (raw values for plotting later)
-    l5ARawData.(variableNames{i}) = curUncorrected;
+    curCorrected = combinedCorrected.(tableVariableNames{i});
+    % Keep track of fraction/density of synapses before correction for
+    % later plotting
+    L5stBeforeCorrection.(variableNames{i}) = curUncorrected;
     % Change values to corrected for plotting
     evalin('base',[variableNames{i},'{end} = curCorrected;']);
 end
 
 %% Plotting for Figure 5: inhibitoy ratio
-util.mkdir (outputFolder)
-util.setColors
 x_width = 3;
 y_width = 3.8;
-colors = util.plot.getColors().l2vsl3vsl5;
+colors = c.l2vsl3vsl5;
 indices = [1,2,3,1,4];
 % inhibitory Ratio
-fname = 'ShaftFraction_mainBifurcation';
+fname = 'E_inhibitoryFraction';
 fh = figure('Name',fname);ax = gca;
 mkrSize = 10;
 noisyXValues = ...
-    util.plot.boxPlotRawOverlay(shaftRatio,indices,'ylim',1,'boxWidth',0.5496,...
+    util.plot.boxPlotRawOverlay(inhFraction,indices,'ylim',1,'boxWidth',0.5496,...
     'color',colors,'tickSize',mkrSize);
 % Make sure order of corrected and uncorrected values match
-L5Ahorizontal = noisyXValues{end}(1,:)';
-assert( isequal(noisyXValues{end}(2,:)', resultsL5A.Shaft_Ratio(:,2)) );
-
 % Plot the uncorrected L5A values as grey crosses and connect them with a
 % line
-dendrite.L5.plotBeforeCorrection(l5ARawData.shaftRatio,shaftRatio{end},...
-    L5Ahorizontal)
-
+L5sthorizontal = noisyXValues{end}(1,:)';
+dendrite.L5.plotBeforeCorrection(L5stBeforeCorrection.inhFraction,inhFraction{end},...
+    L5sthorizontal)
+% Cosmetics & save
 xticks(1:max(indices));
 yticks(0:0.2:1)
 xlim([0.5, max(indices)+.5])
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,[fname,'.svg']);
 
-%% Do Kruskall-Wallis test for the shaft Ratios
-% Merge L2 and L2MN
-mergeGroups = {[1,4]};
-curLabels = cellTypeRatios.Properties.RowNames;
-testResult = util.stat.KW(shaftRatio,curLabels,mergeGroups,...
-    fullfile(outputFolder,fname));
-
-% Text: Ranksum comparison L2, L2MN, L5st, L5tt
-util.stat.ranksum(shaftRatio{1},shaftRatio{4},fullfile(outputFolder,...
-    'L2L2MNComparison_ShaftRation'));
-util.stat.ranksum(shaftRatio{3},shaftRatio{5},fullfile(outputFolder,...
-    'L5ttL5stComparison_ShaftRation'));
-
-% KW test for ecitatory and inhibitory synapse density as well
-testResult.Exc = util.stat.KW(spineDensity,curLabels,mergeGroups,...
-    fullfile(outputFolder,'excDensity'));
-testResult.Inh = util.stat.KW(shaftDensity,curLabels,mergeGroups,...
-    fullfile(outputFolder,'inhDensity'));
-
 %% Plotting for Figure 5: synapse density
 util.mkdir(outputFolder)
 x_width = 2;
 y_width = 2.2;
-colors = [repmat({exccolor},1,5);repmat({inhcolor},1,5)];
-allDensitites = [spineDensity';shaftDensity'];
+colors = [repmat({c.exccolor},1,5);repmat({c.inhcolor},1,5)];
+allDensitites = [excDensity';inhDensity'];
 % Merge L2 with L2MN
 densityIndices = 1:10;
 densityIndices(7:8) = 1:2;
@@ -123,7 +101,8 @@ curXLoc = util.plot.boxPlotRawOverlay(allDensitites(:),densityIndices(:),...
 % Get the uncorrected values and concatenate the excitatory and inhibitory
 % synapse densities
 curXLoc = cat(2,curXLoc{end-1:end})';
-thisUnCorrected = [l5ARawData.spineDensity;l5ARawData.shaftDensity];
+thisUnCorrected = [L5stBeforeCorrection.excDensity;...
+    L5stBeforeCorrection.inhDensity];
 
 % Add the L5A raw data points
 dendrite.L5.plotBeforeCorrection(thisUnCorrected,curXLoc(:,2),curXLoc(:,1))
@@ -134,4 +113,18 @@ yticks([0.1,1,10]);
 yticklabels([0.1,1,10]);
 xlim([0.5,8.5])
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'synapseDensities.svg','off','on');
+    (fh,ax,x_width,y_width,outputFolder,'E_synapseDensities.svg','off','on');
+
+%% Testing for fraction of inhibitory synapses
+% L2 and L2MN are merged for testing as well
+mergeGroups = {[1,4]};
+curLabels = cellTypeRatios.Properties.RowNames;
+% Test for the inhibitory fraction
+KWtest.inhFraction = util.stat.KW(inhFraction,curLabels,mergeGroups,...
+    fullfile(outputFolder,fname));
+
+% KW test for excitatory and inhibitory synapse density as well
+KWtest.Exc = util.stat.KW(excDensity,curLabels,mergeGroups,...
+    fullfile(outputFolder,'excDensity'));
+KWtest.Inh = util.stat.KW(inhDensity,curLabels,mergeGroups,...
+    fullfile(outputFolder,'inhDensity'));
