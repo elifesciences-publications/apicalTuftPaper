@@ -125,3 +125,14 @@ KWtest.Exc = util.stat.KW(excDensity,curLabels,mergeGroups,...
     fullfile(outputFolder,'excDensity'));
 KWtest.Inh = util.stat.KW(inhDensity,curLabels,mergeGroups,...
     fullfile(outputFolder,'inhDensity'));
+
+%% Write data to excel sheets
+cellTypeRatios.Properties.VariableNames = {'SynapseRatios'};
+cellTypeDensity.Properties.VariableNames = {'SynapseDensity'};
+% correct L5st valus
+cellTypeRatios{end,1}{1} = ratioC;
+cellTypeDensity{end,1}{1} = densityC;
+combinedT = join(cellTypeDensity,cellTypeRatios,'Keys','Row');
+combinedT.Properties.RowNames = util.cellTypeNames;
+excelFileName = fullfile(util.dir.getExcelDir(5),'Fig5E.xlsx');
+util.table.write(combinedT,excelFileName);
