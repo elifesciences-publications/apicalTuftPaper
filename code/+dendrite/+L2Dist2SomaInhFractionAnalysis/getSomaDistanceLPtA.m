@@ -1,6 +1,9 @@
 function [somaDistance] = getSomaDistanceLPtA(thisSkel)
-%GETSOMADISTANCELPTA Get the distance between the stem of each branch and
+% GETSOMADISTANCELPTA Get the distance between the stem of each branch and
 % soma using 'highres edge_xx' comment
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 trIndices = thisSkel.groupingVariable.layer2ApicalDendrite_dist2soma{1};
 cc = 1;
 for i = 1:length(trIndices)

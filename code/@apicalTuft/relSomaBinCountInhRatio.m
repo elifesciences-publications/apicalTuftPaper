@@ -2,7 +2,9 @@ function [skel] = relSomaBinCountInhRatio(skel,...
     treeIndices,range)
 % relSomaBinCountInhRatio calculate the inhibitory ratio relative to soma 
 % distance. Used for analysis in layer 2 pyramidal cells
+
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 if ~exist('treeIndices','var') || isempty(treeIndices)
     treeIndices = 1:skel.numTrees;
 end

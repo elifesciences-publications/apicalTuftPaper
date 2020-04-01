@@ -10,6 +10,7 @@ exclude{2} = {'deepLayerApicalDendrite09','deepLayerApicalDendrite08',...
     'layer2ApicalDendrite07','layer2ApicalDendrite10'};
 % PPC
 exclude{3} = {'deepLayerApicalDendrite09','layer2ApicalDendrite07'};
+
 % ACC
 exclude{4} = {};
 if istable(skels)
