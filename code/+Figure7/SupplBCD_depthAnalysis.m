@@ -1,7 +1,7 @@
 %% Fig. 7, Figure Supplement 1BCD: Depth analysis of synaptic composition 
 % Author: Ali Karimi <ali.karimi@brain.mpg.de>
 util.clearAll
-outputFolder = fullfile(util.dir.getFig(5),'CorticalDepthAnalysis');
+outputFolder = fullfile(util.dir.getFig(7),'SupplBCD');
 util.mkdir(outputFolder)
 c = util.plot.getColors();
 
@@ -226,6 +226,7 @@ ylim([0 60]);
 util.plot.cosmeticsSave...
     (fh,ax,x_width,y_width,outputFolder,...
     'dendriteNumber.svg','on','on');
+
 %% Number of dendrites and pathlength Control and number for text
 % rawPerTypeAndDepth comes from the g table
 % For counting switch back to raw L5A values

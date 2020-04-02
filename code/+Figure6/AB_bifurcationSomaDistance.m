@@ -56,6 +56,7 @@ for i = 1:3
     % Change values to corrected for plotting
     evalin('base',[variableNames{i},'{end} = curCorrected;']);
 end
+
 %% Add Layer 2 density fractions from S1, V2, PPC, and ACC datasets
 % Put current variables into structure bifur
 curVariables = {'inhFraction','inhDensity',...
