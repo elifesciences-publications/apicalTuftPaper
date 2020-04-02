@@ -1,6 +1,5 @@
 function Coords = synapseCoordinates(skel, tr, stringSynapse)
-% Author: Jan Odenthal <jan.odenthal@brain.mpg.de>
-%Get Synapse ccordinates
+% Get Synapse ccordinates
 % Author: Jan Odenthal <jan.odenthal@brain.mpg.de>
 allSynapses = [];
 for dd = 1:length(stringSynapse)

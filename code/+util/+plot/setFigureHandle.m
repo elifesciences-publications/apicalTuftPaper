@@ -4,7 +4,7 @@ function h = setFigureHandle(h,varargin)
 %           paperSize: (Optional) Set Din Paper Size. Default is 'A4'
 %           orientation: (Optional) Set orientation to either 'landscape'
 %               or 'portrait'. Default is 'portrait'
-% author: florian drawitsch<florian.drawitsch@brain.mpg.de>
+% Author: Florian Drawitsch<florian.drawitsch@brain.mpg.de>
 % modified: Ali Karimi <ali.karimi@brain.mpg.de>
 checkHandle = @(x) ishandle(x) && strcmp(get(x,'type'),'figure');
 checkPaperSize = @(x) ~isempty(regexpi(x,'^A\d$'));

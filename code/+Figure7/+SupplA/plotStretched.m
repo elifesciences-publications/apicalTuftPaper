@@ -1,9 +1,9 @@
 function h = plotStretched(Dataset, tr, groupString, trees)
 % Author: Jan Odenthal <jan.odenthal@brain.mpg.de>
 if length(trees) >= 5
-    stretchFactor = 100;
+    stretchFactor = 20;
 else
-    stretchFactor = 500; %200
+    stretchFactor = 20; %200
 end
 
 %We don't want the trees to overlap, so we shift them on the x-Axis by shiftFactor*stretchFactor.
@@ -23,23 +23,25 @@ switch groupString
         assignin('base', 'shiftFactorL2', shiftFactor+1);
 end
 
-shCoords = Figure7.SupplA.synapseCoordinates(Dataset, tr, {'Shaft', 'spineDoubleInnervated', 'spineNeck'});
-spCoords = Figure7.SupplA.synapseCoordinates(Dataset, tr, {'spineSingleInnervated'});
+shCoords = Figure7.SupplA.synapseCoordinates(Dataset, tr, ...
+    {'Shaft', 'spineDoubleInnervated', 'spineNeck'});
+spCoords = Figure7.SupplA.synapseCoordinates(Dataset, tr, ...
+    {'spineSingleInnervated'});
 
 %We also use the smallest x-Coordinate of all Synapses to normalize the
 %position of the tree. Figuratively speaking, we shift the tree to the left
-%until it just touches the y-axis and then we whift it to the right by
+%until it just touches the y-axis and then we shift it to the right by
 %shiftfactor*stretchfactor.
 
-allEdges = bsxfun(@times,Dataset.nodes{tr}(:,1:3),Dataset.scale);
+allNodeCoords = bsxfun(@times,Dataset.nodes{tr}(:,1:3),Dataset.scale);
 
 if ~isempty(spCoords)
     for ed = 1:size(Dataset.edges{tr},1)
         edge = Dataset.edges{tr}(ed,:);
         stringColor = 'k';
-        h = plot3(allEdges(edge,1)/1000-min(spCoords(:,1))/1000+...
-            shiftFactor*stretchFactor,allEdges(edge,2)/1000,...
-            allEdges(edge,3)/1000,...
+        h = plot3(allNodeCoords(edge,1)/1000-min(spCoords(:,1))/1000+...
+            shiftFactor*stretchFactor,allNodeCoords(edge,2)/1000,...
+            allNodeCoords(edge,3)/1000,...
             '-','Color',stringColor,'LineWidth',0.25);
         hold on
     end
@@ -48,9 +50,9 @@ else
         for ed = 1:size(Dataset.edges{tr},1)
             edge = Dataset.edges{tr}(ed,:);
             stringColor = 'k';
-            h = plot3(allEdges(edge,1)/1000-min(shCoords(:,1))/1000+...
-                shiftFactor*stretchFactor,allEdges(edge,2)/1000,...
-                allEdges(edge,3)/1000,...
+            h = plot3(allNodeCoords(edge,1)/1000-min(shCoords(:,1))/1000+...
+                shiftFactor*stretchFactor,allNodeCoords(edge,2)/1000,...
+                allNodeCoords(edge,3)/1000,...
                 '-','Color',stringColor,'LineWidth',0.25);
             hold on
         end
