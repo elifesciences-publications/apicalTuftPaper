@@ -18,6 +18,7 @@ for d = 1:length(datasets2Soma)
         original.l235.(datasets2Soma{d}).getTreeWithName...
         ('mapping','partial'),true);
 end
+
 %% Convert all annotations into y axis being pia distance (y = 0, pia)
 fun = @ (annot) apicalTuft.applyMethod2ObjectArray...
     (annot,'convert2PiaCoord',false,false,'mapping');
@@ -53,8 +54,6 @@ chopped = structfun(annotTableFun,backBone,...
 %% Split into connected components
 % combine all annotations
 splitCC = dendrite.wholeApical.iterateOverBboxes(chopped,'splitCC');
-
-
 
 %% Gather all the information
 allInfo = dendrite.wholeApical.iterateOverBboxes...
@@ -157,7 +156,7 @@ stairLocations = [binCenters(1:end-1)-(binRange/2),300];
 % Groups: 1: L2, 2: Deep, 3: L3, 4: L5
 cellTypes = [1:5];
 
-colors = {l2color,dlcolor,l3color,l5color,l5Acolor};
+colors = {c.l2color,c.dlcolor,c.l3color,c.l5color,c.l5Acolor};
 % C: synapse densities
 fh = figure;ax = gca;
 x_width = 4;
