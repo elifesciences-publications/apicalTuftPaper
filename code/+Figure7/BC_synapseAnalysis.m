@@ -13,13 +13,14 @@ L5st_Skel = apicalTuft('PPC2L5ADistal_l2vsl3vsl5');
 L5st_Skel = L5st_Skel.sortTreesByName;
 
 %% Get densities
-distal = dendrite.l2vsl3vsl5.getRatioDensities(distalSkel);
+[distal,withTreeNames.frac,withTreeNames.density,resultsForExcel] = ...
+    dendrite.l2vsl3vsl5.getRatioDensities(distalSkel);
 % Also get the tree names for checking
-[distalL5st,withTreeNames.frac,withTreeNames.density] ...
+[distalL5st, L5stwithTreeNames.frac, L5stwithTreeNames.density] ...
     = dendrite.l2vsl3vsl5.getRatioDensities(L5st_Skel);
-[distalL5st,L5stBeforeCorrection] = ...
+[distalL5st, L5stBeforeCorrection, L5stForExcel] = ...
     dendrite.l2vsl3vsl5.correctL5st_fordistal...
-    (L5st_Skel,distalL5st,withTreeNames, 'L1');
+    (L5st_Skel,distalL5st,L5stwithTreeNames, 'L1');
 % Merge L5st results from the PPC-2 dataset with the results fronm the L5A
 % dataset
 vars = fieldnames(distal);
@@ -198,3 +199,9 @@ L235BCount = distalSkel.getSynCount(curIndices);
 Total = sum(L235BCount{:,2:end},1) + sum(L5stCount{:,2:end},1);
 disp(['Total number of synapses in distal AD annotations: ', ...
     num2str(sum(Total))]);
+
+%% Write data to excel sheet
+resultsForExcel{4,1} = {L5stForExcel};
+resultsForExcel.Properties.RowNames = {'L2','L3','L5tt','L5st'};
+excelFileName = fullfile(util.dir.getExcelDir(7),'Fig7B.xlsx');
+util.table.write(resultsForExcel,excelFileName);
