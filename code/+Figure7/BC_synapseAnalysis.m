@@ -36,7 +36,7 @@ fname = 'inhFraction';
 fh = figure('Name',fname);ax = gca;
 noisyXValues = ...
     util.plot.boxPlotRawOverlay(distal.inhFraction,1:4,'ylim',1,'boxWidth',0.5496,...
-'color',colorsCellType,'tickSize',15);
+    'color',colorsCellType,'tickSize',15);
 
 % Make sure order of corrected and uncorrected values match
 L5sthorizontal = noisyXValues{end}(1,:)';
@@ -59,7 +59,7 @@ testResult = util.stat.KW(distal.inhFraction,cellTypes, ...
 % Text: Ranksum comparison L2, L2MN, L5st, L5tt
 
 util.stat.ranksum(distal.inhFraction{3},distal.inhFraction{4},fullfile(outputFolder,...
-    'Distal_L5ttL5stComparison_inhFractionn'))
+    'Distal_L5ttL5stComparison_inhFractionn'));
 
 %% Fig. 7B: Synapse Densities
 x_width = 2;
@@ -70,7 +70,7 @@ allDensitites = [distal.excDensity';distal.inhDensity'];
 fh = figure;ax = gca;
 curXLoc = ...
     util.plot.boxPlotRawOverlay(allDensitites(:),1:8,'ylim',10,'boxWidth',0.5,...
-'color',colorsForDensity(:),'tickSize',10);
+    'color',colorsForDensity(:),'tickSize',10);
 
 
 % Add the L5st values before correction
@@ -87,7 +87,9 @@ yticks([0.1,1,10]);
 yticklabels([0.1,1,10]);
 xticklabels([]);
 util.plot.cosmeticsSave...
-    (fh,ax,x_width,y_width,outputFolder,'B_synapseDensities.svg','off','on');
+    (fh,ax,x_width,y_width,outputFolder,...
+    'B_synapseDensities.svg','off','on');
+
 %% Kruskall Wallis test for densities
 cellTypes = {'L2','L3','L5tt','L5st'};
 testResult_inhDensity = util.stat.KW(distal.inhDensity,cellTypes, ...
@@ -125,19 +127,19 @@ for i = 1:length(f)
     bifur.(f{i})(4) = [];
 end
 
-%% Test for the inhibitory fraction difference between main bifurcation 
+%% Test for the inhibitory fraction difference between main bifurcation
 % and distal tuft of each cell type
 variableNames = {'inhFraction','inhDensity','excDensity'};
 for celltype = 1:length(cellTypes)
     for var = 1:3
         curVar = variableNames{var};
         curFname = fullfile (outputFolder, [cellTypes{celltype},...
-        '_MBvsDistalAD_',curVar,'.txt']);
+            '_MBvsDistalAD_',curVar,'.txt']);
         curDistal = distal.(curVar){celltype};
         curMB = bifur.(curVar){celltype};
         % Test
         testResults.(curVar).(cellTypes{celltype}) = ...
-        util.stat.ranksum(curMB,curDistal,curFname);
+            util.stat.ranksum(curMB,curDistal,curFname);
     end
 end
 
@@ -168,6 +170,7 @@ L3result.vsL5ttBifur = ...
     util.stat.ranksum(bifur.inhFraction{2},bifur.inhFraction{3});
 L3result.vsL2Distal = ...
     util.stat.ranksum(distal.inhFraction{2},distal.inhFraction{1});
+
 %% Distal: Get the mean values for text
 Means = cellfun(@(x)round(mean(x).*100,2),distal.inhFraction);
 Sems = cellfun(@(x) round(util.stat.sem(x,[],1).*100,3),distal.inhFraction);
