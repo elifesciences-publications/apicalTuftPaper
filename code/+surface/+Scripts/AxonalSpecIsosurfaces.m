@@ -1,3 +1,4 @@
+% Currently deprecated
 % This is a relatively old script for creating the isosurfaces for the
 % Suppl. Fig2a
 % Setting up
@@ -30,6 +31,7 @@ skel = skel.deleteTrees(skel.getTreeWithName(treeNames,'exact'),true);
 skel.writeSynCoordinateTextFile([],outputFolder,'cyan',true);
 
 %% Visualization test
+error('TODO: Remove rdir dependency')
 f = rdir(fullfile(outputFolder,'isosurfaces/**/*.ply'));
 for i = 1:length(f)
     isoSurf{i} = Visualization.readPLY(f(i).name);
