@@ -1,11 +1,12 @@
 function [bifurDepth] = bifurcationDepth(skel,treeNames)
 % BIFURCATIONDEPTH Get the depth of the bifurcaiton of L5 neurons relative
 % to pia
-
-% Author: Ali Karimi <ali.karimi@brain.mpg.de>
-
 % Note: This is done via calculating the depth relative to L1 and adding
 % 145 um (distance from pia to L1 border). We did this since the Pia border
+% would result in visually poorer results w.r.t. the angle of the apical
+% dendrites relative to a horizontal line.
+
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
 
 distL1Pia = 145;
 l1 = util.plot.loadl1;

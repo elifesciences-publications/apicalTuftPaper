@@ -1,4 +1,6 @@
 util.clearAll;
+% Author: Ali Karimi <ali.karimi@brain.mpg.de>
+
 % Get LPtA skeleton, correct the low-resolution coordinate and convert the
 % y-axis to pia coordinate (depth relative to pia)
 skel = apicalTuft('LPtA_l2vsl3vsl5');
@@ -20,5 +22,5 @@ allRangeT = array2table(allRangeArray,'VariableNames',...
     trIdxL2_5tt.Properties.VariableNames);
 outputFolderRanges = fullfile(util.dir.getFig(5),...
     'somaDepthRanges');util.mkdir(outputFolderRanges);
-writetable(allRangeT,fullfile(outputFolderRanges,'somaDepthRanges_LPtA.txt'),...
+writetable(allRangeT,fullfile(outputFolderRanges,'somaDepthRanges_LPtA.xlsx'),...
     'WriteRowNames',true);

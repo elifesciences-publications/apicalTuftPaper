@@ -6,7 +6,7 @@ function [dist] = dist2plane(thisfit,allPoints,signed)
 %   thisfit:   sfit to be converted
 % output:
 %   dist:  distance from each point to the surface
-% from: https://mathinsight.org/distance_point_plane
+% From: https://mathinsight.org/distance_point_plane
 % Normal distance between a point (xp,yp,zp) and a plane (Ax+By+Cz+D = 0)
 % dist = |Axp+Byp+Czp+D|/sqrt(A^2+B^2+C^2)
 
